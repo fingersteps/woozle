@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Woozle.Core.Persistence.Impl" GeneratedClassName="Persistence">
+  <Profiles />
+  <Settings>
+    <Setting Name="Datasource" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="InitialCatalog" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Woozle.Core</Value>
+    </Setting>
+    <Setting Name="UserId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Pr0sa200013</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
