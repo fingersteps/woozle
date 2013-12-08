@@ -31,25 +31,25 @@ namespace Woozle.Services.UserManagement
         /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public List<User> Get(UsersForDropDown request)
+        public List<UserDto> Get(UsersForDropDown request)
         {
             var result = logic.GetUsersOfMandator(Session);
-            return Mapper.Map<IList<Woozle.Model.User>, List<User>>(result);
+            return Mapper.Map<IList<Woozle.Model.User>, List<UserDto>>(result);
         }
 
         [ExceptionCatcher]
-        public UserResponse Get(User request)
+        public UserResponse Get(UserDto request)
         {
             if (request.Id == 0)
             {
                 return new UserResponse
                            {
-                               User = Mapper.Map <Woozle.Model.User,User>(this.Session.SessionObject.User)
+                               UserDto = Mapper.Map <Woozle.Model.User,UserDto>(this.Session.SessionObject.User)
                            };
             }
 
             var result = logic.LoadUser(request.Id, Session);
-            var response = new UserResponse() {User = Mapper.Map<Woozle.Model.User, User>(result)};
+            var response = new UserResponse() {UserDto = Mapper.Map<Woozle.Model.User, UserDto>(result)};
             return response;
         }
 
@@ -59,7 +59,7 @@ namespace Woozle.Services.UserManagement
             var result = logic.LoadUser(this.Session.SessionObject.User.Id, Session);
             var response = new UserResponse
                                {
-                                   User = Mapper.Map<Woozle.Model.User, User>(result)
+                                   UserDto = Mapper.Map<Woozle.Model.User, UserDto>(result)
                                };
 
             return response;
@@ -68,35 +68,35 @@ namespace Woozle.Services.UserManagement
         /// <summary>
         /// Inserts a given object
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<User> Post(User user)
+        public SaveResult<UserDto> Post(UserDto userDto)
         {
-            return Save(user);
+            return Save(userDto);
         }
 
         /// <summary>
         /// Updates a given object
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<User> Put(User user)
+        public SaveResult<UserDto> Put(UserDto userDto)
         {
-            return Save(user);
+            return Save(userDto);
         }
 
-        private SaveResult<User> Save(User user)
+        private SaveResult<UserDto> Save(UserDto userDto)
         {
-            var saveResult = this.logic.Save(Mapper.Map<User, Woozle.Model.User>(user), Session);
-            return Mapper.Map<ISaveResult<Woozle.Model.User>, SaveResult<User>>(saveResult);
+            var saveResult = this.logic.Save(Mapper.Map<UserDto, Woozle.Model.User>(userDto), Session);
+            return Mapper.Map<ISaveResult<Woozle.Model.User>, SaveResult<UserDto>>(saveResult);
         }
 
         [ExceptionCatcher]
-        public object Delete(User user)
+        public object Delete(UserDto userDto)
         {
-            this.logic.Delete(user.Id, Session);
+            this.logic.Delete(userDto.Id, Session);
             return null;
         }
     }

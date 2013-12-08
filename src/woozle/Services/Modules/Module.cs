@@ -29,7 +29,7 @@ namespace Woozle.Services.Modules
         /// </summary>
         public string TranslatedValue { get; set; }
     
-        public ModuleGroup ModuleGroup { get; set; }
+        public ModuleGroupDto ModuleGroupDto { get; set; }
         public Translation Translation { get; set; }
     
     }

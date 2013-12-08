@@ -12,7 +12,7 @@ using System;
 namespace Woozle.Services.Location
 {
     [Serializable]
-    public partial class Country : WoozleDto
+    public partial class CountryDto : WoozleDto
     {
         public int TranslationId { get; set; }
     

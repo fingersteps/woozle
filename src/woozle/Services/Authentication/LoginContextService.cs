@@ -14,9 +14,9 @@ namespace Woozle.Services.Authentication
         [ExceptionCatcher]
         public LoginContextResult Get(Woozle.Services.Authentication.LoginContext requestDto)
         {
-            var serviceUser = Mapper.Map<Woozle.Model.User, User>(Session.SessionObject.User);
+            var serviceUser = Mapper.Map<Woozle.Model.User, UserDto>(Session.SessionObject.User);
             var serviceMandator = Mapper.Map<Woozle.Model.Mandator, Mandator.Mandator>(Session.SessionObject.Mandator);
-            var result = new LoginContextResult() {User = serviceUser, Mandator = serviceMandator};
+            var result = new LoginContextResult() {UserDto = serviceUser, Mandator = serviceMandator};
             return result;
         }
     }

@@ -8,20 +8,21 @@
 //------------------------------------------------------------------------------
 
 using System;
-using Woozle.Services;
-using Woozle.Services.Authority;
-using Woozle.Services.UserManagement;
+using ServiceStack;
+using ServiceStack.ServiceHost;
 
-namespace Woozle.Service.UserManagement
+namespace Woozle.Services.Modules.Settings
 {
     [Serializable]
-    public partial class UserMandatorRole : WoozleDto
+    [Route("/settings", "GET,POST,PUT")]
+    public partial class SettingDto : WoozleDto, IReturn<SettingDto>, IReturn<SaveResult<SettingDto>>
     {
-        public int UserId { get; set; }
-        public int MandatorRoleId { get; set; }
+        public string EventManagementPlanningEMail { get; set; }
+        public string EventManagementPlanningMobile { get; set; }
+        public byte[] ChangeCounter { get; set; }
     
-        public MandatorRole MandatorRole { get; set; }
-        public User User { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
+    
     }
     
 }

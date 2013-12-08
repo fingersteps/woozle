@@ -13,7 +13,7 @@ using Woozle.Model;
 namespace Woozle.Services.UserManagement
 {
     [Serializable]
-    public partial class Person : WoozleDto
+    public partial class PersonDto : WoozleDto
     {
         public string LastName { get; set; }
         public string FirstName { get; set; }

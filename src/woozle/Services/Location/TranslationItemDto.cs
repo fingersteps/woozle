@@ -8,22 +8,19 @@
 //------------------------------------------------------------------------------
 
 using System;
-using ServiceStack;
-using ServiceStack.ServiceHost;
 
 namespace Woozle.Services.Location
 {
     [Serializable]
-    [Route("/locations", "POST,PUT,DELETE")]
-    [Route("/locations/{Id}")]
-    public partial class Location : WoozleDto, IReturn<Location>, IReturn<SaveResult<Location>>, IReturnVoid 
+    public partial class TranslationItemDto : WoozleDto
     {
-        public string Name { get; set; }
-        public string Street { get; set; }
-        public Nullable<int> CityId { get; set; }
+        public int TranslationId { get; set; }
+        public int LanguageId { get; set; }
+        public string Description { get; set; }
     
-        public City City { get; set; }
-        public Mandator.Mandator Mandator { get; set; }
+        public Language Language { get; set; }
+        public Translation Translation { get; set; }
+    
     }
     
 }

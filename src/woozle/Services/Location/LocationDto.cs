@@ -8,24 +8,22 @@
 //------------------------------------------------------------------------------
 
 using System;
-using Woozle.Model;
+using ServiceStack;
+using ServiceStack.ServiceHost;
 
-namespace Woozle.Services.Modules
+namespace Woozle.Services.Location
 {
     [Serializable]
-    public partial class ModuleGroup : WoozleDto
+    [Route("/locations", "POST,PUT,DELETE")]
+    [Route("/locations/{Id}")]
+    public partial class LocationDto : WoozleDto, IReturn<LocationDto>, IReturn<SaveResult<LocationDto>>, IReturnVoid 
     {
-        public ModuleGroup()
-        {
-            this.Modules = new FixupCollection<Module>();
-        }
-    
-        public byte[] Icon { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Street { get; set; }
+        public Nullable<int> CityId { get; set; }
     
-        public FixupCollection<Module> Modules { get; set; }
-    
+        public City City { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
     }
     
 }

@@ -8,18 +8,23 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Woozle.Model;
 
-namespace Woozle.Services.Location
+namespace Woozle.Services.Modules
 {
     [Serializable]
-    public partial class TranslationItem : WoozleDto
+    public partial class ModuleGroupDto : WoozleDto
     {
-        public int TranslationId { get; set; }
-        public int LanguageId { get; set; }
+        public ModuleGroupDto()
+        {
+            this.Modules = new FixupCollection<Module>();
+        }
+    
+        public byte[] Icon { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
     
-        public Language Language { get; set; }
-        public Translation Translation { get; set; }
+        public FixupCollection<Module> Modules { get; set; }
     
     }
     

@@ -11,7 +11,7 @@ namespace Woozle.Services.Authentication
 
     public class LoginContextResult
     {
-        public User User { get; set; }
+        public UserDto UserDto { get; set; }
         public Mandator.Mandator Mandator { get; set; }
     }
 }

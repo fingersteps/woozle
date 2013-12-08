@@ -4,7 +4,7 @@ using ServiceStack.ServiceHost;
 namespace Woozle.Services.Location
 {
     [Route("/countries", "GET, OPTIONS")]
-    public class Countries : IReturn<List<Country>>
+    public class Countries : IReturn<List<CountryDto>>
     {
     }
 }

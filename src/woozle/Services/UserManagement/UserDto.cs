@@ -17,9 +17,9 @@ namespace Woozle.Services.UserManagement
     [Serializable]
     [Route("/users", "POST,PUT,DELETE")]
     [Route("/users/{Id}")]
-    public partial class User : WoozleDto, IReturn<UserResponse>, IReturn<SaveResult<User>>, IReturnVoid
+    public partial class UserDto : WoozleDto, IReturn<UserResponse>, IReturn<SaveResult<UserDto>>, IReturnVoid
     {
-        public User()
+        public UserDto()
         {
             this.UserMandatorRoles = new FixupCollection<UserMandatorRole>();
         }
@@ -43,7 +43,7 @@ namespace Woozle.Services.UserManagement
 
     public class UserResponse
     {
-        public User User { get; set; }
+        public UserDto UserDto { get; set; }
     }
     
 }
