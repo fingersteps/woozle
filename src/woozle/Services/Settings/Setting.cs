@@ -10,7 +10,7 @@
 using System;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Settings
+namespace Woozle.Services.Modules.Settings
 {
     [Serializable]
     [Route("/settings", "GET,POST,PUT")]

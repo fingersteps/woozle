@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.ModuleManagement;
-using Woozle.Core.Services.Stack.ServiceModel.Authority;
+using Woozle.Domain.ModuleManagement;
 
-namespace Woozle.Core.Services.Stack.Impl.Authority
+namespace Woozle.Services.Authority
 {
     [Authenticate]
     public class RoleService : AbstractService
@@ -25,7 +24,7 @@ namespace Woozle.Core.Services.Stack.Impl.Authority
         public IList<ModulePermissionsResult> Get(RoleModulePermissions requestDto)
         {
             var result = moduleLogic.FindModulePermissions(new Woozle.Model.Role() {Id = requestDto.Id}, Session);
-            var responseDto = Mapper.Map<IList<Model.ModulePermissions.ModulePermissionsResult>, List<ModulePermissionsResult>>(result);
+            var responseDto = Mapper.Map<IList<Woozle.Model.ModulePermissions.ModulePermissionsResult>, List<ModulePermissionsResult>>(result);
             return responseDto;
         }
     }

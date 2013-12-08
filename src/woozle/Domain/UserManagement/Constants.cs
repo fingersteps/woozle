@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Common
+﻿namespace Woozle.Domain.UserManagement
 {
     /// <summary>
     /// Holds Constants which can be used anywhere in the solution.

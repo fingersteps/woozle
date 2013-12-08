@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using Woozle.Core.BusinessLogic.Authentication;
-using Woozle.Core.Model;
-using Woozle.Core.Model.Authentication;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.Authentication;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.UserSearch;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Authentication
+namespace Woozle.Domain.Authentication
 {
     /// <summary>
     /// Contains authentication related logic.

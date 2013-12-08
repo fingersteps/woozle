@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.Authority;
-using Woozle.Core.Services.Stack.ServiceModel.Authority;
-using Woozle.Core.Services.Stack.ServiceModel.ModuleManagement;
+using Woozle.Domain.Authority;
+using Woozle.Model;
 
-namespace Woozle.Core.Services.Stack.Impl.Authority
+namespace Woozle.Services.Authority
 {
     [Authenticate]
     public class PermissionService : AbstractService
@@ -39,7 +38,7 @@ namespace Woozle.Core.Services.Stack.Impl.Authority
         {
             var role = Mapper.Map<Role, Woozle.Model.Role>(requestDto.Role);
             var permissionsToSave = Mapper.Map<List<ChangedModulePermission>,
-                List<Model.ModulePermissions.ChangedModulePermission>>(requestDto.ChangedPermissions);
+                List<Woozle.Model.ModulePermissions.ChangedModulePermission>>(requestDto.ChangedPermissions);
             this.permissionLogic.SaveChangedPermissions(role, permissionsToSave, Session);
         }
     }

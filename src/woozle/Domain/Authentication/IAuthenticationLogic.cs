@@ -1,7 +1,7 @@
-﻿using Woozle.Core.Model.Authentication;
-using Woozle.Core.Model.UserSearch;
+﻿using Woozle.Model.Authentication;
+using Woozle.Model.UserSearch;
 
-namespace Woozle.Core.BusinessLogic.Authentication
+namespace Woozle.Domain.Authentication
 {
     /// <summary>
     /// Interface for the authentication businesslogic.

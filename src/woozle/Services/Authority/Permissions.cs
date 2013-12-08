@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
-using Woozle.Core.Services.Stack.ServiceModel.ModuleManagement;
+using Woozle.Services.Modules;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Authority
+namespace Woozle.Services.Authority
 {
     [Route("/permissions", "GET, OPTIONS")]
     public class Permissions : IReturn<List<FunctionPermission>>

@@ -1,7 +1,7 @@
 ﻿using ServiceStack;
-using Woozle.Core.Services.Stack.ServiceModel.UserManagement;
+using Woozle.Services.UserManagement;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.LoginContext
+namespace Woozle.Services.Authentication
 {
     [Route("/loginContext", "GET")]
     public class LoginContext : IReturn<LoginContextResult>

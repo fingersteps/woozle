@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Model
+﻿namespace Woozle.Model
 {
     public interface IMandatorCapable
     {

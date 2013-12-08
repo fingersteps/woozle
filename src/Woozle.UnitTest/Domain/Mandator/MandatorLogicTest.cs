@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Woozle.Core.BusinessLogic.Impl.MandatorManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence;
-using Woozle.Core.Persistence.Repository;
 using System.Linq;
+using Woozle.Domain.MandatorManagement;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence;
+using Woozle.Persistence.Repository;
 
 namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
 {

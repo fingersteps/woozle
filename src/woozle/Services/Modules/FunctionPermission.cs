@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
+namespace Woozle.Services.Modules
 {
     [Serializable]
     public partial class FunctionPermission : WoozleDto

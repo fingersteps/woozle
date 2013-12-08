@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.BusinessLogic.PermissionManagement;
-using Woozle.Core.BusinessLogic.UserManagement;
-using Woozle.Core.Common;
-using Woozle.Core.Common.PermissionManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Model.Validation;
-using Woozle.Core.Model.Validation.Creation;
-using Woozle.Core.Persistence.Repository;
+using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.UserSearch;
+using Woozle.Model.Validation;
+using Woozle.Model.Validation.Creation;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.UserManagement
+namespace Woozle.Domain.UserManagement
 {
     /// <summary>
     /// The implementation for the UserLogic.

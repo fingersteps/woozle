@@ -8,8 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Woozle.Services.Location;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
+namespace Woozle.Services.Modules
 {
     [Serializable]
     public partial class Module : WoozleDto
@@ -29,7 +30,7 @@ namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
         public string TranslatedValue { get; set; }
     
         public ModuleGroup ModuleGroup { get; set; }
-        public Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     
     }
     

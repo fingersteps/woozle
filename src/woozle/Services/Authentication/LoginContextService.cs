@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Woozle.Core.Services.Stack.Impl.Authentication;
-using Woozle.Core.Services.Stack.ServiceModel.LoginContext;
-using User = Woozle.Core.Services.Stack.ServiceModel.UserManagement.User;
+using Woozle.Services.UserManagement;
 
-namespace Woozle.Core.Services.Stack.Impl.LoginContext
+namespace Woozle.Services.Authentication
 {
     [MandatorAuthenticate]
     public class LoginContextService : AbstractService
@@ -14,10 +12,10 @@ namespace Woozle.Core.Services.Stack.Impl.LoginContext
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public LoginContextResult Get(ServiceModel.LoginContext.LoginContext requestDto)
+        public LoginContextResult Get(Woozle.Services.Authentication.LoginContext requestDto)
         {
             var serviceUser = Mapper.Map<Woozle.Model.User, User>(Session.SessionObject.User);
-            var serviceMandator = Mapper.Map<Woozle.Model.Mandator, ServiceModel.Mandator.Mandator>(Session.SessionObject.Mandator);
+            var serviceMandator = Mapper.Map<Woozle.Model.Mandator, Mandator.Mandator>(Session.SessionObject.Mandator);
             var result = new LoginContextResult() {User = serviceUser, Mandator = serviceMandator};
             return result;
         }

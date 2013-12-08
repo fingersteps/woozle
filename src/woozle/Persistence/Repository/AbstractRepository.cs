@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using ServiceStack.Logging;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Impl;
 
-namespace Woozle.Core.Persistence.Repository
+using Woozle.Model;
+using Woozle.Model.SessionHandling;
+
+namespace Woozle.Persistence.Repository
 {
     /// <summary>
     /// Abstract implementation of a repository which holds some general useful functionalities.

@@ -1,6 +1,6 @@
-﻿using Woozle.Core.Model.SessionHandling;
+﻿using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.BusinessLogic.PermissionManagement
+namespace Woozle.Domain.PermissionManagement
 {
     /// <summary>
     /// Interface for an permissionmanager.

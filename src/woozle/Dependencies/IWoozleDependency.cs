@@ -1,6 +1,6 @@
 ﻿using Funq;
 
-namespace Woozle.Core.Dependencies
+namespace Woozle.Dependencies
 {
     public interface IWoozleDependency
     {

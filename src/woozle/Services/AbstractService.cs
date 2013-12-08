@@ -1,11 +1,9 @@
-﻿using ServiceStack;
-using ServiceStack.Web;
-using Woozle.Core.Common.Translate;
-using Woozle.Core.Model.SessionHandling;
+﻿using Woozle.Domain.Translation;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Services.Stack.Impl
+namespace Woozle.Services
 {
-    public abstract class AbstractService : Service
+    public abstract class AbstractService : ServiceStack.Service
     {
         public ITranslator Translator { get; set; }
 

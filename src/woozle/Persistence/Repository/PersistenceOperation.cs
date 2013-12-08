@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Persistence.Repository
+﻿namespace Woozle.Persistence.Repository
 {
     public enum PersistenceOperation
     {

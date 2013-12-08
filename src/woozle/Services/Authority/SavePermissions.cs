@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Authority
+namespace Woozle.Services.Authority
 {
     [Route("/permissions", "PUT, OPTIONS")]
     public class SavePermissions : IReturnVoid

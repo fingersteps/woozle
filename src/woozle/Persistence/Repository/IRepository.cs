@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
 
-namespace Woozle.Core.Persistence.Repository
+using Woozle.Model;
+using Woozle.Model.SessionHandling;
+
+namespace Woozle.Persistence.Repository
 {
     public interface IRepository<T> where T : WoozleObject
     {

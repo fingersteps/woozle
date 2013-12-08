@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Translation
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class Message : WoozleDto
@@ -22,7 +22,7 @@ namespace Woozle.Core.Services.Stack.ServiceModel.Translation
         /// </summary>
         public string TranslatedValue { get; set; }
 
-        public ServiceModel.Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     
     }
     

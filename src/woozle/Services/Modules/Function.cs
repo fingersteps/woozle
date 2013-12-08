@@ -8,8 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System;
+using Woozle.Services.Location;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
+namespace Woozle.Services.Modules
 {
     [Serializable]
     public partial class Function : WoozleDto
@@ -28,7 +29,7 @@ namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
         public short Sequence { get; set; }
     
         public Module Module { get; set; }
-        public Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     
     }
     

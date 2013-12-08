@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.UserManagement
+namespace Woozle.Services.UserManagement
 {
 	[Route("/users", "GET, OPTIONS")]
     public class Users : IReturn<List<UserSearchResult>>

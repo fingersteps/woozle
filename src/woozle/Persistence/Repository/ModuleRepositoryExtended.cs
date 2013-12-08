@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Woozle.Core.Model.ModulePermissions;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.ModulePermissions;
+using Woozle.Model.SessionHandling;
 
 namespace Woozle.Persistence.Repository
 {

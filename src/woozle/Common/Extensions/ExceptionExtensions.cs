@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Woozle.Core.Common.Extensions
+namespace Woozle.Common.Extensions
 {
     public static class ExceptionExtensions
     {

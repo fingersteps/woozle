@@ -1,12 +1,10 @@
 ﻿using System.Linq;
-using Woozle.Core.BusinessLogic.Settings;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.Validation.Creation;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.Validation.Creation;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Settings
+namespace Woozle.Domain.Settings
 {
     public class SettingsLogic : ISettingsLogic
     {

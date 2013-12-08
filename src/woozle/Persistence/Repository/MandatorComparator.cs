@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
 using Woozle.Model;
 
-namespace Woozle.Core.Persistence.Repository.Impl.Comparator
+namespace Woozle.Persistence.Repository
 {
     public class MandatorComparator : IEqualityComparer<Mandator>
     {

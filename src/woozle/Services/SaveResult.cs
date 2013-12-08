@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model.Validation;
-using Woozle.Core.Model.Validation.Creation;
+using Woozle.Model.Validation;
+using Woozle.Model.Validation.Creation;
 
-namespace Woozle.Core.Services.Stack.ServiceModel
+namespace Woozle.Services
 {
     /// <summary>
     /// Result class for each service operation between client and server.

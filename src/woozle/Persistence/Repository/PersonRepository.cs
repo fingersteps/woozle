@@ -8,14 +8,11 @@
 //------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using Woozle.Core.Persistence.Repository;
-using Woozle.Core.Model;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Impl;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
 namespace Woozle.Persistence.Repository
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Woozle.Core.Model
+namespace Woozle.Model
 {
     [DataContract(IsReference = true)]
     [Serializable]

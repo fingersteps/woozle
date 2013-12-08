@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.BusinessLogic.Authority;
-using Woozle.Core.BusinessLogic.PermissionManagement;
-using Woozle.Core.Common.PermissionManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.ModulePermissions;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
+using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
+using Woozle.Model.ModulePermissions;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Authority
+namespace Woozle.Domain.Authority
 {
     public class PermissionsLogic : AbstractLogic, IPermissionsLogic, IPermissionProvider
     {

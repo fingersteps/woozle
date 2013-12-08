@@ -1,6 +1,4 @@
-﻿using Woozle.Model;
-
-namespace Woozle.Core.Model.SessionHandling
+﻿namespace Woozle.Model.SessionHandling
 {
     /// <summary>
     /// Represents a session data object.

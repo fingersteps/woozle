@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.MandatorManagement;
-using Woozle.Core.Model.Validation.Creation;
+using Woozle.Domain.MandatorManagement;
+using Woozle.Model.Validation.Creation;
 
-namespace Woozle.Core.Services.Stack.Impl.Mandator
+namespace Woozle.Services.Mandator
 {
     [Authenticate]
     public class MandatorService : AbstractService
@@ -21,10 +21,10 @@ namespace Woozle.Core.Services.Stack.Impl.Mandator
         /// <param name="mandator"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public ServiceModel.Mandator.Mandator Get(ServiceModel.Mandator.Mandator mandator)
+        public Mandator Get(Mandator mandator)
         {
             var result = mandatorLogic.LoadMandator(Session);
-            return Mapper.Map<Woozle.Model.Mandator, ServiceModel.Mandator.Mandator>(result);
+            return Mapper.Map<Model.Mandator, Mandator>(result);
         }
 
         /// <summary>
@@ -33,12 +33,12 @@ namespace Woozle.Core.Services.Stack.Impl.Mandator
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public ServiceModel.SaveResult<ServiceModel.Mandator.Mandator> Put(ServiceModel.Mandator.Mandator requestDto)
+        public SaveResult<Mandator> Put(Mandator requestDto)
         {
-            var modelObj = Mapper.Map<ServiceModel.Mandator.Mandator, Woozle.Model.Mandator>(requestDto);
+            var modelObj = Mapper.Map<Mandator, Woozle.Model.Mandator>(requestDto);
             var result = mandatorLogic.Save(modelObj, Session);
             return
-                Mapper.Map<ISaveResult<Woozle.Model.Mandator>, ServiceModel.SaveResult<ServiceModel.Mandator.Mandator>>(result);
+                Mapper.Map<ISaveResult<Woozle.Model.Mandator>, SaveResult<Mandator>>(result);
         }
     }
 }

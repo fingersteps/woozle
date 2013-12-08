@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Model
+﻿namespace Woozle.Model
 {
     /// <summary>
     /// Marker interface to identify entities for which concurrt modifications should be tracked.

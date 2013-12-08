@@ -1,11 +1,8 @@
 ﻿using Funq;
-using Woozle.Core.Model;
-using Woozle.Core.Persistence.Repository;
-using Woozle.Core.Persistence.Repository.Impl;
 using Woozle.Model;
 using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.Dependencies
+namespace Woozle.Dependencies
 {
     public class WoozleRepositoryDependencies : IWoozleDependency
     {

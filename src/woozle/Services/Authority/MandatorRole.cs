@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Authority
+namespace Woozle.Services.Authority
 {
     [Serializable]
     public partial class MandatorRole : WoozleDto

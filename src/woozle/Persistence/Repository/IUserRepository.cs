@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.UserSearch;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.UserSearch;
 
-namespace Woozle.Core.Persistence.Repository
+namespace Woozle.Persistence.Repository
 {
     /// <summary>
     /// Interface for a user repository.

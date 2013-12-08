@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using ServiceStack;
 using ServiceStack.Auth;
-using Woozle.Core.BusinessLogic.Authentication;
-using Woozle.Core.Model.Authentication;
-using Woozle.Core.Model.SessionHandling;
+using Woozle.Domain.Authentication;
 using Woozle.Model;
+using Woozle.Model.Authentication;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Services.Stack.Impl.Authentication
+namespace Woozle.Services.Authentication
 {
     /// <summary>
     /// Specific provider for authentication

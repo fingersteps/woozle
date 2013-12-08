@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Model;
+﻿using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.BusinessLogic.Impl.PersonManagement
+namespace Woozle.Domain.PersonManagement
 {
     public interface IPersonLogic
     {

@@ -1,12 +1,10 @@
 ﻿using System.Linq;
 using ServiceStack.FluentValidation;
-using Woozle.Core.BusinessLogic.UserManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.UserManagement
+namespace Woozle.Domain.UserManagement
 {
     /// <summary>
     /// Validator for the user creation process.

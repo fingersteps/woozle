@@ -9,12 +9,9 @@
 
 using System;
 using ServiceStack;
-using Woozle.Core.Model;
-using Woozle.Core.Model.Validation.Creation;
 using Woozle.Model;
-using Language = Woozle.Core.Services.Stack.ServiceModel.Translation.Language;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.UserManagement
+namespace Woozle.Services.UserManagement
 {
     [Serializable]
     [Route("/users", "POST,PUT,DELETE")]

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.Settings;
-using Woozle.Core.Services.Stack.ServiceModel;
-using Woozle.Core.Services.Stack.ServiceModel.Settings;
+using Woozle.Domain.Settings;
+using Woozle.Model;
+using Woozle.Model.Validation.Creation;
 
-namespace Woozle.Core.Services.Stack.Impl.Settings
+namespace Woozle.Services.Settings
 {
     [Authenticate]
     public class SettingService : AbstractService
@@ -54,7 +54,7 @@ namespace Woozle.Core.Services.Stack.Impl.Settings
         {
             var saveResult = this.settingsLogic.Save(Mapper.Map<Setting, Woozle.Model.Setting>(requestDto), Session);
             var result =
-                Mapper.Map<Model.Validation.Creation.ISaveResult<Woozle.Model.Setting>, SaveResult<Setting>>(saveResult);
+                Mapper.Map<ISaveResult<Woozle.Model.Setting>, SaveResult<Setting>>(saveResult);
             return result;
         }
     }

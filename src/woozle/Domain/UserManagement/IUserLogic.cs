@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Model.Validation.Creation;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.UserSearch;
+using Woozle.Model.Validation.Creation;
 
-namespace Woozle.Core.BusinessLogic.UserManagement
+namespace Woozle.Domain.UserManagement
 {
     /// <summary>
     /// Definition of a UserLogic.

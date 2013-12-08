@@ -1,9 +1,8 @@
-﻿using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.Validation.Creation;
-using Woozle.Model;
+﻿using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.Validation.Creation;
 
-namespace Woozle.Core.BusinessLogic.Settings
+namespace Woozle.Domain.Settings
 {
     public interface ISettingsLogic
     {

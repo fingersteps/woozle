@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Model.ModulePermissions
+﻿namespace Woozle.Model.ModulePermissions
 {
     public class ChangedModulePermission
     {

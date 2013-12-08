@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Woozle.Core.BusinessLogic.Impl.Settings;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence;
-using Woozle.Core.Persistence.Repository;
+using Woozle.Domain.Settings;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence;
+using Woozle.Persistence.Repository;
 
 namespace Woozle.Core.BusinessLogic.Impl.Test.Settings
 {

@@ -1,6 +1,6 @@
-﻿using Woozle.Core.Model.SessionHandling;
+﻿using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Common.Translate
+namespace Woozle.Domain.Translation
 {
     public interface ITranslator
     {

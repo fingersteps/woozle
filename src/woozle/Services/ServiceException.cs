@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woozle.Core.Services.Stack.Impl
+namespace Woozle.Services
 {
     public class ServiceException : Exception
     {

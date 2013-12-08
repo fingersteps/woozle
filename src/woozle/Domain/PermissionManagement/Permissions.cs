@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Common.PermissionManagement
+﻿namespace Woozle.Domain.PermissionManagement
 {
     public static class Permissions
     {

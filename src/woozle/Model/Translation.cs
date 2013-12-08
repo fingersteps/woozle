@@ -14,7 +14,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using Woozle.Core.Model;
 
 namespace Woozle.Model
 {

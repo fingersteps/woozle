@@ -1,6 +1,4 @@
-﻿using Woozle.Model;
-
-namespace Woozle.Core.Model.Authentication
+﻿namespace Woozle.Model.Authentication
 {
     /// <summary>
     /// Represents a login request

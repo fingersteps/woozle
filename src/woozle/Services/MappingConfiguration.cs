@@ -1,16 +1,15 @@
 ﻿using System.Linq;
 using AutoMapper;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Services.Stack.ServiceModel;
-using Woozle.Core.Services.Stack.ServiceModel.Authority;
-using Woozle.Core.Services.Stack.ServiceModel.LocationManagement;
-using Woozle.Core.Services.Stack.ServiceModel.Mandator;
-using Woozle.Core.Services.Stack.ServiceModel.ModuleManagement;
-using Woozle.Core.Services.Stack.ServiceModel.Person;
-using Woozle.Core.Services.Stack.ServiceModel.Settings;
-using Woozle.Core.Services.Stack.ServiceModel.Translation;
-using Woozle.Core.Services.Stack.ServiceModel.UserManagement;
-using UserSearchResult = Woozle.Core.Services.Stack.ServiceModel.UserManagement.UserSearchResult;
+using Woozle.Model.UserSearch;
+using Woozle.Model.Validation.Creation;
+using Woozle.Service.UserManagement;
+using Woozle.Services.Authority;
+using Woozle.Services.Location;
+using Woozle.Services.Mandator;
+using Woozle.Services.Modules;
+using Woozle.Services.Modules.Settings;
+using Woozle.Services.UserManagement;
+using UserSearchResult = Woozle.Services.UserManagement.UserSearchResult;
 
 namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
 {
@@ -84,8 +83,8 @@ namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
                   .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore());
             Mapper.CreateMap<Woozle.Model.Role, Role>();
 
-            Mapper.CreateMap<SaveResult<User>, Woozle.Core.Model.Validation.Creation.SaveResult<Woozle.Model.User>>();
-            Mapper.CreateMap<Woozle.Core.Model.Validation.Creation.ISaveResult<Woozle.Model.User>, SaveResult<User>>();
+            Mapper.CreateMap<Woozle.Services.SaveResult<User>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.User>>();
+            Mapper.CreateMap<ISaveResult<Woozle.Model.User>, Woozle.Services.SaveResult<User>>();
 
             Mapper.CreateMap<Setting, Woozle.Model.Setting>();
             Mapper.CreateMap<Woozle.Model.Setting, Setting>();
@@ -112,8 +111,8 @@ namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
             Mapper.CreateMap<Users, UserSearchCriteria>();
             Mapper.CreateMap<UserSearchCriteria, Users>();
 
-            Mapper.CreateMap<UserSearchResult, Woozle.Core.Model.UserSearch.UserSearchResult>();
-            Mapper.CreateMap<Woozle.Core.Model.UserSearch.UserSearchResult, UserSearchResult>();
+            Mapper.CreateMap<UserSearchResult, Woozle.Model.UserSearch.UserSearchResult>();
+            Mapper.CreateMap<Woozle.Model.UserSearch.UserSearchResult, UserSearchResult>();
 
             Mapper.CreateMap<Locations, Woozle.Model.Location>();
             Mapper.CreateMap<Woozle.Model.Location, Locations>();
@@ -121,28 +120,28 @@ namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
             Mapper.CreateMap<Location, Woozle.Model.Location>();
             Mapper.CreateMap<Woozle.Model.Location, Location>();
 
-            Mapper.CreateMap<SaveResult<Location>, Woozle.Core.Model.Validation.Creation.SaveResult<Woozle.Model.Location>>();
-            Mapper.CreateMap<Woozle.Core.Model.Validation.Creation.ISaveResult<Woozle.Model.Location>, SaveResult<Location>>();
+            Mapper.CreateMap<Woozle.Services.SaveResult<Location>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Location>>();
+            Mapper.CreateMap<ISaveResult<Woozle.Model.Location>, Woozle.Services.SaveResult<Location>>();
 
-            Mapper.CreateMap<SaveResult<Setting>, Woozle.Core.Model.Validation.Creation.SaveResult<Woozle.Model.Setting>>();
-            Mapper.CreateMap<Woozle.Core.Model.Validation.Creation.ISaveResult<Woozle.Model.Setting>, SaveResult<Setting>>();
+            Mapper.CreateMap<Woozle.Services.SaveResult<Setting>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Setting>>();
+            Mapper.CreateMap<ISaveResult<Woozle.Model.Setting>, Woozle.Services.SaveResult<Setting>>();
 
-            Mapper.CreateMap<SaveResult<Mandator>, Woozle.Core.Model.Validation.Creation.SaveResult<Woozle.Model.Mandator>>();
-            Mapper.CreateMap<Woozle.Core.Model.Validation.Creation.ISaveResult<Woozle.Model.Mandator>, SaveResult<Mandator>>();
+            Mapper.CreateMap<Woozle.Services.SaveResult<Mandator>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Mandator>>();
+            Mapper.CreateMap<ISaveResult<Woozle.Model.Mandator>, Woozle.Services.SaveResult<Mandator>>();
 
-            Mapper.CreateMap<ModuleForMandator, Woozle.Core.Model.ModulePermissions.ModuleForMandator>();
-            Mapper.CreateMap<Woozle.Core.Model.ModulePermissions.ModuleForMandator, ModuleForMandator>();
+            Mapper.CreateMap<ModuleForMandator, Woozle.Model.ModulePermissions.ModuleForMandator>();
+            Mapper.CreateMap<Woozle.Model.ModulePermissions.ModuleForMandator, ModuleForMandator>();
 
-            Mapper.CreateMap<ChangedModulePermission, Woozle.Core.Model.ModulePermissions.ChangedModulePermission>();
-            Mapper.CreateMap<Woozle.Core.Model.ModulePermissions.ChangedModulePermission, ChangedModulePermission>();
+            Mapper.CreateMap<ChangedModulePermission, Woozle.Model.ModulePermissions.ChangedModulePermission>();
+            Mapper.CreateMap<Woozle.Model.ModulePermissions.ChangedModulePermission, ChangedModulePermission>();
 
-            Mapper.CreateMap<ModulePermissionsResult, Woozle.Core.Model.ModulePermissions.ModulePermissionsResult>();
-            Mapper.CreateMap<Woozle.Core.Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
+            Mapper.CreateMap<ModulePermissionsResult, Woozle.Model.ModulePermissions.ModulePermissionsResult>();
+            Mapper.CreateMap<Woozle.Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
         }
 
-        private class ModuleTranslatedValueResolver : ValueResolver<Woozle.Core.Model.ModulePermissions.ModuleForMandator, string>
+        private class ModuleTranslatedValueResolver : ValueResolver<Woozle.Model.ModulePermissions.ModuleForMandator, string>
         {
-            protected override string ResolveCore(Woozle.Core.Model.ModulePermissions.ModuleForMandator source)
+            protected override string ResolveCore(Woozle.Model.ModulePermissions.ModuleForMandator source)
             {
                 return GetTranslation(source.Translation);
             }

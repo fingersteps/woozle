@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Model.Values
+﻿namespace Woozle.Model.Values
 {
     /// <summary>
     /// Constants for the values of the Entity <see cref="Status"/>

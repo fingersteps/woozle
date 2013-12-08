@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.BusinessLogic.Authentication
+﻿namespace Woozle.Domain.Authentication
 {
     /// <summary>
     /// Exception if the user won't be found.

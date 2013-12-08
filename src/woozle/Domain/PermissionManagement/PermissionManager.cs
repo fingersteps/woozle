@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using Woozle.Core.BusinessLogic.PermissionManagement;
-using Woozle.Core.Common.PermissionManagement;
-using Woozle.Core.Model.SessionHandling;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Common.PermissionManagement.Impl
+namespace Woozle.Domain.PermissionManagement
 {
     public class PermissionManager : IPermissionManager
     {

@@ -1,12 +1,10 @@
 ﻿using System.Linq;
-using Woozle.Core.BusinessLogic.MandatorManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.Validation.Creation;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.Validation.Creation;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.MandatorManagement
+namespace Woozle.Domain.MandatorManagement
 {
     public class MandatorLogic : IMandatorLogic
     {

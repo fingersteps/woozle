@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.BusinessLogic.Authority;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Authority
+namespace Woozle.Domain.Authority
 {
     /// <summary>
     /// Logic for searching <see cref="Role">roles</see>

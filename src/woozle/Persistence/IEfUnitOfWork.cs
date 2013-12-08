@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
+using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Persistence.Impl
+namespace Woozle.Persistence
 {
     public interface IEfUnitOfWork : IUnitOfWork
     {

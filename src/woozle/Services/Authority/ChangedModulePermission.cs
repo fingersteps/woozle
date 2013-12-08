@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Services.Stack.ServiceModel.Authority
+﻿namespace Woozle.Services.Authority
 {
     public class ChangedModulePermission
     {

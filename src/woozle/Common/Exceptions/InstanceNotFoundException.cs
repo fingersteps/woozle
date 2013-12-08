@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woozle.Core.Common.Aspects
+namespace Woozle.Common.Exceptions
 {
     /// <summary>
     /// Exception which is thrown when a desired instance was not found.

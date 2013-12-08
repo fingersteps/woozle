@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.ModuleManagement;
-using Woozle.Core.Services.Stack.ServiceModel.ModuleManagement;
+using Woozle.Domain.ModuleManagement;
 
-namespace Woozle.Core.Services.Stack.Impl.Modules
+namespace Woozle.Services.Modules
 {
     [Authenticate]
     public class ModuleService : AbstractService
@@ -22,7 +21,7 @@ namespace Woozle.Core.Services.Stack.Impl.Modules
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public IList<ModuleForMandator> Get(ServiceModel.ModuleManagement.Modules requestDto)
+        public IList<ModuleForMandator> Get(Modules requestDto)
         {
             var result = moduleLogic.GetModulesByMandator(Session);
             return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandator>>(result);

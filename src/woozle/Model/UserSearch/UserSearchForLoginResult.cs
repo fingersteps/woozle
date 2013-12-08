@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Woozle.Model;
 
-namespace Woozle.Core.Model.UserSearch
+namespace Woozle.Model.UserSearch
 {
     public class UserSearchForLoginResult
     {

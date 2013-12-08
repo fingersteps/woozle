@@ -1,10 +1,9 @@
 ﻿using System.Linq;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.PersonManagement
+namespace Woozle.Domain.PersonManagement
 {
     public class PersonLogic : IPersonLogic
     {

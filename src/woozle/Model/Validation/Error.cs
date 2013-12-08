@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Woozle.Core.Model.Validation
+namespace Woozle.Model.Validation
 {
     [DataContract]
     public class Error

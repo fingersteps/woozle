@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Woozle.Core.Model.Validation.Creation
+namespace Woozle.Model.Validation.Creation
 {
     public interface ISaveResult<TO>
     {

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.Authentication;
-using Woozle.Core.Model.Authentication;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Services.Stack.ServiceModel.Mandator;
+using Woozle.Domain.Authentication;
+using Woozle.Model.Authentication;
+using Woozle.Model.SessionHandling;
+using Woozle.Services.Location;
+using Woozle.Services.Mandator;
 
-namespace Woozle.Core.Services.Stack.Impl.Authentication
+namespace Woozle.Services.Authentication
 {
     [Authenticate]
     public class MandatorSelectionService : AbstractService
@@ -29,7 +30,7 @@ namespace Woozle.Core.Services.Stack.Impl.Authentication
         /// <param name="mandator"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public List<ServiceModel.Mandator.Mandator> Get(MandatorsForSelection mandators)
+        public List<Mandator.Mandator> Get(MandatorsForSelection mandators)
         {
             var session = (Session)base.Request.GetSession();
 
@@ -38,7 +39,7 @@ namespace Woozle.Core.Services.Stack.Impl.Authentication
                                                   session.SessionObject.User.Username,
                                                   session.SessionObject.User.Password);
 
-            return Mapper.Map<IEnumerable<Woozle.Model.Mandator>, List<ServiceModel.Mandator.Mandator>>(loginUser.Mandators);
+            return Mapper.Map<IEnumerable<Woozle.Model.Mandator>, List<Mandator.Mandator>>(loginUser.Mandators);
         }
 
         [ExceptionCatcher]
@@ -46,7 +47,7 @@ namespace Woozle.Core.Services.Stack.Impl.Authentication
         {
             var session = (Session) base.Request.GetSession();
 
-            var mappedMandator = Mapper.Map<ServiceModel.Mandator.Mandator, Woozle.Model.Mandator>(
+            var mappedMandator = Mapper.Map<Mandator.Mandator, Model.Mandator>(
                 mandators.SelectedMandator);
 
             //Login with the selected Mandator

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.LocationManagement
+namespace Woozle.Services.Location
 {
     [Route("/countries", "GET, OPTIONS")]
     public class Countries : IReturn<List<Country>>

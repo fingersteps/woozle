@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Model.Authentication
+namespace Woozle.Model.Authentication
 {
     public class LoginResult
     {

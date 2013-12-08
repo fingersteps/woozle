@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.LocationManagement
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class City : WoozleDto

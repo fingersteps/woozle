@@ -1,4 +1,4 @@
-﻿namespace Woozle.Core.Model.UserSearch
+﻿namespace Woozle.Model.UserSearch
 {
     public class UserSearchResult
     {

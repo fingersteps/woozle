@@ -1,6 +1,4 @@
-﻿using Woozle.Model;
-
-namespace Woozle.Core.Model.ModulePermissions
+﻿namespace Woozle.Model.ModulePermissions
 {
     public class ModuleForMandator
     {

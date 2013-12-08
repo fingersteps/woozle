@@ -8,10 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System;
-using Woozle.Core.Model;
 using Woozle.Model;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
+namespace Woozle.Services.Modules
 {
     [Serializable]
     public partial class ModuleGroup : WoozleDto

@@ -2,7 +2,7 @@
 using ServiceStack;
 using Woozle.Model;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
+namespace Woozle.Services.Modules
 {
     [Route("/modules", "GET, OPTIONS")]
     public class Modules : WoozleDto, IReturn<List<ModuleForMandator>>
@@ -15,6 +15,6 @@ namespace Woozle.Core.Services.Stack.ServiceModel.ModuleManagement
         public string Name { get; set; }
         public byte[] Icon { get; set; }
         public FixupCollection<Function> Functions { get; set; }
-        public Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     }
 }

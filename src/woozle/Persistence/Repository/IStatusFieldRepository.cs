@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model.SessionHandling;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Persistence.Repository
+namespace Woozle.Persistence.Repository
 {
     public interface IStatusFieldRepository : IRepository<StatusField>
     {

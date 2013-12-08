@@ -1,7 +1,7 @@
 ﻿using System;
-using Woozle.Core.Model;
+using Woozle.Model;
 
-namespace Woozle.Core.Services.Stack.ServiceModel
+namespace Woozle.Services
 {
     [Serializable]
     public class WoozleDto

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woozle.Core.Persistence
+namespace Woozle.Persistence
 {
     public interface IUnitOfWork : IDisposable
     {

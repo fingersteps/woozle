@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Woozle.Core.BusinessLogic.Impl.PersonManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
+using Woozle.Domain.PersonManagement;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
 namespace Woozle.Core.BusinessLogic.Impl.Test.PersonManagement
 {

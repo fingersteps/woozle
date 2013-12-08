@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Woozle.Core.BusinessLogic.ModuleManagement;
-using Woozle.Core.BusinessLogic.PermissionManagement;
-using Woozle.Core.Common.PermissionManagement;
-using Woozle.Core.Model;
-using Woozle.Core.Model.ModulePermissions;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Persistence.Repository;
+using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
-using ModulePermissionsResult = Woozle.Core.Model.ModulePermissions.ModulePermissionsResult;
+using Woozle.Model.ModulePermissions;
+using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.ModuleManagement
+namespace Woozle.Domain.ModuleManagement
 {
     /// <summary>
     /// Contains the logic to manage modules.

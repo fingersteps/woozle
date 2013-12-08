@@ -8,9 +8,11 @@
 //------------------------------------------------------------------------------
 
 using System;
-using Woozle.Core.Services.Stack.ServiceModel.Authority;
+using Woozle.Services;
+using Woozle.Services.Authority;
+using Woozle.Services.UserManagement;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.UserManagement
+namespace Woozle.Service.UserManagement
 {
     [Serializable]
     public partial class UserMandatorRole : WoozleDto

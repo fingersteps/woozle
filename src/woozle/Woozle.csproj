@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;POSTSHARP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -73,18 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Exceptions\ArgumentNotFoundException.cs" />
     <Compile Include="Common\Exceptions\BusinessLogicException.cs" />
     <Compile Include="Common\Exceptions\InstanceNotFoundException.cs" />
-    <Compile Include="Common\Extensions\EnumExtensions.cs" />
     <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
-    <Compile Include="Common\Validation\DefaultValidatorExtensions.cs" />
-    <Compile Include="Common\Validation\GreaterThanNullableDate.cs" />
     <Compile Include="Dependencies\IWoozleDependency.cs" />
     <Compile Include="Dependencies\WoozleDomainDependencies.cs" />
     <Compile Include="Dependencies\WoozlePersistenceDependencies.cs" />
     <Compile Include="Dependencies\WoozleRepositoryDependencies.cs" />
-    <Compile Include="Dependencies\WoozleValidatorDependencies.cs" />
     <Compile Include="Domain\AbstractLogic.cs" />
     <Compile Include="Domain\Authentication\AuthenticationLogic.cs" />
     <Compile Include="Domain\Authentication\IAuthenticationLogic.cs" />
@@ -114,6 +109,7 @@
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />
     <Compile Include="Domain\UserManagement\UserBusinessValidator.cs" />
     <Compile Include="Domain\UserManagement\UserLogic.cs" />
+    <Compile Include="Host\WoozleHost.cs" />
     <Compile Include="Model\Authentication\LoginRequest.cs" />
     <Compile Include="Model\Authentication\LoginResult.cs" />
     <Compile Include="Model\City.cs">
@@ -207,7 +203,6 @@
     <Compile Include="Persistence\IEfUnitOfWork.cs" />
     <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Persistence\MandatorModule.cs" />
-    <Compile Include="Persistence\Persistence.Designer.cs" />
     <Compile Include="Persistence\Repository\AbstractRepository.cs" />
     <Compile Include="Persistence\Repository\CityRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
@@ -290,7 +285,6 @@
     <Compile Include="Persistence\StateHelpers.cs" />
     <Compile Include="Persistence\UserMandator.cs" />
     <Compile Include="Persistence\UserPerson.cs" />
-    <Compile Include="Persistence\WoozleModel.Designer.cs" />
     <Compile Include="Persistence\WoozleModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -354,9 +348,7 @@
     <Compile Include="Services\UserManagement\UserService.cs" />
     <Compile Include="Services\WoozleDto.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Host\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Model\Woozle.CoreModel.tt">

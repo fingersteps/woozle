@@ -1,6 +1,6 @@
 ﻿using ServiceStack.Logging;
 
-namespace Woozle.Core.BusinessLogic
+namespace Woozle.Domain
 {
     public abstract class AbstractLogic
     {

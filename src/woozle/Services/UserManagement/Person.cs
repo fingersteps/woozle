@@ -8,11 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System;
-using Woozle.Core.Model;
 using Woozle.Model;
-using City = Woozle.Core.Services.Stack.ServiceModel.LocationManagement.City;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Person
+namespace Woozle.Services.UserManagement
 {
     [Serializable]
     public partial class Person : WoozleDto

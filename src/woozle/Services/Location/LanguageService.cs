@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.Cities;
-using Woozle.Core.Services.Stack.ServiceModel.Translation;
+using Woozle.Domain.Location;
 
-namespace Woozle.Core.Services.Stack.Impl.Translation
+namespace Woozle.Services.Location
 {
     [Authenticate]
     public class LanguageService : AbstractService

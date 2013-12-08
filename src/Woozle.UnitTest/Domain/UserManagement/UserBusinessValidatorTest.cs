@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Woozle.Core.BusinessLogic.Impl.UserManagement;
+using Woozle.Domain.UserManagement;
 using Woozle.Model;
 
 namespace Woozle.Core.BusinessLogic.Impl.Test.UserManagement

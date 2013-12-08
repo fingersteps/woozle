@@ -1,8 +1,7 @@
-﻿using System.Data;
-using System.Data.Entity;
-using Woozle.Core.Model;
+﻿using System.Data.Entity;
+using Woozle.Model;
 
-namespace Woozle.Core.Persistence.Impl
+namespace Woozle.Persistence
 {
     public static class StateHelpers
     {

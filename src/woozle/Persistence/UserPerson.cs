@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Woozle.Model;
 
-namespace Woozle.Persistence.Impl.Core
+namespace Woozle.Persistence
 {
     public partial class UserPerson
     {

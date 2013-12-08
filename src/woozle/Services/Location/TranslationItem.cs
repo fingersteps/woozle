@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Translation
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class TranslationItem : WoozleDto
@@ -19,7 +19,7 @@ namespace Woozle.Core.Services.Stack.ServiceModel.Translation
         public string Description { get; set; }
     
         public Language Language { get; set; }
-        public ServiceModel.Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     
     }
     

@@ -1,23 +1,15 @@
 ﻿using Funq;
-using Woozle.Core.BusinessLogic.Authentication;
-using Woozle.Core.BusinessLogic.Authority;
-using Woozle.Core.BusinessLogic.Cities;
-using Woozle.Core.BusinessLogic.Impl.Authentication;
-using Woozle.Core.BusinessLogic.Impl.Authority;
-using Woozle.Core.BusinessLogic.Impl.Cities;
-using Woozle.Core.BusinessLogic.Impl.MandatorManagement;
-using Woozle.Core.BusinessLogic.Impl.ModuleManagement;
-using Woozle.Core.BusinessLogic.Impl.PersonManagement;
-using Woozle.Core.BusinessLogic.Impl.Settings;
-using Woozle.Core.BusinessLogic.Impl.UserManagement;
-using Woozle.Core.BusinessLogic.MandatorManagement;
-using Woozle.Core.BusinessLogic.ModuleManagement;
-using Woozle.Core.BusinessLogic.PermissionManagement;
-using Woozle.Core.BusinessLogic.Settings;
-using Woozle.Core.BusinessLogic.UserManagement;
-using Woozle.Core.Common.PermissionManagement.Impl;
+using Woozle.Domain.Authentication;
+using Woozle.Domain.Authority;
+using Woozle.Domain.Location;
+using Woozle.Domain.MandatorManagement;
+using Woozle.Domain.ModuleManagement;
+using Woozle.Domain.PermissionManagement;
+using Woozle.Domain.PersonManagement;
+using Woozle.Domain.Settings;
+using Woozle.Domain.UserManagement;
 
-namespace Woozle.Core.Dependencies
+namespace Woozle.Dependencies
 {
     public class WoozleDomainDependencies : IWoozleDependency
     {

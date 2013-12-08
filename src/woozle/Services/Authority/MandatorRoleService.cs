@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using ServiceStack;
-using Woozle.Core.BusinessLogic.Authority;
-using Woozle.Core.Services.Stack.ServiceModel.Authority;
+using Woozle.Domain.Authority;
 
-namespace Woozle.Core.Services.Stack.Impl.Authority
+namespace Woozle.Services.Authority
 {
     [Authenticate]
     public class MandatorRoleService : AbstractService

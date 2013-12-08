@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woozle.Core.Persistence.Repository
+namespace Woozle.Persistence.Repository
 {
     public class PersistenceException : Exception
     {

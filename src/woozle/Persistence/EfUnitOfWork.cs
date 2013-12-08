@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using ServiceStack.Logging;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
-using EntityState = System.Data.Entity.EntityState;
+using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Persistence.Impl
+namespace Woozle.Persistence
 {
     public abstract class EfDataContextBase : DbContext, IEfUnitOfWork
     {

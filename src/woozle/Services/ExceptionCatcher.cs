@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Data;
 using System.Data.Entity.Core;
 using PostSharp.Aspects;
 using ServiceStack.Logging;
-using Woozle.Core.Common.Aspects;
-using Woozle.Core.Common.Exceptions;
-using Woozle.Core.Common.Extensions;
+using Woozle.Common.Exceptions;
+using Woozle.Common.Extensions;
 
-namespace Woozle.Core.Services.Stack.Impl
+namespace Woozle.Services
 {
     /// <summary>
     /// Catches all exceptions and parse them into user friendli ServiceExceptions, which gets sent to the Client

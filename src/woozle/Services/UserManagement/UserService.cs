@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using Woozle.Core.BusinessLogic.UserManagement;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Services.Stack.Impl.Authentication;
-using Woozle.Core.Services.Stack.ServiceModel;
-using Woozle.Core.Services.Stack.ServiceModel.UserManagement;
-using UserSearchResult = Woozle.Core.Model.UserSearch.UserSearchResult;
+using Woozle.Domain.UserManagement;
+using Woozle.Model.UserSearch;
+using Woozle.Model.Validation.Creation;
+using Woozle.Services.Authentication;
 
-namespace Woozle.Core.Services.Stack.Impl.UserManagement
+namespace Woozle.Services.UserManagement
 {
     [MandatorAuthenticate]
     public class UserService : AbstractService
@@ -20,11 +18,11 @@ namespace Woozle.Core.Services.Stack.Impl.UserManagement
         }
 
         [ExceptionCatcher]
-        public IList<UserSearchResult> Get(Users request)
+        public IList<Model.UserSearch.UserSearchResult> Get(Users request)
         {
             var criteria = Mapper.Map<Users, UserSearchCriteria>(request);
             var result = logic.Search(criteria, Session);
-            return Mapper.Map<IList<UserSearchResult>, List<UserSearchResult>>(result);
+            return Mapper.Map<IList<Model.UserSearch.UserSearchResult>, List<Model.UserSearch.UserSearchResult>>(result);
         }
 
         /// <summary>
@@ -92,7 +90,7 @@ namespace Woozle.Core.Services.Stack.Impl.UserManagement
         private SaveResult<User> Save(User user)
         {
             var saveResult = this.logic.Save(Mapper.Map<User, Woozle.Model.User>(user), Session);
-            return Mapper.Map<Model.Validation.Creation.ISaveResult<Woozle.Model.User>, SaveResult<User>>(saveResult);
+            return Mapper.Map<ISaveResult<Woozle.Model.User>, SaveResult<User>>(saveResult);
         }
 
         [ExceptionCatcher]

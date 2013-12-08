@@ -10,7 +10,7 @@
 using System;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.LocationManagement
+namespace Woozle.Services.Location
 {
     [Serializable]
     [Route("/locations", "POST,PUT,DELETE")]

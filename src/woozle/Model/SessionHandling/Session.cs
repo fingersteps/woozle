@@ -1,7 +1,7 @@
 ﻿using System;
 using ServiceStack;
 
-namespace Woozle.Core.Model.SessionHandling
+namespace Woozle.Model.SessionHandling
 {
     /// <summary>
     /// The session

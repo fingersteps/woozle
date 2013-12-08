@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Translation
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class Language : WoozleDto

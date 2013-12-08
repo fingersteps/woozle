@@ -1,7 +1,7 @@
 ﻿using Funq;
-using Woozle.Core.Persistence.Impl;
+using Woozle.Persistence;
 
-namespace Woozle.Core.Dependencies
+namespace Woozle.Dependencies
 {
     public class WoozlePersistenceDependencies : IWoozleDependency
     {

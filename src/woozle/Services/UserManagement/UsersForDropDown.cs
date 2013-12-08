@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using ServiceStack;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.UserManagement
+namespace Woozle.Services.UserManagement
 {
     [Route("/usersForDropDown", "GET, OPTIONS")]
-    public class UsersForDropDown : IReturn<List<User>>
+    public class UsersForDropDown : IReturn<List<Model.User>>
     {
     }
 }

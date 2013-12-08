@@ -9,9 +9,9 @@
 
 using System;
 using ServiceStack;
-using Woozle.Core.Services.Stack.ServiceModel.LocationManagement;
+using Woozle.Services.Location;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Mandator
+namespace Woozle.Services.Mandator
 {
     [Serializable]
     [Route("/mandator", "GET, PUT")]

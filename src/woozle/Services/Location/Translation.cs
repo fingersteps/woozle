@@ -14,9 +14,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using Woozle.Core.Services.Stack.ServiceModel;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Translation
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class Translation : WoozleDto

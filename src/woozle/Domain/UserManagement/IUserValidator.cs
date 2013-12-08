@@ -1,10 +1,8 @@
-﻿
-using ServiceStack.FluentValidation;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
+﻿using ServiceStack.FluentValidation;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.BusinessLogic.UserManagement
+namespace Woozle.Domain.UserManagement
 {
     /// <summary>
     /// Marker interface for a user validator.

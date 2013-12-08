@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Woozle.Core.Services.Stack.ServiceModel.Authority
+﻿namespace Woozle.Services.Authority
 {
     public class ModulePermissionsResult
     {

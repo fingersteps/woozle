@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Woozle.Core.Model.SessionHandling;
-using Woozle.Core.Model.UserSearch;
-using Woozle.Core.Model.Values;
-using Woozle.Core.Persistence.Repository;
-using Woozle.Core.Persistence.Repository.Impl.Comparator;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
+using Woozle.Model.UserSearch;
+using Woozle.Model.Values;
 
 namespace Woozle.Persistence.Repository
 {

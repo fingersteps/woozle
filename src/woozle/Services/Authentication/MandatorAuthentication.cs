@@ -1,9 +1,9 @@
 ﻿using System;
 using ServiceStack;
 using ServiceStack.Web;
-using Woozle.Core.Model.SessionHandling;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Services.Stack.Impl.Authentication
+namespace Woozle.Services.Authentication
 {
     /// <summary>
     /// Indicates that the request dto, which is associated with this attribute,

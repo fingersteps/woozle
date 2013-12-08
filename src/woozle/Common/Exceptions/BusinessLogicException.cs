@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woozle.Core.Common.Exceptions
+namespace Woozle.Common.Exceptions
 {
     public class BusinessLogicException : Exception
     {

@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.LocationManagement
+namespace Woozle.Services.Location
 {
     [Serializable]
     public partial class Country : WoozleDto
@@ -21,7 +21,7 @@ namespace Woozle.Core.Services.Stack.ServiceModel.LocationManagement
         /// </summary>
         public string TranslatedValue { get; set; }
 
-        public Translation.Translation Translation { get; set; }
+        public Translation Translation { get; set; }
     
     }
     

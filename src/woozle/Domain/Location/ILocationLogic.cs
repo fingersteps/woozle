@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
-using Woozle.Core.Model.SessionHandling;
 using Woozle.Model;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.BusinessLogic.Cities
+namespace Woozle.Domain.Location
 {
     public interface ILocationLogic
     {

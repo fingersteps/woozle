@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
-using Woozle.Core.Model.ModulePermissions;
-using Woozle.Core.Model.SessionHandling;
 using Woozle.Model;
+using Woozle.Model.ModulePermissions;
+using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.BusinessLogic.ModuleManagement
+namespace Woozle.Domain.ModuleManagement
 {
     /// <summary>
     /// Definition of the module management functionalities.
