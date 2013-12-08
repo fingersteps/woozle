@@ -80,6 +80,11 @@
     <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Common\Validation\DefaultValidatorExtensions.cs" />
     <Compile Include="Common\Validation\GreaterThanNullableDate.cs" />
+    <Compile Include="Dependencies\IWoozleDependency.cs" />
+    <Compile Include="Dependencies\WoozleDomainDependencies.cs" />
+    <Compile Include="Dependencies\WoozlePersistenceDependencies.cs" />
+    <Compile Include="Dependencies\WoozleRepositoryDependencies.cs" />
+    <Compile Include="Dependencies\WoozleValidatorDependencies.cs" />
     <Compile Include="Domain\AbstractLogic.cs" />
     <Compile Include="Domain\Authentication\AuthenticationLogic.cs" />
     <Compile Include="Domain\Authentication\IAuthenticationLogic.cs" />
@@ -242,6 +247,7 @@
     <Compile Include="Persistence\Repository\ModuleRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Repository\ModuleRepositoryExtended.cs" />
     <Compile Include="Persistence\Repository\PermissionRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
@@ -264,6 +270,7 @@
     <Compile Include="Persistence\Repository\StatusFieldRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Repository\StatusFieldRepositoryExtended.cs" />
     <Compile Include="Persistence\Repository\StatusRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
@@ -348,7 +355,6 @@
     <Compile Include="Services\WoozleDto.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dependencies\" />
     <Folder Include="Host\" />
   </ItemGroup>
   <ItemGroup>

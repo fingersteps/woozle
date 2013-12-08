@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woozle.Core.Model;
 using Woozle.Core.Model.ModulePermissions;
 using Woozle.Core.Model.SessionHandling;
 using Woozle.Model;
