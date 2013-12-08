@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping;
+using Woozle.Services;
 
 namespace Woozle.Core.Services.Stack.ServiceModel.Mapping.Test
 {

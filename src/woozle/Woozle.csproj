@@ -371,7 +371,6 @@
     <None Include="packages.config" />
     <None Include="Persistence\App.Config" />
     <None Include="Persistence\packages.config" />
-    <None Include="Persistence\Persistence.settings" />
     <EntityDeploy Include="Persistence\WoozleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WoozleModel1.Designer.cs</LastGenOutput>

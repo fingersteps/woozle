@@ -1,17 +1,31 @@
-﻿using System.Linq;
+﻿#region
+
 using AutoMapper;
+using Woozle.Model;
 using Woozle.Model.UserSearch;
 using Woozle.Model.Validation.Creation;
 using Woozle.Service.UserManagement;
 using Woozle.Services.Authority;
 using Woozle.Services.Location;
-using Woozle.Services.Mandator;
 using Woozle.Services.Modules;
 using Woozle.Services.Modules.Settings;
 using Woozle.Services.UserManagement;
+using City = Woozle.Services.Location.City;
+using Function = Woozle.Model.Function;
+using FunctionPermission = Woozle.Services.Modules.FunctionPermission;
+using Language = Woozle.Services.Location.Language;
+using MandatorGroup = Woozle.Services.Mandator.MandatorGroup;
+using MandatorRole = Woozle.Services.Authority.MandatorRole;
+using Module = Woozle.Services.Modules.Module;
+using ModuleForMandator = Woozle.Model.ModulePermissions.ModuleForMandator;
+using Permission = Woozle.Services.Modules.Permission;
+using Role = Woozle.Services.Authority.Role;
+using Translation = Woozle.Model.Translation;
 using UserSearchResult = Woozle.Services.UserManagement.UserSearchResult;
 
-namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
+#endregion
+
+namespace Woozle.Services
 {
     public static class MappingConfiguration
     {
@@ -19,146 +33,135 @@ namespace Woozle.Core.Services.Stack.ServiceWoozle.Model.Mapping
         {
             Mapper.Configuration.AllowNullDestinationValues = true;
 
-            Mapper.CreateMap<City, Woozle.Model.City>()
+            Mapper.CreateMap<City, Model.City>()
                   .ForMember(dest => dest.Mandators, opt => opt.Ignore())
                   .ForMember(dest => dest.People, opt => opt.Ignore())
                   .ForMember(dest => dest.Locations, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.City, City>();
+            Mapper.CreateMap<Model.City, City>();
 
-            Mapper.CreateMap<CountryDto, Woozle.Model.Country>();
-            Mapper.CreateMap<Woozle.Model.Country, CountryDto>();
+            Mapper.CreateMap<CountryDto, Country>();
+            Mapper.CreateMap<Country, CountryDto>();
 
-   
-            Mapper.CreateMap<Function, Woozle.Model.Function>()
+
+            Mapper.CreateMap<Modules.Function, Function>()
                   .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.Function, Function>();
+            Mapper.CreateMap<Function, Modules.Function>();
 
-            Mapper.CreateMap<FunctionPermission, Woozle.Model.FunctionPermission>()
+            Mapper.CreateMap<FunctionPermission, Model.FunctionPermission>()
                   .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.FunctionPermission, FunctionPermission>();
+            Mapper.CreateMap<Model.FunctionPermission, FunctionPermission>();
 
-            Mapper.CreateMap<Language, Woozle.Model.Language>()
+            Mapper.CreateMap<Language, Model.Language>()
                   .ForMember(dest => dest.TranslationItems, opt => opt.Ignore())
                   .ForMember(dest => dest.Users, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.Language, Language>();
+            Mapper.CreateMap<Model.Language, Language>();
 
-            Mapper.CreateMap<LocationDto, Woozle.Model.Location>();
-            Mapper.CreateMap<Woozle.Model.Location, LocationDto>();
+            Mapper.CreateMap<LocationDto, Model.Location>();
+            Mapper.CreateMap<Model.Location, LocationDto>();
 
-            Mapper.CreateMap<Mandator, Woozle.Model.Mandator>()
+            Mapper.CreateMap<Mandator.Mandator, Model.Mandator>()
                   .ForMember(n => n.Modules, opt => opt.Ignore())
                   .ForMember(n => n.Locations, opt => opt.Ignore())
                   .ForMember(n => n.MandatorRoles, opt => opt.Ignore())
                   .ForMember(n => n.People, opt => opt.Ignore())
                   .ForMember(n => n.Settings, opt => opt.Ignore());
 
-            Mapper.CreateMap<Woozle.Model.Mandator, Mandator>();
+            Mapper.CreateMap<Model.Mandator, Mandator.Mandator>();
 
 
-            Mapper.CreateMap<MandatorRole, Woozle.Model.MandatorRole>()
+            Mapper.CreateMap<MandatorRole, Model.MandatorRole>()
                   .ForMember(dest => dest.UserMandatorRoles, opt => opt.Ignore())
                   .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.MandatorRole, MandatorRole>();
+            Mapper.CreateMap<Model.MandatorRole, MandatorRole>();
 
-            Mapper.CreateMap<MandatorGroup, Woozle.Model.MandatorGroup>()
+            Mapper.CreateMap<MandatorGroup, Model.MandatorGroup>()
                   .ForMember(dest => dest.Mandators, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.MandatorGroup, MandatorGroup>();
+            Mapper.CreateMap<Model.MandatorGroup, MandatorGroup>();
 
-            Mapper.CreateMap<Module, Woozle.Model.Module>()
+            Mapper.CreateMap<Module, Model.Module>()
                   .ForMember(dest => dest.Mandators, opt => opt.Ignore())
                   .ForMember(dest => dest.Functions, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.Module, Module>();
+            Mapper.CreateMap<Model.Module, Module>();
 
-            Mapper.CreateMap<ModuleGroupDto, Woozle.Model.ModuleGroup>();
-            Mapper.CreateMap<Woozle.Model.ModuleGroup, ModuleGroupDto>();
+            Mapper.CreateMap<ModuleGroupDto, ModuleGroup>();
+            Mapper.CreateMap<ModuleGroup, ModuleGroupDto>();
 
-            Mapper.CreateMap<Permission, Woozle.Model.Permission>()
+            Mapper.CreateMap<Permission, Model.Permission>()
                   .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.Permission, Permission>();
+            Mapper.CreateMap<Model.Permission, Permission>();
 
-            Mapper.CreateMap<PersonDto, Woozle.Model.Person>();
-            Mapper.CreateMap<Woozle.Model.Person, PersonDto>();
+            Mapper.CreateMap<PersonDto, Person>();
+            Mapper.CreateMap<Person, PersonDto>();
 
-            Mapper.CreateMap<Role, Woozle.Model.Role>()
+            Mapper.CreateMap<Role, Model.Role>()
                   .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore());
-            Mapper.CreateMap<Woozle.Model.Role, Role>();
+            Mapper.CreateMap<Model.Role, Role>();
 
-            Mapper.CreateMap<Woozle.Services.SaveResult<UserDto>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.User>>();
-            Mapper.CreateMap<ISaveResult<Woozle.Model.User>, Woozle.Services.SaveResult<UserDto>>();
+            Mapper
+                .CreateMap
+                <SaveResult<UserDto>, Model.Validation.Creation.SaveResult<User>>();
+            Mapper.CreateMap<ISaveResult<User>, SaveResult<UserDto>>();
 
-            Mapper.CreateMap<SettingDto, Woozle.Model.Setting>();
-            Mapper.CreateMap<Woozle.Model.Setting, SettingDto>();
+            Mapper.CreateMap<SettingDto, Setting>();
+            Mapper.CreateMap<Setting, SettingDto>();
 
-            Mapper.CreateMap<Translation, Woozle.Model.Translation>()
+            Mapper.CreateMap<Location.Translation, Translation>()
                   .ForMember(n => n.Countries, opt => opt.Ignore())
                   .ForMember(n => n.Functions, opt => opt.Ignore())
                   .ForMember(n => n.Modules, opt => opt.Ignore())
                   .ForMember(n => n.Status, opt => opt.Ignore())
                   .ForMember(n => n.TranslationItems, opt => opt.Ignore());
 
-            Mapper.CreateMap<Woozle.Model.Translation, Translation>();
+            Mapper.CreateMap<Translation, Location.Translation>();
 
-            Mapper.CreateMap<TranslationItemDto, Woozle.Model.TranslationItem>();
-            Mapper.CreateMap<Woozle.Model.TranslationItem, TranslationItemDto>();
+            Mapper.CreateMap<TranslationItemDto, TranslationItem>();
+            Mapper.CreateMap<TranslationItem, TranslationItemDto>();
 
-            Mapper.CreateMap<UserDto, Woozle.Model.User>();
-            Mapper.CreateMap<Woozle.Model.User, UserDto>();
+            Mapper.CreateMap<UserDto, User>();
+            Mapper.CreateMap<User, UserDto>();
 
-            Mapper.CreateMap<UserMandatorRoleDto, Woozle.Model.UserMandatorRole>();
-            Mapper.CreateMap<Woozle.Model.UserMandatorRole, UserMandatorRoleDto>()
+            Mapper.CreateMap<UserMandatorRoleDto, UserMandatorRole>();
+            Mapper.CreateMap<UserMandatorRole, UserMandatorRoleDto>()
                   .ForMember(dest => dest.UserDto, opt => opt.Ignore());
 
             Mapper.CreateMap<Users, UserSearchCriteria>();
             Mapper.CreateMap<UserSearchCriteria, Users>();
 
-            Mapper.CreateMap<UserSearchResult, Woozle.Model.UserSearch.UserSearchResult>();
-            Mapper.CreateMap<Woozle.Model.UserSearch.UserSearchResult, UserSearchResult>();
+            Mapper.CreateMap<UserSearchResult, Model.UserSearch.UserSearchResult>();
+            Mapper.CreateMap<Model.UserSearch.UserSearchResult, UserSearchResult>();
 
-            Mapper.CreateMap<Locations, Woozle.Model.Location>();
-            Mapper.CreateMap<Woozle.Model.Location, Locations>();
+            Mapper.CreateMap<Locations, Model.Location>();
+            Mapper.CreateMap<Model.Location, Locations>();
 
-            Mapper.CreateMap<LocationDto, Woozle.Model.Location>();
-            Mapper.CreateMap<Woozle.Model.Location, LocationDto>();
+            Mapper.CreateMap<LocationDto, Model.Location>();
+            Mapper.CreateMap<Model.Location, LocationDto>();
 
-            Mapper.CreateMap<Woozle.Services.SaveResult<LocationDto>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Location>>();
-            Mapper.CreateMap<ISaveResult<Woozle.Model.Location>, Woozle.Services.SaveResult<LocationDto>>();
+            Mapper
+                .CreateMap
+                <SaveResult<LocationDto>,
+                    Model.Validation.Creation.SaveResult<Model.Location>>();
+            Mapper.CreateMap<ISaveResult<Model.Location>, SaveResult<LocationDto>>();
 
-            Mapper.CreateMap<Woozle.Services.SaveResult<SettingDto>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Setting>>();
-            Mapper.CreateMap<ISaveResult<Woozle.Model.Setting>, Woozle.Services.SaveResult<SettingDto>>();
+            Mapper
+                .CreateMap
+                <SaveResult<SettingDto>,
+                    Model.Validation.Creation.SaveResult<Setting>>();
+            Mapper.CreateMap<ISaveResult<Setting>, SaveResult<SettingDto>>();
 
-            Mapper.CreateMap<Woozle.Services.SaveResult<Mandator>, Woozle.Model.Validation.Creation.SaveResult<Woozle.Model.Mandator>>();
-            Mapper.CreateMap<ISaveResult<Woozle.Model.Mandator>, Woozle.Services.SaveResult<Mandator>>();
+            Mapper
+                .CreateMap
+                <SaveResult<Mandator.Mandator>,
+                    Model.Validation.Creation.SaveResult<Model.Mandator>>();
+            Mapper.CreateMap<ISaveResult<Model.Mandator>, SaveResult<Mandator.Mandator>>();
 
-            Mapper.CreateMap<ModuleForMandator, Woozle.Model.ModulePermissions.ModuleForMandator>();
-            Mapper.CreateMap<Woozle.Model.ModulePermissions.ModuleForMandator, ModuleForMandator>();
+            Mapper.CreateMap<Modules.ModuleForMandator, ModuleForMandator>();
+            Mapper.CreateMap<ModuleForMandator, Modules.ModuleForMandator>();
 
-            Mapper.CreateMap<ChangedModulePermission, Woozle.Model.ModulePermissions.ChangedModulePermission>();
-            Mapper.CreateMap<Woozle.Model.ModulePermissions.ChangedModulePermission, ChangedModulePermission>();
+            Mapper.CreateMap<ChangedModulePermission, Model.ModulePermissions.ChangedModulePermission>();
+            Mapper.CreateMap<Model.ModulePermissions.ChangedModulePermission, ChangedModulePermission>();
 
-            Mapper.CreateMap<ModulePermissionsResult, Woozle.Model.ModulePermissions.ModulePermissionsResult>();
-            Mapper.CreateMap<Woozle.Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
-        }
-
-        private class ModuleTranslatedValueResolver : ValueResolver<Woozle.Model.ModulePermissions.ModuleForMandator, string>
-        {
-            protected override string ResolveCore(Woozle.Model.ModulePermissions.ModuleForMandator source)
-            {
-                return GetTranslation(source.Translation);
-            }
-        }
-
-        private class FunctionTranslatedValueResolver : ValueResolver<Woozle.Model.Function, string>
-        {
-            protected override string ResolveCore(Woozle.Model.Function source)
-            {
-                return GetTranslation(source.Translation);
-            }
-        }
-
-        private static string GetTranslation(Woozle.Model.Translation translation)
-        {
-            var translationItem = translation.TranslationItems.FirstOrDefault();
-            return translationItem != null ? translationItem.Description : translation.DefaultDescription;
+            Mapper.CreateMap<ModulePermissionsResult, Model.ModulePermissions.ModulePermissionsResult>();
+            Mapper.CreateMap<Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
         }
     }
 }

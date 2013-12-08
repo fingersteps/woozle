@@ -16,21 +16,7 @@ namespace Woozle.Host
     {
         protected WoozleHost(string serviceName, params Assembly[] assemblies) : base(serviceName, assemblies)
         {
-          //  RegisterCoreService();
         }
-
-        //private void RegisterCoreService()
-        //{
-        //    RegisterService(typeof(MandatorRoleService));
-        //    RegisterService(typeof(PermissionService));
-        //    RegisterService(typeof(RoleService));
-        //    RegisterService(typeof(LoginContextService));
-        //    RegisterService(typeof(MandatorService));
-        //    RegisterService(typeof(ModuleService));
-        //    RegisterService(typeof(SettingService));
-        //    RegisterService(typeof(LanguageService));
-        //    RegisterService(typeof(UserService));
-        //}
 
         public override void Configure(Container container)
         {
