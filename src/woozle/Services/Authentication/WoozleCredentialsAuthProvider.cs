@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ServiceStack;
-using ServiceStack.Auth;
+using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.Authentication;
 using Woozle.Model;
 using Woozle.Model.Authentication;
@@ -77,7 +77,8 @@ namespace Woozle.Services.Authentication
             return loginSuccessful;
         }
 
-        public override void OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary<string, string> authInfo)
+        public override void OnAuthenticated(IServiceBase authService, IAuthSession session, IOAuthTokens tokens,
+                                             Dictionary<string, string> authInfo)
         {
             //Save the authentication information after successful authentication.
             var se = session as Session;

@@ -1,9 +1,11 @@
-﻿using Woozle.Domain.Translation;
+﻿using ServiceStack.ServiceHost;
+using ServiceStack.ServiceInterface;
+using Woozle.Domain.Translation;
 using Woozle.Model.SessionHandling;
 
 namespace Woozle.Services
 {
-    public abstract class AbstractService : ServiceStack.Service
+    public abstract class AbstractService : ServiceStack.ServiceInterface.Service
     {
         public ITranslator Translator { get; set; }
 
@@ -11,7 +13,8 @@ namespace Woozle.Services
         {
             get
             {
-                var session = this.GetSession() as Session;
+                var httpRequest = this.RequestContext.Get<IHttpRequest>();
+                var session = httpRequest.GetSession() as Session;
                 return session;
             }
         }

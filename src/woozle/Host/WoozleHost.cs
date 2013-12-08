@@ -1,18 +1,14 @@
 ﻿using System.Reflection;
 using Funq;
-using ServiceStack;
-using ServiceStack.Auth;
-using ServiceStack.Caching;
+using ServiceStack.CacheAccess;
+using ServiceStack.CacheAccess.Providers;
+using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Auth;
+using ServiceStack.WebHost.Endpoints;
 using Woozle.Dependencies;
 using Woozle.Domain.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Services.Authentication;
-using Woozle.Services.Authority;
-using Woozle.Services.Location;
-using Woozle.Services.Mandator;
-using Woozle.Services.Modules;
-using Woozle.Services.Settings;
-using Woozle.Services.UserManagement;
 
 namespace Woozle.Host
 {
@@ -20,21 +16,21 @@ namespace Woozle.Host
     {
         protected WoozleHost(string serviceName, params Assembly[] assemblies) : base(serviceName, assemblies)
         {
-            RegisterCoreService();
+          //  RegisterCoreService();
         }
 
-        private void RegisterCoreService()
-        {
-            RegisterService(typeof (MandatorRoleService));
-            RegisterService(typeof(PermissionService));
-            RegisterService(typeof(RoleService));
-            RegisterService(typeof(LoginContextService));
-            RegisterService(typeof(MandatorService));
-            RegisterService(typeof(ModuleService));
-            RegisterService(typeof(SettingService));
-            RegisterService(typeof(LanguageService));
-            RegisterService(typeof(UserService));
-        }
+        //private void RegisterCoreService()
+        //{
+        //    RegisterService(typeof(MandatorRoleService));
+        //    RegisterService(typeof(PermissionService));
+        //    RegisterService(typeof(RoleService));
+        //    RegisterService(typeof(LoginContextService));
+        //    RegisterService(typeof(MandatorService));
+        //    RegisterService(typeof(ModuleService));
+        //    RegisterService(typeof(SettingService));
+        //    RegisterService(typeof(LanguageService));
+        //    RegisterService(typeof(UserService));
+        //}
 
         public override void Configure(Container container)
         {

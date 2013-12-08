@@ -1,5 +1,6 @@
 ﻿using System;
 using ServiceStack;
+using ServiceStack.ServiceInterface.Auth;
 
 namespace Woozle.Model.SessionHandling
 {

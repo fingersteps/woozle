@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ServiceStack;
+using ServiceStack.ServiceHost;
 using Woozle.Services.Modules;
 
 namespace Woozle.Services.Authority

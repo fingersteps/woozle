@@ -1,10 +1,10 @@
-﻿using ServiceStack;
+﻿using ServiceStack.ServiceHost;
 
-namespace Woozle.Services.Location
+namespace Woozle.Services.Mandator
 {
     [Route("/mandatorselect", "POST")]
     public class MandatorSelect : IReturn<bool>
     {
-        public Mandator.Mandator SelectedMandator { get; set; }
+        public Mandator SelectedMandator { get; set; }
     }
 }

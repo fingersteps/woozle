@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using ServiceStack;
+using ServiceStack.ServiceInterface;
 using Woozle.Domain.Authentication;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
-using Woozle.Services.Location;
 using Woozle.Services.Mandator;
 
 namespace Woozle.Services.Authentication

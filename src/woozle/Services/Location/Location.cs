@@ -9,6 +9,7 @@
 
 using System;
 using ServiceStack;
+using ServiceStack.ServiceHost;
 
 namespace Woozle.Services.Location
 {

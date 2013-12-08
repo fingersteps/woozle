@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using ServiceStack;
+using ServiceStack.ServiceInterface;
 using Woozle.Domain.Authority;
 using Woozle.Model;
 

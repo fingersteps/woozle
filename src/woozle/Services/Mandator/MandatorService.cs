@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ServiceStack;
+using ServiceStack.ServiceInterface;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Model.Validation.Creation;
 

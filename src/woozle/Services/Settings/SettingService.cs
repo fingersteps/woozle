@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ServiceStack;
+using ServiceStack.ServiceInterface;
 using Woozle.Domain.Settings;
 using Woozle.Model;
 using Woozle.Model.Validation.Creation;
