@@ -17,7 +17,7 @@ namespace Woozle.Services.UserManagement
     [Serializable]
     [Route("/users", "POST,PUT,DELETE")]
     [Route("/users/{Id}")]
-    public partial class UserDto : WoozleDto, IReturn<UserResponse>, IReturn<SaveResult<UserDto>>, IReturnVoid
+    public partial class UserDto : WoozleDto, IReturn<UserResponse>, IReturn<SaveResultDto<UserDto>>, IReturnVoid
     {
         public UserDto()
         {

@@ -34,7 +34,7 @@ namespace Woozle.Services.Settings
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<Setting> Post(Setting requestDto)
+        public SaveResultDto<Setting> Post(Setting requestDto)
         {
             return Save(requestDto);
         }
@@ -45,16 +45,16 @@ namespace Woozle.Services.Settings
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<Setting> Put(Setting requestDto)
+        public SaveResultDto<Setting> Put(Setting requestDto)
         {
             return Save(requestDto);
         }
 
-        private SaveResult<Setting> Save(Setting requestDto)
+        private SaveResultDto<Setting> Save(Setting requestDto)
         {
             var saveResult = this.settingsLogic.Save(Mapper.Map<Setting, Woozle.Model.Setting>(requestDto), Session);
             var result =
-                Mapper.Map<ISaveResult<Woozle.Model.Setting>, SaveResult<Setting>>(saveResult);
+                Mapper.Map<ISaveResult<Woozle.Model.Setting>, SaveResultDto<Setting>>(saveResult);
             return result;
         }
     }

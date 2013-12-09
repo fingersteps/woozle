@@ -8,12 +8,12 @@ namespace Woozle.Services
     /// Result class for each service operation between client and server.
     /// </summary>
     /// <typeparam name="T">Type of the service entity</typeparam>
-    public class SaveResult<T> : ISaveResult<T>
+    public class SaveResultDto<T> : ISaveResult<T>
     {
         /// <summary>
         /// ctor.
         /// </summary>
-        public SaveResult()
+        public SaveResultDto()
         {
             this.Errors = new List<Error>();
         }

@@ -9,14 +9,16 @@
 
 using System;
 
-namespace Woozle.Services.Mandator
+namespace Woozle.Services.Modules
 {
     [Serializable]
-    public partial class MandatorGroup : WoozleDto
+    public partial class FunctionPermissionDto : WoozleDto
     {
-   
-        public string Name { get; set; }
+        public int FunctionId { get; set; }
+        public int PermissionId { get; set; }
     
+        public FunctionDto FunctionDto { get; set; }
+        public PermissionDto PermissionDto { get; set; }
     }
     
 }

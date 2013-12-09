@@ -12,13 +12,10 @@ using System;
 namespace Woozle.Services.Modules
 {
     [Serializable]
-    public partial class FunctionPermission : WoozleDto
+    public partial class PermissionDto : WoozleDto
     {
-        public int FunctionId { get; set; }
-        public int PermissionId { get; set; }
-    
-        public Function Function { get; set; }
-        public Permission Permission { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string LogicalId { get; set; }
     }
-    
 }

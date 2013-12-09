@@ -16,7 +16,7 @@ namespace Woozle.Services.Mandator
 {
     [Serializable]
     [Route("/mandator", "GET, PUT")]
-    public partial class Mandator : WoozleDto, IReturn<Mandator>, IReturn<SaveResult<Mandator>>
+    public partial class MandatorDto : WoozleDto, IReturn<MandatorDto>, IReturn<SaveResultDto<MandatorDto>>
     {
         public string Name { get; set; }
         public string Street { get; set; }
@@ -28,7 +28,7 @@ namespace Woozle.Services.Mandator
         public Nullable<int> MandatorGroupId { get; set; }
     
         public City City { get; set; }
-        public MandatorGroup MandatorGroup { get; set; }
+        public MandatorGroupDto MandatorGroupDto { get; set; }
     
     }
     

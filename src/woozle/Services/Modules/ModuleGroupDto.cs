@@ -17,14 +17,14 @@ namespace Woozle.Services.Modules
     {
         public ModuleGroupDto()
         {
-            this.Modules = new FixupCollection<Module>();
+            this.Modules = new FixupCollection<ModuleDto>();
         }
     
         public byte[] Icon { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     
-        public FixupCollection<Module> Modules { get; set; }
+        public FixupCollection<ModuleDto> Modules { get; set; }
     
     }
     

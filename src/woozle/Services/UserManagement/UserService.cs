@@ -18,11 +18,11 @@ namespace Woozle.Services.UserManagement
         }
 
         [ExceptionCatcher]
-        public IList<Model.UserSearch.UserSearchResult> Get(Users request)
+        public IList<UserSearchResult> Get(UsersDto request)
         {
-            var criteria = Mapper.Map<Users, UserSearchCriteria>(request);
+            var criteria = Mapper.Map<UsersDto, UserSearchCriteria>(request);
             var result = logic.Search(criteria, Session);
-            return Mapper.Map<IList<Model.UserSearch.UserSearchResult>, List<Model.UserSearch.UserSearchResult>>(result);
+            return Mapper.Map<IList<UserSearchResult>, List<UserSearchResult>>(result);
         }
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace Woozle.Services.UserManagement
         /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public List<UserDto> Get(UsersForDropDown request)
+        public List<UserDto> Get(UsersForDropDownDto request)
         {
             var result = logic.GetUsersOfMandator(Session);
-            return Mapper.Map<IList<Woozle.Model.User>, List<UserDto>>(result);
+            return Mapper.Map<IList<Model.User>, List<UserDto>>(result);
         }
 
         [ExceptionCatcher]
@@ -44,12 +44,12 @@ namespace Woozle.Services.UserManagement
             {
                 return new UserResponse
                            {
-                               UserDto = Mapper.Map <Woozle.Model.User,UserDto>(this.Session.SessionObject.User)
+                               UserDto = Mapper.Map <Model.User,UserDto>(this.Session.SessionObject.User)
                            };
             }
 
             var result = logic.LoadUser(request.Id, Session);
-            var response = new UserResponse() {UserDto = Mapper.Map<Woozle.Model.User, UserDto>(result)};
+            var response = new UserResponse() {UserDto = Mapper.Map<Model.User, UserDto>(result)};
             return response;
         }
 
@@ -59,7 +59,7 @@ namespace Woozle.Services.UserManagement
             var result = logic.LoadUser(this.Session.SessionObject.User.Id, Session);
             var response = new UserResponse
                                {
-                                   UserDto = Mapper.Map<Woozle.Model.User, UserDto>(result)
+                                   UserDto = Mapper.Map<Model.User, UserDto>(result)
                                };
 
             return response;
@@ -71,7 +71,7 @@ namespace Woozle.Services.UserManagement
         /// <param name="userDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<UserDto> Post(UserDto userDto)
+        public SaveResultDto<UserDto> Post(UserDto userDto)
         {
             return Save(userDto);
         }
@@ -82,21 +82,21 @@ namespace Woozle.Services.UserManagement
         /// <param name="userDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResult<UserDto> Put(UserDto userDto)
+        public SaveResultDto<UserDto> Put(UserDto userDto)
         {
             return Save(userDto);
         }
 
-        private SaveResult<UserDto> Save(UserDto userDto)
+        private SaveResultDto<UserDto> Save(UserDto userDto)
         {
-            var saveResult = this.logic.Save(Mapper.Map<UserDto, Woozle.Model.User>(userDto), Session);
-            return Mapper.Map<ISaveResult<Woozle.Model.User>, SaveResult<UserDto>>(saveResult);
+            var saveResult = logic.Save(Mapper.Map<UserDto, Model.User>(userDto), Session);
+            return Mapper.Map<ISaveResult<Model.User>, SaveResultDto<UserDto>>(saveResult);
         }
 
         [ExceptionCatcher]
         public object Delete(UserDto userDto)
         {
-            this.logic.Delete(userDto.Id, Session);
+            logic.Delete(userDto.Id, Session);
             return null;
         }
     }

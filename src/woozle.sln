@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle", "woozle\Woozle.csproj", "{6F8BE8CE-8E99-4914-9482-37369345435C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{0F34D68A-96EB-4C39-BD80-02D319C368C7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xx_Demo", "xx_Demo", "{0F34D68A-96EB-4C39-BD80-02D319C368C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.UnitTest", "Woozle.UnitTest\Woozle.UnitTest.csproj", "{8B459B1C-693C-432E-AD6A-5A9354257E34}"
 EndProject

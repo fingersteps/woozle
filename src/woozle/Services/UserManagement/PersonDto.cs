@@ -30,7 +30,7 @@ namespace Woozle.Services.UserManagement
     
         public City City { get; set; }
         public Status SalutationStatus { get; set; }
-        public Mandator.Mandator Mandator { get; set; }
+        public Mandator.MandatorDto MandatorDto { get; set; }
     }
     
 }

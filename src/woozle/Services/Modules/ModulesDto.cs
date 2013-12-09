@@ -5,16 +5,16 @@ using Woozle.Model;
 namespace Woozle.Services.Modules
 {
     [Route("/modules", "GET, OPTIONS")]
-    public class Modules : WoozleDto, IReturn<List<ModuleForMandator>>
+    public class ModulesDto : WoozleDto, IReturn<List<ModuleForMandatorDto>>
     {
     }
 
-    public class ModuleForMandator
+    public class ModuleForMandatorDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public byte[] Icon { get; set; }
-        public FixupCollection<Function> Functions { get; set; }
+        public FixupCollection<FunctionDto> Functions { get; set; }
         public Translation Translation { get; set; }
     }
 }

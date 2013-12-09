@@ -21,10 +21,10 @@ namespace Woozle.Services.Modules
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public IList<ModuleForMandator> Get(Modules requestDto)
+        public IList<ModuleForMandatorDto> Get(ModulesDto requestDto)
         {
             var result = moduleLogic.GetModulesByMandator(Session);
-            return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandator>>(result);
+            return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandatorDto>>(result);
         }
     }
 }
