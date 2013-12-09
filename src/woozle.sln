@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.Demo.Client", "Woozl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.Demo.Server", "Woozle.Demo.Server\Woozle.Demo.Server.csproj", "{F4064490-D3B3-41AC-BF7B-332058A3B4D2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Init", "01_Init", "{52C71382-206E-4807-929E-2E63AECDB68C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Users\pr\Desktop\Masterscript-Woozle-Database.sql = ..\..\..\..\Users\pr\Desktop\Masterscript-Woozle-Database.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
