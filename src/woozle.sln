@@ -13,8 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.Demo.Server", "Woozl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Init", "01_Init", "{52C71382-206E-4807-929E-2E63AECDB68C}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Users\pr\Desktop\Masterscript-Woozle-Database.sql = ..\..\..\..\Users\pr\Desktop\Masterscript-Woozle-Database.sql
+		..\init\Masterscript-Woozle-Database.sql = ..\init\Masterscript-Woozle-Database.sql
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Nuget", "02_Nuget", "{4192A72F-92E9-4293-91AA-EE227EEEFCA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Source", "03_Source", "{2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,5 +49,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A77A1213-EEEA-46DD-BBD1-83E1E717485B} = {0F34D68A-96EB-4C39-BD80-02D319C368C7}
 		{F4064490-D3B3-41AC-BF7B-332058A3B4D2} = {0F34D68A-96EB-4C39-BD80-02D319C368C7}
+		{6F8BE8CE-8E99-4914-9482-37369345435C} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
+		{8B459B1C-693C-432E-AD6A-5A9354257E34} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
 	EndGlobalSection
 EndGlobal

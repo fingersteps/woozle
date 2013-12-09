@@ -16,7 +16,7 @@ namespace Woozle.Demo.Client
             {
                 provider = CredentialsAuthProvider.Name,
                 UserName = "pro",
-                Password = "rEEb00k",
+                Password = "test123",
                 RememberMe = true, //important tell client to retain permanent cookies
             });
 
