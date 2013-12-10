@@ -40,35 +40,50 @@ namespace Woozle.Services
 
 
             Mapper.CreateMap<FunctionDto, Function>()
-                  .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
-            Mapper.CreateMap<Function, FunctionDto>();
+                  .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore())
+                  .ForMember(dest => dest.Module, opt => opt.Ignore());
+
+            Mapper.CreateMap<Function, FunctionDto>()
+                  .ForMember(dest => dest.ModuleDto, opt => opt.Ignore());
 
             Mapper.CreateMap<FunctionPermissionDto, FunctionPermission>()
-                  .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore());
-            Mapper.CreateMap<FunctionPermission, FunctionPermissionDto>();
+                  .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore())
+                  .ForMember(dest => dest.Function, opt => opt.Ignore())
+                  .ForMember(dest => dest.Permission, opt => opt.Ignore());
+
+            Mapper.CreateMap<FunctionPermission, FunctionPermissionDto>()
+                  .ForMember(dest => dest.FunctionDto, opt => opt.Ignore())
+                  .ForMember(dest => dest.FunctionDto, opt => opt.Ignore())
+                  .ForMember(dest => dest.PermissionDto, opt => opt.Ignore());
 
             Mapper.CreateMap<Language, Model.Language>()
                   .ForMember(dest => dest.TranslationItems, opt => opt.Ignore())
                   .ForMember(dest => dest.Users, opt => opt.Ignore());
             Mapper.CreateMap<Model.Language, Language>();
 
-            Mapper.CreateMap<LocationDto, Model.Location>();
-            Mapper.CreateMap<Model.Location, LocationDto>();
+            Mapper.CreateMap<LocationDto, Model.Location>()
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+
+            Mapper.CreateMap<Model.Location, LocationDto>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
 
             Mapper.CreateMap<MandatorDto, Model.Mandator>()
                   .ForMember(n => n.Modules, opt => opt.Ignore())
                   .ForMember(n => n.Locations, opt => opt.Ignore())
                   .ForMember(n => n.MandatorRoles, opt => opt.Ignore())
                   .ForMember(n => n.People, opt => opt.Ignore())
-                  .ForMember(n => n.Settings, opt => opt.Ignore());
+                  .ForMember(n => n.Settings, opt => opt.Ignore())
+                  .ForMember(n => n.MandatorGroup, opt => opt.Ignore());
 
-            Mapper.CreateMap<Model.Mandator, MandatorDto>();
-
+            Mapper.CreateMap<Model.Mandator, MandatorDto>()
+                  .ForMember(n => n.MandatorGroupDto, opt => opt.Ignore());
 
             Mapper.CreateMap<MandatorRole, Model.MandatorRole>()
                   .ForMember(dest => dest.UserMandatorRoles, opt => opt.Ignore())
-                  .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
-            Mapper.CreateMap<Model.MandatorRole, MandatorRole>();
+                  .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore())
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+            Mapper.CreateMap<Model.MandatorRole, MandatorRole>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
 
             Mapper.CreateMap<MandatorGroupDto, MandatorGroup>()
                   .ForMember(dest => dest.Mandators, opt => opt.Ignore());
@@ -76,8 +91,11 @@ namespace Woozle.Services
 
             Mapper.CreateMap<ModuleDto, Module>()
                   .ForMember(dest => dest.Mandators, opt => opt.Ignore())
-                  .ForMember(dest => dest.Functions, opt => opt.Ignore());
-            Mapper.CreateMap<Module, ModuleDto>();
+                  .ForMember(dest => dest.Functions, opt => opt.Ignore())
+                  .ForMember(dest => dest.ModuleGroup, opt => opt.Ignore());
+
+            Mapper.CreateMap<Module, ModuleDto>()
+                  .ForMember(dest => dest.ModuleGroupDto, opt => opt.Ignore());
 
             Mapper.CreateMap<ModuleGroupDto, ModuleGroup>();
             Mapper.CreateMap<ModuleGroup, ModuleGroupDto>();
@@ -86,20 +104,23 @@ namespace Woozle.Services
                   .ForMember(dest => dest.FunctionPermissions, opt => opt.Ignore());
             Mapper.CreateMap<Permission, PermissionDto>();
 
-            Mapper.CreateMap<PersonDto, Person>();
-            Mapper.CreateMap<Person, PersonDto>();
+            Mapper.CreateMap<PersonDto, Person>()
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+
+            Mapper.CreateMap<Person, PersonDto>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
 
             Mapper.CreateMap<Role, Model.Role>()
                   .ForMember(dest => dest.MandatorRoles, opt => opt.Ignore());
             Mapper.CreateMap<Model.Role, Role>();
 
-            Mapper
-                .CreateMap
-                <SaveResultDto<UserDto>, Model.Validation.Creation.SaveResult<User>>();
+            Mapper.CreateMap<SaveResultDto<UserDto>, SaveResult<User>>();
             Mapper.CreateMap<ISaveResult<User>, SaveResultDto<UserDto>>();
 
-            Mapper.CreateMap<SettingDto, Setting>();
-            Mapper.CreateMap<Setting, SettingDto>();
+            Mapper.CreateMap<SettingDto, Setting>()
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+            Mapper.CreateMap<Setting, SettingDto>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
 
             Mapper.CreateMap<Location.Translation, Translation>()
                   .ForMember(n => n.Countries, opt => opt.Ignore())
@@ -116,7 +137,8 @@ namespace Woozle.Services
             Mapper.CreateMap<UserDto, User>();
             Mapper.CreateMap<User, UserDto>();
 
-            Mapper.CreateMap<UserMandatorRoleDto, UserMandatorRole>();
+            Mapper.CreateMap<UserMandatorRoleDto, UserMandatorRole>()
+                  .ForMember(dest => dest.User, opt => opt.Ignore());
             Mapper.CreateMap<UserMandatorRole, UserMandatorRoleDto>()
                   .ForMember(dest => dest.UserDto, opt => opt.Ignore());
 
@@ -126,28 +148,24 @@ namespace Woozle.Services
             Mapper.CreateMap<UserSearchResultDto, UserSearchResult>();
             Mapper.CreateMap<UserSearchResult, UserSearchResultDto>();
 
-            Mapper.CreateMap<Locations, Model.Location>();
-            Mapper.CreateMap<Model.Location, Locations>();
+            Mapper.CreateMap<Locations, Model.Location>()
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
 
-            Mapper.CreateMap<LocationDto, Model.Location>();
-            Mapper.CreateMap<Model.Location, LocationDto>();
+            Mapper.CreateMap<Model.Location, Locations>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
 
-            Mapper
-                .CreateMap
-                <SaveResultDto<LocationDto>,
-                    Model.Validation.Creation.SaveResult<Model.Location>>();
+            Mapper.CreateMap<LocationDto, Model.Location>()
+                  .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+            Mapper.CreateMap<Model.Location, LocationDto>()
+                  .ForMember(dest => dest.MandatorDto, opt => opt.Ignore());
+
+            Mapper.CreateMap<SaveResultDto<LocationDto>,SaveResult<Model.Location>>();
             Mapper.CreateMap<ISaveResult<Model.Location>, SaveResultDto<LocationDto>>();
 
-            Mapper
-                .CreateMap
-                <SaveResultDto<SettingDto>,
-                    Model.Validation.Creation.SaveResult<Setting>>();
+            Mapper.CreateMap<SaveResultDto<SettingDto>, SaveResult<Setting>>();
             Mapper.CreateMap<ISaveResult<Setting>, SaveResultDto<SettingDto>>();
 
-            Mapper
-                .CreateMap
-                <SaveResultDto<MandatorDto>,
-                    Model.Validation.Creation.SaveResult<Model.Mandator>>();
+            Mapper.CreateMap<SaveResultDto<MandatorDto>,SaveResult<Model.Mandator>>();
             Mapper.CreateMap<ISaveResult<Model.Mandator>, SaveResultDto<MandatorDto>>();
 
             Mapper.CreateMap<ModuleForMandatorDto, ModuleForMandator>();
