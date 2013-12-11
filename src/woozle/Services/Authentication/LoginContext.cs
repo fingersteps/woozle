@@ -1,5 +1,4 @@
-﻿using ServiceStack;
-using ServiceStack.ServiceHost;
+﻿using ServiceStack.ServiceHost;
 using Woozle.Services.UserManagement;
 
 namespace Woozle.Services.Authentication
