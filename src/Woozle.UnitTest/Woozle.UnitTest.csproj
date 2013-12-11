@@ -89,7 +89,6 @@
     <Compile Include="Domain\PermissionManagement\PermissionManagerTest.cs" />
     <Compile Include="Domain\PersonManagement\PersonLogicTest.cs" />
     <Compile Include="Domain\Settings\SettingsLogicTest.cs" />
-    <Compile Include="Domain\Translation\TranslatorTest.cs" />
     <Compile Include="Domain\UserManagement\UserBusinessValidatorTest.cs" />
     <Compile Include="Domain\UserManagement\UserLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

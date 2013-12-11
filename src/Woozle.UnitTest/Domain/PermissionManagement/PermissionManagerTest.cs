@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Woozle.Core.Common.PermissionManagement;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
-namespace Woozle.Core.Common.PermissionManagement.Impl.Test
+namespace Woozle.UnitTest.Domain.PermissionManagement
 {
     [TestClass]
     public class PermissionManagerTest

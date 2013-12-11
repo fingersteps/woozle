@@ -9,19 +9,19 @@ using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
+namespace Woozle.UnitTest.Domain.Mandator
 {
     [TestClass]
     public class MandatorLogicTest
     {
         private MandatorLogic mandatorLogic;
-        private Mock<IRepository<Mandator>> mandatorRepository;
+        private Mock<IRepository<Model.Mandator>> mandatorRepository;
         private Mock<IUnitOfWork> unitOfWorkMock;
 
         [TestInitialize]
         public void Initialize()
         {
-            this.mandatorRepository = new Mock<IRepository<Mandator>>();
+            this.mandatorRepository = new Mock<IRepository<Model.Mandator>>();
             this.unitOfWorkMock = new Mock<IUnitOfWork>();
             this.mandatorLogic = new MandatorLogic(mandatorRepository.Object);
         }
@@ -30,7 +30,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
         public void LoadMandatorTest()
         {
 
-            var expectedMandator = new Mandator
+            var expectedMandator = new Model.Mandator
                                      {
                                          Id = 2,
                                          Name = "Test Mandant 2",
@@ -39,9 +39,9 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
                                      };
 
             this.mandatorRepository.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
-                                .Returns(new List<Mandator>
+                                .Returns(new List<Model.Mandator>
                                              {
-                                                 new Mandator
+                                                 new Model.Mandator
                                                      {
                                                          Id = 1,
                                                          Name = "Test Mandant 1",
@@ -51,7 +51,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
                                                  expectedMandator
                                              }.AsQueryable());
 
-            var mandator = new Mandator
+            var mandator = new Model.Mandator
                                {
                                    Id = 2
                                };
@@ -65,7 +65,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
         [TestMethod]
         public void SaveTest()
         {
-            var saveMandator = new Mandator
+            var saveMandator = new Model.Mandator
                                    {
                                        Id = 1,
                                        Name = "Test Mandant"
@@ -78,7 +78,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.MandatorManagement
                                     .Returns(this.unitOfWorkMock.Object);
 
             var result = this.mandatorLogic.Save(saveMandator,
-                                    new Session(Guid.NewGuid(), new SessionData(new User(), new Mandator()),
+                                    new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator()),
                                                 DateTime.Now));
 
             Assert.AreEqual(saveMandator, result.TargetObject);

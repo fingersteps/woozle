@@ -8,7 +8,7 @@ using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Test.Authority
+namespace Woozle.UnitTest.Domain.Authority
 {
     [TestClass]
     public class GetRolesLogicTest
@@ -16,7 +16,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.Authority
         private IGetRolesLogic getRolesLogic;
         private Mock<IRepository<MandatorRole>> mandatorRoleRepositoryMock;
         private IQueryable<MandatorRole> mandatorRoles;
-        private Mandator mandator;
+        private Model.Mandator mandator;
         private SessionData sessionObject;
         private Session session;
 
@@ -26,7 +26,7 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.Authority
             this.mandatorRoleRepositoryMock = new Mock<IRepository<MandatorRole>>();
             this.getRolesLogic = new GetRolesLogic(mandatorRoleRepositoryMock.Object);
 
-            mandator = new Mandator();
+            mandator = new Model.Mandator();
             sessionObject = new SessionData(null, mandator);
             session = new Session(Guid.NewGuid(), sessionObject, DateTime.Now.AddDays(1));
 
@@ -35,19 +35,19 @@ namespace Woozle.Core.BusinessLogic.Impl.Test.Authority
                                     new MandatorRole()
                                         {
                                             MandId = 1,
-                                            Mandator = new Mandator() {Id = 1, MandatorGroupId = 1},
+                                            Mandator = new Model.Mandator() {Id = 1, MandatorGroupId = 1},
                                             Role = new Role() {Id = 1}
                                         },
                                     new MandatorRole()
                                         {
                                             MandId = 2,
-                                            Mandator = new Mandator() {Id = 2, MandatorGroupId = 1},
+                                            Mandator = new Model.Mandator() {Id = 2, MandatorGroupId = 1},
                                             Role = new Role() {Id = 1}
                                         },
                                     new MandatorRole()
                                         {
                                             MandId = 3,
-                                            Mandator = new Mandator() {Id = 3},
+                                            Mandator = new Model.Mandator() {Id = 3},
                                             Role = new Role() {Id = 1}
                                         }
                                 }.AsQueryable();

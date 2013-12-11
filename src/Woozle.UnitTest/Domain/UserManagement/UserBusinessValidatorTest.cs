@@ -2,7 +2,7 @@
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
 
-namespace Woozle.Core.BusinessLogic.Impl.Test.UserManagement
+namespace Woozle.UnitTest.Domain.UserManagement
 {
     [TestClass]
     public class UserBusinessValidatorTest

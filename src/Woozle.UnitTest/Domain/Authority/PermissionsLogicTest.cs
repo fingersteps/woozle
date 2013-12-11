@@ -29,7 +29,7 @@ namespace Woozle.UnitTest.Domain.Authority
         public void Initialize()
         {
             Role = new Role();
-            Session = new Session(Guid.Empty, new SessionData(null, new Mandator() {Id = 1}), DateTime.Now);
+            Session = new Session(Guid.Empty, new SessionData(null, new Model.Mandator() {Id = 1}), DateTime.Now);
             MandatorRoleRepositoryMock = new Mock<IRepository<MandatorRole>>();
             FunctionPermissionRepositoryMock = new Mock<IRepository<FunctionPermission>>();
             this.UserRepositoryMock = new Mock<IRepository<User>>();
@@ -263,7 +263,7 @@ namespace Woozle.UnitTest.Domain.Authority
                     Id = 1
                 };
 
-            var sessionData = new SessionData(sessionUser, new Mandator() {Id = 2});
+            var sessionData = new SessionData(sessionUser, new Model.Mandator() {Id = 2});
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 
@@ -284,7 +284,7 @@ namespace Woozle.UnitTest.Domain.Authority
                 Id = 1
             };
 
-            var sessionData = new SessionData(sessionUser, new Mandator() { Id = 5 });
+            var sessionData = new SessionData(sessionUser, new Model.Mandator() { Id = 5 });
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 
@@ -304,7 +304,7 @@ namespace Woozle.UnitTest.Domain.Authority
                 Id = 2
             };
 
-            var sessionData = new SessionData(sessionUser, new Mandator() { Id = 2 });
+            var sessionData = new SessionData(sessionUser, new Model.Mandator() { Id = 2 });
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 

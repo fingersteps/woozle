@@ -9,7 +9,7 @@ using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Test.Settings
+namespace Woozle.UnitTest.Domain.Settings
 {
     [TestClass]
     public class SettingsLogicTest

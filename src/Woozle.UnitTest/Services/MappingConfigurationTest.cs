@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Woozle.Services;
 
-namespace Woozle.Core.Services.Stack.ServiceModel.Mapping.Test
+namespace Woozle.UnitTest.Services
 {
     [TestClass]
     public class MappingConfigurationTest

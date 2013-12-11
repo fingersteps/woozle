@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.PersonManagement;
@@ -9,7 +8,7 @@ using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence.Repository;
 
-namespace Woozle.Core.BusinessLogic.Impl.Test.PersonManagement
+namespace Woozle.UnitTest.Domain.PersonManagement
 {
     [TestClass]
     public class PersonLogicTest
