@@ -15,8 +15,8 @@ namespace Woozle.Demo.Client
             var result = jsonClient.Post(new Auth
             {
                 provider = CredentialsAuthProvider.Name,
-                UserName = "pro",
-                Password = "test123",
+                UserName = "user1",
+                Password = "pass1",
                 RememberMe = true, //important tell client to retain permanent cookies
             });
 
