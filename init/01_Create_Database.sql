@@ -1,3 +1,5 @@
+CREATE DATABASE Woozle
+GO
 USE [Woozle]
 GO
 /****** Object:  Schema [woo]    Script Date: 12/09/2013 19:23:59 ******/
