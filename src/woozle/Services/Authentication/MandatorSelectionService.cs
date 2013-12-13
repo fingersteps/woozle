@@ -38,7 +38,7 @@ namespace Woozle.Services.Authentication
                                                   session.SessionObject.User.Username,
                                                   session.SessionObject.User.Password);
 
-            return Mapper.Map<IEnumerable<Woozle.Model.Mandator>, List<Mandator.MandatorDto>>(loginUser.Mandators);
+            return Mapper.Map<IEnumerable<Model.Mandator>, List<MandatorDto>>(loginUser.Mandators);
         }
 
         [ExceptionCatcher]
@@ -46,7 +46,7 @@ namespace Woozle.Services.Authentication
         {
             var session = (Session) base.Request.GetSession();
 
-            var mappedMandator = Mapper.Map<Mandator.MandatorDto, Model.Mandator>(
+            var mappedMandator = Mapper.Map<MandatorDto, Model.Mandator>(
                 mandators.SelectedMandatorDto);
 
             //Login with the selected Mandator

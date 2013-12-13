@@ -16,11 +16,6 @@ namespace Woozle.Services.Authentication
     public class WoozleCredentialsAuthProvider : CredentialsAuthProvider
     {
         /// <summary>
-        /// <see cref="IAuthenticationLogic"/>
-        /// </summary>
-        private readonly Func<IAuthenticationLogic> authenticationLogic;
-
-        /// <summary>
         /// <see cref="SessionData"/>
         /// </summary>
         private SessionData data;
@@ -30,12 +25,14 @@ namespace Woozle.Services.Authentication
         /// </summary>
         private LoginResult loginResult;
 
-        private Container container;
+        /// <summary>
+        /// <see cref="Container">IoC-Container</see>
+        /// </summary>
+        private readonly Container container;
 
         /// <summary>
         /// ctor.
         /// </summary>
-        /// <param name="authenticationLogic"><see cref="IAuthenticationLogic"/></param>
         public WoozleCredentialsAuthProvider(Container container)
         {
             this.container = container;
