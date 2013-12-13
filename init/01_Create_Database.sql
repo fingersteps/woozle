@@ -1,3 +1,10 @@
+
+------------------------------------------------------------
+
+-- Creates the Woozle database including all core tables
+
+------------------------------------------------------------
+
 CREATE DATABASE Woozle
 GO
 USE [Woozle]
