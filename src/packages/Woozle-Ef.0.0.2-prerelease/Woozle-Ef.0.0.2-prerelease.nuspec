@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Woozle-Ef</id>
+    <version>0.0.2-prerelease</version>
+    <title>Woozle Entity Framework Extension</title>
+    <authors>pr,as</authors>
+    <owners>pr,as</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Run your Woozle with Entity Framework 6!</description>
+    <dependencies>
+      <dependency id="ServiceStack.Text" version="3.9.71" />
+      <dependency id="ServiceStack.Redis" version="3.9.71" />
+      <dependency id="EntityFramework" version="6.0.1" />
+      <dependency id="ServiceStack.OrmLite.SqlServer" version="3.9.71" />
+      <dependency id="ServiceStack.Common" version="3.9.71" />
+      <dependency id="ServiceStack" version="3.9.71" />
+      <dependency id="Woozle" version="0.0.2-prerelease" />
+    </dependencies>
+    <references>
+      <reference file="Woozle.Persistence.Ef.dll" />
+    </references>
+  </metadata>
+</package>

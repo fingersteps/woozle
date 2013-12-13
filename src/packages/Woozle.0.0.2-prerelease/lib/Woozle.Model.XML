@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Woozle.Model</name>
+    </assembly>
+    <members>
+        <member name="T:Woozle.Model.Authentication.LoginRequest">
+            <summary>
+            Represents a login request
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginRequest.Mandator">
+            <summary>
+            Gets or sets the mandator.
+            </summary>
+            <value>The mandator.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginRequest.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+            <value>The username.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginRequest.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+            <value>The password.</value>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginResult.SessionData">
+            <summary>
+            SessionData
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginResult.LoginSuccessful">
+            <summary>
+            Gets a value indicating whether login was successfully.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginResult.CheckMandators">
+            <summary>
+            Gets a value indicating whether the user should choose a mandator.
+            The suggested mandators will be found <see cref="P:Woozle.Model.Authentication.LoginResult.SuggestedMandators">here</see>.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Authentication.LoginResult.SuggestedMandators">
+            <summary>
+            Gets the suggested mandators.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Country.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Function.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
+            </summary>
+        </member>
+        <member name="T:Woozle.Model.IManagedConcurrency">
+            <summary>
+            Marker interface to identify entities for which concurrt modifications should be tracked.
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Module.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
+            </summary>
+        </member>
+        <member name="T:Woozle.Model.SessionHandling.Session">
+            <summary>
+            The session
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Woozle.Model.SessionHandling.Session.#ctor(System.Guid,Woozle.Model.SessionHandling.SessionData,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Woozle.Model.SessionHandling.Session"/> class.
+            </summary>
+            <param name="sessionId">The session id.</param>
+            <param name="sessionObject">The session object.</param>
+            <param name="expirationDate">The expiration date.</param>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.SessionHandling.Session.Id">
+            <summary>
+            Gets the session id.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.SessionHandling.Session.SessionObject">
+            <summary>
+            Gets the session object.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.SessionHandling.Session.ExpirationDate">
+            <summary>
+            Gets or sets the expiration date.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Woozle.Model.SessionHandling.SessionData">
+            <summary>
+            Represents a session data object.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.SessionHandling.SessionData.User">
+            <summary>
+            Gets the session user.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.SessionHandling.SessionData.Mandator">
+            <summary>
+            Gets the session mandator.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Woozle.Model.Status.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
+            </summary>
+        </member>
+        <member name="T:Woozle.Model.Validation.Creation.SaveResult`1">
+            <summary>
+            Result class for each service operation between client and server.
+            </summary>
+            <typeparam name="T">Type of the service entity</typeparam>
+        </member>
+        <member name="M:Woozle.Model.Validation.Creation.SaveResult`1.#ctor">
+            <summary>
+            ctor.
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Validation.Creation.SaveResult`1.TargetObject">
+            <summary>
+            Target entity
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Validation.Creation.SaveResult`1.HasErrors">
+            <summary>
+            Flag, which indicates if there is an error.
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Validation.Creation.SaveResult`1.HasSystemErrors">
+            <summary>
+            Flag, which indicactes if there is a system error.
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Validation.Creation.SaveResult`1.Errors">
+            <summary>
+            A list with <see cref="T:Woozle.Model.Validation.Error">errors</see>
+            </summary>
+        </member>
+        <member name="T:Woozle.Model.Values.StatusConstants">
+            <summary>
+            Constants for the values of the Entity <see cref="T:Woozle.Model.Status"/>
+            </summary>
+        </member>
+        <member name="F:Woozle.Model.Values.StatusConstants.ACTIVE">
+            <summary>
+            ACTIVE Status
+            </summary>
+        </member>
+        <member name="F:Woozle.Model.Values.StatusConstants.INACTIVE">
+            <summary>
+            INACTIVE Status
+            </summary>
+        </member>
+    </members>
+</doc>
