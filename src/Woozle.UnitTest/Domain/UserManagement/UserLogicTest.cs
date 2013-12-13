@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -9,7 +10,7 @@ using Woozle.Domain.UserManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.UnitTest.Domain.UserManagement
 {
@@ -96,30 +97,30 @@ namespace Woozle.UnitTest.Domain.UserManagement
                         {
                             Id = 1,
                             UserMandatorRoles =
-                                new FixupCollection<UserMandatorRole>()
+                                new ObservableCollection<UserMandatorRole>
                                     {
-                                        new UserMandatorRole()
+                                        new UserMandatorRole
                                             {
-                                                MandatorRole = new MandatorRole() {MandId = 2, RoleId = 1},
+                                                MandatorRole = new MandatorRole {MandId = 2, RoleId = 1},
                                             },
-                                        new UserMandatorRole()
+                                        new UserMandatorRole
                                             {
-                                                MandatorRole = new MandatorRole() {MandId = 1, RoleId = 3}
+                                                MandatorRole = new MandatorRole {MandId = 1, RoleId = 3}
                                             }
 
 
                                     }
                         },
 
-                    new User()
+                    new User
                         {
                             Id = 2,
                             UserMandatorRoles =
-                                new FixupCollection<UserMandatorRole>()
+                                new ObservableCollection<UserMandatorRole>
                                     {
-                                        new UserMandatorRole()
+                                        new UserMandatorRole
                                             {
-                                                MandatorRole = new MandatorRole() {MandId = 2, RoleId = 1},
+                                                MandatorRole = new MandatorRole {MandId = 2, RoleId = 1},
                                             }
 
                                     }
@@ -129,11 +130,11 @@ namespace Woozle.UnitTest.Domain.UserManagement
                         {
                             Id = 3,
                             UserMandatorRoles =
-                                new FixupCollection<UserMandatorRole>()
+                                new ObservableCollection<UserMandatorRole>
                                     {
-                                        new UserMandatorRole()
+                                        new UserMandatorRole
                                             {
-                                                MandatorRole = new MandatorRole() {MandId = 1, RoleId = 4}
+                                                MandatorRole = new MandatorRole {MandId = 1, RoleId = 4}
                                             }
 
                                     }

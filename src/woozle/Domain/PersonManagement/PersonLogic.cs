@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.PersonManagement
 {

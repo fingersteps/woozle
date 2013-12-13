@@ -26,11 +26,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\lib\release\</OutputPath>
+    <OutputPath>..\..\lib\woozle\release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\lib\release\Woozle.XML</DocumentationFile>
+    <DocumentationFile>..\..\lib\woozle\release\Woozle.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
@@ -88,13 +88,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\Exceptions\BusinessLogicException.cs" />
     <Compile Include="Common\Exceptions\InstanceNotFoundException.cs" />
     <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
-    <Compile Include="Dependencies\IWoozleDependency.cs" />
-    <Compile Include="Dependencies\WoozleDomainDependencies.cs" />
-    <Compile Include="Dependencies\WoozlePersistenceDependencies.cs" />
-    <Compile Include="Dependencies\WoozleRepositoryDependencies.cs" />
+    <Compile Include="Dependencies\WoozlePlugin.cs" />
     <Compile Include="Domain\AbstractLogic.cs" />
     <Compile Include="Domain\Authentication\AuthenticationLogic.cs" />
     <Compile Include="Domain\Authentication\IAuthenticationLogic.cs" />
@@ -125,187 +123,9 @@
     <Compile Include="Domain\UserManagement\UserBusinessValidator.cs" />
     <Compile Include="Domain\UserManagement\UserLogic.cs" />
     <Compile Include="Host\WoozleHost.cs" />
-    <Compile Include="Model\Authentication\LoginRequest.cs" />
-    <Compile Include="Model\Authentication\LoginResult.cs" />
-    <Compile Include="Model\City.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Country.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Function.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\FunctionPermission.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\IIdentifiable.cs" />
-    <Compile Include="Model\IManagedConcurrency.cs" />
-    <Compile Include="Model\IMandatorCapable.cs" />
-    <Compile Include="Model\Language.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Location.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Mandator.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MandatorGroup.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MandatorRole.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Module.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ModuleGroup.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ModulePermissions\ChangedModulePermissions.cs" />
-    <Compile Include="Model\ModulePermissions\ModuleForMandator.cs" />
-    <Compile Include="Model\ModulePermissions\ModulePermissionsResult.cs" />
-    <Compile Include="Model\Permission.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Person.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Role.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SessionHandling\Session.cs" />
-    <Compile Include="Model\SessionHandling\SessionData.cs" />
-    <Compile Include="Model\Setting.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Status.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StatusField.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Translation.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TranslationItem.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\User.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\UserMandatorRole.cs">
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\UserSearch\UserSearchCriteria.cs" />
-    <Compile Include="Model\UserSearch\UserSearchForLoginResult.cs" />
-    <Compile Include="Model\UserSearch\UserSearchResult.cs" />
-    <Compile Include="Model\Validation\Creation\ISaveResult.cs" />
-    <Compile Include="Model\Validation\Creation\SaveResult.cs" />
-    <Compile Include="Model\Validation\Delete\DeleteResult.cs" />
-    <Compile Include="Model\Validation\Delete\IDeleteResult.cs" />
-    <Compile Include="Model\Validation\Error.cs" />
-    <Compile Include="Model\Values\StatusConstants.cs" />
-    <Compile Include="Model\Woozle.CoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\WoozleObject.cs" />
-    <Compile Include="Persistence\EfUnitOfWork.cs" />
-    <Compile Include="Persistence\EfWoozle.CoreEntity.cs" />
-    <Compile Include="Persistence\IEfUnitOfWork.cs" />
-    <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Persistence\MandatorModule.cs" />
-    <Compile Include="Persistence\Repository\AbstractRepository.cs" />
-    <Compile Include="Persistence\Repository\CityRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\CountryRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\FunctionPermissionRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\FunctionRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\IModuleRepository.cs" />
-    <Compile Include="Persistence\Repository\IRepository.cs" />
-    <Compile Include="Persistence\Repository\IStatusFieldRepository.cs" />
-    <Compile Include="Persistence\Repository\IUserRepository.cs" />
-    <Compile Include="Persistence\Repository\LanguageRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\LocationRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\MandatorComparator.cs" />
-    <Compile Include="Persistence\Repository\MandatorGroupRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\MandatorRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\MandatorRoleRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\ModuleGroupRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\ModuleRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\ModuleRepositoryExtended.cs" />
-    <Compile Include="Persistence\Repository\PermissionRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\PersistenceException.cs" />
-    <Compile Include="Persistence\Repository\PersistenceOperation.cs" />
-    <Compile Include="Persistence\Repository\PersonRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\RepositoryGeneration.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\RoleRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\SettingRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\StatusFieldRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\StatusFieldRepositoryExtended.cs" />
-    <Compile Include="Persistence\Repository\StatusRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\TranslationItemRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\TranslationRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\UserMandatorRoleRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\UserRepository.cs">
-      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Repository\UserRepositoryExtended.cs" />
-    <Compile Include="Persistence\StateHelpers.cs" />
     <Compile Include="Persistence\UserMandator.cs" />
     <Compile Include="Persistence\UserPerson.cs" />
-    <Compile Include="Persistence\WoozleModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WoozleModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiresPostSharp.cs" />
     <Compile Include="Services\AbstractService.cs" />
     <Compile Include="Services\Authentication\LoginContextService.cs" />
@@ -363,25 +183,21 @@
     <Compile Include="Services\UserManagement\UserService.cs" />
     <Compile Include="Services\WoozleDto.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Woozle.Model\Woozle.Model.csproj">
+      <Project>{fd53051b-7161-4ac0-9c89-51a3969324a4}</Project>
+      <Name>Woozle.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Woozle.Persistence\Woozle.Persistence.csproj">
+      <Project>{a915ce7b-78f1-4b88-9360-faa95d7cbf87}</Project>
+      <Name>Woozle.Persistence</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Model\Woozle.CoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Woozle.CoreModel.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Persistence\App.Config" />
     <None Include="Persistence\packages.config" />
-    <EntityDeploy Include="Persistence\WoozleModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WoozleModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Persistence\Repository\packages.config" />
-    <None Include="Persistence\Repository\RepositoryGeneration.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RepositoryGeneration.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

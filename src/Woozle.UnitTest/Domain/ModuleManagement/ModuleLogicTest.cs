@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.ModuleManagement;
@@ -7,7 +8,7 @@ using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.UnitTest.Domain.ModuleManagement
 {
@@ -27,11 +28,11 @@ namespace Woozle.UnitTest.Domain.ModuleManagement
 
             var function1 = new Function() {Id = 1, LogicalId = "Function1"};
             var function2 = new Function() {Id = 2, LogicalId = "Function2"};
-            var functions1 = new FixupCollection<Function>() {function1, function2};
+            var functions1 = new ObservableCollection<Function>() {function1, function2};
 
             var function3 = new Function() {Id = 3, LogicalId = "Function3"};
             var function4 = new Function() {Id = 4, LogicalId = "Function4"};
-            var functions2 = new FixupCollection<Function>() {function3, function4};
+            var functions2 = new ObservableCollection<Function>() {function3, function4};
 
 
             var module1 = new ModuleForMandator() { Id = 1, Name = "Module1", Functions = functions1 };

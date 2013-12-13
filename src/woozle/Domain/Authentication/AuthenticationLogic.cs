@@ -4,7 +4,8 @@ using Woozle.Model;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
+
 
 namespace Woozle.Domain.Authentication
 {

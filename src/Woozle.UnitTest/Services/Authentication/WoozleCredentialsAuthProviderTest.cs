@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Funq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ServiceStack.ServiceInterface;
 using Woozle.Domain.Authentication;
@@ -16,12 +17,17 @@ namespace Woozle.UnitTest.Services.Authentication
         private Mock<IAuthenticationLogic> authenticationLogicMock;
         private Mock<IServiceBase> servicebaseMock;
 
+        private Container container;
+
         [TestInitialize]
         public void Initialize()
         {
             authenticationLogicMock = new Mock<IAuthenticationLogic>();
+            container = new Container();
+            
+            authenticationLogicMock = new Mock<IAuthenticationLogic>();
             servicebaseMock = new Mock<IServiceBase>();
-            prosaCredentialsAuthProvider = new WoozleCredentialsAuthProvider(authenticationLogicMock.Object);
+            prosaCredentialsAuthProvider = new WoozleCredentialsAuthProvider(container);
         }
 
         [TestMethod]
@@ -49,6 +55,8 @@ namespace Woozle.UnitTest.Services.Authentication
  
             authenticationLogicMock.Setup(n => n.Login(It.IsAny<LoginRequest>()))
                                    .Returns(result);
+
+            container.Register(authenticationLogicMock.Object);
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 
@@ -95,6 +103,8 @@ namespace Woozle.UnitTest.Services.Authentication
             authenticationLogicMock.Setup(n => n.Login(It.IsAny<LoginRequest>()))
                                    .Returns(result);
 
+            container.Register(authenticationLogicMock.Object);
+
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 
             Assert.IsTrue(authenticateResult);
@@ -111,6 +121,8 @@ namespace Woozle.UnitTest.Services.Authentication
 
             authenticationLogicMock.Setup(n => n.Login(It.IsAny<LoginRequest>()))
                                    .Returns(result);
+
+            container.Register(authenticationLogicMock.Object);
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 

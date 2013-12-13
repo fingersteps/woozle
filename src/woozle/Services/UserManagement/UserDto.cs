@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections.ObjectModel;
 using ServiceStack;
 using ServiceStack.ServiceHost;
 using Woozle.Model;
@@ -21,7 +22,7 @@ namespace Woozle.Services.UserManagement
     {
         public UserDto()
         {
-            this.UserMandatorRoles = new FixupCollection<UserMandatorRole>();
+            this.UserMandatorRoles = new ObservableCollection<UserMandatorRole>();
         }
     
         public string Username { get; set; }
@@ -37,7 +38,7 @@ namespace Woozle.Services.UserManagement
     
         public Language Language { get; set; }
         public Status Status { get; set; }
-        public FixupCollection<UserMandatorRole> UserMandatorRoles { get; set; }
+        public ObservableCollection<UserMandatorRole> UserMandatorRoles { get; set; }
     
     }
 

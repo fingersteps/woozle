@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.ModuleManagement
 {
@@ -41,7 +42,7 @@ namespace Woozle.Domain.ModuleManagement
         {
             foreach (ModuleForMandator module in modules)
             {
-                var authorizedFunctions = new FixupCollection<Function>();
+                var authorizedFunctions = new ObservableCollection<Function>();
                 foreach (Function function in module.Functions)
                 {
                     if (PermissionManager.HasPermission(session.SessionObject, function.LogicalId, Permissions.PERMISSION_FUNCTION))

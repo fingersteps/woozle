@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Funq;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.Authentication;
@@ -17,7 +18,7 @@ namespace Woozle.Services.Authentication
         /// <summary>
         /// <see cref="IAuthenticationLogic"/>
         /// </summary>
-        private readonly IAuthenticationLogic authenticationLogic;
+        private readonly Func<IAuthenticationLogic> authenticationLogic;
 
         /// <summary>
         /// <see cref="SessionData"/>
@@ -29,13 +30,15 @@ namespace Woozle.Services.Authentication
         /// </summary>
         private LoginResult loginResult;
 
+        private Container container;
+
         /// <summary>
         /// ctor.
         /// </summary>
         /// <param name="authenticationLogic"><see cref="IAuthenticationLogic"/></param>
-        public WoozleCredentialsAuthProvider(IAuthenticationLogic authenticationLogic)
+        public WoozleCredentialsAuthProvider(Container container)
         {
-            this.authenticationLogic = authenticationLogic;
+            this.container = container;
         }
 
         /// <summary>
@@ -44,8 +47,10 @@ namespace Woozle.Services.Authentication
         public override bool TryAuthenticate(IServiceBase authService, string userName,
                                              string password)
         {
+            var authenticationLogic = container.LazyResolve<IAuthenticationLogic>();
+
             //Try to login with the simple credentials (username + password)
-            loginResult = this.authenticationLogic.Login(new LoginRequest
+            loginResult = authenticationLogic().Login(new LoginRequest
                                                             {
                                                                 Username = userName,
                                                                 Password = password

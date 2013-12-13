@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD53051B-7161-4AC0-9C89-51A3969324A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Woozle.Model</RootNamespace>
+    <AssemblyName>Woozle.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\lib\woozle\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\lib\woozle\release\Woozle.Model.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis.3.9.71\lib\net35\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\LoginRequest.cs" />
+    <Compile Include="Authentication\LoginResult.cs" />
+    <Compile Include="City.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Function.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionPermission.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IIdentifiable.cs" />
+    <Compile Include="IManagedConcurrency.cs" />
+    <Compile Include="IMandatorCapable.cs" />
+    <Compile Include="IWoozleDependency.cs" />
+    <Compile Include="Language.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mandator.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MandatorGroup.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MandatorRole.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Module.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleGroup.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModulePermissions\ChangedModulePermissions.cs" />
+    <Compile Include="ModulePermissions\ModuleForMandator.cs" />
+    <Compile Include="ModulePermissions\ModulePermissionsResult.cs" />
+    <Compile Include="Permission.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SessionHandling\Session.cs" />
+    <Compile Include="SessionHandling\SessionData.cs" />
+    <Compile Include="Setting.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StatusField.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Translation.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TranslationItem.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMandatorRole.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSearch\UserSearchCriteria.cs" />
+    <Compile Include="UserSearch\UserSearchForLoginResult.cs" />
+    <Compile Include="UserSearch\UserSearchResult.cs" />
+    <Compile Include="Validation\Creation\ISaveResult.cs" />
+    <Compile Include="Validation\Creation\SaveResult.cs" />
+    <Compile Include="Validation\Delete\DeleteResult.cs" />
+    <Compile Include="Validation\Delete\IDeleteResult.cs" />
+    <Compile Include="Validation\Error.cs" />
+    <Compile Include="Values\StatusConstants.cs" />
+    <Compile Include="Woozle.CoreModel.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WoozleModel1.Designer.cs">
+      <DependentUpon>WoozleModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WoozleObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Woozle.CoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Woozle.CoreModel.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="WoozleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WoozleModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.ObjectModel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
 
@@ -16,9 +17,9 @@ namespace Woozle.UnitTest.Domain.UserManagement
             var result = validator.Validate(new User
                 {
                     Username = "pro2",
-                    UserMandatorRoles = new FixupCollection<UserMandatorRole>
+                    UserMandatorRoles = new ObservableCollection<UserMandatorRole>
                         {
-                            new UserMandatorRole()
+                            new UserMandatorRole
                                 {
                                     MandatorRole = new MandatorRole
                                         {

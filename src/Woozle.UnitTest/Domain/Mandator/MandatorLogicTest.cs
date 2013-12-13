@@ -7,7 +7,6 @@ using Woozle.Domain.MandatorManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
-using Woozle.Persistence.Repository;
 
 namespace Woozle.UnitTest.Domain.Mandator
 {

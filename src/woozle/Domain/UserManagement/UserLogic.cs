@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
@@ -6,7 +7,7 @@ using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
 using Woozle.Model.Validation;
 using Woozle.Model.Validation.Creation;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.UserManagement
 {
@@ -110,7 +111,7 @@ namespace Woozle.Domain.UserManagement
             {
                 if (!returnedRoles.Contains(role)) returnedRoles.Add(role);
             }
-            savedUser.UserMandatorRoles = new FixupCollection<UserMandatorRole>(returnedRoles.OrderBy(n => n.Id));
+            savedUser.UserMandatorRoles = new ObservableCollection<UserMandatorRole>(returnedRoles.OrderBy(n => n.Id));
         }
 
         public void Delete(int id, Session session)

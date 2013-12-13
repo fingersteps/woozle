@@ -89,7 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppHost.cs" />
+    <Compile Include="IntegratedSystemHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequiresPostSharp.cs" />
@@ -100,6 +100,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Woozle.Persistence.Ef\Woozle.Persistence.Ef.csproj">
+      <Project>{47f0f1a6-0fcc-453c-bacb-ddbca6dc605f}</Project>
+      <Name>Woozle.Persistence.Ef</Name>
+    </ProjectReference>
     <ProjectReference Include="..\woozle\Woozle.csproj">
       <Project>{6f8be8ce-8e99-4914-9482-37369345435c}</Project>
       <Name>Woozle</Name>

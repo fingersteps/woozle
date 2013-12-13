@@ -20,26 +20,18 @@ namespace Woozle.Host
 
         public override void Configure(Container container)
         {
-            ConfigureDependencies(container);
-
             Plugins.Add(new SessionFeature());
 
             //Configure Authentication
             Plugins.Add(new AuthFeature(() => new Session(), new IAuthProvider[]
                                                                  {
-                                                                     new WoozleCredentialsAuthProvider(Container.TryResolve<IAuthenticationLogic>())
+                                                                     new WoozleCredentialsAuthProvider(container)
                                                                  })
             {
                 HtmlRedirect = string.Empty
             });
-        }
 
-        private void ConfigureDependencies(Container container)
-        {
-            container.Register<ICacheClient>(new MemoryCacheClient());
-            new WoozleDomainDependencies().Register(container);
-            new WoozleRepositoryDependencies().Register(container);
-            new WoozlePersistenceDependencies().Register(container);
+            Plugins.Add(new WoozlePlugin());
         }
     }
 }

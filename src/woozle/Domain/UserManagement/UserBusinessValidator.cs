@@ -2,7 +2,7 @@
 using ServiceStack.FluentValidation;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.UserManagement
 {

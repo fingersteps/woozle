@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.UserManagement;
@@ -20,8 +21,8 @@ namespace Woozle.UnitTest.Services.UserManagement
         [TestInitialize]
         public void Initialize()
         {
-            modelUser = new User() { Id = 1, FirstName = "Andreas" };
-            modelUser.Language = new Language { Users = new FixupCollection<User>() { modelUser } };
+            modelUser = new User { Id = 1, FirstName = "Andreas" };
+            modelUser.Language = new Language { Users = new ObservableCollection<User>() { modelUser } };
 
             this.logicMock = new Mock<IUserLogic>();
             MappingConfiguration.Configure();

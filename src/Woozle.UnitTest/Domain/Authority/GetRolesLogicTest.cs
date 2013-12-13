@@ -6,7 +6,7 @@ using Moq;
 using Woozle.Domain.Authority;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.UnitTest.Domain.Authority
 {

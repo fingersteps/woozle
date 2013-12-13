@@ -6,7 +6,7 @@ using Moq;
 using Woozle.Domain.PersonManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.UnitTest.Domain.PersonManagement
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ServiceStack.ServiceHost;
 using Woozle.Model;
 
@@ -14,7 +15,7 @@ namespace Woozle.Services.Modules
         public int Id { get; set; }
         public string Name { get; set; }
         public byte[] Icon { get; set; }
-        public FixupCollection<FunctionDto> Functions { get; set; }
+        public ObservableCollection<FunctionDto> Functions { get; set; }
         public Translation Translation { get; set; }
     }
 }

@@ -10,8 +10,6 @@ namespace Woozle.Services
 
         public PState PersistanceState { get; set; }
 
-        public bool Dirty { get; set; }
-
         public Nullable<int> MandatorId { get; set; }
     }
 }

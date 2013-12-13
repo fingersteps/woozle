@@ -5,7 +5,7 @@ using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.Authority
 {

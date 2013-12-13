@@ -2,7 +2,7 @@
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.Validation.Creation;
-using Woozle.Persistence.Repository;
+using Woozle.Persistence;
 
 namespace Woozle.Domain.MandatorManagement
 {

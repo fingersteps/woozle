@@ -10,6 +10,14 @@ namespace Woozle.Demo.Client
     {
         static void Main(string[] args)
         {
+          
+            LoginOneMandatorIsAssigned();
+            Console.ReadLine();
+        }
+
+
+        private static void LoginOneMandatorIsAssigned()
+        {
             var jsonClient = new JsonServiceClient("http://localhost:1337/");
             Thread.Sleep(5000);
             var result = jsonClient.Post(new Auth
@@ -21,8 +29,6 @@ namespace Woozle.Demo.Client
             });
 
             Console.WriteLine("Username: {0}, SessionId: {1}", result.UserName, result.SessionId);
-
-            Console.ReadLine();
         }
     }
 }

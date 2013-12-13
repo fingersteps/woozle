@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,7 +9,6 @@ using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
-using Woozle.Persistence.Repository;
 
 namespace Woozle.UnitTest.Domain.Authority
 {
@@ -46,9 +46,9 @@ namespace Woozle.UnitTest.Domain.Authority
                         {
                             Id = 1,
                             Username = "Testuser",
-                            UserMandatorRoles = new FixupCollection<UserMandatorRole>
+                            UserMandatorRoles = new ObservableCollection<UserMandatorRole>
                                 {
-                                    new UserMandatorRole()
+                                    new UserMandatorRole
                                         {
                                             MandatorRole = new MandatorRole
                                                 {
@@ -56,13 +56,13 @@ namespace Woozle.UnitTest.Domain.Authority
                                                     MandId = 5,
                                                 }
                                         },
-                                    new UserMandatorRole()
+                                    new UserMandatorRole
                                         {
                                             MandatorRole = new MandatorRole
                                                 {
                                                     Id = 2,
                                                     MandId = 2,
-                                                    FunctionPermissions = new FixupCollection<FunctionPermission>()
+                                                    FunctionPermissions = new ObservableCollection<FunctionPermission>()
                                                         {
 
                                                             new FunctionPermission
@@ -106,7 +106,7 @@ namespace Woozle.UnitTest.Domain.Authority
                                                         }
                                                 }
                                         },
-                                    new UserMandatorRole()
+                                    new UserMandatorRole
                                         {
                                             MandatorRole = new MandatorRole
                                                 {
@@ -120,9 +120,9 @@ namespace Woozle.UnitTest.Domain.Authority
                         {
                             Id = 2,
                             Username = "Testuser",
-                            UserMandatorRoles = new FixupCollection<UserMandatorRole>
+                            UserMandatorRoles = new ObservableCollection<UserMandatorRole>
                                 {
-                                    new UserMandatorRole()
+                                    new UserMandatorRole
                                         {
                                             MandatorRole = new MandatorRole
                                                 {
@@ -180,7 +180,7 @@ namespace Woozle.UnitTest.Domain.Authority
             var functionPermission2 = new FunctionPermission() { Id = 2 };
 
             var mandatorRole = new MandatorRole { Id = 1 };
-            mandatorRole.FunctionPermissions = new FixupCollection<FunctionPermission>();
+            mandatorRole.FunctionPermissions = new ObservableCollection<FunctionPermission>();
             mandatorRole.FunctionPermissions.Add(functionPermission1);
             mandatorRole.FunctionPermissions.Add(functionPermission2);
 
@@ -221,7 +221,7 @@ namespace Woozle.UnitTest.Domain.Authority
             var functionPermission2 = new FunctionPermission() { Id = 2 };
 
             var mandatorRole = new MandatorRole { Id = 1 };
-            mandatorRole.FunctionPermissions = new FixupCollection<FunctionPermission>();
+            mandatorRole.FunctionPermissions = new ObservableCollection<FunctionPermission>();
             mandatorRole.FunctionPermissions.Add(functionPermission1);
 
             var mandatorRoles = new List<MandatorRole> { mandatorRole };
