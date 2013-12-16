@@ -4,11 +4,6 @@
         <name>Woozle</name>
     </assembly>
     <members>
-        <member name="T:Woozle.Common.Exceptions.InstanceNotFoundException">
-            <summary>
-            Exception which is thrown when a desired instance was not found.
-            </summary>
-        </member>
         <member name="T:Woozle.Dependencies.WoozlePlugin">
             <summary>
             Register all dependencies for running Woozle (Core)
@@ -415,6 +410,11 @@
             requires authentication.
             </summary>
         </member>
+        <member name="M:Woozle.Services.Authentication.MandatorAuthenticateAttribute.#ctor">
+            <summary>
+            Initialize a new <see cref="T:Woozle.Services.Authentication.MandatorAuthenticateAttribute"/>
+            </summary>
+        </member>
         <member name="M:Woozle.Services.Authentication.MandatorSelectionService.#ctor(Woozle.Domain.Authentication.IAuthenticationLogic)">
             <summary>
             ctor.
@@ -433,11 +433,6 @@
             Specific provider for authentication
             </summary>
         </member>
-        <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.authenticationLogic">
-            <summary>
-            <see cref="T:Woozle.Domain.Authentication.IAuthenticationLogic"/>
-            </summary>
-        </member>
         <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.data">
             <summary>
             <see cref="T:Woozle.Model.SessionHandling.SessionData"/>
@@ -448,11 +443,15 @@
             <see cref="T:Woozle.Model.Authentication.LoginResult"/>
             </summary>
         </member>
+        <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.container">
+            <summary>
+            <see cref="T:Funq.Container">IoC-Container</see>
+            </summary>
+        </member>
         <member name="M:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.#ctor(Funq.Container)">
             <summary>
             ctor.
             </summary>
-            <param name="authenticationLogic"><see cref="T:Woozle.Domain.Authentication.IAuthenticationLogic"/></param>
         </member>
         <member name="M:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.TryAuthenticate(ServiceStack.ServiceInterface.IServiceBase,System.String,System.String)">
             <summary>

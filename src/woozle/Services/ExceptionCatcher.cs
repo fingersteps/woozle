@@ -2,7 +2,6 @@
 using System.Data.Entity.Core;
 using PostSharp.Aspects;
 using ServiceStack.Logging;
-using Woozle.Common.Exceptions;
 using Woozle.Common.Extensions;
 
 namespace Woozle.Services
@@ -34,7 +33,7 @@ namespace Woozle.Services
                 message =
                     "Die Daten wurden in der Zwischenzeit von einem anderen Benutzer geändert. \nBitte öffnen Sie das aktuelle Fenster neu und wiederholen Sie Ihre Tätigkeit.";
             }
-            else if (exception is BusinessLogicException)
+            else
             {
                 message = exception.Message;
             }
@@ -52,7 +51,7 @@ namespace Woozle.Services
             }
             var msg = string.Format(string.Format("No instance of type '{0}' was found.", typeof(T)));
             Logger.Error(msg);
-            throw new InstanceNotFoundException(msg);
+            throw new SystemException(msg);
         }
     }
 }
