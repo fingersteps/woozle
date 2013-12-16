@@ -1,23 +1,33 @@
 ﻿using System.Reflection;
 using Funq;
-using ServiceStack.CacheAccess;
-using ServiceStack.CacheAccess.Providers;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Dependencies;
-using Woozle.Domain.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Services.Authentication;
 
 namespace Woozle.Host
 {
+    /// <summary>
+    /// HTTP Serverhost based on <see cref="AppHostHttpListenerBase"/>
+    /// </summary>
     public class WoozleHost : AppHostHttpListenerBase
     {
+      
         protected WoozleHost(string serviceName, params Assembly[] assemblies) : base(serviceName, assemblies)
         {
         }
 
+        /// <summary>
+        /// Configures the host.
+        /// </summary>
+        /// <remarks>
+        ///  - Adds the <see cref="SessionFeature"/>
+        ///  - Adds the <see cref="AuthFeature"/> with the <see cref="WoozleCredentialsAuthProvider"/>
+        ///  - Adds the <see cref="WoozlePlugin"/>
+        /// </remarks>
+        /// <param name="container">The IoC-Container</param>
         public override void Configure(Container container)
         {
             Plugins.Add(new SessionFeature());

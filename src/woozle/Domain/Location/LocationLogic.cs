@@ -8,7 +8,6 @@ namespace Woozle.Domain.Location
 {
     public class LocationLogic : AbstractLogic, ILocationLogic
     {
-
         private readonly IRepository<City> cityRepository;
         private readonly IRepository<Country> countryRepository;
         private readonly IRepository<Language> languageRepository;
