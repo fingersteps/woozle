@@ -9,6 +9,9 @@ namespace Woozle.Model.SessionHandling
     /// <remarks></remarks>
     public class Session : AuthUserSession
     {
+        /// <summary>
+        /// Initializes a new <see cref="Session"/>
+        /// </summary>
         public Session() : this(Guid.NewGuid(), new SessionData(null, null), DateTime.Now.AddHours(1) )
         {
         }

@@ -1,14 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace Woozle.Model.Validation
+﻿namespace Woozle.Model.Validation
 {
     public class Error
     {
-        public Error()
-        {
-
-        }
-
         public Error(string field, string message)
         {
             this.Field = field;

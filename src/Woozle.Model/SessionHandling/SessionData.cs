@@ -6,6 +6,11 @@
     /// <remarks></remarks>
     public class SessionData
     {
+        /// <summary>
+        /// Initializes a new <see cref="SessionData"/>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="mandator"></param>
         public SessionData(User user, Mandator mandator)
         {
             this.User = user;
