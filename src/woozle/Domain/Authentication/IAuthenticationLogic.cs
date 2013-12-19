@@ -4,7 +4,7 @@ using Woozle.Model.UserSearch;
 namespace Woozle.Domain.Authentication
 {
     /// <summary>
-    /// Interface for the authentication businesslogic.
+    /// Authentication businesslogic.
     /// </summary>
     /// <remarks></remarks>
     public interface IAuthenticationLogic

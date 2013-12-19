@@ -23,6 +23,9 @@ using Translation = Woozle.Model.Translation;
 
 namespace Woozle.Services
 {
+    /// <summary>
+    /// Mapping configuration betweeen Dto's and Model objects
+    /// </summary>
     public static class MappingConfiguration
     {
         public static void Configure()

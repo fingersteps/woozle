@@ -1,4 +1,3 @@
-
 using System;
 
 namespace Woozle.Services.Mandator

@@ -14,7 +14,6 @@ namespace Woozle.Domain.ModuleManagement
     /// </summary>
     public class ModuleLogic : AbstractLogic, IModuleLogic
     {
-        public IPermissionManager PermissionManager { get; set; }
         private readonly IModuleRepository moduleRepository;
 
         public ModuleLogic(IPermissionManager permissionManager, IModuleRepository moduleRepository)
@@ -23,7 +22,8 @@ namespace Woozle.Domain.ModuleManagement
             this.moduleRepository = moduleRepository;
         }
 
-        #region IModuleLogic Members
+        public IPermissionManager PermissionManager { get; set; }
+
 
         /// <summary>
         /// <see cref="IModuleLogic.GetModulesByMandator"/>
@@ -70,7 +70,5 @@ namespace Woozle.Domain.ModuleManagement
             var modules = this.moduleRepository.FindModulePermissions(role, session);
             return modules;
         }
-
-        #endregion
     }
 }

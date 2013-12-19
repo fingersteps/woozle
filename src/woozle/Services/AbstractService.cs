@@ -1,14 +1,17 @@
 ﻿using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
-using Woozle.Domain.Translation;
 using Woozle.Model.SessionHandling;
 
 namespace Woozle.Services
 {
+    /// <summary>
+    /// Base Service
+    /// </summary>
     public abstract class AbstractService : ServiceStack.ServiceInterface.Service
     {
-        public ITranslator Translator { get; set; }
-
+        /// <summary>
+        /// <see cref="Session">Session </see> for authorisation
+        /// </summary>
         protected new Session Session
         {
             get

@@ -15,6 +15,11 @@ namespace Woozle.Host
     public class WoozleHost : AppHostHttpListenerBase
     {
       
+        /// <summary>
+        /// Initializes a new <see cref="WoozleHost"/>
+        /// </summary>
+        /// <param name="serviceName">The name of the service</param>
+        /// <param name="assemblies">The assemblies which contain services</param>
         protected WoozleHost(string serviceName, params Assembly[] assemblies) : base(serviceName, assemblies)
         {
         }
