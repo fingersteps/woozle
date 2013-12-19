@@ -23,6 +23,8 @@
     <PostSharpProject Condition=" '$(PostSharpProject)'=='' AND Exists('$(MSBuildProjectDirectory)\$(MSBuildProjectName).$(Configuration).psproj') ">$(MSBuildProjectDirectory)\$(MSBuildProjectName).$(Configuration).psproj</PostSharpProject>
     <PostSharpProject Condition=" '$(PostSharpProject)'=='' AND Exists('$(MSBuildProjectDirectory)\$(MSBuildProjectName).psproj') ">$(MSBuildProjectDirectory)\$(MSBuildProjectName).psproj</PostSharpProject>
 
+    
+
     <!-- PostSharp properties -->
     <PostSharpBuild Condition="'$(PostSharpBuild)'==''">Release</PostSharpBuild>
     <PostSharpIgnoreError Condition="'$(PostSharpIgnoreError)'==''">False</PostSharpIgnoreError>

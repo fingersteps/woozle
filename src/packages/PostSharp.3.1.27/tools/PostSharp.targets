@@ -28,14 +28,14 @@
     <Message Text="PostSharp parses the following references: @(ReferencePath -> '%(Filename)')."
         Importance="low"/>
 
-    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.0\..*, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
+    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.[0-9]\..*, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
       <Output TaskParameter="FilteredAssemblyNames" ItemName="_PostSharp30References"/>
     </PostSharp30ParseAssemblyNames>
 
-    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.0\.[0-9]+\.3, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
+    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.[0-9]\.[0-9]+\.3, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
       <Output TaskParameter="FilteredAssemblyNames" ItemName="_PostSharp30NetPortableReferences"/>
     </PostSharp30ParseAssemblyNames>
-    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.0\.[0-9]+\.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
+    <PostSharp30ParseAssemblyNames AssemblyNames="@(ReferencePath);@(ReferenceDependencyPaths)" FilterFileName="PostSharp" Filter="PostSharp, Version=3\.[0-9]\.[0-9]+\.9, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7">
       <Output TaskParameter="FilteredAssemblyNames" ItemName="_PostSharp30NetFrameworkReferences"/>
     </PostSharp30ParseAssemblyNames>
 
@@ -57,7 +57,9 @@
     <!-- TODO: Check that the max version of referenced PostSharp.dll is not higher than the version of the current build. -->
 
     <!-- TODO: This target must be evaluated even if PostSharpProject is defined, otherwise warnings and errors are not defined. -->
-    
+
+
+   
   
   </Target>
 
@@ -75,7 +77,7 @@
       <Output TaskParameter="Include" ItemName="_DefineConstants"/>
     </CreateItem>
 
-    <CreateProperty Condition="'%(_DefineConstants.Identity)'=='SkipPostSharp' AND '$(SkipPostSharp)'==''" Value="True">
+    <CreateProperty Condition="'%(_DefineConstants.Identity)'=='SkipPostSharp'" Value="True">
       <Output TaskParameter="Value" PropertyName="SkipPostSharp" />
     </CreateProperty>
 
@@ -140,7 +142,7 @@
                  '$(SkipPostSharp30)'!='True' AND
                  Exists('$(_PostSharp30IntermediateAssemblyFullPath)') AND 
                   '$(_PostSharp30AssemblyTimestampBeforeCompile)'!='$(_PostSharp30AssemblyTimestampAfterCompile)'"
-      Inputs="$(PostSharpProject);@(IntermediateAssembly->'%(FullPath)')"
+      Inputs="@(PostSharpProject);@(IntermediateAssembly->'%(FullPath)')"
       Outputs="@(IntermediateAssembly->'%(FullPath).postsharp')"
       DependsOnTargets="_CopyFilesMarkedCopyLocal;ResolveKeySource;$(PostSharp30DependsOn);">
 
@@ -288,15 +290,27 @@
               $(PostSharpProperties)">
       <Output TaskParameter="Value" PropertyName="PostSharpProperties"/>
     </CreateProperty>
-    
+
+    <!-- Try find PostSharp solution-level project. -->
+    <PropertyGroup Condition="'$(SolutionDir)' != '' AND '$(SolutionDir)' != '*Undefined*'">
+      <PostSharpSolutionProject Condition=" '$(PostSharpSolutionProject)'=='' AND Exists('$(SolutionDir)\$(SolutionName).$(Configuration).$(Platform).pssln') ">$(SolutionDir)\$(SolutionName).$(Configuration).$(Platform).pssln</PostSharpSolutionProject>
+      <PostSharpSolutionProject Condition=" '$(PostSharpSolutionProject)'=='' AND Exists('$(SolutionDir)\$(SolutionName).$(Configuration).pssln') ">$(SolutionDir)\$(SolutionName).$(Configuration).pssln</PostSharpSolutionProject>
+      <PostSharpSolutionProject Condition=" '$(PostSharpSolutionProject)'=='' AND Exists('$(SolutionDir)\$(SolutionName).pssln') ">$(SolutionDir)\$(SolutionName).pssln</PostSharpSolutionProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_PostSharpProject Include="$(PostSharpSolutionProject)" Condition="$(PostSharpSolutionProject)!=''" />
+      <_PostSharpProject Include="$(PostSharpProject)"/>
+    </ItemGroup>
 
     <!-- Create our working directory. -->
     <MakeDir Directories="$(PostSharpIntermediateDirectory)"/>
 
     <!-- Execute PostSharp. We support both in-process MSBuild task and standalone command line utility. -->
     <Message Text="Passing parameters: $(PostSharpProperties)" Importance="low"/>
-
-    <PostSharp30	Project="$(PostSharpProject)"
+    
+    
+    <PostSharp30	Projects="@(_PostSharpProject)"
                 Input="$(_PostSharp30InputBin)"
                 Properties="$(PostSharpProperties)"
                 AttachDebugger="$(PostSharpAttachDebugger)"
@@ -320,6 +334,7 @@
                 InverseReflectionMapDirectories="@(PostSharpInverseReflectionMapDirectories)"
                 ReferenceMapFiles="@(PostSharpReferenceMapFiles)"
                 HostConfigurationFiles="@(PostSharpHostConfigurationFile)"
+                MSBuildProjectFile="$(MSBuildProjectFullPath)"
           >
       <Output TaskParameter="ExitCode" PropertyName="PostSharpExitCode"/>
     </PostSharp30>

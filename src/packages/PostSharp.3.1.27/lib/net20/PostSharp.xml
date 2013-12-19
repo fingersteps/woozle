@@ -426,14 +426,6 @@
     <member name="M:PostSharp.Aspects.AspectUtilities.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.AspectUtilities" /> class</summary>
     </member>
-    <member name="M:PostSharp.Aspects.AspectUtilities.GetCurrentInstanceCredentials">
-      <summary>
-              Gets the <see cref="T:PostSharp.Aspects.InstanceCredentials" /> of the calling instance. This method must be
-              invoked from an instance method (not a static method) of a type that has been enhanced
-              by an aspect.
-            </summary>
-      <returns>The <see cref="T:PostSharp.Aspects.InstanceCredentials" /> of the calling instance.</returns>
-    </member>
     <member name="M:PostSharp.Aspects.AspectUtilities.InitializeCurrentAspects">
       <summary>
               Initializes the all the aspects of the calling instance. This method must be
@@ -498,17 +490,6 @@
               Determines whether the interface <see cref="T:PostSharp.Aspects.IComposed`1" /> should be introduced into the type to which the aspect
               is applied for each interface returned by the <see cref="M:PostSharp.Aspects.CompositionAspect.GetPublicInterfaces(System.Type)" /> method.
             </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.CompositionAspect.GetProtectedInterfaces(System.Type)">
-      <summary>
-              Gets the array of interfaces to be introduced indirectly into
-              the target type of the current aspect. These interfaces will
-              become accessible through the <see cref="T:PostSharp.Aspects.IProtectedInterface`1" /> 
-              interface.
-            </summary>
-      <param name="targetType">
-        <see cref="T:System.Type" /> to which the current aspect is applied.</param>
-      <returns>The array of interfaces that should be introduced indirectly into <see cref="T:System.Type" /><paramref name="targetType" />, or <c>null</c> if no interface should be introduced indirectly.</returns>
     </member>
     <member name="M:PostSharp.Aspects.CompositionAspect.GetPublicInterfaces(System.Type)">
       <summary>
@@ -834,23 +815,6 @@
       <param name="source">Aspect instance corresponding to the current
             aspect instance in the cloned target object.</param>
     </member>
-    <member name="T:PostSharp.Aspects.IComposed`1">
-      <summary>
-              Interface exposing the implementation of another interface introduced
-              by a <see cref="T:PostSharp.Aspects.CompositionAspect" />.
-            </summary>
-      <typeparam name="T">Interface whose implementation is expose.</typeparam>
-    </member>
-    <member name="M:PostSharp.Aspects.IComposed`1.GetImplementation(PostSharp.Aspects.InstanceCredentials)">
-      <summary>
-              Gets the object implementing the interface <typeparamref name="T" />
-              on behalf of the current instance.
-            </summary>
-      <param name="credentials">Credentials provided by the current instance.</param>
-      <returns>The object implementing the interface <typeparamref name="T" />
-              on behalf of the current instance.
-            </returns>
-    </member>
     <member name="T:PostSharp.Aspects.ICompositionAspect">
       <summary>
               Defines the semantics of an aspect that, when applied on a type, introduce one or many new interfaces
@@ -954,21 +918,6 @@
             </summary>
       <param name="targetEvent">Event to which the current aspect is applied</param>
       <param name="aspectInfo">Reserved for future usage.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.IExternalAspectImplementation.ProvideImplementationAspects(System.Object,PostSharp.Reflection.ObjectConstruction)">
-      <summary>
-              Returns a set of aspect instances to be added to the project.
-            </summary>
-      <param name="target">Code element (<see cref="T:System.Type" />, <see cref="T:System.Reflection.FieldInfo" />, <see cref="T:System.Reflection.MethodInfo" />,
-              <see cref="T:System.Reflection.ConstructorInfo" />, <see cref="T:System.Reflection.ParameterInfo" />, ...) on which the
-              aspect is applied.</param>
-      <param name="aspectConstruction">Representation of the aspect instance (implementing <see cref="T:PostSharp.Aspects.IExternalAspect" />)
-              requiring external implementation.</param>
-      <returns>
-              A set of aspect instances to be added to the project. Objects <see cref="T:PostSharp.Aspects.AspectInstance" /> are expected
-              to be initialized using a constructor taking a required argument of type <see cref="T:PostSharp.Reflection.ObjectConstruction" />
-              and an optional parameter of type <see cref="T:PostSharp.Aspects.Configuration.AspectConfiguration" />.
-            </returns>
     </member>
     <member name="T:PostSharp.Aspects.IFieldLevelAspect">
       <summary>
@@ -1157,67 +1106,6 @@
       <param name="method">Method to which the current aspect is applied</param>
       <param name="aspectInfo">Reserved for future usage.</param>
     </member>
-    <member name="T:PostSharp.Aspects.InstanceCredentials">
-      <summary>
-            Credentials that give access to 'protected' semantics.
-            </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.AssertEquals(PostSharp.Aspects.InstanceCredentials)">
-      <summary>
-              Throws an exception if given credentials are not equal
-              to the current one.
-            </summary>
-      <param name="others">Other credentials.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.Equals(PostSharp.Aspects.InstanceCredentials)">
-      <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-      <param name="other">An object to compare with this object.</param>
-      <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.Equals(System.Object)">
-      <summary>Indicates whether this instance and a specified object are equal.</summary>
-      <param name="obj">Another object to compare to. </param>
-      <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.GetHashCode">
-      <summary>Returns the hash code for this instance.</summary>
-      <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.MakeNew">
-      <summary>
-              Creates a new <see cref="T:PostSharp.Aspects.InstanceCredentials" />.
-            </summary>
-      <returns>A new <see cref="T:PostSharp.Aspects.InstanceCredentials" />.</returns>
-    </member>
-    <member name="F:PostSharp.Aspects.InstanceCredentials.Null">
-      <summary>
-            Gets a null (or empty) <see cref="T:PostSharp.Aspects.InstanceCredentials" />/
-            </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.op_Equality(PostSharp.Aspects.InstanceCredentials,PostSharp.Aspects.InstanceCredentials)">
-      <summary>
-              Determines whether two <see cref="T:PostSharp.Aspects.InstanceCredentials" /> are equal.
-            </summary>
-      <param name="left">An <see cref="T:PostSharp.Aspects.InstanceCredentials" /> object.</param>
-      <param name="right">An <see cref="T:PostSharp.Aspects.InstanceCredentials" /> object.</param>
-      <returns>
-        <c>true</c> if <paramref name="left" /> equals <paramref name="right" />,
-              otherwise <c>false</c>.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.op_Inequality(PostSharp.Aspects.InstanceCredentials,PostSharp.Aspects.InstanceCredentials)">
-      <summary>
-              Determines whether two <see cref="T:PostSharp.Aspects.InstanceCredentials" /> are different.
-            </summary>
-      <param name="left">An <see cref="T:PostSharp.Aspects.InstanceCredentials" /> object.</param>
-      <param name="right">An <see cref="T:PostSharp.Aspects.InstanceCredentials" /> object.</param>
-      <returns>
-        <c>true</c> if <paramref name="left" /> is different than <paramref name="right" />,
-              otherwise <c>false</c>.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.InstanceCredentials.ToString">
-      <summary>Returns the fully qualified type name of this instance.</summary>
-      <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
-    </member>
     <member name="T:PostSharp.Aspects.InstanceLevelAspect">
       <summary>
             Base class for aspects applied on types, but having the same lifetime as
@@ -1315,18 +1203,28 @@
       <param name="args">Event arguments specifying which method
               is being executed and which are its arguments.</param>
     </member>
-    <member name="T:PostSharp.Aspects.IProtectedInterface`1">
+    <member name="T:PostSharp.Aspects.IOnStateMachineBoundaryAspect">
       <summary>
-              Gives access to a 'protected' interface, typically introduced
-              by a <see cref="T:PostSharp.Aspects.CompositionAspect" /> or a <see cref="T:PostSharp.Aspects.Advices.IntroduceInterfaceAttribute" /></summary>
-      <typeparam name="T">Exposed interface.</typeparam>
-    </member>
-    <member name="M:PostSharp.Aspects.IProtectedInterface`1.GetInterface(PostSharp.Aspects.InstanceCredentials)">
-      <summary>
-              Gets a protected interface.
+            Extends the <see cref="T:PostSharp.Aspects.IOnMethodBoundaryAspect" /> interface with two advises
+            to be applied on state machines.
             </summary>
-      <param name="credentials">Credentials of the current instance.</param>
-      <returns>The implementation of the interface <typeparamref name="T" />.</returns>
+    </member>
+    <member name="M:PostSharp.Aspects.IOnStateMachineBoundaryAspect.OnResume(PostSharp.Aspects.MethodExecutionArgs)">
+      <summary>
+            Method executed when a state machine resumes execution after an <c>yield return</c> or
+            <c>await</c> statement.
+            </summary>
+      <param name="args">Event arguments specifying which method
+              is being executed and which are its arguments.</param>
+    </member>
+    <member name="M:PostSharp.Aspects.IOnStateMachineBoundaryAspect.OnYield(PostSharp.Aspects.MethodExecutionArgs)">
+      <summary>
+            Method executed when a state machine yields, as the result of an <c>yield return</c> or
+            <c>await</c> statement.
+            </summary>
+      <param name="args">Event arguments specifying which method
+              is being executed and which are its arguments. In iterator methods, the <see cref="P:PostSharp.Aspects.MethodExecutionArgs.YieldValue" />
+            property gives access to the operand of the <c>yield return</c> statement.</param>
     </member>
     <member name="T:PostSharp.Aspects.ITypeLevelAspect">
       <summary>
@@ -1523,6 +1421,11 @@
               Gets or sets the method return value.
             </summary>
     </member>
+    <member name="P:PostSharp.Aspects.MethodExecutionArgs.YieldValue">
+      <summary>
+            Gets or sets the value yielded by the iterator method.
+            </summary>
+    </member>
     <member name="T:PostSharp.Aspects.MethodImplementationAspect">
       <summary>
             Aspect that, when applied on an abstract or <c>extern</c> method, creates an implementation for this method.
@@ -1680,6 +1583,12 @@
     <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.OnMethodBoundaryAspect" /> class</summary>
     </member>
+    <member name="P:PostSharp.Aspects.OnMethodBoundaryAspect.ApplyToStateMachine">
+      <summary>
+            Determines how the aspect should behave when it is applied to an iterator or
+            async method, which are compiled into state machines.
+            </summary>
+    </member>
     <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.CreateAspectConfiguration">
       <summary>
               Method invoked at build time to create a concrete <see cref="T:PostSharp.Aspects.Configuration.AspectConfiguration" /> instance specifically
@@ -1713,6 +1622,14 @@
       <param name="args">Event arguments specifying which method
               is being executed and which are its arguments.</param>
     </member>
+    <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.OnResume(PostSharp.Aspects.MethodExecutionArgs)">
+      <summary>
+            Method executed when a state machine resumes execution after an <c>yield return</c> or
+            <c>await</c> statement.
+            </summary>
+      <param name="args">Event arguments specifying which method
+              is being executed and which are its arguments.</param>
+    </member>
     <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.OnSuccess(PostSharp.Aspects.MethodExecutionArgs)">
       <summary>
               Method executed <b>after</b> the body of methods to which this aspect is applied,
@@ -1721,6 +1638,24 @@
             </summary>
       <param name="args">Event arguments specifying which method
               is being executed and which are its arguments.</param>
+    </member>
+    <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.OnYield(PostSharp.Aspects.MethodExecutionArgs)">
+      <summary>
+            Method executed when a state machine yields, as the result of an <c>yield return</c> or
+            <c>await</c> statement.
+            </summary>
+      <param name="args">Event arguments specifying which method
+              is being executed and which are its arguments. In iterator methods, the <see cref="P:PostSharp.Aspects.MethodExecutionArgs.YieldValue" />
+            property gives access to the operand of the <c>yield return</c> statement.</param>
+    </member>
+    <member name="M:PostSharp.Aspects.OnMethodBoundaryAspect.SetAspectConfiguration(PostSharp.Aspects.Configuration.AspectConfiguration,System.Reflection.MethodBase)">
+      <summary>
+              Method invoked at build time to set up an <see cref="T:PostSharp.Aspects.Configuration.AspectConfiguration" /> object according to the current 
+              <see cref="T:PostSharp.Aspects.Aspect" /> instance and a specified target element of the current aspect.
+            </summary>
+      <param name="aspectConfiguration">The <see cref="T:PostSharp.Aspects.Configuration.AspectConfiguration" /> instance previously returned  by the
+              <see cref="M:PostSharp.Aspects.Aspect.CreateAspectConfiguration" /> method.</param>
+      <param name="targetMethod">Method to which the current aspect has been applied.</param>
     </member>
     <member name="T:PostSharp.Aspects.TypeIdentity">
       <summary>
@@ -2204,6 +2139,19 @@
     <member name="M:PostSharp.Aspects.Advices.OnLocationSetValueAdvice.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnLocationSetValueAdvice" /> class</summary>
     </member>
+    <member name="T:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice">
+      <summary>
+        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "T:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice"]</p>
+      </summary>
+    </member>
+    <member name="M:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice" /> class</summary>
+    </member>
+    <member name="P:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice.ApplyToStateMachine">
+      <summary>
+        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "P:PostSharp.Aspects.Advices.OnMethodBoundaryAdvice.ApplyToStateMachine"]</p>
+      </summary>
+    </member>
     <member name="T:PostSharp.Aspects.Advices.OnMethodEntryAdvice">
       <summary>
               Custom attribute that, when applied on a method of an aspect class, specifies
@@ -2240,6 +2188,15 @@
     <member name="M:PostSharp.Aspects.Advices.OnMethodInvokeAdvice.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnMethodInvokeAdvice" /> class</summary>
     </member>
+    <member name="T:PostSharp.Aspects.Advices.OnMethodResumeAdvice">
+      <summary>
+              Custom attribute that, when applied on a method of an aspect class, specifies
+              that this method is an advice having the same semantics as <see cref="M:PostSharp.Aspects.OnMethodBoundaryAspect.OnResume(PostSharp.Aspects.MethodExecutionArgs)" />.
+            </summary>
+    </member>
+    <member name="M:PostSharp.Aspects.Advices.OnMethodResumeAdvice.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnMethodResumeAdvice" /> class</summary>
+    </member>
     <member name="T:PostSharp.Aspects.Advices.OnMethodSuccessAdvice">
       <summary>
               Custom attribute that, when applied on a method of an aspect class, specifies
@@ -2248,6 +2205,15 @@
     </member>
     <member name="M:PostSharp.Aspects.Advices.OnMethodSuccessAdvice.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnMethodSuccessAdvice" /> class</summary>
+    </member>
+    <member name="T:PostSharp.Aspects.Advices.OnMethodYieldAdvice">
+      <summary>
+              Custom attribute that, when applied on a method of an aspect class, specifies
+              that this method is an advice having the same semantics as <see cref="M:PostSharp.Aspects.OnMethodBoundaryAspect.OnYield(PostSharp.Aspects.MethodExecutionArgs)" />.
+            </summary>
+    </member>
+    <member name="M:PostSharp.Aspects.Advices.OnMethodYieldAdvice.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Advices.OnMethodYieldAdvice" /> class</summary>
     </member>
     <member name="T:PostSharp.Aspects.Advices.Pointcut">
       <summary>
@@ -2555,27 +2521,6 @@
               Gets or sets the type implementing the aspect. This type must implement the interface <see cref="T:PostSharp.Aspects.IExternalAspectImplementation" />.
             </summary>
     </member>
-    <member name="M:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute.#ctor">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute" />.
-              In user code, use the <see cref="M:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute.#ctor(System.String)" />
-              constructor instead of this one.
-            </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute.#ctor(System.String)">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute" />.
-            </summary>
-      <param name="implementationTypeName">Assembly-qualified name of the implementation
-              type. This type should implement the <see cref="T:PostSharp.Aspects.IExternalAspectImplementation" />
-              interface.</param>
-    </member>
-    <member name="P:PostSharp.Aspects.Configuration.ExternalAspectConfigurationAttribute.ImplementationTypeName">
-      <summary>
-              Gets the assembly-qualified name of the implementation  type.
-              This type must implement the <see cref="T:PostSharp.Aspects.IExternalAspectImplementation" /> interface.
-            </summary>
-    </member>
     <member name="T:PostSharp.Aspects.Configuration.IProfileAwareConfiguration">
       <summary>
             Allows an <see cref="T:PostSharp.Aspects.Configuration.AspectConfiguration" /> to depend on a <i>profile</i>, i.e.
@@ -2703,6 +2648,12 @@
     </member>
     <member name="M:PostSharp.Aspects.Configuration.OnMethodBoundaryAspectConfiguration.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Configuration.OnMethodBoundaryAspectConfiguration" /> class</summary>
+    </member>
+    <member name="P:PostSharp.Aspects.Configuration.OnMethodBoundaryAspectConfiguration.ApplyToStateMachine">
+      <summary>
+            Determines how the aspect should behave when it is applied to an iterator or
+            async method, which are compiled into state machines.
+            </summary>
     </member>
     <member name="T:PostSharp.Aspects.Configuration.OnMethodBoundaryAspectConfigurationAttribute">
       <summary>
@@ -3153,20 +3104,15 @@
             </summary>
     </member>
     <member name="M:PostSharp.Aspects.Serialization.BinaryAspectSerializationBinder.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Serialization.BinaryAspectSerializationBinder" /> class</summary>
+      <summary>
+            Initializes a new <seealso cref="T:PostSharp.Aspects.Serialization.BinaryAspectSerializationBinder" />.
+            </summary>
     </member>
     <member name="M:PostSharp.Aspects.Serialization.BinaryAspectSerializationBinder.BindToType(System.String,System.String)">
       <summary>When overridden in a derived class, controls the binding of a serialized object to a type.</summary>
       <param name="assemblyName">Specifies the <see cref="T:System.Reflection.Assembly" /> name of the serialized object. </param>
       <param name="typeName">Specifies the <see cref="T:System.Type" /> name of the serialized object. </param>
       <returns>The type of the object the formatter creates a new instance of.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.BinaryAspectSerializationBinder.Retarget(System.String,System.String)">
-      <summary>
-              Retarget an assembly name to a new one.
-            </summary>
-      <param name="oldAssemblyName">Old assembly name (in short form only).</param>
-      <param name="newAssemblyName">New assembly name (in short or full form).</param>
     </member>
     <member name="T:PostSharp.Aspects.Serialization.BinaryAspectSerializer">
       <summary>
@@ -3177,11 +3123,6 @@
     </member>
     <member name="M:PostSharp.Aspects.Serialization.BinaryAspectSerializer.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Serialization.BinaryAspectSerializer" /> class</summary>
-    </member>
-    <member name="P:PostSharp.Aspects.Serialization.BinaryAspectSerializer.Binder">
-      <summary>
-              Gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used to deserialize aspects.
-            </summary>
     </member>
     <member name="M:PostSharp.Aspects.Serialization.BinaryAspectSerializer.ChainSurrogateSelector(System.Runtime.Serialization.ISurrogateSelector)">
       <summary>
@@ -3217,20 +3158,6 @@
             Sets the <see cref="T:PostSharp.Reflection.IMetadataEmitter" />.
             </summary>
       <param name="metadataEmitter">An <see cref="T:PostSharp.Reflection.IMetadataEmitter" />.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.IStateBagSerializable.Deserialize(PostSharp.Aspects.Serialization.StateBag)">
-      <summary>
-              Deserialized the current object from a <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="stateBag">The <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> into which the object was previously serialized,
-              and from which it should be deserialized.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.IStateBagSerializable.Serialize(PostSharp.Aspects.Serialization.StateBag)">
-      <summary>
-              Serializes the current object into a <see cref="T:PostSharp.Aspects.Serialization.StateBag" />/
-            </summary>
-      <param name="stateBag">
-        <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> into which the current object has to be saved.</param>
     </member>
     <member name="T:PostSharp.Aspects.Serialization.MsilAspectSerializer">
       <summary>
@@ -3281,133 +3208,6 @@
       <returns>An array of aspects.</returns>
     </member>
     <member name="M:PostSharp.Aspects.Serialization.PortableAspectSerializer.Serialize(PostSharp.Aspects.IAspect[],System.IO.Stream,PostSharp.Reflection.IMetadataEmitter)">
-      <summary>
-              Serializes an array of aspects into a stream.
-            </summary>
-      <param name="aspects">Array of aspects to be serialized.</param>
-      <param name="stream">Stream into which aspects have to be serialized.</param>
-      <param name="metadataEmitter">A metadata emitter for the current module.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.#ctor">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.CreateBag(System.String)">
-      <summary>
-              Create a child <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> and assign it a name.
-            </summary>
-      <param name="name">Name of the child bag.</param>
-      <returns>The new <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.Deserialize(System.IO.BinaryReader)">
-      <summary>
-              Deserializes a stream (given a <see cref="T:System.IO.BinaryReader" />) into a <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="reader">A <see cref="T:System.IO.BinaryReader" />.</param>
-      <returns>The <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> built from <paramref name="reader" />.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.GetBag(System.String)">
-      <summary>
-              Gets a child <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="name">Name of the child <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.</param>
-      <returns>The child <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> named <paramref name="name" />, or <c>null</c>
-              if there is no child <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> of this name.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.GetValue(System.String)">
-      <summary>
-              Gets a value of the current <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="name">Name of the requested value.</param>
-      <returns>The value named <paramref name="name" />, or <c>null</c>
-              if the <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> does not contain this value.</returns>
-    </member>
-    <member name="P:PostSharp.Aspects.Serialization.StateBag.Item(System.String)">
-      <summary>
-              Gets or sets a value in the current <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="name">Value name.</param>
-      <returns>The value named <paramref name="name" />, or <c>null</c> if the
-              current <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> does not contain any value named <paramref name="name" />.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.Serialize(System.IO.BinaryWriter)">
-      <summary>
-              Serializes the current <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> into a <see cref="T:System.IO.BinaryWriter" />.
-            </summary>
-      <param name="writer">A <see cref="T:System.IO.BinaryWriter" />.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.SetBag(System.String,PostSharp.Aspects.Serialization.IStateBagSerializable)">
-      <summary>
-              Sets a child <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> to the <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> obtained
-              by deserializing an object.
-            </summary>
-      <param name="name">Name of the child <see cref="T:PostSharp.Aspects.Serialization.StateBag" /> in the current <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.</param>
-      <param name="obj">Object to deserialize.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBag.SetValue(System.String,System.String)">
-      <summary>
-              Sets a value in the current <see cref="T:PostSharp.Aspects.Serialization.StateBag" />.
-            </summary>
-      <param name="name">Item name.</param>
-      <param name="value">Item value.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializer.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Serialization.StateBagAspectSerializer" /> class</summary>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializer.Deserialize(System.IO.Stream,PostSharp.Reflection.IMetadataDispenser)">
-      <summary>
-              Deserializes a stream into an array if aspects.
-            </summary>
-      <param name="stream">Stream containing serialized aspects.</param>
-      <param name="metadataDispenser">Metadata dispenser to be used to resolve serialized metadata references in <paramref name="stream" />.</param>
-      <returns>An array of aspects.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializer.Serialize(PostSharp.Aspects.IAspect[],System.IO.Stream,PostSharp.Reflection.IMetadataEmitter)">
-      <summary>
-              Serializes an array of aspects into a stream.
-            </summary>
-      <param name="aspects">Array of aspects to be serialized.</param>
-      <param name="stream">Stream into which aspects have to be serialized.</param>
-      <param name="metadataEmitter">A metadata emitter for the current module.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializerException.#ctor">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Serialization.StateBagAspectSerializerException" /> with the default message.
-            </summary>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>
-              Deserializes a <see cref="T:PostSharp.Aspects.Serialization.StateBagAspectSerializerException" />.
-            </summary>
-      <param name="info">Serialization information.</param>
-      <param name="context">Streaming context.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializerException.#ctor(System.String)">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Serialization.StateBagAspectSerializerException" /> with a given message.
-            </summary>
-      <param name="message">Error message.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.StateBagAspectSerializerException.#ctor(System.String,System.Exception)">
-      <summary>
-              Initializes a new <see cref="T:PostSharp.Aspects.Serialization.StateBagAspectSerializerException" /> with a given message and an inner exception.
-            </summary>
-      <param name="message">Error message.</param>
-      <param name="inner">Inner exception.</param>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.XmlAspectSerializer.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:PostSharp.Aspects.Serialization.XmlAspectSerializer" /> class</summary>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.XmlAspectSerializer.Deserialize(System.IO.Stream,PostSharp.Reflection.IMetadataDispenser)">
-      <summary>
-              Deserializes a stream into an array if aspects.
-            </summary>
-      <param name="stream">Stream containing serialized aspects.</param>
-      <param name="metadataDispenser">Metadata dispenser to be used to resolve serialized metadata references in <paramref name="stream" />.</param>
-      <returns>An array of aspects.</returns>
-    </member>
-    <member name="M:PostSharp.Aspects.Serialization.XmlAspectSerializer.Serialize(PostSharp.Aspects.IAspect[],System.IO.Stream,PostSharp.Reflection.IMetadataEmitter)">
       <summary>
               Serializes an array of aspects into a stream.
             </summary>
@@ -4016,7 +3816,7 @@
             Gets a build-time service exposed by PostSharp.
             </summary>
       <param name="throwing">
-        <c>true</c> wether an exception should be thrown in case the service cannot be acquired, otherwise <c>false</c>.
+        <c>true</c> whether an exception should be thrown in case the service cannot be acquired, otherwise <c>false</c>.
             The default value is <c>true</c>.</param>
       <typeparam name="T">An interface derived from <see cref="T:PostSharp.Extensibility.IService" />.</typeparam>
       <returns>The service <typeparamref name="T" />, or <c>null</c> if the service could not be acquired and <paramref name="throwing" />
@@ -4056,6 +3856,22 @@
       <summary>
             A service exposed by the build-time part of PostSharp.
             </summary>
+    </member>
+    <member name="T:PostSharp.Extensibility.IServiceLocator">
+      <summary>
+            Exposes build-time services.
+            </summary>
+    </member>
+    <member name="M:PostSharp.Extensibility.IServiceLocator.GetService``1(System.Boolean)">
+      <summary>
+            Gets a build-time service exposed by PostSharp.
+            </summary>
+      <param name="throwing">
+        <c>true</c> whether an exception should be thrown in case the service cannot be acquired, otherwise <c>false</c>.
+            The default value is <c>true</c>.</param>
+      <typeparam name="T">An interface derived from <see cref="T:PostSharp.Extensibility.IService" />.</typeparam>
+      <returns>The service <typeparamref name="T" />, or <c>null</c> if the service could not be acquired and <paramref name="throwing" />
+            was set to <c>false</c>.</returns>
     </member>
     <member name="T:PostSharp.Extensibility.ITargetFramework">
       <summary>
@@ -4366,6 +4182,11 @@
             </summary>
       <param name="metricName">Metric name.</param>
       <param name="operand">Metric operand.</param>
+    </member>
+    <member name="P:PostSharp.Extensibility.MetricAttribute.AllowImplementationMetrics">
+      <summary>
+        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "P:PostSharp.Extensibility.MetricAttribute.AllowImplementationMetrics"]</p>
+      </summary>
     </member>
     <member name="P:PostSharp.Extensibility.MetricAttribute.MetricName">
       <summary>
@@ -4716,17 +4537,6 @@
               apply to.
             </summary>
     </member>
-    <member name="T:PostSharp.Extensibility.MulticastImplementationDetailsTypeAttribute">
-      <summary>
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "T:PostSharp.Extensibility.MulticastImplementationDetailsTypeAttribute"]</p>
-      </summary>
-    </member>
-    <member name="M:PostSharp.Extensibility.MulticastImplementationDetailsTypeAttribute.#ctor(System.Type)">
-      <summary>Initializes a new instance of the <see cref="T:PostSharp.Extensibility.MulticastImplementationDetailsTypeAttribute" /> class</summary>
-      <param name="type">
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;param name="type"/&gt; documentation for "M:PostSharp.Extensibility.MulticastImplementationDetailsTypeAttribute.#ctor(System.Type)"]</p>
-      </param>
-    </member>
     <member name="T:PostSharp.Extensibility.MulticastInheritance">
       <summary>
               Kind of inheritance of <see cref="T:PostSharp.Extensibility.MulticastAttribute" />.
@@ -5018,32 +4828,6 @@
     <member name="P:PostSharp.Extensibility.ProjectResource.Value">
       <summary>
             Gets the resource value, i.e. the object that has been constructed by deserializing the XML element.
-            </summary>
-    </member>
-    <member name="T:PostSharp.Extensibility.RequireLicenseAttribute">
-      <summary>
-            Custom attribute that, when applied to an aspect, causes PostSharp to require some license in order to weave the aspect.
-            </summary>
-    </member>
-    <member name="M:PostSharp.Extensibility.RequireLicenseAttribute.#ctor(System.Int32)">
-      <summary>
-            Initializes a new <see cref="T:PostSharp.Extensibility.RequireLicenseAttribute" />.
-            </summary>
-      <param name="product">Identifier of the licensed product.</param>
-    </member>
-    <member name="P:PostSharp.Extensibility.RequireLicenseAttribute.Description">
-      <summary>
-            Gets or sets the human-readable description of the license requirement.
-            </summary>
-    </member>
-    <member name="P:PostSharp.Extensibility.RequireLicenseAttribute.Features">
-      <summary>
-            Gets or sets the bitmask of required licensed features.
-            </summary>
-    </member>
-    <member name="P:PostSharp.Extensibility.RequireLicenseAttribute.Product">
-      <summary>
-            Gets the identifier of the required licensed product.
             </summary>
     </member>
     <member name="T:PostSharp.Extensibility.RequirePostSharpAttribute">
@@ -7456,17 +7240,6 @@
         <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "T:PostSharp.Serialization.ActivatorProvider"]</p>
       </summary>
     </member>
-    <member name="M:PostSharp.Serialization.ActivatorProvider.GetActivator(System.Type)">
-      <summary>
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "M:PostSharp.Serialization.ActivatorProvider.GetActivator(System.Type)"]</p>
-      </summary>
-      <param name="type">
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;param name="type"/&gt; documentation for "M:PostSharp.Serialization.ActivatorProvider.GetActivator(System.Type)"]</p>
-      </param>
-      <returns>
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;returns&gt; documentation for "M:PostSharp.Serialization.ActivatorProvider.GetActivator(System.Type)"]</p>
-      </returns>
-    </member>
     <member name="T:PostSharp.Serialization.ActivatorSecurityToken">
       <summary>
             Security token passed to the <see cref="M:PostSharp.Serialization.IActivator.CreateInstance(System.Type,PostSharp.Serialization.ActivatorSecurityToken)" /> method of the <see cref="T:PostSharp.Serialization.IActivator" /> interface.
@@ -7505,7 +7278,7 @@
       <summary>
             Determines whether the current<see cref="T:PostSharp.Serialization.DottedString" /> is equal to another one.
             </summary>
-      <param name="other">Another <see cref="!:other" />.</param>
+      <param name="other">Another <see cref="T:PostSharp.Serialization.DottedString" />.</param>
       <returns>
         <c>true</c> if the current <see cref="T:PostSharp.Serialization.DottedString" /> equals <c>other</c>, otherwise <c>false</c>.</returns>
     </member>
@@ -7576,7 +7349,7 @@
       <param name="name">Argument name.</param>
       <param name="scope">An optional prefix of <paramref name="name" />, similar to a namespace.</param>
       <typeparam name="T">Value type.</typeparam>
-      <returns>The value of the argument named <paramref name="name" /> in the given optional <see cref="!:scope" />.</returns>
+      <returns>The value of the argument named <paramref name="name" /> in the given optional <paramref name="scope" />.</returns>
     </member>
     <member name="P:PostSharp.Serialization.IArgumentsReader.MetadataDispenser">
       <summary>
@@ -7589,7 +7362,7 @@
             Attempts to read a value from the collection, and does not throw an exception if the value does not exist.
             </summary>
       <param name="name">Argument name.</param>
-      <param name="value">At output, set to the value of the argument named <paramref name="name" /> in the given optional <see cref="!:scope" />.</param>
+      <param name="value">At output, set to the value of the argument named <paramref name="name" /> in the given optional <paramref name="scope" />.</param>
       <param name="scope">An optional prefix of <paramref name="name" />, similar to a namespace.</param>
       <typeparam name="T">Value type.</typeparam>
       <returns>
@@ -7806,8 +7579,8 @@
     </member>
     <member name="T:PostSharp.Serialization.PortableSerializationBinder">
       <summary>
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;summary&gt; documentation for "T:PostSharp.Serialization.PortableSerializationBinder"]</p>
-      </summary>
+            Binds types to names and names to types. Used by the <see cref="T:PostSharp.Serialization.PortableFormatter" />.
+            </summary>
     </member>
     <member name="M:PostSharp.Serialization.PortableSerializationBinder.#ctor">
       <summary>Initializes a new instance of the <see cref="T:PostSharp.Serialization.PortableSerializationBinder" /> class</summary>
