@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.ModuleManagement;
 using Woozle.Domain.PermissionManagement;
@@ -9,6 +8,7 @@ using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.ModuleManagement
 {
@@ -16,10 +16,9 @@ namespace Woozle.UnitTest.Domain.ModuleManagement
     /// <summary>
     /// Tests for the ModuleLogic
     /// </summary>
-    [TestClass]
     public class ModuleLogicTest
     {
-        [TestMethod]
+        [Fact]
         public void GetSeveralModulesByMandatorTest()
         {
             var mandator = new Model.Mandator() {Id = 1, Name = "MyMandator"};
@@ -61,9 +60,9 @@ namespace Woozle.UnitTest.Domain.ModuleManagement
             var moduleLogic = new ModuleLogic(permissionManagerMock.Object, repositoryMock.Object);
             var modules = moduleLogic.GetModulesByMandator(session);
 
-            Assert.AreEqual(1, modules.Count);
-            Assert.AreEqual(1, modules[0].Functions.Count);
-            Assert.AreEqual(function1.LogicalId, modules[0].Functions[0].LogicalId);
+            Assert.Equal(1, modules.Count);
+            Assert.Equal(1, modules[0].Functions.Count);
+            Assert.Equal(function1.LogicalId, modules[0].Functions[0].LogicalId);
         }
     }
 }

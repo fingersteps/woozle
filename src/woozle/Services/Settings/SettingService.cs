@@ -54,7 +54,7 @@ namespace Woozle.Services.Settings
         {
             var saveResult = this.settingsLogic.Save(Mapper.Map<Setting, Woozle.Model.Setting>(requestDto), Session);
             var result =
-                Mapper.Map<ISaveResult<Woozle.Model.Setting>, SaveResultDto<Setting>>(saveResult);
+                Mapper.Map<ISaveResult<Setting>, SaveResultDto<Setting>>(saveResult);
             return result;
         }
     }

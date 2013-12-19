@@ -1,27 +1,25 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.ModuleManagement;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Modules;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Modules
 {
-    [TestClass]
     public class ModuleServiceTest : SessionTestBase
     {
-        private Mock<IModuleLogic> moduleLogicMock;
+        private readonly Mock<IModuleLogic> moduleLogicMock;
 
-        [TestInitialize]
-        public void Initialize()
+        public ModuleServiceTest()
         {
             this.moduleLogicMock = new Mock<IModuleLogic>();
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void FindAllTest()
         {
             var modules = new List<ModuleForMandator>()
@@ -34,8 +32,8 @@ namespace Woozle.UnitTest.Services.Modules
             var service = CreateModuleService();
             var result = service.Get(new ModulesDto());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
         }
 
         private ModuleService CreateModuleService()

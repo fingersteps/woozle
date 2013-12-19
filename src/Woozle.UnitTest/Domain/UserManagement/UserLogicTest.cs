@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ServiceStack.FluentValidation.Results;
 using Woozle.Domain.PermissionManagement;
@@ -11,19 +10,18 @@ using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.UserManagement
 {
-    [TestClass]
     public class UserLogicTest
     {
         private IUserLogic userLogic;
-        private Mock<IUserRepository> userRepositoryMock;
-        private Mock<IUserValidator> userValidatorMock;
-        private Mock<IPermissionManager> permissionManagerMock;
+        private readonly Mock<IUserRepository> userRepositoryMock;
+        private readonly Mock<IUserValidator> userValidatorMock;
+        private readonly Mock<IPermissionManager> permissionManagerMock;
 
-        [TestInitialize]
-        public void Initialize()
+        public UserLogicTest()
         {
             userRepositoryMock = new Mock<IUserRepository>();
             userValidatorMock = new Mock<IUserValidator>();
@@ -34,7 +32,7 @@ namespace Woozle.UnitTest.Domain.UserManagement
             userValidatorMock.Setup(n => n.Validate(It.IsAny<User>())).Returns(new ValidationResult());
         }
 
-        [TestMethod]
+        [Fact]
         public void UserSearchTest()
         {
             var results = new List<UserSearchResult>();
@@ -67,12 +65,12 @@ namespace Woozle.UnitTest.Domain.UserManagement
                             new Session(Guid.NewGuid(), 
                             new SessionData(null, null), DateTime.Now.AddHours(10)));
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(results, result);
-            Assert.AreEqual(1, result[0].Id);
+            Assert.NotNull(result);
+            Assert.Equal(results, result);
+            Assert.Equal(1, result[0].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void UserSearchWithNullableCriteriaTest()
         {
             this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object, permissionManagerMock.Object);
@@ -81,11 +79,11 @@ namespace Woozle.UnitTest.Domain.UserManagement
                             new Session(Guid.NewGuid(),
                             new SessionData(null, null), DateTime.Now.AddHours(10)));
 
-            Assert.IsNull(result);
+            Assert.Null(result);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void GetUsersForMandatorTest()
         {
             var session = new Session(Guid.NewGuid(), new SessionData(null, new Model.Mandator() {Id = 1}),
@@ -148,10 +146,10 @@ namespace Woozle.UnitTest.Domain.UserManagement
 
             var result = this.userLogic.GetUsersOfMandator(session);
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].Id);
-            Assert.AreEqual(3, result[1].Id);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].Id);
+            Assert.Equal(3, result[1].Id);
         }
 
     }

@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Settings;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.Settings
 {
-    [TestClass]
     public class SettingsLogicTest
     {
-        private Mock<IRepository<Setting>> settingsRepositoryMock;
-        private SettingsLogic settingsLogic;
-        private IQueryable<Setting> settings;
-        private Session session;
+        private readonly Mock<IRepository<Setting>> settingsRepositoryMock;
+        private readonly SettingsLogic settingsLogic;
+        private readonly IQueryable<Setting> settings;
+        private readonly Session session;
 
-        [TestInitialize]
-        public void Initialize()
+        public SettingsLogicTest()
         {
             settingsRepositoryMock = new Mock<IRepository<Setting>>(MockBehavior.Strict);
             settingsLogic = new SettingsLogic(settingsRepositoryMock.Object);
@@ -37,17 +35,17 @@ namespace Woozle.UnitTest.Domain.Settings
                            }.AsQueryable();
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadTest()
         {
             settingsRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(settings);
             var setting = settingsLogic.Load(session);
-            Assert.IsNotNull(setting);
-            Assert.AreEqual(settings.First().EventManagementPlanningEMail, setting.EventManagementPlanningEMail);
-            Assert.AreEqual(settings.First().EventManagementPlanningMobile, setting.EventManagementPlanningMobile);
+            Assert.NotNull(setting);
+            Assert.Equal(settings.First().EventManagementPlanningEMail, setting.EventManagementPlanningEMail);
+            Assert.Equal(settings.First().EventManagementPlanningMobile, setting.EventManagementPlanningMobile);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveTest()
         {
             var setting = new Setting() { Id = 2, EventManagementPlanningEMail = "Mail1", EventManagementPlanningMobile = "Mobile1" };
@@ -58,9 +56,9 @@ namespace Woozle.UnitTest.Domain.Settings
             settingsRepositoryMock.Setup(n => n.UnitOfWork).Returns(unitOfWorkMock.Object);
 
             var savedSetting = settingsLogic.Save(setting, session);
-            Assert.IsNotNull(setting);
-            Assert.AreEqual(setting.EventManagementPlanningEMail, savedSetting.TargetObject.EventManagementPlanningEMail);
-            Assert.AreEqual(setting.EventManagementPlanningMobile, savedSetting.TargetObject.EventManagementPlanningMobile);
+            Assert.NotNull(setting);
+            Assert.Equal(setting.EventManagementPlanningEMail, savedSetting.TargetObject.EventManagementPlanningEMail);
+            Assert.Equal(setting.EventManagementPlanningMobile, savedSetting.TargetObject.EventManagementPlanningMobile);
         }
     }
 }

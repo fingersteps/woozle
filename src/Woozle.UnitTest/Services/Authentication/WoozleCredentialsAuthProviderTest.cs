@@ -1,5 +1,4 @@
 ﻿using Funq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ServiceStack.ServiceInterface;
 using Woozle.Domain.Authentication;
@@ -7,20 +6,19 @@ using Woozle.Model;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Services.Authentication;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Authentication
 {
-    [TestClass]
     public class WoozleCredentialsAuthProviderTest
     {
-        private WoozleCredentialsAuthProvider prosaCredentialsAuthProvider;
-        private Mock<IAuthenticationLogic> authenticationLogicMock;
-        private Mock<IServiceBase> servicebaseMock;
+        private readonly WoozleCredentialsAuthProvider prosaCredentialsAuthProvider;
+        private readonly Mock<IAuthenticationLogic> authenticationLogicMock;
+        private readonly Mock<IServiceBase> servicebaseMock;
 
-        private Container container;
+        private readonly Container container;
 
-        [TestInitialize]
-        public void Initialize()
+        public WoozleCredentialsAuthProviderTest()
         {
             authenticationLogicMock = new Mock<IAuthenticationLogic>();
             container = new Container();
@@ -30,7 +28,7 @@ namespace Woozle.UnitTest.Services.Authentication
             prosaCredentialsAuthProvider = new WoozleCredentialsAuthProvider(container);
         }
 
-        [TestMethod]
+        [Fact]
         public void TryAuthenticateLoginSuccessfulWithOneMandatorTest()
         {
             const string username = "pro";
@@ -60,10 +58,10 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 
-            Assert.IsTrue(authenticateResult);
+            Assert.True(authenticateResult);
         }
 
-        [TestMethod]
+        [Fact]
         public void TryAuthenticateLoginSuccessfulWithMoreThanOneMandatorTest()
         {
             const string username = "pro";
@@ -107,10 +105,10 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 
-            Assert.IsTrue(authenticateResult);
+            Assert.True(authenticateResult);
         }
 
-        [TestMethod]
+        [Fact]
         public void TryAuthenticateLoginNotSuccessfulTest()
         {
             const string username = "pro";
@@ -126,7 +124,7 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 
-            Assert.IsFalse(authenticateResult);
+            Assert.False(authenticateResult);
         }
     }
 }

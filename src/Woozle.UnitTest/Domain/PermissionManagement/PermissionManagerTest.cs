@@ -1,26 +1,24 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.PermissionManagement
 {
-    [TestClass]
     public class PermissionManagerTest
     {
-        private Mock<IPermissionProvider> permissionProviderMock;
-        private PermissionManager permissionManager;
-        
-        [TestInitialize]
-        public void Initialize()
+        private readonly Mock<IPermissionProvider> permissionProviderMock;
+        private readonly PermissionManager permissionManager;
+
+        public PermissionManagerTest()
         {
-            this.permissionProviderMock = new Mock<IPermissionProvider>();   
+            this.permissionProviderMock = new Mock<IPermissionProvider>();
             this.permissionManager = new PermissionManager(permissionProviderMock.Object);
         }
 
-        [TestMethod]
+        [Fact]
         public void HasPermissionTest()
         {
             this.permissionProviderMock.Setup(n => n.GetAssignedPermissions(It.IsAny<SessionData>()))
@@ -52,10 +50,10 @@ namespace Woozle.UnitTest.Domain.PermissionManagement
                                                              }
                                                      });
 
-            Assert.IsTrue(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
+            Assert.True(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
         }
 
-        [TestMethod]
+        [Fact]
         public void HasNoPermissionTest()
         {
             this.permissionProviderMock.Setup(n => n.GetAssignedPermissions(It.IsAny<SessionData>()))
@@ -87,13 +85,13 @@ namespace Woozle.UnitTest.Domain.PermissionManagement
                                                              }
                                                      });
 
-            Assert.IsFalse(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
+            Assert.False(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
         }
 
-        [TestMethod]
+        [Fact]
         public void PermissionsNullTest()
         {
-            Assert.IsFalse(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
+            Assert.False(this.permissionManager.HasPermission(new SessionData(null, null), "4", "3"));
         }
 
     }

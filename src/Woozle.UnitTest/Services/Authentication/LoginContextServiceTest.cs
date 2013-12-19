@@ -1,21 +1,19 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Authentication;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Authentication
 {
-    [TestClass]
     public class LoginContextServiceTest : SessionTestBase
     {
-        private LoginContextService loginContextService;
-        private User user;
-        private Model.Mandator mandator;
+        private readonly LoginContextService loginContextService;
+        private readonly User user;
+        private readonly Model.Mandator mandator;
 
-        [TestInitialize]
-        public void Initialize()
+        public LoginContextServiceTest()
         {
             MappingConfiguration.Configure();
 
@@ -32,7 +30,7 @@ namespace Woozle.UnitTest.Services.Authentication
                 };
         }
 
-        [TestMethod]
+        [Fact]
         public void GetLoginContextOfLoggedInUserTest()
         {
             user.Username = "sha";
@@ -40,10 +38,10 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var result = loginContextService.Get(new LoginContext());
 
-            Assert.IsNotNull(result.UserDto);
-            Assert.AreEqual(user.Username, result.UserDto.Username);
-            Assert.IsNotNull(result.MandatorDto);
-            Assert.AreEqual(mandator.Name, result.MandatorDto.Name);
+            Assert.NotNull(result.UserDto);
+            Assert.Equal(user.Username, result.UserDto.Username);
+            Assert.NotNull(result.MandatorDto);
+            Assert.Equal(mandator.Name, result.MandatorDto.Name);
         }
     }
 }

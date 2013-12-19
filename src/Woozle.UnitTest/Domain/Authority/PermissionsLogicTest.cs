@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Authority;
 using Woozle.Model;
 using Woozle.Model.ModulePermissions;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.Authority
 {
-    [TestClass]
     public class PermissionsLogicTest
     {
         private Role Role { get; set; }
@@ -21,12 +20,10 @@ namespace Woozle.UnitTest.Domain.Authority
         private Mock<IRepository<MandatorRole>> MandatorRoleRepositoryMock { get; set; }
         private Mock<IRepository<FunctionPermission>> FunctionPermissionRepositoryMock { get; set; }
         private Mock<IUnitOfWork> UnitOfWorkMock { get; set; }
-        private PermissionsLogic permissionsLogic;
-        private IQueryable<User> userList;
+        private readonly PermissionsLogic permissionsLogic;
+        private readonly IQueryable<User> userList;
 
-
-        [TestInitialize]
-        public void Initialize()
+        public PermissionsLogicTest()
         {
             Role = new Role();
             Session = new Session(Guid.Empty, new SessionData(null, new Model.Mandator() {Id = 1}), DateTime.Now);
@@ -40,8 +37,8 @@ namespace Woozle.UnitTest.Domain.Authority
                                                          this.FunctionPermissionRepositoryMock.Object,
                                                          this.UserRepositoryMock.Object);
 
-            userList = new List<User>()
-                {
+            userList = new List<User>
+                       {
                     new User
                         {
                             Id = 1,
@@ -135,7 +132,7 @@ namespace Woozle.UnitTest.Domain.Authority
                 }.AsQueryable();
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveAddedPermissionsTest()
         {
             var mandatorRole = new MandatorRole { Id = 1 };
@@ -168,12 +165,12 @@ namespace Woozle.UnitTest.Domain.Authority
                                              this.FunctionPermissionRepositoryMock.Object, null);
             logic.SaveChangedPermissions(Role, changedPermissions, Session);
 
-            Assert.AreEqual(2, mandatorRole.FunctionPermissions.Count);
-            Assert.AreEqual(functionPermission1.Id, mandatorRole.FunctionPermissions[0].Id);
-            Assert.AreEqual(functionPermission2.Id, mandatorRole.FunctionPermissions[1].Id);
+            Assert.Equal(2, mandatorRole.FunctionPermissions.Count);
+            Assert.Equal(functionPermission1.Id, mandatorRole.FunctionPermissions[0].Id);
+            Assert.Equal(functionPermission2.Id, mandatorRole.FunctionPermissions[1].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveRemovedPermissionsTest()
         {
             var functionPermission1 = new FunctionPermission() { Id = 1 };
@@ -211,10 +208,10 @@ namespace Woozle.UnitTest.Domain.Authority
                                              this.FunctionPermissionRepositoryMock.Object, null);
             logic.SaveChangedPermissions(Role, changedPermissions, Session);
 
-            Assert.AreEqual(0, mandatorRole.FunctionPermissions.Count);
+            Assert.Equal(0, mandatorRole.FunctionPermissions.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveMixedPermissionsTest()
         {
             var functionPermission1 = new FunctionPermission() { Id = 1 };
@@ -251,11 +248,11 @@ namespace Woozle.UnitTest.Domain.Authority
                                              this.FunctionPermissionRepositoryMock.Object, null);
             logic.SaveChangedPermissions(Role, changedPermissions, Session);
 
-            Assert.AreEqual(1, mandatorRole.FunctionPermissions.Count);
-            Assert.AreEqual(functionPermission2.Id, mandatorRole.FunctionPermissions[0].Id);
+            Assert.Equal(1, mandatorRole.FunctionPermissions.Count);
+            Assert.Equal(functionPermission2.Id, mandatorRole.FunctionPermissions[0].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAssignedPermissionsTest()
         {
             var sessionUser = new User
@@ -272,11 +269,11 @@ namespace Woozle.UnitTest.Domain.Authority
 
             var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
 
-            Assert.AreEqual(3, result.Count);
+            Assert.Equal(3, result.Count);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void GetAssignedPermissionsNoPermissionsForMandatorTest()
         {
             var sessionUser = new User
@@ -293,10 +290,10 @@ namespace Woozle.UnitTest.Domain.Authority
 
             var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
 
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAssignedPermissionsNoPermissionsForUserTest()
         {
             var sessionUser = new User
@@ -313,7 +310,7 @@ namespace Woozle.UnitTest.Domain.Authority
 
             var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
 
-            Assert.AreEqual(0, result.Count);
+            Assert.Equal(0, result.Count);
         }
     }
 }

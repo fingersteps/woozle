@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.PersonManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.PersonManagement
 {
-    [TestClass]
     public class PersonLogicTest
     {
         private Person person;
@@ -19,91 +18,92 @@ namespace Woozle.UnitTest.Domain.PersonManagement
         private Mock<IRepository<Person>> personRepositoryMock;
         private IQueryable<Person> personData;
 
-        [TestInitialize]
-        public void Initialize()
+        public PersonLogicTest()
         {
             personRepositoryMock = new Mock<IRepository<Person>>(MockBehavior.Strict);
-            
+
             session = new Session(Guid.NewGuid(), null, DateTime.Now);
             person = new Person();
             logic = new PersonLogic(personRepositoryMock.Object);
 
             personData = new List<Person>()
+                         {
+                             new Person()
                              {
-                                 new Person()
-                                     {
-                                         Id = 1,
-                                         FirstName = "Andreas",
-                                         LastName = "Schürmann",
-                                         Street = "Geissburghalde 17",
-                                         CityId = 1
-                                     },
-                                 new Person()
-                                     {
-                                         Id = 2,
-                                         FirstName = "Andreas",
-                                         LastName = "Schürmann",
-                                         Street = "Geissburghalde 17",
-                                         CityId = 2
-                                     },
-                                 new Person()
-                                     {
-                                         Id = 3,
-                                         EnterpriseName = "Bison Schweiz AG",
-                                         FirstName = "Andreas",
-                                         LastName = "Schürmann",
-                                         Street = "Allee 1a",
-                                         CityId = 55
-                                     },
-                                 new Person()
-                                     {
-                                         Id = 4,
-                                         FirstName = "Patrick",
-                                         LastName = "Roos",
-                                         Street = "Geissburghalde 17",
-                                         CityId = 1
-                                     },
-                                      new Person()
-                                     {
-                                         Id = 6,
-                                         EnterpriseName = "Bison Schweiz AG",
-                                         Street = "Allee 1a",
-                                         CityId = 55
-                                     }
-                             }.AsQueryable();
+                                 Id = 1,
+                                 FirstName = "Firstname 1",
+                                 LastName = "Lastname 1",
+                                 Street = "Street 1",
+                                 CityId = 1
+                             },
+                             new Person()
+                             {
+                                 Id = 2,
+                                 FirstName = "Firstname 2",
+                                 LastName = "Lastname 2",
+                                 Street = "Street 2",
+                                 CityId = 2
+                             },
+                             new Person()
+                             {
+                                 Id = 3,
+                                 EnterpriseName = "Enterprise 2",
+                                 FirstName = "Firstname 1",
+                                 LastName = "Lastname 1",
+                                 Street = "Street 2",
+                                 CityId = 55
+                             },
+                             new Person()
+                             {
+                                 Id = 4,
+                                 FirstName = "Firstname 2",
+                                 LastName = "Lastname 2",
+                                 Street = "Street 2",
+                                 CityId = 1
+                             },
+                             new Person()
+                             {
+                                 Id = 6,
+                                 EnterpriseName = "Enterprise 1",
+                                 Street = "Street 1",
+                                 CityId = 55
+                             }
+                         }.AsQueryable();
         }
 
-        [TestMethod]
+
+
+        [Fact]
         public void CheckForExistingPersonWithExistingEnterpriseTest()
         {
-            person.EnterpriseName = "Bison Schweiz AG";
-            person.Street = "Allee 1a";
+            person.EnterpriseName = "Enterprise 1";
+            person.Street = "Street 1";
             person.CityId = 55;
 
             personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(6, result.Id);
-            Assert.AreEqual(PState.Modified, result.PersistanceState);
+            Assert.Equal(6, result.Id);
+            Assert.Equal(PState.Modified, result.PersistanceState);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckForExistingPersonWithNotExistingEnterpriseTest()
         {
-            person.EnterpriseName = "Basenet Informatik AG";
-            person.Street = "Wassergrabe 1";
+            person.EnterpriseName = "Enterprise 2";
+            person.Street = "Street 2";
             person.CityId = 55;
 
             personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(0, result.Id);
-            Assert.AreEqual(PState.Added, result.PersistanceState);
+            Assert.Equal(0, result.Id);
+            Assert.Equal(PState.Added, result.PersistanceState);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckForExistingPersonWithNotExistingPersonTest()
         {
             person.FirstName = "Susi";
@@ -117,18 +117,18 @@ namespace Woozle.UnitTest.Domain.PersonManagement
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(0, result.Id);
-            Assert.AreEqual(PState.Added, result.PersistanceState);
-            Assert.AreEqual(person.EMail, result.EMail);
-            Assert.AreEqual(person.Phone, result.Phone);
-            Assert.AreEqual(person.Mobile, result.Mobile);
+            Assert.Equal(0, result.Id);
+            Assert.Equal(PState.Added, result.PersistanceState);
+            Assert.Equal(person.EMail, result.EMail);
+            Assert.Equal(person.Phone, result.Phone);
+            Assert.Equal(person.Mobile, result.Mobile);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckForExistingPersonWithNotExistingPersonButSameNameTest()
         {
-            person.FirstName = "Andreas";
-            person.LastName = "Schürmann";
+            person.FirstName = "Person 123";
+            person.LastName = "Person 123";
             person.Street = "DieAndereStrasse 1";
             person.CityId = 55;
 
@@ -136,41 +136,41 @@ namespace Woozle.UnitTest.Domain.PersonManagement
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(0, result.Id);
-            Assert.AreEqual(PState.Added, result.PersistanceState);
+            Assert.Equal(0, result.Id);
+            Assert.Equal(PState.Added, result.PersistanceState);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void CheckForExistingPersonWithExistingPersonTest()
         {
-            person.FirstName = "Andreas";
-            person.LastName = "Schürmann";
-            person.Street = "Geissburghalde 17";
+            person.FirstName = "Firstname 1";
+            person.LastName = "Lastname 1";
+            person.Street = "Street 1";
             person.CityId = 1;
 
             personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(1, result.Id);
-            Assert.AreEqual(PState.Modified, result.PersistanceState);
+            Assert.Equal(1, result.Id);
+            Assert.Equal(PState.Modified, result.PersistanceState);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckForExistingPersonWithUpdatedPersonTest()
         {
             person.Id = 55;
-            person.FirstName = "Andreas";
-            person.LastName = "Schürmann";
-            person.Street = "Geissburghalde 17";
+            person.FirstName = "Firstname 1";
+            person.LastName = "Lastname 1";
+            person.Street = "Street 1";
             person.CityId = 1;
 
             personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
 
             var result = logic.SearchForExistingPerson(person, session);
 
-            Assert.AreEqual(55, result.Id);
+            Assert.Equal(55, result.Id);
         }
     }
 }

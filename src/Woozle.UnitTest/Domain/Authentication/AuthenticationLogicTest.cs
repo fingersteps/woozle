@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Authentication;
 using Woozle.Model;
@@ -8,25 +7,23 @@ using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.Authentication
 {
-    [TestClass]
     public class AuthenticationLogicTest
     {
-        private IAuthenticationLogic authLogic;
-        private Mock<IUserRepository> userRepositoryMock;
+        private readonly IAuthenticationLogic authLogic;
+        private readonly Mock<IUserRepository> userRepositoryMock;
 
-        [TestInitialize]
-        public void InitializeTest()
+        public AuthenticationLogicTest()
         {
             this.userRepositoryMock = new Mock<IUserRepository>();
 
             this.authLogic = new AuthenticationLogic(userRepositoryMock.Object);
-
         }
-
-        [TestMethod]
+       
+        [Fact]
         public void LoginWithOneMandatorTest()
         {
             var exampleMandator = new Model.Mandator {Id = 0, Name = "Test"};
@@ -56,17 +53,15 @@ namespace Woozle.UnitTest.Domain.Authentication
 
             var result = this.authLogic.Login(loginRequest);
 
-            Assert.IsTrue(result.LoginSuccessful);
-            Assert.IsFalse(result.CheckMandators);
-            Assert.IsNull(result.SuggestedMandators);
-            Assert.AreEqual(selectedSessionData, result.SessionData);
+            Assert.True(result.LoginSuccessful);
+            Assert.False(result.CheckMandators);
+            Assert.Null(result.SuggestedMandators);
+            Assert.Equal(selectedSessionData, result.SessionData);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoginWithSeveralMandatorsTest()
          {
-
-
              var exampleMandator1 = new Model.Mandator { Id = 0, Name = "Test1" };
              var exampleMandator2 = new Model.Mandator { Id = 1, Name = "Test2" };
 
@@ -92,20 +87,18 @@ namespace Woozle.UnitTest.Domain.Authentication
 
              var result = this.authLogic.Login(loginRequest);
 
-             Assert.IsFalse(result.LoginSuccessful);
-             Assert.IsTrue(result.CheckMandators);
-             Assert.IsNotNull(result.SuggestedMandators);
+             Assert.False(result.LoginSuccessful);
+             Assert.True(result.CheckMandators);
+             Assert.NotNull(result.SuggestedMandators);
              
-            Assert.AreEqual(0, result.SuggestedMandators.First().Id);
-            Assert.AreEqual("Test1", result.SuggestedMandators.First().Name);
-            Assert.AreEqual(1, result.SuggestedMandators.Last().Id);
-            Assert.AreEqual("Test2", result.SuggestedMandators.Last().Name);
+            Assert.Equal(0, result.SuggestedMandators.First().Id);
+            Assert.Equal("Test1", result.SuggestedMandators.First().Name);
+            Assert.Equal(1, result.SuggestedMandators.Last().Id);
+            Assert.Equal("Test2", result.SuggestedMandators.Last().Name);
          }
 
 
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidLoginException))]
         public void IncorrectLoginTest()
         {
             var loginRequest = new LoginRequest
@@ -116,9 +109,14 @@ namespace Woozle.UnitTest.Domain.Authentication
             };
 
             this.authLogic.Login(loginRequest);
+
+            Assert.Throws<InvalidLoginException>(() =>
+                                                     {
+                                                         authLogic.Login(loginRequest);
+                                                     });
         }
 
-        [TestMethod]
+        [Fact]
         public void LoginWithOneMandatorUserIsInactiveTest()
         {
             var exampleMandator = new Model.Mandator { Id = 0, Name = "Test" };
@@ -147,9 +145,9 @@ namespace Woozle.UnitTest.Domain.Authentication
 
             var result = this.authLogic.Login(loginRequest);
 
-            Assert.IsFalse(result.LoginSuccessful);
-            Assert.IsFalse(result.CheckMandators);
-            Assert.IsNull(result.SuggestedMandators);
+            Assert.False(result.LoginSuccessful);
+            Assert.False(result.CheckMandators);
+            Assert.Null(result.SuggestedMandators);
         }
     }
 }

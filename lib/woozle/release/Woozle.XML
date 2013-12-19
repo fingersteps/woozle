@@ -22,7 +22,7 @@
         </member>
         <member name="T:Woozle.Domain.Authentication.IAuthenticationLogic">
             <summary>
-            Interface for the authentication businesslogic.
+            Authentication businesslogic.
             </summary>
             <remarks></remarks>
         </member>
@@ -245,16 +245,25 @@
             <param name="session"></param>
             <returns>A found person or the same person which was given as parameter when there was no matching person found.</returns>
         </member>
-        <member name="M:Woozle.Domain.Translation.ITranslator.GetTranslatedText(Woozle.Model.SessionHandling.Session,System.String)">
+        <member name="T:Woozle.Domain.Settings.ISettingsLogic">
             <summary>
-            Gets for a text the translation by the language of the user for a given message code.
-            <remarks>
-                If there is no translation it will get back the defaultdescription.
-            </remarks>
+            Settings related logic
             </summary>
-            <param name="session">The curren <see cref="T:Woozle.Model.SessionHandling.Session"/></param>
-            <param name="messgeCode">The cod of the message</param>
-            <returns>The translated text or null when nothing could be found with the given messageCode.</returns>
+        </member>
+        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Load(Woozle.Model.SessionHandling.Session)">
+            <summary>
+            Loads a specific <see cref="T:Woozle.Model.Setting"/>
+            </summary>
+            <param name="session">The session</param>
+            <returns>The loaded <see cref="T:Woozle.Model.Setting"/></returns>
+        </member>
+        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Save(Woozle.Model.Setting,Woozle.Model.SessionHandling.Session)">
+            <summary>
+            Saves a specific <see cref="T:Woozle.Model.Setting"/>
+            </summary>
+            <param name="saveableObject">The <see cref="T:Woozle.Model.Setting"/> to save.</param>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <returns>The result of the save process as <see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/></returns>
         </member>
         <member name="T:Woozle.Domain.UserManagement.Constants">
             <summary>
@@ -397,6 +406,39 @@
             <param name="session">The required session.</param>
             <returns><see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/></returns>
         </member>
+        <member name="T:Woozle.Host.WoozleHost">
+            <summary>
+            HTTP Serverhost based on <see cref="T:ServiceStack.WebHost.Endpoints.AppHostHttpListenerBase"/>
+            </summary>
+        </member>
+        <member name="M:Woozle.Host.WoozleHost.#ctor(System.String,System.Reflection.Assembly[])">
+            <summary>
+            Initializes a new <see cref="T:Woozle.Host.WoozleHost"/>
+            </summary>
+            <param name="serviceName">The name of the service</param>
+            <param name="assemblies">The assemblies which contain services</param>
+        </member>
+        <member name="M:Woozle.Host.WoozleHost.Configure(Funq.Container)">
+            <summary>
+            Configures the host.
+            </summary>
+            <remarks>
+             - Adds the <see cref="T:ServiceStack.ServiceInterface.SessionFeature"/>
+             - Adds the <see cref="T:ServiceStack.ServiceInterface.AuthFeature"/> with the <see cref="T:Woozle.Services.Authentication.WoozleCredentialsAuthProvider"/>
+             - Adds the <see cref="T:Woozle.Dependencies.WoozlePlugin"/>
+            </remarks>
+            <param name="container">The IoC-Container</param>
+        </member>
+        <member name="T:Woozle.Services.AbstractService">
+            <summary>
+            Base Service
+            </summary>
+        </member>
+        <member name="P:Woozle.Services.AbstractService.Session">
+            <summary>
+            <see cref="P:Woozle.Services.AbstractService.Session">Session </see> for authorisation
+            </summary>
+        </member>
         <member name="M:Woozle.Services.Authentication.LoginContextService.Get(Woozle.Services.Authentication.LoginContext)">
             <summary>
             Gets the context of the user which is logged in to this Session (User and Mandator)
@@ -533,6 +575,11 @@
             </summary>
             <param name="requestDto"></param>
             <returns></returns>
+        </member>
+        <member name="T:Woozle.Services.MappingConfiguration">
+            <summary>
+            Mapping configuration betweeen Dto's and Model objects
+            </summary>
         </member>
         <member name="M:Woozle.Services.Modules.ModuleService.Get(Woozle.Services.Modules.ModulesDto)">
             <summary>

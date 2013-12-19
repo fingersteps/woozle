@@ -1,22 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.Validation.Creation;
 using Woozle.Services;
 using Woozle.Services.Mandator;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Mandator
 {
-    [TestClass]
     public class MandatorServiceTest : SessionTestBase
     {
-        private Mock<IMandatorLogic> mandatorLogicMock;
+        private readonly Mock<IMandatorLogic> mandatorLogicMock;
+        private readonly Model.Mandator modelMandator;
 
-        private Model.Mandator modelMandator;
-
-        [TestInitialize]
-        public void Initialize()
+ 
+        public MandatorServiceTest()
         {
             modelMandator = new Model.Mandator { Id = 1 };
 
@@ -24,7 +22,7 @@ namespace Woozle.UnitTest.Services.Mandator
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadTest()
         {
             mandatorLogicMock.Setup(n => n.LoadMandator(It.IsAny<Session>())).Returns(modelMandator);
@@ -32,11 +30,10 @@ namespace Woozle.UnitTest.Services.Mandator
             var service = CreateMandatorService();
             var result = service.Get(new MandatorDto { Id = 1 });
 
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
         }
        
-
-        [TestMethod]
+        [Fact]
         public void UpdateTest()
         {
             MockSave();
@@ -44,9 +41,9 @@ namespace Woozle.UnitTest.Services.Mandator
             var service = CreateMandatorService();
             var result = service.Put(new MandatorDto() { Id = 1 });
 
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.TargetObject);
-            Assert.AreEqual(1, result.TargetObject.Id);
+            Assert.NotNull(result);
+            Assert.NotNull(result.TargetObject);
+            Assert.Equal(1, result.TargetObject.Id);
         }
 
         private MandatorService CreateMandatorService()

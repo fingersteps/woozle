@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
@@ -9,17 +8,16 @@ using Woozle.Model.UserSearch;
 using Woozle.Model.Validation.Creation;
 using Woozle.Services;
 using Woozle.Services.UserManagement;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.UserManagement
 {
-    [TestClass]
     public class UserServiceTest : SessionTestBase
     {
         private Mock<IUserLogic> logicMock;
         private User modelUser;
 
-        [TestInitialize]
-        public void Initialize()
+        public UserServiceTest()
         {
             modelUser = new User { Id = 1, FirstName = "Andreas" };
             modelUser.Language = new Language { Users = new ObservableCollection<User>() { modelUser } };
@@ -28,7 +26,7 @@ namespace Woozle.UnitTest.Services.UserManagement
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void FindAllTest()
         {
             IList<UserSearchResult> users = new List<UserSearchResult>()
@@ -41,11 +39,11 @@ namespace Woozle.UnitTest.Services.UserManagement
             var service = CreateUserService();
             var result = service.Get(new UsersDto());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetUsersOfCurrentMandatorTest()
         {
             var users = new List<User>()
@@ -59,13 +57,13 @@ namespace Woozle.UnitTest.Services.UserManagement
             var service = CreateUserService();
             var result = service.Get(new UsersForDropDownDto());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].Id);
-            Assert.AreEqual(2, result[1].Id);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].Id);
+            Assert.Equal(2, result[1].Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadTest()
         {
             logicMock.Setup(n => n.LoadUser(1, It.IsAny<Session>())).Returns(modelUser);
@@ -73,11 +71,11 @@ namespace Woozle.UnitTest.Services.UserManagement
             var service = CreateUserService();
             var result = service.Get(new UserDto() {Id = 1});
 
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.UserDto);
+            Assert.NotNull(result);
+            Assert.NotNull(result.UserDto);
         }
 
-        [TestMethod]
+        [Fact]
         public void InsertTest()
         {
             MockSave();
@@ -85,12 +83,12 @@ namespace Woozle.UnitTest.Services.UserManagement
             var service = CreateUserService();
             var result = service.Post(new UserDto() { Id = 1 });
 
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.TargetObject);
-            Assert.AreEqual(1, result.TargetObject.Id);
+            Assert.NotNull(result);
+            Assert.NotNull(result.TargetObject);
+            Assert.Equal(1, result.TargetObject.Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void UpdateTest()
         {
             MockSave();
@@ -98,9 +96,9 @@ namespace Woozle.UnitTest.Services.UserManagement
             var service = CreateUserService();
             var result = service.Put(new UserDto() { Id = 1 });
 
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.TargetObject);
-            Assert.AreEqual(1, result.TargetObject.Id);
+            Assert.NotNull(result);
+            Assert.NotNull(result.TargetObject);
+            Assert.Equal(1, result.TargetObject.Id);
         }
 
         private void MockSave()

@@ -1,27 +1,26 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Authority;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Authority;
+using Xunit;
 using MandatorRole = Woozle.Model.MandatorRole;
 
 namespace Woozle.UnitTest.Services.Authority
 {
-    [TestClass]
+
     public class MandatorRoleServiceTest : SessionTestBase
     {
-        private Mock<IGetRolesLogic> getRolesLogicMock;
+        private readonly Mock<IGetRolesLogic> getRolesLogicMock;
 
-        [TestInitialize]
-        public void Initialize()
+        public MandatorRoleServiceTest()
         {
             this.getRolesLogicMock = new Mock<IGetRolesLogic>();
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetMandatorRolesTest()
         {
             var mandatorRoles = new List<MandatorRole>()
@@ -35,13 +34,13 @@ namespace Woozle.UnitTest.Services.Authority
             var service = CreateService();
             var result = service.Get(new MandatorRoles());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].Id);
-            Assert.AreEqual(2, result[1].Id);
-        }        
-        
-        [TestMethod]
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].Id);
+            Assert.Equal(2, result[1].Id);
+        }
+
+        [Fact]
         public void GetMandatorRolesForDropDownTest()
         {
             var mandatorRoles = new List<MandatorRole>()
@@ -55,10 +54,10 @@ namespace Woozle.UnitTest.Services.Authority
             var service = CreateService();
             var result = service.Get(new MandatorRolesForDropDown());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].Id);
-            Assert.AreEqual(2, result[1].Id);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].Id);
+            Assert.Equal(2, result[1].Id);
         }
 
 

@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Authority;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Authority;
+using Xunit;
 using Role = Woozle.Model.Role;
 
 namespace Woozle.UnitTest.Services.Authority
 {
-    [TestClass]
     public class PermissionServiceTest : SessionTestBase
     {
-        private Mock<IPermissionsLogic> permissionLogicMock;
+        private readonly Mock<IPermissionsLogic> permissionLogicMock;
 
-        [TestInitialize]
-        public void Initialize()
+        public PermissionServiceTest()
         {
             this.permissionLogicMock = new Mock<IPermissionsLogic>();
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAllPermissionsTest()
         {
             var permissions = new List<FunctionPermission>()
@@ -36,11 +34,10 @@ namespace Woozle.UnitTest.Services.Authority
             var service = CreatePermissionService();
             var result = service.Get(new Permissions());
 
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
         }
 
-
-        [TestMethod]
+        [Fact]
         public void UpdateTest()
         {
             permissionLogicMock.Setup(

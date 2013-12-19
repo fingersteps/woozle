@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.Authentication;
 using Woozle.Model;
@@ -10,24 +9,23 @@ using Woozle.Model.UserSearch;
 using Woozle.Services;
 using Woozle.Services.Authentication;
 using Woozle.Services.Mandator;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Authentication
 {
-    [TestClass]
     public class MandatorSelectionServiceTest : SessionTestBase
     {
         private const string Username = "test-user";
         private const string Password = "test-passwordr";
 
-        private Mock<IAuthenticationLogic> mockedAuthenticationLogic;
+        private readonly Mock<IAuthenticationLogic> mockedAuthenticationLogic;
 
-        private MandatorSelectionService mandatorSelectionService;
-        private User user;
+        private readonly MandatorSelectionService mandatorSelectionService;
+        private readonly User user;
         private Woozle.Model.Mandator mandator;
 
 
-        [TestInitialize]
-        public void Initialize()
+        public MandatorSelectionServiceTest()
         {
             MappingConfiguration.Configure();
 
@@ -44,7 +42,7 @@ namespace Woozle.UnitTest.Services.Authentication
                                                 };
         }
 
-        [TestMethod]
+        [Fact]
         public void MandatorSelectionService_GetSelectableMandatorsTest()
         {
             const string NameMandator1 = "test-mandator-1";
@@ -64,12 +62,12 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var mandators = this.mandatorSelectionService.Get(new MandatorsForSelectionDto());
 
-            Assert.AreEqual(2, mandators.Count);
-            Assert.AreEqual(NameMandator1, mandators[0].Name);
-            Assert.AreEqual(NameMandator2, mandators[1].Name);
+            Assert.Equal(2, mandators.Count);
+            Assert.Equal(NameMandator1, mandators[0].Name);
+            Assert.Equal(NameMandator2, mandators[1].Name);
         }
 
-        [TestMethod]
+        [Fact]
         public void MandatorSelectionService_SelectSuccessfullyAMandatorTest()
         {
             const string MandatorName = "selected-mandator";
@@ -94,10 +92,10 @@ namespace Woozle.UnitTest.Services.Authentication
                                                    {
                                                        SelectedMandatorDto = selectedMandator
                                                    });
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void MandatorSelectionService_MandatorSelectionIsNotSuccessfullyTest()
         {
             const string MandatorName = "selected-mandator";
@@ -116,7 +114,7 @@ namespace Woozle.UnitTest.Services.Authentication
                 SelectedMandatorDto = selectedMandator
             });
 
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
     }
 }

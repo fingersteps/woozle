@@ -120,6 +120,9 @@ namespace Woozle.Services
             Mapper.CreateMap<SaveResultDto<UserDto>, SaveResult<User>>();
             Mapper.CreateMap<ISaveResult<User>, SaveResultDto<UserDto>>();
 
+            Mapper.CreateMap<ISaveResult<Setting>, SaveResultDto<Setting>>();
+            Mapper.CreateMap<SaveResultDto<Setting>, ISaveResult<Setting>>();
+
             Mapper.CreateMap<SettingDto, Setting>()
                   .ForMember(dest => dest.Mandator, opt => opt.Ignore());
             Mapper.CreateMap<Setting, SettingDto>()

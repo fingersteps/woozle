@@ -115,7 +115,6 @@
     <Compile Include="Domain\PersonManagement\PersonLogic.cs" />
     <Compile Include="Domain\Settings\ISettingsLogic.cs" />
     <Compile Include="Domain\Settings\SettingsLogic.cs" />
-    <Compile Include="Domain\Translation\ITranslator.cs" />
     <Compile Include="Domain\UserManagement\Constants.cs" />
     <Compile Include="Domain\UserManagement\IUserLogic.cs" />
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />

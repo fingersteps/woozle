@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Woozle.Domain.ModuleManagement;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Authority;
+using Xunit;
 using ModulePermissionsResult = Woozle.Model.ModulePermissions.ModulePermissionsResult;
 using Role = Woozle.Model.Role;
 
 namespace Woozle.UnitTest.Services.Authority
 {
-    [TestClass]
     public class RoleServiceTest : SessionTestBase 
     {
-        private Mock<IModuleLogic> logic;
+        private readonly Mock<IModuleLogic> logic;
 
-        [TestInitialize]
-        public void Initialize()
+        public RoleServiceTest()
         {
             this.logic = new Mock<IModuleLogic>();
             MappingConfiguration.Configure();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetModulePermissionsForRoleTest()
         {
             var permissions = new List<ModulePermissionsResult>()
@@ -36,10 +34,10 @@ namespace Woozle.UnitTest.Services.Authority
             var service = this.CreateRoleService();
             var result = service.Get(new RoleModulePermissions());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].ModuleId);
-            Assert.AreEqual(2, result[1].ModuleId);
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].ModuleId);
+            Assert.Equal(2, result[1].ModuleId);
         }
 
         private RoleService CreateRoleService()

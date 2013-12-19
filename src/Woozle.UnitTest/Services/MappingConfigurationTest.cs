@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Woozle.Services;
+using Xunit;
 
 namespace Woozle.UnitTest.Services
 {
-    [TestClass]
     public class MappingConfigurationTest
     {
-        [TestMethod]
+        [Fact]
         public void InitializeMappingTest()
         {
             MappingConfiguration.Configure();

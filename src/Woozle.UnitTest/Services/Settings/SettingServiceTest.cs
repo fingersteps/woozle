@@ -1,32 +1,28 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
 using Woozle.Domain.Settings;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.Validation.Creation;
 using Woozle.Services;
 using Woozle.Services.Settings;
+using Xunit;
 
 namespace Woozle.UnitTest.Services.Settings
 {
-    [TestClass]
     public class SettingServiceTest : SessionTestBase
     {
-        private Mock<ISettingsLogic> SettingLogicMock;
+        private readonly Mock<ISettingsLogic> SettingLogicMock;
+        private readonly Setting modelSetting;
 
-        private Setting modelSetting;
-
-        [TestInitialize]
-        public void Initialize()
+        public SettingServiceTest()
         {
             modelSetting = new Setting() { Id = 1 };
 
             this.SettingLogicMock = new Mock<ISettingsLogic>();
             MappingConfiguration.Configure();
         }
-
    
-        [TestMethod]
+        [Fact]
         public void LoadTest()
         {
             SettingLogicMock.Setup(n => n.Load(It.IsAny<Session>())).Returns(modelSetting);
@@ -34,34 +30,34 @@ namespace Woozle.UnitTest.Services.Settings
             var service = CreateSettingService();
             var result = service.Get(new Setting());
 
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
         }
 
-       //[TestMethod]
-       // public void InsertTest()
-       // {
-       //     MockSave();
+       [Fact]
+        public void InsertTest()
+        {
+            MockSave();
 
-       //     var service = CreateSettingService();
-       //     var result = service.Post(new Setting() { Id = 1 });
+            var service = CreateSettingService();
+            var result = service.Post(new Setting() { Id = 1 });
 
-       //     Assert.IsNotNull(result);
-       //     Assert.IsNotNull(result.TargetObject);
-       //     Assert.AreEqual(1, result.TargetObject.Id);
-       // }
+            Assert.NotNull(result);
+            Assert.NotNull(result.TargetObject);
+            Assert.Equal(1, result.TargetObject.Id);
+        }
 
-       // [TestMethod]
-       // public void UpdateTest()
-       // {
-       //     MockSave();
+        [Fact]
+        public void UpdateTest()
+        {
+            MockSave();
 
-       //     var service = CreateSettingService();
-       //     var result = service.Put(new Setting() { Id = 1 });
+            var service = CreateSettingService();
+            var result = service.Put(new Setting() { Id = 1 });
 
-       //     Assert.IsNotNull(result);
-       //     Assert.IsNotNull(result.TargetObject);
-       //     Assert.AreEqual(1, result.TargetObject.Id);
-       // }
+            Assert.NotNull(result);
+            Assert.NotNull(result.TargetObject);
+            Assert.Equal(1, result.TargetObject.Id);
+        }
 
         private SettingService CreateSettingService()
         {

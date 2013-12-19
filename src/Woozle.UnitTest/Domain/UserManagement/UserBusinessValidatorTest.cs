@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.UserManagement
 {
-    [TestClass]
     public class UserBusinessValidatorTest
     {
-        [TestMethod]
+        [Fact]
         public void ValidationTest()
         {
             var validator = new UserBusinessValidator(null);
@@ -30,8 +29,8 @@ namespace Woozle.UnitTest.Domain.UserManagement
                         }
                 });
 
-            Assert.IsTrue(result.IsValid);
-            Assert.AreEqual(result.Errors.Count, 0);
+            Assert.True(result.IsValid);
+            Assert.Equal(result.Errors.Count, 0);
         }
     }
 }

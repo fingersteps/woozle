@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
+using Xunit;
 
 namespace Woozle.UnitTest.Domain.Mandator
 {
-    [TestClass]
     public class MandatorLogicTest
     {
-        private MandatorLogic mandatorLogic;
-        private Mock<IRepository<Model.Mandator>> mandatorRepository;
-        private Mock<IUnitOfWork> unitOfWorkMock;
+        private readonly MandatorLogic mandatorLogic;
+        private readonly Mock<IRepository<Model.Mandator>> mandatorRepository;
+        private readonly Mock<IUnitOfWork> unitOfWorkMock;
 
-        [TestInitialize]
-        public void Initialize()
+        public MandatorLogicTest()
         {
             this.mandatorRepository = new Mock<IRepository<Model.Mandator>>();
             this.unitOfWorkMock = new Mock<IUnitOfWork>();
             this.mandatorLogic = new MandatorLogic(mandatorRepository.Object);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadMandatorTest()
         {
 
@@ -58,10 +56,10 @@ namespace Woozle.UnitTest.Domain.Mandator
             var session = new Session(Guid.NewGuid(), new SessionData(new User(), mandator), DateTime.Now);
 
             var result = this.mandatorLogic.LoadMandator(session);
-            Assert.AreEqual(expectedMandator, result);
+            Assert.Equal(expectedMandator, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveTest()
         {
             var saveMandator = new Model.Mandator
@@ -80,8 +78,8 @@ namespace Woozle.UnitTest.Domain.Mandator
                                     new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator()),
                                                 DateTime.Now));
 
-            Assert.AreEqual(saveMandator, result.TargetObject);
-            Assert.IsFalse(result.HasSystemErrors);
+            Assert.Equal(saveMandator, result.TargetObject);
+            Assert.False(result.HasSystemErrors);
 
             mandatorRepository.Verify(n => n.Synchronize(saveMandator, It.IsAny<Session>()), Times.Once());
         }

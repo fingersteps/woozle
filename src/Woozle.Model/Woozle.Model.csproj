@@ -146,8 +146,6 @@
     <Compile Include="UserSearch\UserSearchResult.cs" />
     <Compile Include="Validation\Creation\ISaveResult.cs" />
     <Compile Include="Validation\Creation\SaveResult.cs" />
-    <Compile Include="Validation\Delete\DeleteResult.cs" />
-    <Compile Include="Validation\Delete\IDeleteResult.cs" />
     <Compile Include="Validation\Error.cs" />
     <Compile Include="Values\StatusConstants.cs" />
     <Compile Include="Woozle.CoreModel.cs">
