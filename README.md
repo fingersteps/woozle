@@ -6,4 +6,4 @@ Woozle will increase your development speed and helps you to achieve the return 
 
 The use of the powerful Servicestack framework (v3) enables Woozle to be a businessvalue driven webframework.
 
-CI-Build: [![Build status](https://ci.appveyor.com/api/projects/status?id=ffyuxjq26xw724u0)](https://ci.appveyor.com/project/woozle-core)
+[![Build status](https://ci.appveyor.com/api/projects/status?id=ffyuxjq26xw724u0)](https://ci.appveyor.com/project/woozle-core)
