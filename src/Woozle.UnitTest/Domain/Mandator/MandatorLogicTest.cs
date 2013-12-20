@@ -83,6 +83,5 @@ namespace Woozle.UnitTest.Domain.Mandator
 
             mandatorRepository.Verify(n => n.Synchronize(saveMandator, It.IsAny<Session>()), Times.Once());
         }
-
     }
 }
