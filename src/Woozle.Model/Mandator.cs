@@ -27,6 +27,7 @@ namespace Woozle.Model
             this.MandatorRoles = new ObservableCollection<MandatorRole>();
             this.People = new ObservableCollection<Person>();
             this.Settings = new ObservableCollection<Setting>();
+            this.ExternalSystems = new ObservableCollection<ExternalSystem>();
         }
     
         private string name;
@@ -184,6 +185,18 @@ namespace Woozle.Model
     
     
     public virtual MandatorGroup MandatorGroup { get; set; }
+    
+    
+    private ObservableCollection<ExternalSystem> externalsystems;
+    
+    public virtual ObservableCollection<ExternalSystem> ExternalSystems 
+    { 
+    	get { return externalsystems; } 
+    	set
+    	{
+    		externalsystems = value;
+    	}
+    }
     
     
     

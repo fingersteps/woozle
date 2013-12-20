@@ -450,27 +450,6 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [woo].[Customer]    Script Date: 12/09/2013 19:23:59 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [woo].[Customer](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[MandatorId] [int] NULL,
-	[ChangeCounter] [timestamp] NOT NULL,
-	[Remark] [varchar](200) NULL,
-	[PersonId] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
 /****** Object:  Table [woo].[FunctionPermission]    Script Date: 12/09/2013 19:23:59 ******/
 SET ANSI_NULLS ON
 GO
@@ -501,23 +480,48 @@ CREATE TABLE [woo].[MandatorRoleFunctionPermission](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+CREATE TABLE [woo].[ExternalSystemType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_ExternalServiceType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [woo].[ExternalSystem]    Script Date: 12/20/2013 11:19:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [woo].[ExternalSystem](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MandatorId] [int] NOT NULL,
+	[ExternalSystemTypeId] [int] NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_ExternalService] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  ForeignKey [FK_ExternalService_ExternalServiceType]    Script Date: 12/20/2013 11:19:35 ******/
+ALTER TABLE [woo].[ExternalSystem]  WITH CHECK ADD  CONSTRAINT [FK_ExternalService_ExternalServiceType] FOREIGN KEY([ExternalSystemTypeId])
+REFERENCES [woo].[ExternalSystemType] ([Id])
+GO
+ALTER TABLE [woo].[ExternalSystem] CHECK CONSTRAINT [FK_ExternalService_ExternalServiceType]
+GO
+/****** Object:  ForeignKey [FK_ExternalService_Mandator]    Script Date: 12/20/2013 11:19:35 ******/
+ALTER TABLE [woo].[ExternalSystem]  WITH CHECK ADD  CONSTRAINT [FK_ExternalService_Mandator] FOREIGN KEY([MandatorId])
+REFERENCES [woo].[Mandator] ([Id])
+GO
+ALTER TABLE [woo].[ExternalSystem] CHECK CONSTRAINT [FK_ExternalService_Mandator]
+GO
 /****** Object:  ForeignKey [FK_Country_Translation]    Script Date: 12/09/2013 19:23:59 ******/
 ALTER TABLE [woo].[Country]  WITH CHECK ADD  CONSTRAINT [FK_Country_Translation] FOREIGN KEY([TranslationId])
 REFERENCES [woo].[Translation] ([Id])
 GO
 ALTER TABLE [woo].[Country] CHECK CONSTRAINT [FK_Country_Translation]
-GO
-/****** Object:  ForeignKey [FK_Customer_Mandator]    Script Date: 12/09/2013 19:23:59 ******/
-ALTER TABLE [woo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_Mandator] FOREIGN KEY([MandatorId])
-REFERENCES [woo].[Mandator] ([Id])
-GO
-ALTER TABLE [woo].[Customer] CHECK CONSTRAINT [FK_Customer_Mandator]
-GO
-/****** Object:  ForeignKey [FK_Customer_Person]    Script Date: 12/09/2013 19:23:59 ******/
-ALTER TABLE [woo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_Person] FOREIGN KEY([PersonId])
-REFERENCES [woo].[Person] ([Id])
-GO
-ALTER TABLE [woo].[Customer] CHECK CONSTRAINT [FK_Customer_Person]
 GO
 /****** Object:  ForeignKey [FK_Function_Module]    Script Date: 12/09/2013 19:23:59 ******/
 ALTER TABLE [woo].[Function]  WITH CHECK ADD  CONSTRAINT [FK_Function_Module] FOREIGN KEY([ModuleId])
