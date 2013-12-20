@@ -1,4 +1,4 @@
-﻿namespace Prosa.ExternalSystem
+﻿namespace Woozle.Domain.ExternalSystem
 {
     public interface IExternalSystemMetadata
     {

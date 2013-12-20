@@ -73,6 +73,7 @@
       <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,11 @@
     <Compile Include="Domain\Authentication\AuthenticationLogicTest.cs" />
     <Compile Include="Domain\Authority\GetRolesLogicTest.cs" />
     <Compile Include="Domain\Authority\PermissionsLogicTest.cs" />
+    <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacadeFactoryTest.cs" />
+    <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacadeTest.cs" />
+    <Compile Include="Domain\ExternalSystem\Testdata\ExternalTestSystem.cs" />
+    <Compile Include="Domain\ExternalSystem\Testdata\IExternalTestSystem.cs" />
+    <Compile Include="Domain\ExternalSystem\Testdata\TestExternalSystemRepository.cs" />
     <Compile Include="Domain\Mandator\MandatorLogicTest.cs" />
     <Compile Include="Domain\ModuleManagement\ModuleLogicTest.cs" />
     <Compile Include="Domain\PermissionManagement\PermissionManagerTest.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 
-namespace Prosa.ExternalSystem
+namespace Woozle.Domain.ExternalSystem
 {
     /// <summary>
     /// Attribute for tagging an external system with metadata.

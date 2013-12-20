@@ -156,7 +156,6 @@
     <Compile Include="StateHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Repository\RepositoryGeneration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

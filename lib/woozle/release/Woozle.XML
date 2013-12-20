@@ -4,6 +4,121 @@
         <name>Woozle</name>
     </assembly>
     <members>
+        <member name="T:Woozle.Domain.ExternalSystem.ExternalSystemAttribute">
+            <summary>
+            Attribute for tagging an external system with metadata.
+            <remarks>
+            With this attribute an external system could be named and versioned.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Woozle.Domain.ExternalSystem.ExternalSystemAttribute.Name">
+            <summary>
+            The name of the external system
+            </summary>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1">
+            <summary>
+            Facade for getting a specific instance {T} from an external service.
+            </summary>
+            <remarks>
+            The external system facade implements the <see cref="T:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1"/>
+            </remarks>
+            <typeparam name="T">Type of the external service which is implementing <see cref="T:Woozle.Domain.ExternalSystem.IExternalSystem"/></typeparam>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1">
+            <summary>
+            Interface for an external system facade.
+            The external system facade is an component which is searching dynamically for 
+            specific external systems.
+            </summary>
+            <typeparam name="T">Type of the target external system</typeparam>
+        </member>
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)">
+            <summary>
+            Get the external system.
+            </summary>
+            <remarks>
+            The external system facade is looking for a specific external system.
+            The target external system will be loaded dynamically and with a lazy mechnism.
+            </remarks>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <returns>An instance of the external system (wrapper)</returns>
+        </member>
+        <member name="F:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.externalServiceRepository">
+            <summary>
+            <see cref="T:Woozle.Persistence.IExternalSystemRepository"/>
+            </summary>
+        </member>
+        <member name="F:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.logger">
+            <summary>
+            <see cref="T:ServiceStack.Logging.ILog"/>
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.#ctor(Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacadeFactory,Woozle.Persistence.IExternalSystemRepository,System.ComponentModel.Composition.Primitives.ComposablePartCatalog,System.String)">
+            <summary>
+            ctor.
+            </summary>
+            <param name="externalSystemFacadeFactory">A factory to create external system facades 
+            (used to let the external systems communicate with each other)</param>
+            <param name="externalServiceRepository"><see cref="T:Woozle.Persistence.IExternalSystemRepository"/></param>
+            <param name="catalog"> <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog"/> </param>
+            <param name="systemType">The external system type name which is used to lookup external systems in the database.</param>
+        </member>
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)">
+            <summary>
+            <see cref="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)"/>
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.FindExternalSystem(Woozle.Model.ExternalSystem)">
+            <summary>
+            Gets an instance of the target external service.
+            </summary>
+            <remarks>
+            This method is looking for an instance of the target external system in the ExternalSystems property,
+            which will be loaded via MEF.
+            </remarks>
+            <param name="externalService">
+            <see cref="!:Prosa.ExternalSystem">The external system domain object, which holds all needed information about the target external system</see>
+            </param>
+            <returns>A specific instance of the target external system</returns>
+        </member>
+        <member name="P:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.SystemType">
+            <summary>
+            The system tpye for all external systems in the external system facade
+            </summary>
+        </member>
+        <member name="P:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.ExternalSystems">
+            <summary>
+            Imported external systems which have an <see cref="T:System.ComponentModel.Composition.ExportAttribute"/> 
+            and are tagged with an <see cref="T:Woozle.Domain.ExternalSystem.IExternalSystemMetadata"/> Attribute.
+            All imported external systems are loaded with the <see cref="T:System.Lazy`1"/> which allows the external
+            system lazy loaded.
+            </summary>
+        </member>
+        <member name="P:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.ExternalSystemFacadeFactory">
+            <summary>
+            A factory to create ExternalSystemFacade instances. 
+            This allows each external system to communicate with other desired external systems.
+            </summary>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacadeFactory">
+            <summary>
+            Definition of an factory which creates instances of <see cref="T:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1"/>.
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacadeFactory.GetExternalSystemFacade``1">
+            <summary>
+            Gets an external system facade for the given type.
+            </summary>
+            <typeparam name="T">An external system <see cref="T:Woozle.Domain.ExternalSystem.IExternalSystem"/></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.IExternalSystem">
+            <summary>
+            Marker interface for an external system
+            </summary>
+        </member>
         <member name="T:Woozle.Dependencies.WoozlePlugin">
             <summary>
             Register all dependencies for running Woozle (Core)

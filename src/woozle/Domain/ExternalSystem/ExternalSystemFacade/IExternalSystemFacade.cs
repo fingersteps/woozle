@@ -1,6 +1,6 @@
-﻿using Prosa.Model.SessionHandling;
+﻿using Woozle.Model.SessionHandling;
 
-namespace Prosa.ExternalSystem.ExternalSystemFacade
+namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
 {
     /// <summary>
     /// Interface for an external system facade.

@@ -1,4 +1,4 @@
-﻿namespace Prosa.ExternalSystem.ExternalSystemFacade
+﻿namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
 {
     /// <summary>
     /// Definition of an factory which creates instances of <see cref="IExternalSystemFacade{T}"/>.

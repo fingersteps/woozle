@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IExternalSystemRepository.cs" />
     <Compile Include="IModuleRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IStatusFieldRepository.cs" />

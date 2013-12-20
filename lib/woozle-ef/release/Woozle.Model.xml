@@ -81,6 +81,11 @@
             </summary>
             <remarks></remarks>
         </member>
+        <member name="M:Woozle.Model.SessionHandling.Session.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Woozle.Model.SessionHandling.Session"/>
+            </summary>
+        </member>
         <member name="M:Woozle.Model.SessionHandling.Session.#ctor(System.Guid,Woozle.Model.SessionHandling.SessionData,System.DateTime)">
             <summary>
             Initializes a new instance of the <see cref="T:Woozle.Model.SessionHandling.Session"/> class.
@@ -113,6 +118,13 @@
             Represents a session data object.
             </summary>
             <remarks></remarks>
+        </member>
+        <member name="M:Woozle.Model.SessionHandling.SessionData.#ctor(Woozle.Model.User,Woozle.Model.Mandator)">
+            <summary>
+            Initializes a new <see cref="T:Woozle.Model.SessionHandling.SessionData"/>
+            </summary>
+            <param name="user"></param>
+            <param name="mandator"></param>
         </member>
         <member name="P:Woozle.Model.SessionHandling.SessionData.User">
             <summary>

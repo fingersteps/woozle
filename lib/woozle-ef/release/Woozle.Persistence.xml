@@ -109,6 +109,11 @@
             <param name="session"></param>
             <returns></returns>
         </member>
+        <member name="M:Woozle.Persistence.IUnitOfWork.Commit">
+            <summary>
+            Commit all changes
+            </summary>
+        </member>
         <member name="T:Woozle.Persistence.IUserRepository">
             <summary>
             Interface for a user repository.

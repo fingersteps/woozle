@@ -1,7 +1,6 @@
-﻿using System;
-using Funq;
+﻿using Funq;
 
-namespace Prosa.ExternalSystem.ExternalSystemFacade
+namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
 {
     public class FunqExternalSystemFacadeFactory : IExternalSystemFacadeFactory
     {

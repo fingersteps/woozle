@@ -1,112 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Woozle]Woozle.Services.ExceptionCatcher">
-    <Instance Declaration="#2=M:[Woozle]Woozle.Services.Authentication.LoginContextService::Get([Woozle]Woozle.Services.Authentication.LoginContext)" Id="2976567e5f8c0310">
+    <Instance Declaration="#2=M:[Woozle]Woozle.Services.Authentication.LoginContextService::Get([Woozle]Woozle.Services.Authentication.LoginContext)" Id="2976567e8df1ab70">
       <Target>
         <JoinPoint Description="#3=Wrapped by advice(s) OnException" />
       </Target>
     </Instance>
-    <Instance Declaration="#4=M:[Woozle]Woozle.Services.Authentication.MandatorSelectionService::Get([Woozle]Woozle.Services.Mandator.MandatorsForSelectionDto)" Id="2976567e2fa78c15">
+    <Instance Declaration="#4=M:[Woozle]Woozle.Services.Authentication.MandatorSelectionService::Get([Woozle]Woozle.Services.Mandator.MandatorsForSelectionDto)" Id="2976567ec55b7407">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=M:[Woozle]Woozle.Services.Authentication.MandatorSelectionService::Post([Woozle]Woozle.Services.Mandator.MandatorSelectDto)" Id="2976567eb54ac0e5">
+    <Instance Declaration="#5=M:[Woozle]Woozle.Services.Authentication.MandatorSelectionService::Post([Woozle]Woozle.Services.Mandator.MandatorSelectDto)" Id="2976567e332a37d3">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=M:[Woozle]Woozle.Services.Authority.MandatorRoleService::Get([Woozle]Woozle.Services.Authority.MandatorRoles)" Id="2976567e36e8f07e">
+    <Instance Declaration="#6=M:[Woozle]Woozle.Services.Authority.MandatorRoleService::Get([Woozle]Woozle.Services.Authority.MandatorRoles)" Id="2976567e17711594">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=M:[Woozle]Woozle.Services.Authority.MandatorRoleService::Get([Woozle]Woozle.Services.Authority.MandatorRolesForDropDown)" Id="2976567e2fcddd3d">
+    <Instance Declaration="#7=M:[Woozle]Woozle.Services.Authority.MandatorRoleService::Get([Woozle]Woozle.Services.Authority.MandatorRolesForDropDown)" Id="2976567e43d4f62a">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=M:[Woozle]Woozle.Services.Authority.PermissionService::Get([Woozle]Woozle.Services.Authority.Permissions)" Id="2976567e0c7670b1">
+    <Instance Declaration="#8=M:[Woozle]Woozle.Services.Authority.PermissionService::Get([Woozle]Woozle.Services.Authority.Permissions)" Id="2976567e75bcdbed">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=M:[Woozle]Woozle.Services.Authority.PermissionService::Put([Woozle]Woozle.Services.Authority.SavePermissions)" Id="2976567e3abf0e46">
+    <Instance Declaration="#9=M:[Woozle]Woozle.Services.Authority.PermissionService::Put([Woozle]Woozle.Services.Authority.SavePermissions)" Id="2976567e996a5558">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=M:[Woozle]Woozle.Services.Authority.RoleService::Get([Woozle]Woozle.Services.Authority.RoleModulePermissions)" Id="2976567ed30be70f">
+    <Instance Declaration="#10=M:[Woozle]Woozle.Services.Authority.RoleService::Get([Woozle]Woozle.Services.Authority.RoleModulePermissions)" Id="2976567e5bf7398d">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#11=M:[Woozle]Woozle.Services.Location.LanguageService::Get([Woozle]Woozle.Services.Location.Languages)" Id="2976567e78a1c12a">
+    <Instance Declaration="#11=M:[Woozle]Woozle.Services.Location.LanguageService::Get([Woozle]Woozle.Services.Location.Languages)" Id="2976567ee773b424">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#12=M:[Woozle]Woozle.Services.Mandator.MandatorService::Get([Woozle]Woozle.Services.Mandator.MandatorDto)" Id="2976567e80144f57">
+    <Instance Declaration="#12=M:[Woozle]Woozle.Services.Mandator.MandatorService::Get([Woozle]Woozle.Services.Mandator.MandatorDto)" Id="2976567eaad16c21">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#13=M:[Woozle]Woozle.Services.Mandator.MandatorService::Put([Woozle]Woozle.Services.Mandator.MandatorDto)" Id="2976567e933a15c4">
+    <Instance Declaration="#13=M:[Woozle]Woozle.Services.Mandator.MandatorService::Put([Woozle]Woozle.Services.Mandator.MandatorDto)" Id="2976567e7acd5f3f">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=M:[Woozle]Woozle.Services.Modules.ModuleService::Get([Woozle]Woozle.Services.Modules.ModulesDto)" Id="2976567e8337a35b">
+    <Instance Declaration="#14=M:[Woozle]Woozle.Services.Modules.ModuleService::Get([Woozle]Woozle.Services.Modules.ModulesDto)" Id="2976567e2d20d08f">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#15=M:[Woozle]Woozle.Services.Settings.SettingService::Get(Woozle.Model.Setting)" Id="2976567ee1f77720">
+    <Instance Declaration="#15=M:[Woozle]Woozle.Services.Settings.SettingService::Get(Woozle.Model.Setting)" Id="2976567e7ed78b1b">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=M:[Woozle]Woozle.Services.Settings.SettingService::Post(Woozle.Model.Setting)" Id="2976567ec3c5abfe">
+    <Instance Declaration="#16=M:[Woozle]Woozle.Services.Settings.SettingService::Post(Woozle.Model.Setting)" Id="2976567e57d7aca4">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#17=M:[Woozle]Woozle.Services.Settings.SettingService::Put(Woozle.Model.Setting)" Id="2976567e9dd4cf2f">
+    <Instance Declaration="#17=M:[Woozle]Woozle.Services.Settings.SettingService::Put(Woozle.Model.Setting)" Id="2976567e87409f99">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#18=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UsersDto)" Id="2976567eba38b089">
+    <Instance Declaration="#18=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UsersDto)" Id="2976567ef2af502c">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#19=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UsersForDropDownDto)" Id="2976567ed337d508">
+    <Instance Declaration="#19=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UsersForDropDownDto)" Id="2976567e761229c8">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#20=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e53b99082">
+    <Instance Declaration="#20=M:[Woozle]Woozle.Services.UserManagement.UserService::Get([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e71da7021">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#21=M:[Woozle]Woozle.Services.UserManagement.UserService::Get()" Id="2976567e17a2b9df">
+    <Instance Declaration="#21=M:[Woozle]Woozle.Services.UserManagement.UserService::Get()" Id="2976567ea9698c95">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#22=M:[Woozle]Woozle.Services.UserManagement.UserService::Post([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e586392f0">
+    <Instance Declaration="#22=M:[Woozle]Woozle.Services.UserManagement.UserService::Post([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e042c1476">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#23=M:[Woozle]Woozle.Services.UserManagement.UserService::Put([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e973f66b0">
+    <Instance Declaration="#23=M:[Woozle]Woozle.Services.UserManagement.UserService::Put([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e996762ec">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#24=M:[Woozle]Woozle.Services.UserManagement.UserService::Delete([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e79ad44bb">
+    <Instance Declaration="#24=M:[Woozle]Woozle.Services.UserManagement.UserService::Delete([Woozle]Woozle.Services.UserManagement.UserDto)" Id="2976567e4bcba06f">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
