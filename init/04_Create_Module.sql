@@ -48,7 +48,12 @@ INSERT INTO [woo].[Module]
            ,(SELECT TOP 1 Id FROM woo.Translation where DefaultDescription = 'Test-Module'))
 GO
 
-
+INSERT INTO [TIA].[woo].[MandatorModules]
+           ([ModuleId]
+           ,[MandatorId])
+		VALUES
+           ((select TOP 1 Id from woo.Module)
+           ,(select TOP 1 Id from woo.Mandator))
 
 
 
