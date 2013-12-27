@@ -5,6 +5,7 @@ using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Dependencies;
 using Woozle.Model.SessionHandling;
+using Woozle.Services;
 using Woozle.Services.Authentication;
 
 namespace Woozle.Host
@@ -35,6 +36,8 @@ namespace Woozle.Host
         /// <param name="container">The IoC-Container</param>
         public override void Configure(Container container)
         {
+            MappingConfiguration.Configure();
+
             Plugins.Add(new SessionFeature());
 
             //Configure Authentication
