@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Linq;
 using AutoMapper;
 using Woozle.Model;
 using Woozle.Model.UserSearch;
@@ -7,6 +8,7 @@ using Woozle.Model.Validation.Creation;
 using Woozle.Services.Authority;
 using Woozle.Services.Location;
 using Woozle.Services.Modules.Settings;
+using Woozle.Services.Navigation;
 using Woozle.Services.UserManagement;
 using City = Woozle.Services.Location.City;
 using Country = Woozle.Services.Location.Country;
@@ -195,6 +197,35 @@ namespace Woozle.Services
 
             Mapper.CreateMap<Model.Country, Country>();
             Mapper.CreateMap<Country, Model.Country>();
+
+            Mapper.CreateMap<ModuleForMandator, Header>()
+               .ForMember(n => n.TranslatedValue, opt => opt.ResolveUsing(new ModuleTranslatedValueResolver()))
+               .ForMember(n => n.Items, opt => opt.MapFrom(n => n.Functions));
+
+            Mapper.CreateMap<Function, Item>()
+                  .ForMember(n => n.TranslatedValue, opt => opt.ResolveUsing(new FunctionTranslatedValueResolver()));
+        }
+
+        private class ModuleTranslatedValueResolver : ValueResolver<ModuleForMandator, string>
+        {
+            protected override string ResolveCore(ModuleForMandator source)
+            {
+                return GetTranslation(source.Translation);
+            }
+        }
+
+        private class FunctionTranslatedValueResolver : ValueResolver<Function, string>
+        {
+            protected override string ResolveCore(Function source)
+            {
+                return GetTranslation(source.Translation);
+            }
+        }
+
+        private static string GetTranslation(Translation translation)
+        {
+            var translationItem = translation.TranslationItems.FirstOrDefault();
+            return translationItem != null ? translationItem.Description : translation.DefaultDescription;
         }
     }
 }

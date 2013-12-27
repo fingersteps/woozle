@@ -156,6 +156,8 @@
     <Compile Include="Services\Mandator\MandatorService.cs" />
     <Compile Include="Services\MappingConfiguration.cs" />
     <Compile Include="Services\Modules\ModuleService.cs" />
+    <Compile Include="Services\Navigation\Navigation.cs" />
+    <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\SaveResultDto.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\Authentication\LoginContext.cs" />

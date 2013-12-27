@@ -708,6 +708,13 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:Woozle.Services.Navigation.NavigationService.Get(Woozle.Services.Navigation.Navigation)">
+            <summary>
+            Gets all modules of the mandator of the currently logged in user
+            </summary>
+            <param name="requestDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:Woozle.Services.SaveResultDto`1">
             <summary>
             Result class for each service operation between client and server.
