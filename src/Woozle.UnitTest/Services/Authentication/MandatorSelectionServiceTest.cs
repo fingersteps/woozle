@@ -60,7 +60,7 @@ namespace Woozle.UnitTest.Services.Authentication
                                                              Mandators = suggestedMandators
                                                          });
 
-            var mandators = this.mandatorSelectionService.Get(new MandatorsForSelectionDto());
+            var mandators = this.mandatorSelectionService.Get(new MandatorsForSelection());
 
             Assert.Equal(2, mandators.Count);
             Assert.Equal(NameMandator1, mandators[0].Name);
@@ -83,14 +83,14 @@ namespace Woozle.UnitTest.Services.Authentication
                                                                        Name = MandatorName
                                                                    }), true));
 
-            var selectedMandator = new MandatorDto
+            var selectedMandator = new Woozle.Services.Mandator.Mandator
             {
                 Name = MandatorName
             };
 
-            var result = this.mandatorSelectionService.Post(new MandatorSelectDto
+            var result = this.mandatorSelectionService.Post(new MandatorSelect
                                                    {
-                                                       SelectedMandatorDto = selectedMandator
+                                                       SelectedMandator = selectedMandator
                                                    });
             Assert.True(result);
         }
@@ -105,13 +105,13 @@ namespace Woozle.UnitTest.Services.Authentication
                     b => b.Username == Username && b.Password == Password && b.Mandator.Name == MandatorName)))
                 .Returns(new LoginResult(new SessionData(user,null), false));
 
-            var selectedMandator = new MandatorDto
+            var selectedMandator = new Woozle.Services.Mandator.Mandator
             {
                 Name = MandatorName
             };
-            var result = this.mandatorSelectionService.Post(new MandatorSelectDto
+            var result = this.mandatorSelectionService.Post(new MandatorSelect
             {
-                SelectedMandatorDto = selectedMandator
+                SelectedMandator = selectedMandator
             });
 
             Assert.False(result);

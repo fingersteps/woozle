@@ -38,10 +38,10 @@ namespace Woozle.UnitTest.Services.Authentication
 
             var result = loginContextService.Get(new LoginContext());
 
-            Assert.NotNull(result.UserDto);
-            Assert.Equal(user.Username, result.UserDto.Username);
-            Assert.NotNull(result.MandatorDto);
-            Assert.Equal(mandator.Name, result.MandatorDto.Name);
+            Assert.NotNull(result.User);
+            Assert.Equal(user.Username, result.User.Username);
+            Assert.NotNull(result.Mandator);
+            Assert.Equal(mandator.Name, result.Mandator.Name);
         }
     }
 }

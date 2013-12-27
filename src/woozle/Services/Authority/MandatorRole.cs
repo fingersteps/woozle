@@ -9,7 +9,7 @@ namespace Woozle.Services.Authority
         public int MandId { get; set; }
         public int RoleId { get; set; }
     
-        public Mandator.MandatorDto MandatorDto { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
         public Role Role { get; set; }
     
     }

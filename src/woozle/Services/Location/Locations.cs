@@ -13,6 +13,6 @@ namespace Woozle.Services.Location
         public Nullable<int> CityId { get; set; }
 
         public Model.City City { get; set; }
-        public Mandator.MandatorDto MandatorDto { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
     }
 }

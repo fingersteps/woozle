@@ -9,18 +9,20 @@ using Woozle.Model.Validation.Creation;
 using Woozle.Services;
 using Woozle.Services.UserManagement;
 using Xunit;
+using User = Woozle.Services.UserManagement.User;
+using UserSearchResult = Woozle.Model.UserSearch.UserSearchResult;
 
 namespace Woozle.UnitTest.Services.UserManagement
 {
     public class UserServiceTest : SessionTestBase
     {
         private Mock<IUserLogic> logicMock;
-        private User modelUser;
+        private Model.User modelUser;
 
         public UserServiceTest()
         {
-            modelUser = new User { Id = 1, FirstName = "Andreas" };
-            modelUser.Language = new Language { Users = new ObservableCollection<User>() { modelUser } };
+            modelUser = new Model.User { Id = 1, FirstName = "Andreas" };
+            modelUser.Language = new Language { Users = new ObservableCollection<Model.User>() { modelUser } };
 
             this.logicMock = new Mock<IUserLogic>();
             MappingConfiguration.Configure();
@@ -37,7 +39,7 @@ namespace Woozle.UnitTest.Services.UserManagement
             logicMock.Setup(n => n.Search(It.IsAny<UserSearchCriteria>(), It.IsAny<Session>())).Returns(users);
 
             var service = CreateUserService();
-            var result = service.Get(new UsersDto());
+            var result = service.Get(new Users());
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
@@ -46,10 +48,10 @@ namespace Woozle.UnitTest.Services.UserManagement
         [Fact]
         public void GetUsersOfCurrentMandatorTest()
         {
-            var users = new List<User>()
+            var users = new List<Model.User>()
                 {
-                    new User() {Id = 1},
-                    new User() {Id = 2}
+                    new Model.User() {Id = 1},
+                    new Model.User() {Id = 2}
                 };
 
             logicMock.Setup(n => n.GetUsersOfMandator(It.IsAny<Session>())).Returns(users);
@@ -69,10 +71,10 @@ namespace Woozle.UnitTest.Services.UserManagement
             logicMock.Setup(n => n.LoadUser(1, It.IsAny<Session>())).Returns(modelUser);
 
             var service = CreateUserService();
-            var result = service.Get(new UserDto() {Id = 1});
+            var result = service.Get(new User() {Id = 1});
 
             Assert.NotNull(result);
-            Assert.NotNull(result.UserDto);
+            Assert.NotNull(result.User);
         }
 
         [Fact]
@@ -81,7 +83,7 @@ namespace Woozle.UnitTest.Services.UserManagement
             MockSave();
 
             var service = CreateUserService();
-            var result = service.Post(new UserDto() { Id = 1 });
+            var result = service.Post(new User() { Id = 1 });
 
             Assert.NotNull(result);
             Assert.NotNull(result.TargetObject);
@@ -94,7 +96,7 @@ namespace Woozle.UnitTest.Services.UserManagement
             MockSave();
 
             var service = CreateUserService();
-            var result = service.Put(new UserDto() { Id = 1 });
+            var result = service.Put(new User() { Id = 1 });
 
             Assert.NotNull(result);
             Assert.NotNull(result.TargetObject);
@@ -103,8 +105,8 @@ namespace Woozle.UnitTest.Services.UserManagement
 
         private void MockSave()
         {
-            var modelSaveResult = new SaveResult<User>() {TargetObject = modelUser};
-            logicMock.Setup(n => n.Save(It.IsAny<User>(), It.IsAny<Session>())).Returns(modelSaveResult);
+            var modelSaveResult = new SaveResult<Model.User>() {TargetObject = modelUser};
+            logicMock.Setup(n => n.Save(It.IsAny<Model.User>(), It.IsAny<Session>())).Returns(modelSaveResult);
         }
 
         private UserService CreateUserService()

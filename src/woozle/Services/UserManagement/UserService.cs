@@ -18,11 +18,11 @@ namespace Woozle.Services.UserManagement
         }
 
         [ExceptionCatcher]
-        public IList<UserSearchResult> Get(UsersDto request)
+        public IList<Model.UserSearch.UserSearchResult> Get(Users request)
         {
-            var criteria = Mapper.Map<UsersDto, UserSearchCriteria>(request);
+            var criteria = Mapper.Map<Users, UserSearchCriteria>(request);
             var result = logic.Search(criteria, Session);
-            return Mapper.Map<IList<UserSearchResult>, List<UserSearchResult>>(result);
+            return Mapper.Map<IList<Model.UserSearch.UserSearchResult>, List<Model.UserSearch.UserSearchResult>>(result);
         }
 
         /// <summary>
@@ -31,25 +31,25 @@ namespace Woozle.Services.UserManagement
         /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public List<UserDto> Get(UsersForDropDownDto request)
+        public List<User> Get(UsersForDropDownDto request)
         {
             var result = logic.GetUsersOfMandator(Session);
-            return Mapper.Map<IList<Model.User>, List<UserDto>>(result);
+            return Mapper.Map<IList<Model.User>, List<User>>(result);
         }
 
         [ExceptionCatcher]
-        public UserResponse Get(UserDto request)
+        public UserResponse Get(User request)
         {
             if (request.Id == 0)
             {
                 return new UserResponse
                            {
-                               UserDto = Mapper.Map <Model.User,UserDto>(this.Session.SessionObject.User)
+                               User = Mapper.Map <Model.User,User>(this.Session.SessionObject.User)
                            };
             }
 
             var result = logic.LoadUser(request.Id, Session);
-            var response = new UserResponse() {UserDto = Mapper.Map<Model.User, UserDto>(result)};
+            var response = new UserResponse() {User = Mapper.Map<Model.User, User>(result)};
             return response;
         }
 
@@ -59,7 +59,7 @@ namespace Woozle.Services.UserManagement
             var result = logic.LoadUser(this.Session.SessionObject.User.Id, Session);
             var response = new UserResponse
                                {
-                                   UserDto = Mapper.Map<Model.User, UserDto>(result)
+                                   User = Mapper.Map<Model.User, User>(result)
                                };
 
             return response;
@@ -68,35 +68,35 @@ namespace Woozle.Services.UserManagement
         /// <summary>
         /// Inserts a given object
         /// </summary>
-        /// <param name="userDto"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResultDto<UserDto> Post(UserDto userDto)
+        public SaveResultDto<User> Post(User user)
         {
-            return Save(userDto);
+            return Save(user);
         }
 
         /// <summary>
         /// Updates a given object
         /// </summary>
-        /// <param name="userDto"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResultDto<UserDto> Put(UserDto userDto)
+        public SaveResultDto<User> Put(User user)
         {
-            return Save(userDto);
+            return Save(user);
         }
 
-        private SaveResultDto<UserDto> Save(UserDto userDto)
+        private SaveResultDto<User> Save(User user)
         {
-            var saveResult = logic.Save(Mapper.Map<UserDto, Model.User>(userDto), Session);
-            return Mapper.Map<ISaveResult<Model.User>, SaveResultDto<UserDto>>(saveResult);
+            var saveResult = logic.Save(Mapper.Map<User, Model.User>(user), Session);
+            return Mapper.Map<ISaveResult<Model.User>, SaveResultDto<User>>(saveResult);
         }
 
         [ExceptionCatcher]
-        public object Delete(UserDto userDto)
+        public object Delete(User user)
         {
-            logic.Delete(userDto.Id, Session);
+            logic.Delete(user.Id, Session);
             return null;
         }
     }

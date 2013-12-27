@@ -578,7 +578,7 @@
             </summary>
             <param name="authenticationLogic"><see cref="T:Woozle.Domain.Authentication.IAuthenticationLogic"/></param>
         </member>
-        <member name="M:Woozle.Services.Authentication.MandatorSelectionService.Get(Woozle.Services.Mandator.MandatorsForSelectionDto)">
+        <member name="M:Woozle.Services.Authentication.MandatorSelectionService.Get(Woozle.Services.Mandator.MandatorsForSelection)">
             <summary>
             Gets the mandators of the currently logged in user
             </summary>
@@ -660,7 +660,12 @@
             Gets the instance object in the desired type.
             </summary>
         </member>
-        <member name="P:Woozle.Services.Location.CountryDto.TranslatedValue">
+        <member name="P:Woozle.Services.Fields.Status.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
+            </summary>
+        </member>
+        <member name="P:Woozle.Services.Location.Country.TranslatedValue">
             <summary>
             To use the translated value directly it needs to be filled explicit
             </summary>
@@ -677,18 +682,18 @@
             To use the translated value directly it needs to be filled explicit
             </summary>
         </member>
-        <member name="M:Woozle.Services.Mandator.MandatorService.Get(Woozle.Services.Mandator.MandatorDto)">
+        <member name="M:Woozle.Services.Mandator.MandatorService.Get(Woozle.Services.Mandator.Mandator)">
             <summary>
             Gets the mandator of the currently logged in user
             </summary>
             <param name="mandator"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Services.Mandator.MandatorService.Put(Woozle.Services.Mandator.MandatorDto)">
+        <member name="M:Woozle.Services.Mandator.MandatorService.Put(Woozle.Services.Mandator.Mandator)">
             <summary>
             Updates the given mandator
             </summary>
-            <param name="requestDto"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="T:Woozle.Services.MappingConfiguration">
@@ -696,11 +701,11 @@
             Mapping configuration betweeen Dto's and Model objects
             </summary>
         </member>
-        <member name="M:Woozle.Services.Modules.ModuleService.Get(Woozle.Services.Modules.ModulesDto)">
+        <member name="M:Woozle.Services.Modules.ModuleService.Get(Woozle.Services.Modules.Modules)">
             <summary>
             Gets all modules of the mandator of the currently logged in user
             </summary>
-            <param name="requestDto"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="T:Woozle.Services.SaveResultDto`1">
@@ -734,12 +739,12 @@
             A list with <see cref="T:Woozle.Model.Validation.Error">errors</see>
             </summary>
         </member>
-        <member name="P:Woozle.Services.Modules.FunctionDto.TranslatedValue">
+        <member name="P:Woozle.Services.Modules.Function.TranslatedValue">
             <summary>
             To use the translated value directly it needs to be filled explicit
             </summary>
         </member>
-        <member name="P:Woozle.Services.Modules.ModuleDto.TranslatedValue">
+        <member name="P:Woozle.Services.Modules.Module.TranslatedValue">
             <summary>
             To use the translated value directly it needs to be filled explicit
             </summary>
@@ -771,18 +776,18 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Services.UserManagement.UserService.Post(Woozle.Services.UserManagement.UserDto)">
+        <member name="M:Woozle.Services.UserManagement.UserService.Post(Woozle.Services.UserManagement.User)">
             <summary>
             Inserts a given object
             </summary>
-            <param name="userDto"></param>
+            <param name="user"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Services.UserManagement.UserService.Put(Woozle.Services.UserManagement.UserDto)">
+        <member name="M:Woozle.Services.UserManagement.UserService.Put(Woozle.Services.UserManagement.User)">
             <summary>
             Updates a given object
             </summary>
-            <param name="userDto"></param>
+            <param name="user"></param>
             <returns></returns>
         </member>
     </members>

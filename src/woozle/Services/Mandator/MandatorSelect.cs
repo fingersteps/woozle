@@ -3,8 +3,8 @@
 namespace Woozle.Services.Mandator
 {
     [Route("/mandatorselect", "POST")]
-    public class MandatorSelectDto : IReturn<bool>
+    public class MandatorSelect : IReturn<bool>
     {
-        public MandatorDto SelectedMandatorDto { get; set; }
+        public Mandator SelectedMandator { get; set; }
     }
 }

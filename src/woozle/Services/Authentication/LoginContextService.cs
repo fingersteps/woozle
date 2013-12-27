@@ -12,11 +12,11 @@ namespace Woozle.Services.Authentication
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public LoginContextResultDto Get(LoginContext requestDto)
+        public LoginContextResult Get(LoginContext requestDto)
         {
-            var serviceUser = Mapper.Map<Model.User, UserDto>(Session.SessionObject.User);
-            var serviceMandator = Mapper.Map<Model.Mandator, Mandator.MandatorDto>(Session.SessionObject.Mandator);
-            var result = new LoginContextResultDto {UserDto = serviceUser, MandatorDto = serviceMandator};
+            var serviceUser = Mapper.Map<Model.User, User>(Session.SessionObject.User);
+            var serviceMandator = Mapper.Map<Model.Mandator, Mandator.Mandator>(Session.SessionObject.Mandator);
+            var result = new LoginContextResult {User = serviceUser, Mandator = serviceMandator};
             return result;
         }
     }

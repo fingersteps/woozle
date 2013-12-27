@@ -3,7 +3,7 @@ using System;
 namespace Woozle.Services.Location
 {
     [Serializable]
-    public partial class CountryDto : WoozleDto
+    public partial class Country : WoozleDto
     {
         public int TranslationId { get; set; }
     
@@ -13,7 +13,6 @@ namespace Woozle.Services.Location
         public string TranslatedValue { get; set; }
 
         public Translation Translation { get; set; }
-    
     }
     
 }

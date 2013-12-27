@@ -6,6 +6,7 @@ using Woozle.Model.SessionHandling;
 using Woozle.Services;
 using Woozle.Services.Modules;
 using Xunit;
+using ModuleForMandator = Woozle.Model.ModulePermissions.ModuleForMandator;
 
 namespace Woozle.UnitTest.Services.Modules
 {
@@ -30,7 +31,7 @@ namespace Woozle.UnitTest.Services.Modules
             moduleLogicMock.Setup(n => n.GetModulesByMandator(It.IsAny<Session>())).Returns(modules);
 
             var service = CreateModuleService();
-            var result = service.Get(new ModulesDto());
+            var result = service.Get(new Woozle.Services.Modules.Modules());
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);

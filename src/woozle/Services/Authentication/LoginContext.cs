@@ -4,13 +4,13 @@ using Woozle.Services.UserManagement;
 namespace Woozle.Services.Authentication
 {
     [Route("/loginContext", "GET")]
-    public class LoginContext : IReturn<LoginContextResultDto>
+    public class LoginContext : IReturn<LoginContextResult>
     {
     }
 
-    public class LoginContextResultDto
+    public class LoginContextResult
     {
-        public UserDto UserDto { get; set; }
-        public Mandator.MandatorDto MandatorDto { get; set; }
+        public User User { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
     }
 }

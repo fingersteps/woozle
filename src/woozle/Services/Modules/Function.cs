@@ -4,7 +4,7 @@ using Woozle.Services.Location;
 namespace Woozle.Services.Modules
 {
     [Serializable]
-    public partial class FunctionDto : WoozleDto
+    public partial class Function : WoozleDto
     {
         public byte[] Icon { get; set; }
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace Woozle.Services.Modules
         public string TranslatedValue { get; set; }
         public short Sequence { get; set; }
     
-        public ModuleDto ModuleDto { get; set; }
+        public Module Module { get; set; }
         public Translation Translation { get; set; }
     
     }

@@ -28,7 +28,7 @@ namespace Woozle.UnitTest.Services.Mandator
             mandatorLogicMock.Setup(n => n.LoadMandator(It.IsAny<Session>())).Returns(modelMandator);
 
             var service = CreateMandatorService();
-            var result = service.Get(new MandatorDto { Id = 1 });
+            var result = service.Get(new Woozle.Services.Mandator.Mandator { Id = 1 });
 
             Assert.NotNull(result);
         }
@@ -39,7 +39,7 @@ namespace Woozle.UnitTest.Services.Mandator
             MockSave();
 
             var service = CreateMandatorService();
-            var result = service.Put(new MandatorDto() { Id = 1 });
+            var result = service.Put(new Woozle.Services.Mandator.Mandator() { Id = 1 });
 
             Assert.NotNull(result);
             Assert.NotNull(result.TargetObject);

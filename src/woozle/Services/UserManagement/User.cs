@@ -4,15 +4,17 @@ using System.Collections.ObjectModel;
 using ServiceStack;
 using ServiceStack.ServiceHost;
 using Woozle.Model;
+using Woozle.Services.Location;
+using Language = Woozle.Services.Location.Language;
 
 namespace Woozle.Services.UserManagement
 {
     [Serializable]
     [Route("/users", "POST,PUT,DELETE")]
     [Route("/users/{Id}")]
-    public partial class UserDto : WoozleDto, IReturn<UserResponse>, IReturn<SaveResultDto<UserDto>>, IReturnVoid
+    public partial class User : WoozleDto, IReturn<UserResponse>, IReturn<SaveResultDto<User>>, IReturnVoid
     {
-        public UserDto()
+        public User()
         {
             this.UserMandatorRoles = new ObservableCollection<UserMandatorRole>();
         }
@@ -36,7 +38,7 @@ namespace Woozle.Services.UserManagement
 
     public class UserResponse
     {
-        public UserDto UserDto { get; set; }
+        public User User { get; set; }
     }
     
 }

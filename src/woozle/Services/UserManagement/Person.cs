@@ -5,7 +5,7 @@ using Woozle.Model;
 namespace Woozle.Services.UserManagement
 {
     [Serializable]
-    public partial class PersonDto : WoozleDto
+    public partial class Person : WoozleDto
     {
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -22,7 +22,7 @@ namespace Woozle.Services.UserManagement
     
         public City City { get; set; }
         public Status SalutationStatus { get; set; }
-        public Mandator.MandatorDto MandatorDto { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
     }
     
 }

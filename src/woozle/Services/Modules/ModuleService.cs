@@ -18,13 +18,13 @@ namespace Woozle.Services.Modules
         /// <summary>
         /// Gets all modules of the mandator of the currently logged in user
         /// </summary>
-        /// <param name="requestDto"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public IList<ModuleForMandatorDto> Get(ModulesDto requestDto)
+        public IList<ModuleForMandator> Get(Modules request)
         {
             var result = moduleLogic.GetModulesByMandator(Session);
-            return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandatorDto>>(result);
+            return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandator>>(result);
         }
     }
 }

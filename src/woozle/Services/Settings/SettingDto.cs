@@ -12,7 +12,7 @@ namespace Woozle.Services.Modules.Settings
         public string EventManagementPlanningMobile { get; set; }
         public byte[] ChangeCounter { get; set; }
     
-        public Mandator.MandatorDto MandatorDto { get; set; }
+        public Mandator.Mandator Mandator { get; set; }
     
     }
     

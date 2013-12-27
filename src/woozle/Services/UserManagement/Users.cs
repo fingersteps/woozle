@@ -4,9 +4,9 @@ using ServiceStack.ServiceHost;
 namespace Woozle.Services.UserManagement
 {
 	[Route("/users", "GET, OPTIONS")]
-    public class UsersDto : IReturn<List<UserSearchResultDto>>
+    public class Users : IReturn<List<UserSearchResult>>
     {
-        public UsersDto()
+        public Users()
         {
             this.Username = string.Empty;
             this.Firstname = string.Empty;
@@ -18,7 +18,7 @@ namespace Woozle.Services.UserManagement
         public string Lastname { get; set; }
     }
 
-    public class UserSearchResultDto
+    public class UserSearchResult
     {
         public int Id { get; set; }
         public string Username { get; set; }

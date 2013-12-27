@@ -3,7 +3,7 @@ using System;
 namespace Woozle.Services.Modules
 {
     [Serializable]
-    public partial class PermissionDto : WoozleDto
+    public partial class Permission : WoozleDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

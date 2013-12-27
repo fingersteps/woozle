@@ -21,24 +21,24 @@ namespace Woozle.Services.Mandator
         /// <param name="mandator"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public MandatorDto Get(MandatorDto mandator)
+        public Mandator Get(Mandator mandator)
         {
             var result = mandatorLogic.LoadMandator(Session);
-            return Mapper.Map<Model.Mandator, MandatorDto>(result);
+            return Mapper.Map<Model.Mandator, Mandator>(result);
         }
 
         /// <summary>
         /// Updates the given mandator
         /// </summary>
-        /// <param name="requestDto"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResultDto<MandatorDto> Put(MandatorDto requestDto)
+        public SaveResultDto<Mandator> Put(Mandator request)
         {
-            var modelObj = Mapper.Map<MandatorDto, Woozle.Model.Mandator>(requestDto);
+            var modelObj = Mapper.Map<Mandator, Woozle.Model.Mandator>(request);
             var result = mandatorLogic.Save(modelObj, Session);
             return
-                Mapper.Map<ISaveResult<Woozle.Model.Mandator>, SaveResultDto<MandatorDto>>(result);
+                Mapper.Map<ISaveResult<Woozle.Model.Mandator>, SaveResultDto<Mandator>>(result);
         }
     }
 }

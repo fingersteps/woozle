@@ -7,5 +7,4 @@ namespace Woozle.Services.Location
     {
         public string DefaultDescription { get; set; }
     }
-    
 }

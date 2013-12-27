@@ -29,7 +29,7 @@ namespace Woozle.Services.Authentication
         /// <param name="mandator"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public List<Mandator.MandatorDto> Get(MandatorsForSelectionDto mandators)
+        public List<Mandator.Mandator> Get(MandatorsForSelection mandators)
         {
             var session = (Session)base.Request.GetSession();
 
@@ -38,16 +38,16 @@ namespace Woozle.Services.Authentication
                                                   session.SessionObject.User.Username,
                                                   session.SessionObject.User.Password);
 
-            return Mapper.Map<IEnumerable<Model.Mandator>, List<MandatorDto>>(loginUser.Mandators);
+            return Mapper.Map<IEnumerable<Model.Mandator>, List<Mandator.Mandator>>(loginUser.Mandators);
         }
 
         [ExceptionCatcher]
-        public bool Post(MandatorSelectDto mandators)
+        public bool Post(MandatorSelect mandators)
         {
             var session = (Session) base.Request.GetSession();
 
-            var mappedMandator = Mapper.Map<MandatorDto, Model.Mandator>(
-                mandators.SelectedMandatorDto);
+            var mappedMandator = Mapper.Map<Mandator.Mandator, Model.Mandator>(
+                mandators.SelectedMandator);
 
             //Login with the selected Mandator
             var result = this.authenticationLogic.Login(new LoginRequest
