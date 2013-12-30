@@ -168,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Woozle.CoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

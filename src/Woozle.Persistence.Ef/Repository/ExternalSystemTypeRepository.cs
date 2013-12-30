@@ -16,42 +16,38 @@ using Woozle.Model.SessionHandling;
 
 namespace Woozle.Persistence.Ef.Repository
 {
-    public partial class UserRepository  : AbstractRepository<User>
+    public partial class ExternalSystemTypeRepository  : AbstractRepository<ExternalSystemType>
     {
     
-    	public UserRepository(IEfUnitOfWork Context) : base(Context)
+    	public ExternalSystemTypeRepository(IEfUnitOfWork Context) : base(Context)
     	{
     	}
     
     
-    	 public override User Synchronize(User entity, Session session) 
+    	 public override ExternalSystemType Synchronize(ExternalSystemType entity, Session session) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
     			var attachedObj = Context.SynchronizeObject(entity, session);
     			
-    			attachedObj.Language = Context.SynchronizeObject(entity.Language, session); 
-    
-    			attachedObj.Status = Context.SynchronizeObject(entity.Status, session); 
-    
     			
-    			//Navigation Property 'UserMandatorRoles'
+    			//Navigation Property 'ExternalSystems'
     			stopwatch.Start();
-    			foreach(var n in entity.UserMandatorRoles.Where(n => n.PersistanceState == PState.Added))
+    			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Added))
     			{ 
-    				if (!attachedObj.UserMandatorRoles.Contains(n)) attachedObj.UserMandatorRoles.Add(n);
+    				if (!attachedObj.ExternalSystems.Contains(n)) attachedObj.ExternalSystems.Add(n);
     				if (n is IMandatorCapable)
     				{
     					n.MandatorId = session.SessionObject.Mandator.Id;
     				}
     			} 
-    			foreach(var n in entity.UserMandatorRoles.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
     					Context.SynchronizeObject(n, session); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "UserMandatorRoles", stopwatch.ElapsedMilliseconds));
+    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     	catch (Exception e)
@@ -60,7 +56,7 @@ namespace Woozle.Persistence.Ef.Repository
     		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
     	} 
       } 
-    	 public override void Delete(User entity, Session session) 
+    	 public override void Delete(ExternalSystemType entity, Session session) 
     	 { 
     		try
     		{
@@ -68,28 +64,24 @@ namespace Woozle.Persistence.Ef.Repository
     			entity.PersistanceState = PState.Unchanged;
     			var attachedObj = Context.SynchronizeObject(entity, session);
     			
-    			Context.SynchronizeObject(attachedObj.Language, session); 
-    
-    			Context.SynchronizeObject(attachedObj.Status, session); 
-    
     			
     
-    			//Navigation Property 'UserMandatorRoles'
+    			//Navigation Property 'ExternalSystems'
     			stopwatch.Start();
-    			Context.LoadCollection<User>(attachedObj.Id, "UserMandatorRoles");
-    			foreach (var n in attachedObj.UserMandatorRoles.ToList())
+    			Context.LoadCollection<ExternalSystemType>(attachedObj.Id, "ExternalSystems");
+    			foreach (var n in attachedObj.ExternalSystems.ToList())
     			{
     				n.PersistanceState = PState.Deleted;
     			    Context.SynchronizeObject(n, session);
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "UserMandatorRoles", stopwatch.ElapsedMilliseconds));
+    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			attachedObj.PersistanceState = PState.Deleted;
     			attachedObj = Context.SynchronizeObject(attachedObj, session);
     			stopwatch.Start();
     			Context.Commit();
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "User", stopwatch.ElapsedMilliseconds));
+    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "ExternalSystemType", stopwatch.ElapsedMilliseconds));
     		}
     	catch (Exception e)
     	{

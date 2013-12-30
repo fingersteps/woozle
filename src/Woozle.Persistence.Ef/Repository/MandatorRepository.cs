@@ -10,6 +10,7 @@
 using System.Diagnostics;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
@@ -115,6 +116,22 @@ namespace Woozle.Persistence.Ef.Repository
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Settings", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'ExternalSystems'
+    			stopwatch.Start();
+    			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.ExternalSystems.Contains(n)) attachedObj.ExternalSystems.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = session.SessionObject.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, session); 
+    			} 
+    			stopwatch.Stop();
+    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     	catch (Exception e)
@@ -187,6 +204,17 @@ namespace Woozle.Persistence.Ef.Repository
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Settings", stopwatch.ElapsedMilliseconds));
+    
+    			//Navigation Property 'ExternalSystems'
+    			stopwatch.Start();
+    			Context.LoadCollection<Mandator>(attachedObj.Id, "ExternalSystems");
+    			foreach (var n in attachedObj.ExternalSystems.ToList())
+    			{
+    				n.PersistanceState = PState.Deleted;
+    			    Context.SynchronizeObject(n, session);
+    			} 
+    			stopwatch.Stop();
+    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			attachedObj.PersistanceState = PState.Deleted;
     			attachedObj = Context.SynchronizeObject(attachedObj, session);
     			stopwatch.Start();

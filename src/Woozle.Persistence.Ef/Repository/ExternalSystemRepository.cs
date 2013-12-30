@@ -16,22 +16,22 @@ using Woozle.Model.SessionHandling;
 
 namespace Woozle.Persistence.Ef.Repository
 {
-    public partial class LocationRepository  : AbstractRepository<Location>
+    public partial class ExternalSystemRepository  : AbstractRepository<ExternalSystem>
     {
     
-    	public LocationRepository(IEfUnitOfWork Context) : base(Context)
+    	public ExternalSystemRepository(IEfUnitOfWork Context) : base(Context)
     	{
     	}
     
     
-    	 public override Location Synchronize(Location entity, Session session) 
+    	 public override ExternalSystem Synchronize(ExternalSystem entity, Session session) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
     			var attachedObj = Context.SynchronizeObject(entity, session);
     			
-    			attachedObj.City = Context.SynchronizeObject(entity.City, session); 
+    			attachedObj.ExternalSystemType = Context.SynchronizeObject(entity.ExternalSystemType, session); 
     
     			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, session); 
     
@@ -44,7 +44,7 @@ namespace Woozle.Persistence.Ef.Repository
     		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
     	} 
       } 
-    	 public override void Delete(Location entity, Session session) 
+    	 public override void Delete(ExternalSystem entity, Session session) 
     	 { 
     		try
     		{
@@ -52,6 +52,8 @@ namespace Woozle.Persistence.Ef.Repository
     			entity.PersistanceState = PState.Unchanged;
     			var attachedObj = Context.SynchronizeObject(entity, session);
     			
+    			Context.SynchronizeObject(attachedObj.ExternalSystemType, session); 
+    
     			Context.SynchronizeObject(attachedObj.Mandator, session); 
     
     			
@@ -60,7 +62,7 @@ namespace Woozle.Persistence.Ef.Repository
     			stopwatch.Start();
     			Context.Commit();
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "Location", stopwatch.ElapsedMilliseconds));
+    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "ExternalSystem", stopwatch.ElapsedMilliseconds));
     		}
     	catch (Exception e)
     	{

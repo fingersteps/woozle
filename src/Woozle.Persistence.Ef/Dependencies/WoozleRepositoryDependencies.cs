@@ -30,6 +30,8 @@ namespace Woozle.Persistence.Ef.Dependencies
             container.RegisterAs<LocationRepository, IRepository<Location>>();
             container.RegisterAs<SettingRepository, IRepository<Setting>>();
             container.RegisterAs<MandatorGroupRepository, IRepository<MandatorGroup>>();
+            container.RegisterAs<ExternalSystemRepository, IExternalSystemRepository>();
+            container.RegisterAs<ExternalSystemTypeRepository, IRepository<ExternalSystemType>>();
         }
     }
 }

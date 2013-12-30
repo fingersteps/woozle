@@ -1823,7 +1823,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="WoozleModel" ZoomLevel="84">
+      <Diagram Name="WoozleModel" ZoomLevel="73">
         <EntityTypeShape EntityType="WoozleModel.City" Width="1.5" PointX="10.392564815651889" PointY="5.0361131453123473" />
         <EntityTypeShape EntityType="WoozleModel.Country" Width="1.5" PointX="7.2734252918853537" PointY="26.012806844903533" />
         <EntityTypeShape EntityType="WoozleModel.Function" Width="1.5" PointX="11.458196880043577" PointY="11.709338089315844" />

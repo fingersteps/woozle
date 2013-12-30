@@ -14,6 +14,6 @@ using System.Collections.Generic;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
-namespace Woozle.Persistence.Repository
+namespace Woozle.Persistence.Ef.Repository
 {
 }

@@ -87,6 +87,13 @@
     <Compile Include="Repository\CountryRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\ExternalSystemRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\ExternalSystemRepositoryExtended.cs" />
+    <Compile Include="Repository\ExternalSystemTypeRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\FunctionPermissionRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
@@ -171,6 +178,9 @@
       <Project>{a915ce7b-78f1-4b88-9360-faa95d7cbf87}</Project>
       <Name>Woozle.Persistence</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
