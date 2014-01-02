@@ -10,13 +10,13 @@ using Woozle.Model.SessionHandling;
 
 namespace Woozle.Persistence.Ef
 {
-    public abstract class EfDataContextBase : DbContext, IEfUnitOfWork
+    public abstract class EfUnitOfWork : DbContext, IEfUnitOfWork
     {
         private const string CHANGE_COUNTER = "ChangeCounter";
-        private readonly ILog log = LogManager.GetLogger(typeof(EfDataContextBase));
+        private readonly ILog log = LogManager.GetLogger(typeof(EfUnitOfWork));
 
 
-        protected EfDataContextBase(string connectionString) : base(connectionString)
+        protected EfUnitOfWork(string connectionString) : base(connectionString)
         {
             Database.SetInitializer<EfWoozleEntity>(null);
         }

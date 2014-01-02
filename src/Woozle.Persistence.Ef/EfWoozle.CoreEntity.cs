@@ -3,7 +3,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace Woozle.Persistence.Ef
 {
-    public partial class EfWoozleEntity : EfDataContextBase
+    public partial class EfWoozleEntity : EfUnitOfWork
     {
         public EfWoozleEntity() : base("name=EfWoozleEntity")
         {
