@@ -163,6 +163,12 @@
     </Compile>
     <Compile Include="Repository\UserRepositoryExtended.cs" />
     <Compile Include="StateHelpers.cs" />
+    <Compile Include="WoozleModel.Views.cs" />
+    <Compile Include="WoozleModel1.Designer.cs">
+      <DependentUpon>WoozleModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -170,6 +176,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RepositoryGeneration.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="WoozleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WoozleModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Woozle.Model\Woozle.Model.csproj">

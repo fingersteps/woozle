@@ -167,11 +167,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="WoozleModel1.Designer.cs">
-      <DependentUpon>WoozleModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="WoozleObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,10 +177,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Woozle.CoreModel.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="WoozleModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WoozleModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
