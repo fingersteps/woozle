@@ -655,11 +655,6 @@
             Catches all exceptions and parse them into user friendli ServiceExceptions, which gets sent to the Client
             </summary>
         </member>
-        <member name="M:Woozle.Services.ExceptionCatcher.GetInstance``1(System.Object)">
-            <summary>
-            Gets the instance object in the desired type.
-            </summary>
-        </member>
         <member name="P:Woozle.Services.Fields.Status.TranslatedValue">
             <summary>
             To use the translated value directly it needs to be filled explicit
