@@ -115,7 +115,7 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
         /// which will be loaded via MEF.
         /// </remarks>
         /// <param name="externalService">
-        /// <see cref="Prosa.ExternalSystem">The external system domain object, which holds all needed information about the target external system</see>
+        /// <see cref="Model.ExternalSystem">The external system domain object, which holds all needed information about the target external system</see>
         /// </param>
         /// <returns>A specific instance of the target external system</returns>
         private T FindExternalSystem(Model.ExternalSystem externalService)

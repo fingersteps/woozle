@@ -79,7 +79,7 @@
             which will be loaded via MEF.
             </remarks>
             <param name="externalService">
-            <see cref="!:Prosa.ExternalSystem">The external system domain object, which holds all needed information about the target external system</see>
+            <see cref="T:Woozle.Model.ExternalSystem">The external system domain object, which holds all needed information about the target external system</see>
             </param>
             <returns>A specific instance of the target external system</returns>
         </member>
@@ -420,7 +420,7 @@
             <summary>
             Deletes the specific user.
             </summary>
-            <param name="user"><see cref="T:Woozle.Model.User"/></param>
+            <param name="id"><see cref="T:Woozle.Model.User"/></param>
             <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
         </member>
         <member name="M:Woozle.Domain.UserManagement.IUserLogic.LoadUser(System.Int32,Woozle.Model.SessionHandling.Session)">
@@ -582,7 +582,7 @@
             <summary>
             Gets the mandators of the currently logged in user
             </summary>
-            <param name="mandator"></param>
+            <param name="mandators"></param>
             <returns></returns>
         </member>
         <member name="T:Woozle.Services.Authentication.WoozleCredentialsAuthProvider">
@@ -669,7 +669,7 @@
             <summary>
             Gets all languages
             </summary>
-            <param name="requestDto"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="P:Woozle.Services.Location.Message.TranslatedValue">

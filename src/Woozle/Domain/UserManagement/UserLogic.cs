@@ -19,7 +19,7 @@ namespace Woozle.Domain.UserManagement
         /// <summary>
         /// <see cref="IUserRepository"/>
         /// </summary>
-        private new readonly IUserRepository repository;
+        private readonly IUserRepository repository;
 
         /// <summary>
         /// <see cref="IUserValidator"/>
@@ -71,7 +71,7 @@ namespace Woozle.Domain.UserManagement
         /// <param name="user">The user.</param>
         /// <param name="session">The required session.</param>
         /// <returns><see cref="ISaveResult{TO}"/></returns>
-        public new ISaveResult<User> Save(User user, Session session)
+        public ISaveResult<User> Save(User user, Session session)
         {
             var synchronizedUser = this.repository.Synchronize(user, session);
             userValidator.Session = session;

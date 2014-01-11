@@ -25,12 +25,12 @@ namespace Woozle.Domain.UserManagement
         /// <param name="user"><see cref="User"/></param>
         /// <param name="session"><see cref="Session"/></param>
         /// <returns><see cref="ISaveResult{TO}"/>.</returns>
-        new ISaveResult<User> Save(User user, Session session);
+        ISaveResult<User> Save(User user, Session session);
 
         /// <summary>
         /// Deletes the specific user.
         /// </summary>
-        /// <param name="user"><see cref="User"/></param>
+        /// <param name="id"><see cref="User"/></param>
         /// <param name="session"><see cref="Session"/></param>
         void Delete(int id, Session session);
 

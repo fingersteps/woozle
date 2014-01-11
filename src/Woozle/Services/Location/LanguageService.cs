@@ -18,7 +18,7 @@ namespace Woozle.Services.Location
         /// <summary>
         /// Gets all languages
         /// </summary>
-        /// <param name="requestDto"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
         public IList<Language> Get(Languages request)

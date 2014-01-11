@@ -26,7 +26,7 @@ namespace Woozle.Services.Authentication
         /// <summary>
         /// Gets the mandators of the currently logged in user
         /// </summary>
-        /// <param name="mandator"></param>
+        /// <param name="mandators"></param>
         /// <returns></returns>
         [ExceptionCatcher]
         public List<Mandator.Mandator> Get(MandatorsForSelection mandators)

@@ -34,7 +34,7 @@ namespace Woozle.Model.SessionHandling
         /// Gets the session id.
         /// </summary>
         /// <remarks></remarks>
-        public Guid Id { get; private set; }
+        public new Guid Id { get; private set; }
 
         /// <summary>
         /// Gets the session object.
