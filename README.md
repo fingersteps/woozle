@@ -15,13 +15,13 @@ Woozle is a .NET business application framework which will increase your develop
 
 [![Build status](https://ci.appveyor.com/api/projects/status?id=b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/woozles-woozle)
 
-#Demo
+##Demo
 Check out woozle in action here: http://woozle-demo.azurewebsites.net
 
 The source code of the demo application is available here: https://github.com/woozles/woozle.examples
 
-#Install
+##Install
 TODO
 
-#Documentation
+##Documentation
 TODO
