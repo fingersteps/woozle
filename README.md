@@ -21,7 +21,9 @@ Check out woozle in action here: http://woozle-demo.azurewebsites.net
 The source code of the demo application is available here: https://github.com/woozles/woozle.examples
 
 ##Install
-TODO
+Install woozle from the package manager console in Visual Studio:
 
-##Documentation
+    PM> Install-Package Woozle
+
+##Getting started
 TODO
