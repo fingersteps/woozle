@@ -1,0 +1,1882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WoozleModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="WoozleModelStoreContainer">
+          <EntitySet Name="City" EntityType="WoozleModel.Store.City" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Country" EntityType="WoozleModel.Store.Country" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="ExternalSystem" EntityType="WoozleModel.Store.ExternalSystem" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="ExternalSystemType" EntityType="WoozleModel.Store.ExternalSystemType" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Function" EntityType="WoozleModel.Store.Function" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="FunctionPermission" EntityType="WoozleModel.Store.FunctionPermission" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Language" EntityType="WoozleModel.Store.Language" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Location" EntityType="WoozleModel.Store.Location" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Mandator" EntityType="WoozleModel.Store.Mandator" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="MandatorGroup" EntityType="WoozleModel.Store.MandatorGroup" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="MandatorModules" EntityType="WoozleModel.Store.MandatorModules" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="MandatorRole" EntityType="WoozleModel.Store.MandatorRole" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="MandatorRoleFunctionPermission" EntityType="WoozleModel.Store.MandatorRoleFunctionPermission" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Module" EntityType="WoozleModel.Store.Module" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="ModuleGroup" EntityType="WoozleModel.Store.ModuleGroup" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Permission" EntityType="WoozleModel.Store.Permission" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Person" EntityType="WoozleModel.Store.Person" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Role" EntityType="WoozleModel.Store.Role" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Settings" EntityType="WoozleModel.Store.Settings" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Status" EntityType="WoozleModel.Store.Status" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="StatusField" EntityType="WoozleModel.Store.StatusField" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="Translation" EntityType="WoozleModel.Store.Translation" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="TranslationItem" EntityType="WoozleModel.Store.TranslationItem" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="User" EntityType="WoozleModel.Store.User" store:Type="Tables" Schema="woo" />
+          <EntitySet Name="UserMandatorRole" EntityType="WoozleModel.Store.UserMandatorRole" store:Type="Tables" Schema="woo" />
+          <AssociationSet Name="FK__FunctionP__Funct__4183B671" Association="WoozleModel.Store.FK__FunctionP__Funct__4183B671">
+            <End Role="Function" EntitySet="Function" />
+            <End Role="FunctionPermission" EntitySet="FunctionPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FunctionP__Permi__4277DAAA" Association="WoozleModel.Store.FK__FunctionP__Permi__4277DAAA">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="FunctionPermission" EntitySet="FunctionPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MandatorR__MandI__5070F446" Association="WoozleModel.Store.FK__MandatorR__MandI__5070F446">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="MandatorRole" EntitySet="MandatorRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MandatorR__RoleI__5165187F" Association="WoozleModel.Store.FK__MandatorR__RoleI__5165187F">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="MandatorRole" EntitySet="MandatorRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country_Translation" Association="WoozleModel.Store.FK_Country_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="Country" EntitySet="Country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalService_ExternalServiceType" Association="WoozleModel.Store.FK_ExternalService_ExternalServiceType">
+            <End Role="ExternalSystemType" EntitySet="ExternalSystemType" />
+            <End Role="ExternalSystem" EntitySet="ExternalSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalService_Mandator" Association="WoozleModel.Store.FK_ExternalService_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="ExternalSystem" EntitySet="ExternalSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Function_Module" Association="WoozleModel.Store.FK_Function_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Function_Translation" Association="WoozleModel.Store.FK_Function_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="Function" EntitySet="Function" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_City" Association="WoozleModel.Store.FK_Location_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Mandator" Association="WoozleModel.Store.FK_Location_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandator_CityId" Association="WoozleModel.Store.FK_Mandator_CityId">
+            <End Role="City" EntitySet="City" />
+            <End Role="Mandator" EntitySet="Mandator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandator_MandatorGroup" Association="WoozleModel.Store.FK_Mandator_MandatorGroup">
+            <End Role="MandatorGroup" EntitySet="MandatorGroup" />
+            <End Role="Mandator" EntitySet="Mandator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MandatorHasModules_Mandator" Association="WoozleModel.Store.FK_MandatorHasModules_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="MandatorModules" EntitySet="MandatorModules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MandatorHasModules_Module" Association="WoozleModel.Store.FK_MandatorHasModules_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="MandatorModules" EntitySet="MandatorModules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MandatorRoleFunctionPermission_FunctionPermission" Association="WoozleModel.Store.FK_MandatorRoleFunctionPermission_FunctionPermission">
+            <End Role="FunctionPermission" EntitySet="FunctionPermission" />
+            <End Role="MandatorRoleFunctionPermission" EntitySet="MandatorRoleFunctionPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MandatorRoleFunctionPermission_MandatorRole" Association="WoozleModel.Store.FK_MandatorRoleFunctionPermission_MandatorRole">
+            <End Role="MandatorRole" EntitySet="MandatorRole" />
+            <End Role="MandatorRoleFunctionPermission" EntitySet="MandatorRoleFunctionPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Module_ModuleGroup" Association="WoozleModel.Store.FK_Module_ModuleGroup">
+            <End Role="ModuleGroup" EntitySet="ModuleGroup" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Module_Translation" Association="WoozleModel.Store.FK_Module_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_City" Association="WoozleModel.Store.FK_Person_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Mandator" Association="WoozleModel.Store.FK_Person_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Status_Salutation" Association="WoozleModel.Store.FK_Person_Status_Salutation">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_Mandator" Association="WoozleModel.Store.FK_Settings_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_StatusField" Association="WoozleModel.Store.FK_Status_StatusField">
+            <End Role="StatusField" EntitySet="StatusField" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Translation" Association="WoozleModel.Store.FK_Status_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationItem_Language" Association="WoozleModel.Store.FK_TranslationItem_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="TranslationItem" EntitySet="TranslationItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationItem_Translation" Association="WoozleModel.Store.FK_TranslationItem_Translation">
+            <End Role="Translation" EntitySet="Translation" />
+            <End Role="TranslationItem" EntitySet="TranslationItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Language" Association="WoozleModel.Store.FK_User_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="WoozleModel.Store.FK_User_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMandatorRole_MandatorRole" Association="WoozleModel.Store.FK_UserMandatorRole_MandatorRole">
+            <End Role="MandatorRole" EntitySet="MandatorRole" />
+            <End Role="UserMandatorRole" EntitySet="UserMandatorRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMandatorRole_User" Association="WoozleModel.Store.FK_UserMandatorRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserMandatorRole" EntitySet="UserMandatorRole" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TranslationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MandatorId" Type="int" Nullable="false" />
+          <Property Name="ExternalSystemTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExternalSystemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Icon" Type="image" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="LogicalId" Type="varchar" MaxLength="50" />
+          <Property Name="TranslationId" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FunctionPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FunctionId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MandatorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="Street" Type="varchar" MaxLength="40" />
+          <Property Name="CityId" Type="int" />
+        </EntityType>
+        <EntityType Name="Mandator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="40" />
+          <Property Name="Phone" Type="varchar" MaxLength="25" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="ChangeCounter" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="MandatorGroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="MandatorGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="MandatorModules">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+            <PropertyRef Name="MandatorId" />
+          </Key>
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="MandatorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MandatorRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MandId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MandatorRoleFunctionPermission">
+          <Key>
+            <PropertyRef Name="MandatorRoleId" />
+            <PropertyRef Name="FunctionPermissionId" />
+          </Key>
+          <Property Name="MandatorRoleId" Type="int" Nullable="false" />
+          <Property Name="FunctionPermissionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Icon" Type="image" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="Version" Type="varchar" MaxLength="50" />
+          <Property Name="ModuleGroupId" Type="int" Nullable="false" />
+          <Property Name="LogicalId" Type="varchar" MaxLength="15" />
+          <Property Name="Sequence" Type="smallint" />
+          <Property Name="TranslationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Icon" Type="image" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="LogicalId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" />
+          <Property Name="EMail" Type="varchar" MaxLength="50" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="MandatorId" Type="int" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="40" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="25" />
+          <Property Name="Mobile" Type="varchar" MaxLength="25" />
+          <Property Name="Birthdate" Type="date" />
+          <Property Name="EnterpriseName" Type="varchar" MaxLength="40" />
+          <Property Name="SalutationStatusId" Type="int" />
+          <Property Name="ChangeCounter" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="LogicalId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MandatorId" Type="int" Nullable="false" />
+          <Property Name="EventManagementPlanningEMail" Type="varchar" MaxLength="50" />
+          <Property Name="EventManagementPlanningMobile" Type="varchar" MaxLength="25" />
+          <Property Name="ChangeCounter" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="StatusFieldId" Type="int" Nullable="false" />
+          <Property Name="TranslationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusField">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DefaultDescription" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TranslationItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TranslationId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="FlagActive" Type="bit" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="LastPasswordChange" Type="date" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="FlagActiveStatusId" Type="int" Nullable="false" />
+          <Property Name="ChangeCounter" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="UserMandatorRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MandatorRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__FunctionP__Funct__4183B671">
+          <End Role="Function" Type="WoozleModel.Store.Function" Multiplicity="1" />
+          <End Role="FunctionPermission" Type="WoozleModel.Store.FunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FunctionPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FunctionP__Permi__4277DAAA">
+          <End Role="Permission" Type="WoozleModel.Store.Permission" Multiplicity="1" />
+          <End Role="FunctionPermission" Type="WoozleModel.Store.FunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FunctionPermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MandatorR__MandI__5070F446">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="MandatorRole" Type="WoozleModel.Store.MandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRole">
+              <PropertyRef Name="MandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MandatorR__RoleI__5165187F">
+          <End Role="Role" Type="WoozleModel.Store.Role" Multiplicity="1" />
+          <End Role="MandatorRole" Type="WoozleModel.Store.MandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country_Translation">
+          <End Role="Translation" Type="WoozleModel.Store.Translation" Multiplicity="1" />
+          <End Role="Country" Type="WoozleModel.Store.Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalService_ExternalServiceType">
+          <End Role="ExternalSystemType" Type="WoozleModel.Store.ExternalSystemType" Multiplicity="1" />
+          <End Role="ExternalSystem" Type="WoozleModel.Store.ExternalSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalSystemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExternalSystem">
+              <PropertyRef Name="ExternalSystemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalService_Mandator">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="ExternalSystem" Type="WoozleModel.Store.ExternalSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExternalSystem">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Function_Module">
+          <End Role="Module" Type="WoozleModel.Store.Module" Multiplicity="1" />
+          <End Role="Function" Type="WoozleModel.Store.Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Function_Translation">
+          <End Role="Translation" Type="WoozleModel.Store.Translation" Multiplicity="1" />
+          <End Role="Function" Type="WoozleModel.Store.Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_City">
+          <End Role="City" Type="WoozleModel.Store.City" Multiplicity="0..1" />
+          <End Role="Location" Type="WoozleModel.Store.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Mandator">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="Location" Type="WoozleModel.Store.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandator_CityId">
+          <End Role="City" Type="WoozleModel.Store.City" Multiplicity="0..1" />
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandator">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandator_MandatorGroup">
+          <End Role="MandatorGroup" Type="WoozleModel.Store.MandatorGroup" Multiplicity="0..1" />
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandatorGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandator">
+              <PropertyRef Name="MandatorGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MandatorHasModules_Mandator">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="MandatorModules" Type="WoozleModel.Store.MandatorModules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorModules">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MandatorHasModules_Module">
+          <End Role="Module" Type="WoozleModel.Store.Module" Multiplicity="1" />
+          <End Role="MandatorModules" Type="WoozleModel.Store.MandatorModules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorModules">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MandatorRoleFunctionPermission_FunctionPermission">
+          <End Role="FunctionPermission" Type="WoozleModel.Store.FunctionPermission" Multiplicity="1" />
+          <End Role="MandatorRoleFunctionPermission" Type="WoozleModel.Store.MandatorRoleFunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FunctionPermission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRoleFunctionPermission">
+              <PropertyRef Name="FunctionPermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MandatorRoleFunctionPermission_MandatorRole">
+          <End Role="MandatorRole" Type="WoozleModel.Store.MandatorRole" Multiplicity="1" />
+          <End Role="MandatorRoleFunctionPermission" Type="WoozleModel.Store.MandatorRoleFunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandatorRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRoleFunctionPermission">
+              <PropertyRef Name="MandatorRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Module_ModuleGroup">
+          <End Role="ModuleGroup" Type="WoozleModel.Store.ModuleGroup" Multiplicity="1" />
+          <End Role="Module" Type="WoozleModel.Store.Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModuleGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="ModuleGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Module_Translation">
+          <End Role="Translation" Type="WoozleModel.Store.Translation" Multiplicity="1" />
+          <End Role="Module" Type="WoozleModel.Store.Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_City">
+          <End Role="City" Type="WoozleModel.Store.City" Multiplicity="0..1" />
+          <End Role="Person" Type="WoozleModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Mandator">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="Person" Type="WoozleModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Status_Salutation">
+          <End Role="Status" Type="WoozleModel.Store.Status" Multiplicity="0..1" />
+          <End Role="Person" Type="WoozleModel.Store.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="SalutationStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_Mandator">
+          <End Role="Mandator" Type="WoozleModel.Store.Mandator" Multiplicity="1" />
+          <End Role="Settings" Type="WoozleModel.Store.Settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_StatusField">
+          <End Role="StatusField" Type="WoozleModel.Store.StatusField" Multiplicity="1" />
+          <End Role="Status" Type="WoozleModel.Store.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="StatusFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Translation">
+          <End Role="Translation" Type="WoozleModel.Store.Translation" Multiplicity="1" />
+          <End Role="Status" Type="WoozleModel.Store.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationItem_Language">
+          <End Role="Language" Type="WoozleModel.Store.Language" Multiplicity="1" />
+          <End Role="TranslationItem" Type="WoozleModel.Store.TranslationItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationItem">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationItem_Translation">
+          <End Role="Translation" Type="WoozleModel.Store.Translation" Multiplicity="1" />
+          <End Role="TranslationItem" Type="WoozleModel.Store.TranslationItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationItem">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Language">
+          <End Role="Language" Type="WoozleModel.Store.Language" Multiplicity="1" />
+          <End Role="User" Type="WoozleModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Role="Status" Type="WoozleModel.Store.Status" Multiplicity="1" />
+          <End Role="User" Type="WoozleModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FlagActiveStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMandatorRole_MandatorRole">
+          <End Role="MandatorRole" Type="WoozleModel.Store.MandatorRole" Multiplicity="1" />
+          <End Role="UserMandatorRole" Type="WoozleModel.Store.UserMandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandatorRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMandatorRole">
+              <PropertyRef Name="MandatorRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMandatorRole_User">
+          <End Role="User" Type="WoozleModel.Store.User" Multiplicity="1" />
+          <End Role="UserMandatorRole" Type="WoozleModel.Store.UserMandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMandatorRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WoozleModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EfWoozleEntity" annotation:LazyLoadingEnabled="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Cities" EntityType="WoozleModel.City" />
+          <EntitySet Name="Countries" EntityType="WoozleModel.Country" />
+          <EntitySet Name="Functions" EntityType="WoozleModel.Function" />
+          <EntitySet Name="FunctionPermissions" EntityType="WoozleModel.FunctionPermission" />
+          <EntitySet Name="Languages" EntityType="WoozleModel.Language" />
+          <EntitySet Name="Mandators" EntityType="WoozleModel.Mandator" />
+          <EntitySet Name="Modules" EntityType="WoozleModel.Module" />
+          <EntitySet Name="ModuleGroups" EntityType="WoozleModel.ModuleGroup" />
+          <EntitySet Name="Permissions" EntityType="WoozleModel.Permission" />
+          <EntitySet Name="Roles" EntityType="WoozleModel.Role" />
+          <EntitySet Name="Status" EntityType="WoozleModel.Status" />
+          <EntitySet Name="StatusFields" EntityType="WoozleModel.StatusField" />
+          <EntitySet Name="Translations" EntityType="WoozleModel.Translation" />
+          <EntitySet Name="TranslationItems" EntityType="WoozleModel.TranslationItem" />
+          <EntitySet Name="Users" EntityType="WoozleModel.User" />
+          <AssociationSet Name="FK_Country_Translation" Association="WoozleModel.FK_Country_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="Country" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FunctionP__Funct__4183B671" Association="WoozleModel.FK__FunctionP__Funct__4183B671">
+            <End Role="Function" EntitySet="Functions" />
+            <End Role="FunctionPermission" EntitySet="FunctionPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Function_Module" Association="WoozleModel.FK_Function_Module">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="Function" EntitySet="Functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Function_Translation" Association="WoozleModel.FK_Function_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="Function" EntitySet="Functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FunctionP__Permi__4277DAAA" Association="WoozleModel.FK__FunctionP__Permi__4277DAAA">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="FunctionPermission" EntitySet="FunctionPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationItem_Language" Association="WoozleModel.FK_TranslationItem_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="TranslationItem" EntitySet="TranslationItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Language" Association="WoozleModel.FK_User_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Module_ModuleGroup" Association="WoozleModel.FK_Module_ModuleGroup">
+            <End Role="ModuleGroup" EntitySet="ModuleGroups" />
+            <End Role="Module" EntitySet="Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Module_Translation" Association="WoozleModel.FK_Module_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="Module" EntitySet="Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_StatusField" Association="WoozleModel.FK_Status_StatusField">
+            <End Role="StatusField" EntitySet="StatusFields" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Translation" Association="WoozleModel.FK_Status_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="WoozleModel.FK_User_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationItem_Translation" Association="WoozleModel.FK_TranslationItem_Translation">
+            <End Role="Translation" EntitySet="Translations" />
+            <End Role="TranslationItem" EntitySet="TranslationItems" />
+          </AssociationSet>
+          <AssociationSet Name="MandatorModules" Association="WoozleModel.MandatorModules">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="Module" EntitySet="Modules" />
+          </AssociationSet>
+          <EntitySet Name="Locations" EntityType="WoozleModel.Location" />
+          <AssociationSet Name="FK_Location_City" Association="WoozleModel.FK_Location_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Mandator" Association="WoozleModel.FK_Location_Mandator">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandator_CityId" Association="WoozleModel.FK_Mandator_CityId">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Mandator" EntitySet="Mandators" />
+          </AssociationSet>
+          <EntitySet Name="MandatorRoles" EntityType="WoozleModel.MandatorRole" />
+          <EntitySet Name="UserMandatorRoles" EntityType="WoozleModel.UserMandatorRole" />
+          <AssociationSet Name="FK__MandatorR__MandI__412EB0B6" Association="WoozleModel.FK__MandatorR__MandI__412EB0B6">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="MandatorRole" EntitySet="MandatorRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MandatorR__RoleI__4222D4EF" Association="WoozleModel.FK__MandatorR__RoleI__4222D4EF">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="MandatorRole" EntitySet="MandatorRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMandatorRole_MandatorRole" Association="WoozleModel.FK_UserMandatorRole_MandatorRole">
+            <End Role="MandatorRole" EntitySet="MandatorRoles" />
+            <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMandatorRole_User" Association="WoozleModel.FK_UserMandatorRole_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
+          </AssociationSet>
+          <AssociationSet Name="MandatorRoleFunctionPermission" Association="WoozleModel.MandatorRoleFunctionPermission">
+            <End Role="FunctionPermission" EntitySet="FunctionPermissions" />
+            <End Role="MandatorRole" EntitySet="MandatorRoles" />
+          </AssociationSet>
+          <EntitySet Name="People" EntityType="WoozleModel.Person" />
+          <AssociationSet Name="FK_Person_City" Association="WoozleModel.FK_Person_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Status_Salutation" Association="WoozleModel.FK_Person_Status_Salutation">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Mandator" Association="WoozleModel.FK_Person_Mandator">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="Settings" EntityType="WoozleModel.Setting" />
+          <AssociationSet Name="FK_Settings_Mandator" Association="WoozleModel.FK_Settings_Mandator">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="Setting" EntitySet="Settings" />
+          </AssociationSet>
+          <EntitySet Name="MandatorGroups" EntityType="WoozleModel.MandatorGroup" />
+          <AssociationSet Name="FK_Mandator_MandatorGroup" Association="WoozleModel.FK_Mandator_MandatorGroup">
+            <End Role="MandatorGroup" EntitySet="MandatorGroups" />
+            <End Role="Mandator" EntitySet="Mandators" />
+          </AssociationSet>
+          <EntitySet Name="ExternalSystems" EntityType="WoozleModel.ExternalSystem" />
+          <EntitySet Name="ExternalSystemTypes" EntityType="WoozleModel.ExternalSystemType" />
+          <AssociationSet Name="FK_ExternalService_ExternalServiceType" Association="WoozleModel.FK_ExternalService_ExternalServiceType">
+            <End Role="ExternalSystemType" EntitySet="ExternalSystemTypes" />
+            <End Role="ExternalSystem" EntitySet="ExternalSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExternalService_Mandator" Association="WoozleModel.FK_ExternalService_Mandator">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="ExternalSystem" EntitySet="ExternalSystems" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="ZipCode" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <NavigationProperty Name="Locations" Relationship="WoozleModel.FK_Location_City" FromRole="City" ToRole="Location" />
+          <NavigationProperty Name="Mandators" Relationship="WoozleModel.FK_Mandator_CityId" FromRole="City" ToRole="Mandator" />
+          <NavigationProperty Name="People" Relationship="WoozleModel.FK_Person_City" FromRole="City" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="TranslationId" Nullable="false" />
+          <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Country_Translation" FromRole="Country" ToRole="Translation" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Binary" Name="Icon" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ModuleId" Nullable="false" />
+          <Property Type="String" Name="LogicalId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TranslationId" Nullable="false" />
+          <NavigationProperty Name="FunctionPermissions" Relationship="WoozleModel.FK__FunctionP__Funct__4183B671" FromRole="Function" ToRole="FunctionPermission" />
+          <NavigationProperty Name="Module" Relationship="WoozleModel.FK_Function_Module" FromRole="Function" ToRole="Module" />
+          <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Function_Translation" FromRole="Function" ToRole="Translation" />
+          <Property Type="Int16" Name="Sequence" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FunctionPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="FunctionId" Nullable="false" />
+          <Property Type="Int32" Name="PermissionId" Nullable="false" />
+          <NavigationProperty Name="Function" Relationship="WoozleModel.FK__FunctionP__Funct__4183B671" FromRole="FunctionPermission" ToRole="Function" />
+          <NavigationProperty Name="Permission" Relationship="WoozleModel.FK__FunctionP__Permi__4277DAAA" FromRole="FunctionPermission" ToRole="Permission" />
+          <NavigationProperty Name="MandatorRoles" Relationship="WoozleModel.MandatorRoleFunctionPermission" FromRole="FunctionPermission" ToRole="MandatorRole" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TranslationItems" Relationship="WoozleModel.FK_TranslationItem_Language" FromRole="Language" ToRole="TranslationItem" />
+          <NavigationProperty Name="Users" Relationship="WoozleModel.FK_User_Language" FromRole="Language" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Mandator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Modules" Relationship="WoozleModel.MandatorModules" FromRole="Mandator" ToRole="Module" />
+          <NavigationProperty Name="Locations" Relationship="WoozleModel.FK_Location_Mandator" FromRole="Mandator" ToRole="Location" />
+          <Property Type="String" Name="Street" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityId" />
+          <Property Type="Binary" Name="ChangeCounter" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Picture" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="City" Relationship="WoozleModel.FK_Mandator_CityId" FromRole="Mandator" ToRole="City" />
+          <NavigationProperty Name="MandatorRoles" Relationship="WoozleModel.FK__MandatorR__MandI__412EB0B6" FromRole="Mandator" ToRole="MandatorRole" />
+          <NavigationProperty Name="People" Relationship="WoozleModel.FK_Person_Mandator" FromRole="Mandator" ToRole="Person" />
+          <NavigationProperty Name="Settings" Relationship="WoozleModel.FK_Settings_Mandator" FromRole="Mandator" ToRole="Setting" />
+          <Property Type="Int32" Name="MandatorGroupId" />
+          <NavigationProperty Name="MandatorGroup" Relationship="WoozleModel.FK_Mandator_MandatorGroup" FromRole="Mandator" ToRole="MandatorGroup" />
+          <NavigationProperty Name="ExternalSystems" Relationship="WoozleModel.FK_ExternalService_Mandator" FromRole="Mandator" ToRole="ExternalSystem" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Binary" Name="Icon" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Version" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ModuleGroupId" Nullable="false" />
+          <Property Type="String" Name="LogicalId" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="Sequence" />
+          <Property Type="Int32" Name="TranslationId" Nullable="false" />
+          <NavigationProperty Name="Functions" Relationship="WoozleModel.FK_Function_Module" FromRole="Module" ToRole="Function" />
+          <NavigationProperty Name="ModuleGroup" Relationship="WoozleModel.FK_Module_ModuleGroup" FromRole="Module" ToRole="ModuleGroup" />
+          <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Module_Translation" FromRole="Module" ToRole="Translation" />
+          <NavigationProperty Name="Mandators" Relationship="WoozleModel.MandatorModules" FromRole="Module" ToRole="Mandator" />
+        </EntityType>
+        <EntityType Name="ModuleGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Binary" Name="Icon" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Modules" Relationship="WoozleModel.FK_Module_ModuleGroup" FromRole="ModuleGroup" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LogicalId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FunctionPermissions" Relationship="WoozleModel.FK__FunctionP__Permi__4277DAAA" FromRole="Permission" ToRole="FunctionPermission" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LogicalId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MandatorRoles" Relationship="WoozleModel.FK__MandatorR__RoleI__4222D4EF" FromRole="Role" ToRole="MandatorRole" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StatusFieldId" Nullable="false" />
+          <Property Type="Int32" Name="TranslationId" Nullable="false" />
+          <NavigationProperty Name="StatusField" Relationship="WoozleModel.FK_Status_StatusField" FromRole="Status" ToRole="StatusField" />
+          <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Status_Translation" FromRole="Status" ToRole="Translation" />
+          <NavigationProperty Name="People" Relationship="WoozleModel.FK_Person_Status_Salutation" FromRole="Status" ToRole="Person" />
+          </EntityType>
+        <EntityType Name="StatusField">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Status" Relationship="WoozleModel.FK_Status_StatusField" FromRole="StatusField" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="DefaultDescription" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Countries" Relationship="WoozleModel.FK_Country_Translation" FromRole="Translation" ToRole="Country" />
+          <NavigationProperty Name="Functions" Relationship="WoozleModel.FK_Function_Translation" FromRole="Translation" ToRole="Function" />
+          <NavigationProperty Name="Modules" Relationship="WoozleModel.FK_Module_Translation" FromRole="Translation" ToRole="Module" />
+          <NavigationProperty Name="Status" Relationship="WoozleModel.FK_Status_Translation" FromRole="Translation" ToRole="Status" />
+          <NavigationProperty Name="TranslationItems" Relationship="WoozleModel.FK_TranslationItem_Translation" FromRole="Translation" ToRole="TranslationItem" />
+        </EntityType>
+        <EntityType Name="TranslationItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="TranslationId" Nullable="false" />
+          <Property Type="Int32" Name="LanguageId" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Language" Relationship="WoozleModel.FK_TranslationItem_Language" FromRole="TranslationItem" ToRole="Language" />
+          <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_TranslationItem_Translation" FromRole="TranslationItem" ToRole="Translation" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="FlagActive" Nullable="false" />
+          <Property Type="DateTime" Name="LastLogin" Precision="3" />
+          <Property Type="DateTime" Name="LastPasswordChange" Precision="0" />
+          <Property Type="Int32" Name="LanguageId" Nullable="false" />
+          <Property Type="Int32" Name="FlagActiveStatusId" Nullable="false" />
+          <Property Type="Binary" Name="ChangeCounter" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="FirstName" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Language" Relationship="WoozleModel.FK_User_Language" FromRole="User" ToRole="Language" />
+          <NavigationProperty Name="Status" Relationship="WoozleModel.FK_User_Status" FromRole="User" ToRole="Status" />
+          <NavigationProperty Name="UserMandatorRoles" Relationship="WoozleModel.FK_UserMandatorRole_User" FromRole="User" ToRole="UserMandatorRole" />
+        </EntityType>
+        <Association Name="FK_Country_Translation">
+          <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
+          <End Type="WoozleModel.Country" Role="Country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Country">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FunctionP__Funct__4183B671">
+          <End Type="WoozleModel.Function" Role="Function" Multiplicity="1" />
+          <End Type="WoozleModel.FunctionPermission" Role="FunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Function">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FunctionPermission">
+              <PropertyRef Name="FunctionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Function_Module">
+          <End Type="WoozleModel.Module" Role="Module" Multiplicity="1" />
+          <End Type="WoozleModel.Function" Role="Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Function_Translation">
+          <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
+          <End Type="WoozleModel.Function" Role="Function" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Function">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FunctionP__Permi__4277DAAA">
+          <End Type="WoozleModel.Permission" Role="Permission" Multiplicity="1" />
+          <End Type="WoozleModel.FunctionPermission" Role="FunctionPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FunctionPermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationItem_Language">
+          <End Type="WoozleModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="WoozleModel.TranslationItem" Role="TranslationItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationItem">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Language">
+          <End Type="WoozleModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Module_ModuleGroup">
+          <End Type="WoozleModel.ModuleGroup" Role="ModuleGroup" Multiplicity="1" />
+          <End Type="WoozleModel.Module" Role="Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModuleGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="ModuleGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Module_Translation">
+          <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
+          <End Type="WoozleModel.Module" Role="Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_StatusField">
+          <End Type="WoozleModel.StatusField" Role="StatusField" Multiplicity="1" />
+          <End Type="WoozleModel.Status" Role="Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="StatusFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Translation">
+          <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
+          <End Type="WoozleModel.Status" Role="Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Type="WoozleModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FlagActiveStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationItem_Translation">
+          <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
+          <End Type="WoozleModel.TranslationItem" Role="TranslationItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationItem">
+              <PropertyRef Name="TranslationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MandatorModules">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="*" />
+          <End Type="WoozleModel.Module" Role="Module" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MandatorId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Street" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityId" />
+          <NavigationProperty Name="City" Relationship="WoozleModel.FK_Location_City" FromRole="Location" ToRole="City" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK_Location_Mandator" FromRole="Location" ToRole="Mandator" />
+        </EntityType>
+        <Association Name="FK_Location_City">
+          <End Type="WoozleModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="WoozleModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Mandator">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="1" />
+          <End Type="WoozleModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandator_CityId">
+          <End Type="WoozleModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandator">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MandatorRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MandId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK__MandatorR__MandI__412EB0B6" FromRole="MandatorRole" ToRole="Mandator" />
+          <NavigationProperty Name="Role" Relationship="WoozleModel.FK__MandatorR__RoleI__4222D4EF" FromRole="MandatorRole" ToRole="Role" />
+          <NavigationProperty Name="UserMandatorRoles" Relationship="WoozleModel.FK_UserMandatorRole_MandatorRole" FromRole="MandatorRole" ToRole="UserMandatorRole" />
+          <NavigationProperty Name="FunctionPermissions" Relationship="WoozleModel.MandatorRoleFunctionPermission" FromRole="MandatorRole" ToRole="FunctionPermission" />
+        </EntityType>
+        <EntityType Name="UserMandatorRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="MandatorRoleId" Nullable="false" />
+          <NavigationProperty Name="MandatorRole" Relationship="WoozleModel.FK_UserMandatorRole_MandatorRole" FromRole="UserMandatorRole" ToRole="MandatorRole" />
+          <NavigationProperty Name="User" Relationship="WoozleModel.FK_UserMandatorRole_User" FromRole="UserMandatorRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__MandatorR__MandI__412EB0B6">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="1" />
+          <End Type="WoozleModel.MandatorRole" Role="MandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRole">
+              <PropertyRef Name="MandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MandatorR__RoleI__4222D4EF">
+          <End Type="WoozleModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="WoozleModel.MandatorRole" Role="MandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MandatorRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMandatorRole_MandatorRole">
+          <End Type="WoozleModel.MandatorRole" Role="MandatorRole" Multiplicity="1" />
+          <End Type="WoozleModel.UserMandatorRole" Role="UserMandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandatorRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMandatorRole">
+              <PropertyRef Name="MandatorRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMandatorRole_User">
+          <End Type="WoozleModel.User" Role="User" Multiplicity="1" />
+          <End Type="WoozleModel.UserMandatorRole" Role="UserMandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMandatorRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MandatorRoleFunctionPermission">
+          <End Type="WoozleModel.FunctionPermission" Role="FunctionPermission" Multiplicity="*" />
+          <End Type="WoozleModel.MandatorRole" Role="MandatorRole" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LastName" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMail" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Picture" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="MandatorId" Nullable="false" />
+          <Property Type="String" Name="Street" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityId" />
+          <Property Type="String" Name="Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Birthdate" Precision="0" />
+          <Property Type="String" Name="EnterpriseName" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SalutationStatusId" />
+          <NavigationProperty Name="City" Relationship="WoozleModel.FK_Person_City" FromRole="Person" ToRole="City" />
+          <NavigationProperty Name="SalutationStatus" Relationship="WoozleModel.FK_Person_Status_Salutation" FromRole="Person" ToRole="Status" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK_Person_Mandator" FromRole="Person" ToRole="Mandator" />
+          <Property Type="Binary" Name="ChangeCounter" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <Association Name="FK_Person_City">
+          <End Type="WoozleModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="WoozleModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Status_Salutation">
+          <End Type="WoozleModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="WoozleModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="SalutationStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Mandator">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="1" />
+          <End Type="WoozleModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MandatorId" Nullable="false" />
+          <Property Type="String" Name="EventManagementPlanningEMail" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EventManagementPlanningMobile" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK_Settings_Mandator" FromRole="Setting" ToRole="Mandator" />
+          <Property Type="Binary" Name="ChangeCounter" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <Association Name="FK_Settings_Mandator">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="1" />
+          <End Type="WoozleModel.Setting" Role="Setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Setting">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MandatorGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mandators" Relationship="WoozleModel.FK_Mandator_MandatorGroup" FromRole="MandatorGroup" ToRole="Mandator" />
+        </EntityType>
+        <Association Name="FK_Mandator_MandatorGroup">
+          <End Type="WoozleModel.MandatorGroup" Role="MandatorGroup" Multiplicity="0..1" />
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandatorGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandator">
+              <PropertyRef Name="MandatorGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ExternalSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MandatorId" Nullable="false" />
+          <Property Type="Int32" Name="ExternalSystemTypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ExternalSystemType" Relationship="WoozleModel.FK_ExternalService_ExternalServiceType" FromRole="ExternalSystem" ToRole="ExternalSystemType" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK_ExternalService_Mandator" FromRole="ExternalSystem" ToRole="Mandator" />
+        </EntityType>
+        <EntityType Name="ExternalSystemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ExternalSystems" Relationship="WoozleModel.FK_ExternalService_ExternalServiceType" FromRole="ExternalSystemType" ToRole="ExternalSystem" />
+        </EntityType>
+        <Association Name="FK_ExternalService_ExternalServiceType">
+          <End Type="WoozleModel.ExternalSystemType" Role="ExternalSystemType" Multiplicity="1" />
+          <End Type="WoozleModel.ExternalSystem" Role="ExternalSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalSystemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExternalSystem">
+              <PropertyRef Name="ExternalSystemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExternalService_Mandator">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="1" />
+          <End Type="WoozleModel.ExternalSystem" Role="ExternalSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExternalSystem">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WoozleModelStoreContainer" CdmEntityContainer="EfWoozleEntity">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="WoozleModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="WoozleModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="WoozleModel.Function">
+              <MappingFragment StoreEntitySet="Function">
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+                <ScalarProperty Name="LogicalId" ColumnName="LogicalId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FunctionPermissions">
+            <EntityTypeMapping TypeName="WoozleModel.FunctionPermission">
+              <MappingFragment StoreEntitySet="FunctionPermission">
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="WoozleModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandators">
+            <EntityTypeMapping TypeName="WoozleModel.Mandator">
+              <MappingFragment StoreEntitySet="Mandator">
+                <ScalarProperty Name="MandatorGroupId" ColumnName="MandatorGroupId" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="WoozleModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="LogicalId" ColumnName="LogicalId" />
+                <ScalarProperty Name="ModuleGroupId" ColumnName="ModuleGroupId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleGroups">
+            <EntityTypeMapping TypeName="WoozleModel.ModuleGroup">
+              <MappingFragment StoreEntitySet="ModuleGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="WoozleModel.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="LogicalId" ColumnName="LogicalId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WoozleModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="LogicalId" ColumnName="LogicalId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="WoozleModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+                <ScalarProperty Name="StatusFieldId" ColumnName="StatusFieldId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusFields">
+            <EntityTypeMapping TypeName="WoozleModel.StatusField">
+              <MappingFragment StoreEntitySet="StatusField">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Translations">
+            <EntityTypeMapping TypeName="WoozleModel.Translation">
+              <MappingFragment StoreEntitySet="Translation">
+                <ScalarProperty Name="DefaultDescription" ColumnName="DefaultDescription" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslationItems">
+            <EntityTypeMapping TypeName="WoozleModel.TranslationItem">
+              <MappingFragment StoreEntitySet="TranslationItem">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="TranslationId" ColumnName="TranslationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WoozleModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="FlagActiveStatusId" ColumnName="FlagActiveStatusId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MandatorModules" TypeName="WoozleModel.MandatorModules" StoreEntitySet="MandatorModules">
+            <EndProperty Name="Module">
+              <ScalarProperty Name="Id" ColumnName="ModuleId" />
+            </EndProperty>
+            <EndProperty Name="Mandator">
+              <ScalarProperty Name="Id" ColumnName="MandatorId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="WoozleModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MandatorId" ColumnName="MandatorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MandatorRoles">
+            <EntityTypeMapping TypeName="WoozleModel.MandatorRole">
+              <MappingFragment StoreEntitySet="MandatorRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="MandId" ColumnName="MandId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMandatorRoles">
+            <EntityTypeMapping TypeName="WoozleModel.UserMandatorRole">
+              <MappingFragment StoreEntitySet="UserMandatorRole">
+                <ScalarProperty Name="MandatorRoleId" ColumnName="MandatorRoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MandatorRoleFunctionPermission" TypeName="WoozleModel.MandatorRoleFunctionPermission" StoreEntitySet="MandatorRoleFunctionPermission">
+            <EndProperty Name="MandatorRole">
+              <ScalarProperty Name="Id" ColumnName="MandatorRoleId" />
+            </EndProperty>
+            <EndProperty Name="FunctionPermission">
+              <ScalarProperty Name="Id" ColumnName="FunctionPermissionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="WoozleModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="SalutationStatusId" ColumnName="SalutationStatusId" />
+                <ScalarProperty Name="EnterpriseName" ColumnName="EnterpriseName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="MandatorId" ColumnName="MandatorId" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="WoozleModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="EventManagementPlanningMobile" ColumnName="EventManagementPlanningMobile" />
+                <ScalarProperty Name="EventManagementPlanningEMail" ColumnName="EventManagementPlanningEMail" />
+                <ScalarProperty Name="MandatorId" ColumnName="MandatorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MandatorGroups">
+            <EntityTypeMapping TypeName="WoozleModel.MandatorGroup">
+              <MappingFragment StoreEntitySet="MandatorGroup">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalSystems">
+            <EntityTypeMapping TypeName="WoozleModel.ExternalSystem">
+              <MappingFragment StoreEntitySet="ExternalSystem">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ExternalSystemTypeId" ColumnName="ExternalSystemTypeId" />
+                <ScalarProperty Name="MandatorId" ColumnName="MandatorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalSystemTypes">
+            <EntityTypeMapping TypeName="WoozleModel.ExternalSystemType">
+              <MappingFragment StoreEntitySet="ExternalSystemType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="woo" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="WoozleModel" ZoomLevel="73">
+        <EntityTypeShape EntityType="WoozleModel.City" Width="1.5" PointX="10.392564815651889" PointY="5.0361131453123473" />
+        <EntityTypeShape EntityType="WoozleModel.Country" Width="1.5" PointX="7.2734252918853537" PointY="26.012806844903533" />
+        <EntityTypeShape EntityType="WoozleModel.Function" Width="1.5" PointX="11.458196880043577" PointY="11.709338089315844" />
+        <EntityTypeShape EntityType="WoozleModel.FunctionPermission" Width="1.5" PointX="8.6822481680113128" PointY="12.124659275694127" />
+        <EntityTypeShape EntityType="WoozleModel.Language" Width="1.5" PointX="1.0294338935191902" PointY="20.999034012201722" />
+        <EntityTypeShape EntityType="WoozleModel.Mandator" Width="1.5" PointX="2.75" PointY="7.375" />
+        <EntityTypeShape EntityType="WoozleModel.Module" Width="1.5" PointX="3.1500693052774618" PointY="12.963126352505352" />
+        <EntityTypeShape EntityType="WoozleModel.ModuleGroup" Width="1.5" PointX="5" PointY="0.5" />
+        <EntityTypeShape EntityType="WoozleModel.Permission" Width="1.5" PointX="3.4296279770460112" PointY="25.024296861618897" />
+        <EntityTypeShape EntityType="WoozleModel.Role" Width="1.5" PointX="10.863193636230749" PointY="23.105500991971" />
+        <EntityTypeShape EntityType="WoozleModel.Status" Width="1.5" PointX="10.25" PointY="31.125" />
+        <EntityTypeShape EntityType="WoozleModel.StatusField" Width="1.5" PointX="4" PointY="4.25" />
+        <EntityTypeShape EntityType="WoozleModel.Translation" Width="1.5" PointX="0.5" PointY="10.375" />
+        <EntityTypeShape EntityType="WoozleModel.TranslationItem" Width="1.5" PointX="1" PointY="3.875" />
+        <EntityTypeShape EntityType="WoozleModel.User" Width="1.5" PointX="10" PointY="0.625" />
+        <AssociationConnector Association="WoozleModel.FK_Country_Translation" />
+        <AssociationConnector Association="WoozleModel.FK__FunctionP__Funct__4183B671" />
+        <AssociationConnector Association="WoozleModel.FK_Function_Module" />
+        <AssociationConnector Association="WoozleModel.FK_Function_Translation" />
+        <AssociationConnector Association="WoozleModel.FK__FunctionP__Permi__4277DAAA" />
+        <AssociationConnector Association="WoozleModel.FK_TranslationItem_Language" />
+        <AssociationConnector Association="WoozleModel.FK_User_Language" />
+        <AssociationConnector Association="WoozleModel.FK_Module_ModuleGroup" />
+        <AssociationConnector Association="WoozleModel.FK_Module_Translation" />
+        <AssociationConnector Association="WoozleModel.FK_Status_StatusField" />
+        <AssociationConnector Association="WoozleModel.FK_Status_Translation" />
+        <AssociationConnector Association="WoozleModel.FK_User_Status" />
+        <AssociationConnector Association="WoozleModel.FK_TranslationItem_Translation" />
+        <AssociationConnector Association="WoozleModel.MandatorModules" />
+        <EntityTypeShape EntityType="WoozleModel.Location" Width="1.5" PointX="11.144946550552243" PointY="7.9147383756538563" />
+        <AssociationConnector Association="WoozleModel.FK_Location_City" />
+        <AssociationConnector Association="WoozleModel.FK_Location_Mandator" />
+        <AssociationConnector Association="WoozleModel.FK_Mandator_CityId" />
+        <EntityTypeShape EntityType="WoozleModel.MandatorRole" Width="1.5" PointX="7.7007906062997833" PointY="14.980718425931743" />
+        <EntityTypeShape EntityType="WoozleModel.UserMandatorRole" Width="1.5" PointX="7.125" PointY="2.75" />
+        <AssociationConnector Association="WoozleModel.FK__MandatorR__MandI__412EB0B6" />
+        <AssociationConnector Association="WoozleModel.FK__MandatorR__RoleI__4222D4EF" />
+        <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_MandatorRole" />
+        <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_User" />
+        <AssociationConnector Association="WoozleModel.MandatorRoleFunctionPermission" />
+        <EntityTypeShape EntityType="WoozleModel.Person" Width="1.5" PointX="7" PointY="5.125" />
+        <AssociationConnector Association="WoozleModel.FK_Person_City" />
+        <AssociationConnector Association="WoozleModel.FK_Person_Status_Salutation" />
+        <AssociationConnector Association="WoozleModel.FK_Person_Mandator" />
+        <EntityTypeShape EntityType="WoozleModel.Setting" Width="1.5" PointX="5.375" PointY="14" />
+        <AssociationConnector Association="WoozleModel.FK_Settings_Mandator" />
+        <EntityTypeShape EntityType="WoozleModel.MandatorGroup" Width="1.5" PointX="6.875" PointY="28.875" />
+        <AssociationConnector Association="WoozleModel.FK_Mandator_MandatorGroup" />
+        <EntityTypeShape EntityType="WoozleModel.ExternalSystem" Width="1.5" PointX="1.8144407224908661" PointY="23.158067639525079" />
+        <EntityTypeShape EntityType="WoozleModel.ExternalSystemType" Width="1.5" PointX="5.741445033690634" PointY="19.774221012263663" />
+        <AssociationConnector Association="WoozleModel.FK_ExternalService_ExternalServiceType" />
+        <AssociationConnector Association="WoozleModel.FK_ExternalService_Mandator" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
