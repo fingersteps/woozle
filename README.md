@@ -40,7 +40,7 @@ Create an empty ASP.NET Web Application in Visual Studio.
 ###Step 3: Install Woozle
 Install Woozle (see instructions above) and add it to your created project.
 
-###Step 4: Configure database connection strings
+###Step 4: Configure the database Connection String
 Let Woozle connect to its data by adding a connection string in the following manner to your 'Web.config':
 
 ```xml
@@ -49,8 +49,8 @@ Let Woozle connect to its data by adding a connection string in the following ma
 </connectionStrings>
 ```
 
-###Step 5: Configure ServiceStack
-To access the web services add the following ServiceStack configuration to your 'Web.config' under your configured connection string:
+###Step 5: Configure the Web Server
+To access all web services of woozle and your application add the following configuration code to your 'Web.config':
 
 ```xml
   <system.web>
@@ -94,8 +94,8 @@ To access the web services add the following ServiceStack configuration to your 
   </location>
 ```
 
-###Step 3: Register Woozle and start your application
-Add the following code to your `Global.asax.cs` to startup Woozle when your application gets started.
+###Step 6: Register Woozle
+Create a Global Application Class `Global.asax.cs` and add the following code to startup Woozle when your application gets started.
 
 
 ```csharp
@@ -129,3 +129,10 @@ public class Global : System.Web.HttpApplication
     }
 }
 ```
+
+###Step 7: Start your Application
+Woozle is now integrated in your Application! To see all built in web services, start your Application and open the following URL.
+
+    http://localhost:yourport/api/metadata
+
+
