@@ -26,6 +26,9 @@ Woozle can be installed easily with [NuGet](http://nuget.org). To install it, ru
 
     PM> Install-Package Woozle
 
+##Documentation
+See [Woozle Wiki](https://github.com/fingersteps/woozle/wiki)
+
 ##Getting Started
 
 ###Step 1: Create the database
