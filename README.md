@@ -28,7 +28,7 @@ Woozle can be installed easily with [NuGet](http://nuget.org). To install it, ru
 ##Getting Started
 
 ###Step 1: Create the database
-Create a new database for your application which contains all needed Woozle tables. To initialize all database related Woozle stuff, use the following scripts:
+Create a new database for your application which contains all Woozle tables needed. To initialize all database related Woozle stuff, use the following scripts:
 
 * [Create Woozle tables](https://github.com/fingersteps/woozle/blob/master/init/01_Create_Database.sql)
 * [Create sample mandator](https://github.com/fingersteps/woozle/blob/master/init/02_Create_Mandator.sql)
@@ -41,7 +41,7 @@ Create an empty ASP.NET Web Application in Visual Studio.
 Install Woozle (see instructions above) and add it to your created project.
 
 ###Step 4: Configure the database Connection String
-Let Woozle connect to its data by adding a connection string in the following manner to your 'Web.config':
+Let Woozle connect to its data by adding a connection string to your 'Web.config' as follows:
 
 ```xml
 <connectionStrings>
@@ -50,7 +50,7 @@ Let Woozle connect to its data by adding a connection string in the following ma
 ```
 
 ###Step 5: Configure the Web Server
-To access all web services of woozle and your application add the following configuration code to your 'Web.config':
+To access all web services of Woozle and your application, please add the following configuration code to your `Web.config`:
 
 ```xml
   <system.web>
@@ -131,8 +131,9 @@ public class Global : System.Web.HttpApplication
 ```
 
 ###Step 7: Start your Application
-Woozle is now integrated in your Application! To see all built in web services, start your Application and open the following URL.
+Woozle is now integrated in your application! To see all built in web services, start your Application and open the following URL.
 
     http://localhost:yourport/api/metadata
+
 
 
