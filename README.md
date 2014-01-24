@@ -10,8 +10,6 @@ Woozle is a .NET business application framework which will increase your develop
 * [Integration of external systems](https://github.com/fingersteps/woozle/wiki/Integration-of-external-systems)
 * [Model generator](https://github.com/fingersteps/woozle.generators)
 * [Repository / Unit of Work generator](https://github.com/fingersteps/woozle.generators)
-* Reporting (coming soon)
-* RESTful web services (using ServiceStack v3)
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status?id=b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/woozles-woozle)
