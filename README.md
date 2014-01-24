@@ -42,19 +42,23 @@ Create an empty ASP.NET Web Application in Visual Studio.
 ###Step 3: Install Woozle
 Install Woozle (see instructions above) and add it to your created project.
 
-###Step 4: Configure the database Connection String
-Let Woozle connect to its data by adding a connection string to your 'Web.config' (after tag `configSections`) as follows:
+###Step 4: Configure the database Connection String and the Web Server
+Replace the default configuration in your `Web.config` by the following configuration. The configuration includes a default connection string to the database (change it if necessary!) and the Web Server configuration to use Woozles built in web services.
 
 ```xml
-<connectionStrings>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <connectionStrings>
     <add name="EfWoozleEntity" connectionString="metadata=res://*/WoozleModel.csdl|res://*/WoozleModel.ssdl|res://*/WoozleModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;Integrated Security=SSPI;initial catalog=Woozle;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-</connectionStrings>
-```
-
-###Step 5: Configure the Web Server
-To access all web services of Woozle and your application, please replace the existing `system.web` stuff of your `Web.config` by the following configuration (after tag `connectionStrings`):
-
-```xml
+  </connectionStrings>
   <system.web>
     <customErrors mode="Off" />
     <compilation debug="true" targetFramework="4.5" />
@@ -94,9 +98,20 @@ To access all web services of Woozle and your application, please replace the ex
       </handlers>
     </system.webServer>
   </location>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>
 ```
 
-###Step 6: Register Woozle
+###Step 5: Register Woozle
 Create a Global Application Class `Global.asax.cs` and add the following code to startup Woozle when your application gets started.
 
 
@@ -132,10 +147,12 @@ public class Global : System.Web.HttpApplication
 }
 ```
 
-###Step 7: Start your Application
+###Step 6: Start your Application
 Woozle is now integrated in your application! To see all built in web services, start your Application and open the following URL.
 
     http://localhost:yourport/api/metadata
+    
+Dive deep into Woozle using our [Wiki](https://github.com/fingersteps/woozle/wiki)!
 
 
 
