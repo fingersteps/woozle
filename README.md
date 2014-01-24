@@ -43,7 +43,7 @@ Create an empty ASP.NET Web Application in Visual Studio.
 Install Woozle (see instructions above) and add it to your created project.
 
 ###Step 4: Configure the database Connection String
-Let Woozle connect to its data by adding a connection string to your 'Web.config' as follows:
+Let Woozle connect to its data by adding a connection string to your 'Web.config' (within tag `configuration`) as follows:
 
 ```xml
 <connectionStrings>
@@ -52,7 +52,7 @@ Let Woozle connect to its data by adding a connection string to your 'Web.config
 ```
 
 ###Step 5: Configure the Web Server
-To access all web services of Woozle and your application, please add the following configuration code to your `Web.config`:
+To access all web services of Woozle and your application, please add the following configuration code to your `Web.config` (within tag `configuration`):
 
 ```xml
   <system.web>
