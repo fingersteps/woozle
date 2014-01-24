@@ -147,7 +147,7 @@ public class Global : System.Web.HttpApplication
 }
 ```
 
-###Step 6: Start your Applicationa
+###Step 6: Start your Application
 Woozle is now integrated in your application! To see all built in web services, start your Application and open the following URL.
 
     http://localhost:yourport/api/metadata
