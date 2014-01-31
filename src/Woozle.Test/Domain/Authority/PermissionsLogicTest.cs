@@ -156,9 +156,9 @@ namespace Woozle.Test.Domain.Authority
             changedPermissions.Add(changedRecord1);
             changedPermissions.Add(changedRecord2);
 
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord1.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord1.FunctionPermissionId)).Returns(
                 functionPermission1);
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord2.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord2.FunctionPermissionId)).Returns(
                 functionPermission2);
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,
@@ -199,9 +199,9 @@ namespace Woozle.Test.Domain.Authority
             changedPermissions.Add(changedRecord1);
             changedPermissions.Add(changedRecord2);
 
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord1.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord1.FunctionPermissionId)).Returns(
                 functionPermission1);
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord2.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord2.FunctionPermissionId)).Returns(
                 functionPermission2);
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,
@@ -239,9 +239,9 @@ namespace Woozle.Test.Domain.Authority
             changedPermissions.Add(changedRecord1);
             changedPermissions.Add(changedRecord2);
 
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord1.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord1.FunctionPermissionId)).Returns(
                 functionPermission1);
-            FunctionPermissionRepositoryMock.Setup(n => n.QueryPrimaryKey(changedRecord2.FunctionPermissionId)).Returns(
+            FunctionPermissionRepositoryMock.Setup(n => n.FindById(changedRecord2.FunctionPermissionId)).Returns(
                 functionPermission2);
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,

@@ -66,14 +66,14 @@ namespace Woozle.Persistence.Ef.Test.Repository
         }
 
         [Fact]
-        public void QueryPrimaryKeyTest()
+        public void FindByIdTest()
         {
             const int primaryKeyToSearch = 1;
             var unitofworkMock = new Mock<IEfUnitOfWork>();
             unitofworkMock.Setup(n => n.LoadRelatedData<City>(primaryKeyToSearch, null, null)).Returns(this.cityData[0]);
 
             var cityRepo = new CityRepository(unitofworkMock.Object);
-            var result = cityRepo.QueryPrimaryKey(primaryKeyToSearch);
+            var result = cityRepo.FindById(primaryKeyToSearch);
 
             Assert.Equal("Willisau", result.Name);
         }

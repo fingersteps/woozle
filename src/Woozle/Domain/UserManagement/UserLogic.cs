@@ -122,7 +122,7 @@ namespace Woozle.Domain.UserManagement
                 throw new NoPermissionException(Constants.LogicalIdSearchUserV1, Permissions.PERMISSION_DELETE);
             }
 
-            var user = this.repository.QueryPrimaryKey(id);
+            var user = this.repository.FindById(id);
             this.repository.Delete(user, session);
             this.repository.UnitOfWork.Commit();
         }

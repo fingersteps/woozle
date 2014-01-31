@@ -86,7 +86,7 @@ namespace Woozle.Persistence.Ef.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual T QueryPrimaryKey(int id)
+        public virtual T FindById(int id)
         {
             return Context.LoadRelatedData<T>(id, null, null);
         }
@@ -98,7 +98,7 @@ namespace Woozle.Persistence.Ef.Repository
         /// <param name="neededReferenceProperties">Entities which should be load for the record of the given primary key (1:n).</param>
         /// <param name="neededCollectionProperties">Entities which should be load for the record of the given primary key (n:m).</param>
         /// <returns></returns>
-        public virtual T QueryPrimaryKey(int id, IEnumerable<string> neededReferenceProperties,
+        public virtual T FindById(int id, IEnumerable<string> neededReferenceProperties,
                                          IEnumerable<string> neededCollectionProperties)
         {
             return Context.LoadRelatedData<T>(id, neededReferenceProperties, neededCollectionProperties);

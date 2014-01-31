@@ -79,7 +79,7 @@ namespace Woozle.Persistence
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T QueryPrimaryKey(int id);
+        T FindById(int id);
 
         /// <summary>
         /// Gets a record by its id and the needed references.
@@ -88,6 +88,6 @@ namespace Woozle.Persistence
         /// <param name="neededReferenceProperties"></param>
         /// <param name="neededCollectionProperties"></param>
         /// <returns></returns>
-        T QueryPrimaryKey(int id, IEnumerable<string> neededReferenceProperties, IEnumerable<string> neededCollectionProperties);
+        T FindById(int id, IEnumerable<string> neededReferenceProperties, IEnumerable<string> neededCollectionProperties);
     }
 }

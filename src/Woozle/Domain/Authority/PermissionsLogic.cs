@@ -73,7 +73,7 @@ namespace Woozle.Domain.Authority
         {
             foreach (var entry in changedPermissions)
             {
-                var functionPermission = FunctionPermissionRepository.QueryPrimaryKey(entry.FunctionPermissionId);
+                var functionPermission = FunctionPermissionRepository.FindById(entry.FunctionPermissionId);
                 if (entry.HasPermission)
                 {
                     mandatorRole.FunctionPermissions.Add(functionPermission);
