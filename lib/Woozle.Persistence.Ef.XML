@@ -34,7 +34,7 @@
         </member>
         <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.Delete(`0,Woozle.Model.SessionHandling.Session)">
             <summary>
-            Performs a delete of the given entity inclusive all its related data acc. to the <see cref="T:Woozle.Model.WoozleObject"/> PersistenceState.
+            Deletes the given entity and synchronizes it with the entity framework context.
             </summary>
             <param name="item"></param>
             <param name="session"></param>
@@ -47,14 +47,14 @@
             <param name="includedEntities">Included entities for the related entities which should be loaded (ATTENTION: Consider creating a separate query because includins entities is slow!)</param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.QueryPrimaryKey(System.Int32)">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindById(System.Int32)">
             <summary>
             Queries a record acc. to its primary key
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.QueryPrimaryKey(System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindById(System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Queries a record acc. to its primary key
             </summary>

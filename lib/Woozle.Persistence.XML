@@ -65,14 +65,14 @@
             <param name="lazyIncludeString"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Persistence.IRepository`1.QueryPrimaryKey(System.Int32)">
+        <member name="M:Woozle.Persistence.IRepository`1.FindById(System.Int32)">
             <summary>
             Gets a record by its id.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Persistence.IRepository`1.QueryPrimaryKey(System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Woozle.Persistence.IRepository`1.FindById(System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Gets a record by its id and the needed references.
             </summary>

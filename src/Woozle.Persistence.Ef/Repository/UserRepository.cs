@@ -54,49 +54,12 @@ namespace Woozle.Persistence.Ef.Repository
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "UserMandatorRoles", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
-    	} 
-      } 
-    	 public override void Delete(User entity, Session session) 
-    	 { 
-    		try
+    		catch (Exception e)
     		{
-    			var stopwatch = new Stopwatch();
-    			entity.PersistanceState = PState.Unchanged;
-    			var attachedObj = Context.SynchronizeObject(entity, session);
-    			
-    			Context.SynchronizeObject(attachedObj.Language, session); 
-    
-    			Context.SynchronizeObject(attachedObj.Status, session); 
-    
-    			
-    
-    			//Navigation Property 'UserMandatorRoles'
-    			stopwatch.Start();
-    			Context.LoadCollection<User>(attachedObj.Id, "UserMandatorRoles");
-    			foreach (var n in attachedObj.UserMandatorRoles.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "UserMandatorRoles", stopwatch.ElapsedMilliseconds));
-    			attachedObj.PersistanceState = PState.Deleted;
-    			attachedObj = Context.SynchronizeObject(attachedObj, session);
-    			stopwatch.Start();
-    			Context.Commit();
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "User", stopwatch.ElapsedMilliseconds));
-    		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.DELETE, e);  
-    	} 
-      } 
+    			this.Logger.Error(e.Message); 
+    			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
+    		} 
+         } 
     
     }
     

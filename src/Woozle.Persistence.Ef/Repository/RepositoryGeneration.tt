@@ -50,7 +50,6 @@ foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name
 #>
 
 	<#=WriteSynchronizeMethod(entity, code) #>
-	<#=WriteDeleteMethod(entity, code) #>
 
 }
 
@@ -368,80 +367,11 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 		  "			" + navProperties + Environment.NewLine +
 		  "			return attachedObj; " + Environment.NewLine +
           "		}" + Environment.NewLine + 
-            "	catch (Exception e)" + Environment.NewLine + 
-            "	{" + Environment.NewLine + 
-			"		this.Logger.Error(e.Message); " + Environment.NewLine +
-			"		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); " + Environment.NewLine +
-            "	} " + Environment.NewLine +
-		  "  } ";
-}
-
-
-string WriteDeleteMethod(EntityType entity, CodeGenerationTools code)
-{
-	string navProperties = "";
-	string singleNavProperties = "";
-	var collectionNavigationProperties = entity.NavigationProperties.Where(np => np.DeclaringType == entity && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many);
-	var navigationProperties = entity.NavigationProperties.Where(np => np.DeclaringType == entity && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.One);
-
-	var test = entity.NavigationProperties;
-
-	foreach(var b in navigationProperties)
-	{
-	  singleNavProperties += Environment.NewLine + "			Context.SynchronizeObject(attachedObj." + b.Name + ", session); " + Environment.NewLine;
-	}
-	
-	foreach(var t in collectionNavigationProperties)
-	{
-			var type = t.TypeUsage;
-
-			var properties = type.MetadataProperties;
-			
-			string subTypes = "";
-
-			foreach(var x in t.ToEndMember.GetEntityType().NavigationProperties.Where(np => np.DeclaringType == t.ToEndMember.GetEntityType() && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.One))
-			{
-				subTypes += "Context.SynchronizeObject(n." + x.Name + ", session);" + Environment.NewLine;
-			}
-
-			navProperties += Environment.NewLine + Environment.NewLine +
-				"			//Navigation Property '" + t + "'" + Environment.NewLine + 
-				"			stopwatch.Start();" + Environment.NewLine +
-    			"			Context.LoadCollection<" + entity.Name + ">(attachedObj.Id, \"" + t + "\");" + Environment.NewLine + 
-				"			foreach (var n in attachedObj." + t + ".ToList())" + Environment.NewLine + 
-				"			{" + Environment.NewLine + 
-				"				n.PersistanceState = PState.Deleted;" + Environment.NewLine +
-    			"			    Context.SynchronizeObject(n, session);" + Environment.NewLine +
-				"			} " + Environment.NewLine + 
-				"			stopwatch.Stop();"+ Environment.NewLine +
-				"			this.Logger.Info(string.Format(\"Synchronize state of '{0}', took {1} ms\", \"" + t + "\", stopwatch.ElapsedMilliseconds));";
-	}
-
-	return" public override void Delete(" + entity.Name + " entity, Session session) " + Environment.NewLine +
-		  "	 { " + Environment.NewLine +
-		  "		try" + Environment.NewLine + 
+          "		catch (Exception e)" + Environment.NewLine + 
           "		{" + Environment.NewLine + 
-		  "			var stopwatch = new Stopwatch();" + Environment.NewLine +
-		  "			entity.PersistanceState = PState.Unchanged;" + Environment.NewLine +
-		  "			var attachedObj = Context.SynchronizeObject(entity, session);" + Environment.NewLine + 
-		  "			" + singleNavProperties + Environment.NewLine + 
-		  "			" + navProperties + Environment.NewLine +
-		  "			attachedObj.PersistanceState = PState.Deleted;" + Environment.NewLine +
-		  "			attachedObj = Context.SynchronizeObject(attachedObj, session);" + Environment.NewLine + 
-		  "			stopwatch.Start();" + Environment.NewLine +
-          "			Context.Commit();" + Environment.NewLine + 
-		  "			stopwatch.Stop();" + Environment.NewLine +
-          "			this.Logger.Info(string.Format(\"Commit '{0}' Delete, took {1} ms\", \""+ entity.Name +"\", stopwatch.ElapsedMilliseconds));" + Environment.NewLine +
-          "		}" + Environment.NewLine + 
-            "	catch (Exception e)" + Environment.NewLine + 
-            "	{" + Environment.NewLine + 
-			"		this.Logger.Error(e.Message); " + Environment.NewLine +
-			"		throw new PersistenceException(PersistenceOperation.DELETE, e);  " + Environment.NewLine +
-
-            "	} " + Environment.NewLine +
-		  "  } ";
+	      "			this.Logger.Error(e.Message); " + Environment.NewLine +
+		  "			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); " + Environment.NewLine +
+          "		} " + Environment.NewLine +
+		  "     } ";
 }
-
 #>
-
-

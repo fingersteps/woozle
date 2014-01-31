@@ -134,100 +134,12 @@ namespace Woozle.Persistence.Ef.Repository
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
-    	} 
-      } 
-    	 public override void Delete(Mandator entity, Session session) 
-    	 { 
-    		try
+    		catch (Exception e)
     		{
-    			var stopwatch = new Stopwatch();
-    			entity.PersistanceState = PState.Unchanged;
-    			var attachedObj = Context.SynchronizeObject(entity, session);
-    			
-    			
-    
-    			//Navigation Property 'Modules'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "Modules");
-    			foreach (var n in attachedObj.Modules.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Modules", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'Locations'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "Locations");
-    			foreach (var n in attachedObj.Locations.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Locations", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'MandatorRoles'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "MandatorRoles");
-    			foreach (var n in attachedObj.MandatorRoles.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "MandatorRoles", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'People'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "People");
-    			foreach (var n in attachedObj.People.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "People", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'Settings'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "Settings");
-    			foreach (var n in attachedObj.Settings.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Settings", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'ExternalSystems'
-    			stopwatch.Start();
-    			Context.LoadCollection<Mandator>(attachedObj.Id, "ExternalSystems");
-    			foreach (var n in attachedObj.ExternalSystems.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
-    			attachedObj.PersistanceState = PState.Deleted;
-    			attachedObj = Context.SynchronizeObject(attachedObj, session);
-    			stopwatch.Start();
-    			Context.Commit();
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "Mandator", stopwatch.ElapsedMilliseconds));
-    		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.DELETE, e);  
-    	} 
-      } 
+    			this.Logger.Error(e.Message); 
+    			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
+    		} 
+         } 
     
     }
     

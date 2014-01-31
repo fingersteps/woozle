@@ -82,67 +82,12 @@ namespace Woozle.Persistence.Ef.Repository
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "People", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
-    	} 
-      } 
-    	 public override void Delete(City entity, Session session) 
-    	 { 
-    		try
+    		catch (Exception e)
     		{
-    			var stopwatch = new Stopwatch();
-    			entity.PersistanceState = PState.Unchanged;
-    			var attachedObj = Context.SynchronizeObject(entity, session);
-    			
-    			
-    
-    			//Navigation Property 'Locations'
-    			stopwatch.Start();
-    			Context.LoadCollection<City>(attachedObj.Id, "Locations");
-    			foreach (var n in attachedObj.Locations.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Locations", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'Mandators'
-    			stopwatch.Start();
-    			Context.LoadCollection<City>(attachedObj.Id, "Mandators");
-    			foreach (var n in attachedObj.Mandators.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Mandators", stopwatch.ElapsedMilliseconds));
-    
-    			//Navigation Property 'People'
-    			stopwatch.Start();
-    			Context.LoadCollection<City>(attachedObj.Id, "People");
-    			foreach (var n in attachedObj.People.ToList())
-    			{
-    				n.PersistanceState = PState.Deleted;
-    			    Context.SynchronizeObject(n, session);
-    			} 
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "People", stopwatch.ElapsedMilliseconds));
-    			attachedObj.PersistanceState = PState.Deleted;
-    			attachedObj = Context.SynchronizeObject(attachedObj, session);
-    			stopwatch.Start();
-    			Context.Commit();
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "City", stopwatch.ElapsedMilliseconds));
-    		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.DELETE, e);  
-    	} 
-      } 
+    			this.Logger.Error(e.Message); 
+    			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
+    		} 
+         } 
     
     }
     

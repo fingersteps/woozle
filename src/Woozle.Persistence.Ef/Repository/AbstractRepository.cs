@@ -59,11 +59,15 @@ namespace Woozle.Persistence.Ef.Repository
         }
 
         /// <summary>
-        /// Performs a delete of the given entity inclusive all its related data acc. to the <see cref="WoozleObject"/> PersistenceState.
+        /// Deletes the given entity and synchronizes it with the entity framework context.
         /// </summary>
         /// <param name="item"></param>
         /// <param name="session"></param>
-        public abstract void Delete(T item, Session session);
+        public void Delete(T item, Session session)
+        {
+            item.PersistanceState = PState.Deleted;
+            Synchronize(item, session);
+        }
 
         /// <summary>
         /// Searches for all entities in the repository

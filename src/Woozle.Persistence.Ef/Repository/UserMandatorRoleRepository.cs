@@ -38,38 +38,12 @@ namespace Woozle.Persistence.Ef.Repository
     			
     			return attachedObj; 
     		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
-    	} 
-      } 
-    	 public override void Delete(UserMandatorRole entity, Session session) 
-    	 { 
-    		try
+    		catch (Exception e)
     		{
-    			var stopwatch = new Stopwatch();
-    			entity.PersistanceState = PState.Unchanged;
-    			var attachedObj = Context.SynchronizeObject(entity, session);
-    			
-    			Context.SynchronizeObject(attachedObj.MandatorRole, session); 
-    
-    			Context.SynchronizeObject(attachedObj.User, session); 
-    
-    			
-    			attachedObj.PersistanceState = PState.Deleted;
-    			attachedObj = Context.SynchronizeObject(attachedObj, session);
-    			stopwatch.Start();
-    			Context.Commit();
-    			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Commit '{0}' Delete, took {1} ms", "UserMandatorRole", stopwatch.ElapsedMilliseconds));
-    		}
-    	catch (Exception e)
-    	{
-    		this.Logger.Error(e.Message); 
-    		throw new PersistenceException(PersistenceOperation.DELETE, e);  
-    	} 
-      } 
+    			this.Logger.Error(e.Message); 
+    			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
+    		} 
+         } 
     
     }
     
