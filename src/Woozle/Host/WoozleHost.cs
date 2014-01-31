@@ -36,20 +36,31 @@ namespace Woozle.Host
         /// <param name="container">The IoC-Container</param>
         public override void Configure(Container container)
         {
+            ConfigureDefaultScope(container);
             MappingConfiguration.Configure();
-
             Plugins.Add(new SessionFeature());
+            ConfigureAuthentication(container);
+            Plugins.Add(new WoozlePlugin());
+        }
 
-            //Configure Authentication
+        /// <summary>
+        /// Sets the default reuse scope for the IoC container, which takes effect for all default dependency injection bindings.
+        /// </summary>
+        /// <param name="container"></param>
+        private static void ConfigureDefaultScope(Container container)
+        {
+            container.DefaultReuse = ReuseScope.Request;
+        }
+
+        private void ConfigureAuthentication(Container container)
+        {
             Plugins.Add(new AuthFeature(() => new Session(), new IAuthProvider[]
-                                                                 {
-                                                                     new WoozleCredentialsAuthProvider(container)
-                                                                 })
+            {
+                new WoozleCredentialsAuthProvider(container)
+            })
             {
                 HtmlRedirect = string.Empty
             });
-
-            Plugins.Add(new WoozlePlugin());
         }
     }
 }

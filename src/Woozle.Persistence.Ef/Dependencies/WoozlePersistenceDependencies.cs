@@ -1,4 +1,5 @@
-﻿using ServiceStack.WebHost.Endpoints;
+﻿using Funq;
+using ServiceStack.WebHost.Endpoints;
 
 namespace Woozle.Persistence.Ef.Dependencies
 {
@@ -7,9 +8,9 @@ namespace Woozle.Persistence.Ef.Dependencies
     /// </summary>
     public class WoozlePersistenceDependencies
     {
-        public void Register(IAppHost container)
+        public void Register(IAppHost appHost)
         {
-            container.RegisterAs<EfWoozleEntity, IEfUnitOfWork>();
+            appHost.GetContainer().RegisterAutoWiredAs<EfWoozleEntity, IEfUnitOfWork>().ReusedWithin(ReuseScope.Request);
         }
     }
 }

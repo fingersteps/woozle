@@ -91,6 +91,11 @@ namespace Woozle.Persistence.Ef
             SaveChanges();
         }
 
+        public void Rollback()
+        {
+            ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+        }
+
         #endregion
 
         public override int SaveChanges()

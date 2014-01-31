@@ -9,7 +9,7 @@ namespace Woozle.Persistence.Ef
         {
             this.Configuration.ProxyCreationEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.AutoDetectChangesEnabled = true;
+            this.Configuration.AutoDetectChangesEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

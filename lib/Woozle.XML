@@ -544,6 +544,12 @@
             </remarks>
             <param name="container">The IoC-Container</param>
         </member>
+        <member name="M:Woozle.Host.WoozleHost.ConfigureDefaultScope(Funq.Container)">
+            <summary>
+            Sets the default reuse scope for the IoC container, which takes effect for all default dependency injection bindings.
+            </summary>
+            <param name="container"></param>
+        </member>
         <member name="T:Woozle.Services.AbstractService">
             <summary>
             Base Service

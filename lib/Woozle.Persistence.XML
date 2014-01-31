@@ -114,6 +114,11 @@
             Commit all changes
             </summary>
         </member>
+        <member name="M:Woozle.Persistence.IUnitOfWork.Rollback">
+            <summary>
+            Rollbacks all made changes
+            </summary>
+        </member>
         <member name="T:Woozle.Persistence.IUserRepository">
             <summary>
             Interface for a user repository.

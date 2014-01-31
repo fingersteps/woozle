@@ -8,5 +8,10 @@ namespace Woozle.Persistence
         /// Commit all changes
         /// </summary>
         void Commit();
+
+        /// <summary>
+        /// Rollbacks all made changes
+        /// </summary>
+        void Rollback();
     }
 }
