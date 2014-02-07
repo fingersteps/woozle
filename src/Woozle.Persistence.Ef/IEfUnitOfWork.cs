@@ -8,6 +8,8 @@ namespace Woozle.Persistence.Ef
     public interface IEfUnitOfWork : IUnitOfWork
     {
         IQueryable<T> Get<T>(Session session) where T : WoozleObject;
+        IQueryable<T> Get<T>(SessionData sessionData) where T : WoozleObject;
+
         T SynchronizeObject<T>(T obj, Session session) where T : WoozleObject;
 
         TSource LoadRelatedData<TSource>(int id, IEnumerable<string> referenceProperties,

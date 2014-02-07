@@ -4,6 +4,8 @@ using Funq;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.Authentication;
+using Woozle.Domain.Authority;
+using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
@@ -18,17 +20,12 @@ namespace Woozle.Services.Authentication
         /// <summary>
         /// <see cref="SessionData"/>
         /// </summary>
-        private SessionData data;
-
-        /// <summary>
-        /// <see cref="LoginResult"/>
-        /// </summary>
-        private LoginResult loginResult;
+        protected SessionData sessionData;
 
         /// <summary>
         /// <see cref="Container">IoC-Container</see>
         /// </summary>
-        private readonly Container container;
+        protected readonly Container container;
 
         /// <summary>
         /// ctor.
@@ -47,7 +44,7 @@ namespace Woozle.Services.Authentication
             var authenticationLogic = container.LazyResolve<IAuthenticationLogic>();
 
             //Try to login with the simple credentials (username + password)
-            loginResult = authenticationLogic().Login(new LoginRequest
+            var loginResult = authenticationLogic().Login(new LoginRequest
                                                             {
                                                                 Username = userName,
                                                                 Password = password
@@ -62,7 +59,7 @@ namespace Woozle.Services.Authentication
                 {
                     //There are more than one assigned mandator => MandatorSelection is required.
                     loginSuccessful = true;
-                    data = new SessionData(new User
+                    sessionData = new SessionData(new User
                                                {
                                                    Username = userName,
                                                    Password = password
@@ -73,7 +70,8 @@ namespace Woozle.Services.Authentication
             {
                 //The login was successfully (only one mandator is assigned).
                 loginSuccessful = true;
-                data = loginResult.SessionData;
+                sessionData = loginResult.SessionData;
+                sessionData.Roles = container.Resolve<IGetRolesLogic>().GetUserRoles(sessionData);
             }
 
             return loginSuccessful;
@@ -86,7 +84,7 @@ namespace Woozle.Services.Authentication
             var se = session as Session;
             if (se != null)
             {
-                se.SessionObject = data;
+                se.SessionObject = sessionData;
                 authService.SaveSession(session, new TimeSpan(0, 1, 0, 0));
             }
         }

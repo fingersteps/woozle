@@ -1,4 +1,6 @@
-﻿namespace Woozle.Model.SessionHandling
+﻿using System.Collections.Generic;
+
+namespace Woozle.Model.SessionHandling
 {
     /// <summary>
     /// Represents a session data object.
@@ -28,6 +30,11 @@
         /// </summary>
         /// <remarks></remarks>
         public Mandator Mandator { get; set; }
+
+        /// <summary>
+        /// The roles which are defined for this user and mandator session data.
+        /// </summary>
+        public List<string> Roles { get; set; }
 
         protected bool Equals(SessionData other)
         {

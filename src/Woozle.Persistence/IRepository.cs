@@ -16,6 +16,14 @@ namespace Woozle.Persistence
         /// <summary>
         /// Creates a Queryable object to perform individual queries.
         /// </summary>
+        /// <param name="sessionData"></param>
+        /// <returns></returns>
+        IQueryable<T> CreateQueryable(SessionData sessionData);
+
+
+        /// <summary>
+        /// Creates a Queryable object to perform individual queries.
+        /// </summary>
         /// <param name="session"></param>
         /// <returns></returns>
         IQueryable<T> CreateQueryable(Session session);

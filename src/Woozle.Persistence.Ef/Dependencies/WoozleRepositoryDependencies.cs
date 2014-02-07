@@ -22,6 +22,7 @@ namespace Woozle.Persistence.Ef.Dependencies
             container.RegisterAs<LanguageRepository, IRepository<Language>>();
             container.RegisterAs<MandatorRepository, IRepository<Mandator>>();
             container.RegisterAs<RoleRepository, IRepository<Role>>();
+            container.RegisterAs<UserMandatorRoleRepository, IRepository<UserMandatorRole>>();
             container.RegisterAs<MandatorRoleRepository, IRepository<MandatorRole>>();
             container.RegisterAs<FunctionPermissionRepository, IRepository<FunctionPermission>>();
             container.RegisterAs<TranslationRepository, IRepository<Translation>>();

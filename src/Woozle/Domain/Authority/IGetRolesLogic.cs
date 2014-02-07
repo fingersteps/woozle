@@ -22,5 +22,12 @@ namespace Woozle.Domain.Authority
         /// <param name="session"></param>
         /// <returns></returns>
         IList<MandatorRole> GetMandatorRolesForMandator(Session session);
+
+        /// <summary>
+        /// Gets all roles of the given session (user & mandator are considered)
+        /// </summary>
+        /// <param name="sessionData"></param>
+        /// <returns></returns>
+        List<string> GetUserRoles(SessionData sessionData);
     }
 }

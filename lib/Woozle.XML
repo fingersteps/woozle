@@ -220,7 +220,8 @@
             <param name="session"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Domain.Authority.GetRolesLogic.#ctor(Woozle.Persistence.IRepository{Woozle.Model.MandatorRole})">
+        <!-- Badly formed XML comment ignored for member "M:Woozle.Domain.Authority.IGetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)" -->
+        <member name="M:Woozle.Domain.Authority.GetRolesLogic.#ctor(Woozle.Persistence.IRepository{Woozle.Model.MandatorRole},Woozle.Persistence.IRepository{Woozle.Model.UserMandatorRole})">
             <summary>
             ctor.
             </summary>
@@ -229,6 +230,11 @@
         <member name="M:Woozle.Domain.Authority.GetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.Session)">
             <summary>
             <see cref="M:Woozle.Domain.Authority.IGetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.Session)"/>
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.Authority.GetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            <see cref="M:Woozle.Domain.Authority.IGetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="M:Woozle.Domain.Authority.IPermissionsLogic.SaveChangedPermissions(Woozle.Model.Role,System.Collections.Generic.List{Woozle.Model.ModulePermissions.ChangedModulePermission},Woozle.Model.SessionHandling.Session)">
@@ -596,14 +602,9 @@
             Specific provider for authentication
             </summary>
         </member>
-        <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.data">
+        <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.sessionData">
             <summary>
             <see cref="T:Woozle.Model.SessionHandling.SessionData"/>
-            </summary>
-        </member>
-        <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.loginResult">
-            <summary>
-            <see cref="T:Woozle.Model.Authentication.LoginResult"/>
             </summary>
         </member>
         <member name="F:Woozle.Services.Authentication.WoozleCredentialsAuthProvider.container">

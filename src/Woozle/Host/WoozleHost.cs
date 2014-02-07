@@ -39,7 +39,7 @@ namespace Woozle.Host
             ConfigureDefaultScope(container);
             MappingConfiguration.Configure();
             Plugins.Add(new SessionFeature());
-            ConfigureAuthentication(container);
+            Plugins.Add(CreateAuthFeature(container));
             Plugins.Add(new WoozlePlugin());
         }
 
@@ -52,15 +52,16 @@ namespace Woozle.Host
             container.DefaultReuse = ReuseScope.Request;
         }
 
-        private void ConfigureAuthentication(Container container)
+        protected virtual AuthFeature CreateAuthFeature(Container container)
         {
-            Plugins.Add(new AuthFeature(() => new Session(), new IAuthProvider[]
+            var authFeature = new AuthFeature(() => new Session(), new IAuthProvider[]
             {
                 new WoozleCredentialsAuthProvider(container)
             })
             {
                 HtmlRedirect = string.Empty
-            });
+            };
+            return authFeature;
         }
     }
 }

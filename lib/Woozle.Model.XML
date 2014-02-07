@@ -138,6 +138,11 @@
             </summary>
             <remarks></remarks>
         </member>
+        <member name="P:Woozle.Model.SessionHandling.SessionData.Roles">
+            <summary>
+            The roles which are defined for this user and mandator session data.
+            </summary>
+        </member>
         <member name="P:Woozle.Model.Status.TranslatedValue">
             <summary>
             To use the translated value directly it needs to be filled explicit

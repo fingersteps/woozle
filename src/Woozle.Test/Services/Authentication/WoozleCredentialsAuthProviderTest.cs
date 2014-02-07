@@ -1,7 +1,9 @@
-﻿using Funq;
+﻿using System.Collections.Generic;
+using Funq;
 using Moq;
 using ServiceStack.ServiceInterface;
 using Woozle.Domain.Authentication;
+using Woozle.Domain.Authority;
 using Woozle.Model;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
@@ -14,6 +16,7 @@ namespace Woozle.Test.Services.Authentication
     {
         private readonly WoozleCredentialsAuthProvider prosaCredentialsAuthProvider;
         private readonly Mock<IAuthenticationLogic> authenticationLogicMock;
+        private readonly Mock<IGetRolesLogic> getRolesLogicMock;
         private readonly Mock<IServiceBase> servicebaseMock;
 
         private readonly Container container;
@@ -21,6 +24,7 @@ namespace Woozle.Test.Services.Authentication
         public WoozleCredentialsAuthProviderTest()
         {
             authenticationLogicMock = new Mock<IAuthenticationLogic>();
+            getRolesLogicMock = new Mock<IGetRolesLogic>();
             container = new Container();
             
             authenticationLogicMock = new Mock<IAuthenticationLogic>();
@@ -54,7 +58,11 @@ namespace Woozle.Test.Services.Authentication
             authenticationLogicMock.Setup(n => n.Login(It.IsAny<LoginRequest>()))
                                    .Returns(result);
 
+            getRolesLogicMock.Setup(n => n.GetUserRoles(sessionData))
+                               .Returns(new List<string>());
+
             container.Register(authenticationLogicMock.Object);
+            container.Register(getRolesLogicMock.Object);
 
             var authenticateResult = this.prosaCredentialsAuthProvider.TryAuthenticate(servicebaseMock.Object, username, password);
 

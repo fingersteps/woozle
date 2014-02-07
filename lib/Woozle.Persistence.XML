@@ -4,6 +4,13 @@
         <name>Woozle.Persistence</name>
     </assembly>
     <members>
+        <member name="M:Woozle.Persistence.IRepository`1.CreateQueryable(Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Creates a Queryable object to perform individual queries.
+            </summary>
+            <param name="sessionData"></param>
+            <returns></returns>
+        </member>
         <member name="M:Woozle.Persistence.IRepository`1.CreateQueryable(Woozle.Model.SessionHandling.Session)">
             <summary>
             Creates a Queryable object to perform individual queries.

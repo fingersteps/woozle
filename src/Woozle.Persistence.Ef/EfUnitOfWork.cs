@@ -25,9 +25,15 @@ namespace Woozle.Persistence.Ef
 
         public virtual IQueryable<T> Get<T>(Session session) where T : WoozleObject
         {
+            return Get<T>(session.SessionObject);
+        }
+
+
+        public virtual IQueryable<T> Get<T>(SessionData sessionData) where T : WoozleObject
+        {
             if (typeof(IMandatorCapable).IsAssignableFrom(typeof(T)))
             {
-                var result = Set<T>().Where(record => record.MandatorId == session.SessionObject.Mandator.Id);
+                var result = Set<T>().Where(record => record.MandatorId == sessionData.Mandator.Id);
                 return result;
             }
             return Set<T>();

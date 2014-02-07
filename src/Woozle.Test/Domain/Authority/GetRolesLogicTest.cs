@@ -16,16 +16,21 @@ namespace Woozle.Test.Domain.Authority
         private readonly Mock<IRepository<MandatorRole>> mandatorRoleRepositoryMock;
         private readonly IQueryable<MandatorRole> mandatorRoles;
         private Model.Mandator mandator;
+        private Model.User user;
         private SessionData sessionObject;
         private readonly Session session;
+        private Mock<IRepository<UserMandatorRole>> userMandatorRoleRepositoryMock;
 
         public GetRolesLogicTest()
         {
             mandatorRoleRepositoryMock = new Mock<IRepository<MandatorRole>>();
-            getRolesLogic = new GetRolesLogic(mandatorRoleRepositoryMock.Object);
+            userMandatorRoleRepositoryMock = new Mock<IRepository<UserMandatorRole>>();
+
+            getRolesLogic = new GetRolesLogic(mandatorRoleRepositoryMock.Object, userMandatorRoleRepositoryMock.Object);
 
             mandator = new Model.Mandator();
-            sessionObject = new SessionData(null, mandator);
+            user = new User();
+            sessionObject = new SessionData(user, mandator);
             session = new Session(Guid.NewGuid(), sessionObject, DateTime.Now.AddDays(1));
 
             mandatorRoles = new List<MandatorRole>
@@ -86,6 +91,73 @@ namespace Woozle.Test.Domain.Authority
             Assert.Equal(3, result[0].MandId);
             Assert.NotNull(result[0].Mandator);
             Assert.NotNull(result[0].Role);
+        }
+
+        [Fact]
+        public void GetUserRoles_SeveralRolesForSpecificMandator()
+        {
+            mandator.Id = 3;
+            user.Id = 2;
+
+            var userMandatorRoles = new List<UserMandatorRole>()
+            {
+                new UserMandatorRole()
+                {
+                    UserId = 1,
+                    MandatorRole = new MandatorRole()
+                    {
+                        MandId = 1,
+                        Role = new Role()
+                        {
+                            Name = "SpecialRole"
+                        }
+                    }
+                },
+                new UserMandatorRole()
+                {
+                    UserId = 2,
+                    MandatorRole = new MandatorRole()
+                    {
+                        MandId = 1,
+                        Role = new Role()
+                        {
+                            Name = "SpecialRole"
+                        }
+                    }
+                },
+                new UserMandatorRole()
+                {
+                    UserId = 2,
+                    MandatorRole = new MandatorRole()
+                    {
+                        MandId = 3,
+                        Role = new Role()
+                        {
+                            Name = "User"
+                        }
+                    }
+                },
+                new UserMandatorRole()
+                {
+                    UserId = 2,
+                    MandatorRole = new MandatorRole()
+                    {
+                        MandId = 3,
+                        Role = new Role()
+                        {
+                            Name = "Admin"
+                        }
+                    }
+                }
+            }.AsQueryable();
+            userMandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
+                .Returns(userMandatorRoles);
+
+            var result = getRolesLogic.GetUserRoles(session.SessionObject);
+
+            Assert.Equal(2, result.Count);
+            Assert.Equal("User", result[0]);
+            Assert.Equal("Admin", result[1]);
         }
     }
 }

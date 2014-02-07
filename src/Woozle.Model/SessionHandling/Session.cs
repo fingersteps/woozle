@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ServiceStack.ServiceInterface.Auth;
 
 namespace Woozle.Model.SessionHandling
@@ -28,6 +29,8 @@ namespace Woozle.Model.SessionHandling
             this.Id = sessionId;
             this.SessionObject = sessionObject;
             this.ExpirationDate = expirationDate;
+
+            Roles = new List<string>();
         }
 
         /// <summary>
@@ -50,6 +53,11 @@ namespace Woozle.Model.SessionHandling
         { 
             get;
             set;
+        }
+
+        public override bool HasRole(string role)
+        {
+            return SessionObject.Roles != null && SessionObject.Roles.Contains(role);
         }
     }
 }

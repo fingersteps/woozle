@@ -30,6 +30,11 @@ namespace Woozle.Persistence.Ef.Repository
         #region IRepository<T> Members
 
 
+        public IQueryable<T> CreateQueryable(SessionData sessionData)
+        {
+            return Context.Get<T>(sessionData);
+        }
+
         public IQueryable<T> CreateQueryable(Session session)
         {
             return Context.Get<T>(session);

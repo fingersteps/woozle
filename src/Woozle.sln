@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CB1FC2
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_TestProjects", "03_TestProjects", "{ADE80369-82C2-4E2B-9C27-887A48CDB564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.Web.TestApplication", "Woozle.Web.TestApplication\Woozle.Web.TestApplication.csproj", "{57543839-AEF7-49FE-B384-36FC41AA7CF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{20F0D12E-DE39-4FE3-9B9E-19084C4AD896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20F0D12E-DE39-4FE3-9B9E-19084C4AD896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20F0D12E-DE39-4FE3-9B9E-19084C4AD896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57543839-AEF7-49FE-B384-36FC41AA7CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57543839-AEF7-49FE-B384-36FC41AA7CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57543839-AEF7-49FE-B384-36FC41AA7CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57543839-AEF7-49FE-B384-36FC41AA7CF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +76,6 @@ Global
 		{47F0F1A6-0FCC-453C-BACB-DDBCA6DC605F} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
 		{E574246F-FAB2-4BD5-9005-B6D2D28053FC} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
 		{20F0D12E-DE39-4FE3-9B9E-19084C4AD896} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
+		{57543839-AEF7-49FE-B384-36FC41AA7CF9} = {ADE80369-82C2-4E2B-9C27-887A48CDB564}
 	EndGlobalSection
 EndGlobal

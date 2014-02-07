@@ -13,15 +13,17 @@ namespace Woozle.Domain.Authority
     {
 
         private readonly IRepository<MandatorRole> mandatorRoleRepository;
-        
+        private readonly IRepository<UserMandatorRole> userMandatorRoleRepository;
+
         /// <summary>
         /// ctor.
         /// </summary>
         /// <see cref="IRepository{T}">Repository for getting the role navigation property of the <see cref="Mandator"/>.</see>
-        public GetRolesLogic(IRepository<MandatorRole> mandatorRoleRepository)
-            {
-                this.mandatorRoleRepository = mandatorRoleRepository;
-            }
+        public GetRolesLogic(IRepository<MandatorRole> mandatorRoleRepository, IRepository<UserMandatorRole> userMandatorRoleRepository)
+        {
+            this.mandatorRoleRepository = mandatorRoleRepository;
+            this.userMandatorRoleRepository = userMandatorRoleRepository;
+        }
 
         /// <summary>
         /// <see cref="IGetRolesLogic.GetAllMandatorRolesByMandator"/>
@@ -43,6 +45,21 @@ namespace Woozle.Domain.Authority
                         };
 
             return query.ToList().Select(n => n.mandatorRole).ToList();
+        }
+
+
+        /// <summary>
+        /// <see cref="IGetRolesLogic.GetUserRoles"/>
+        /// </summary>
+        public List<string> GetUserRoles(SessionData sessionData)
+        {
+            var userMandatorRoles = userMandatorRoleRepository.CreateQueryable(sessionData);
+
+            var query = from userMandatorRole in userMandatorRoles
+                where userMandatorRole.UserId == sessionData.User.Id &&
+                      userMandatorRole.MandatorRole.MandId == sessionData.Mandator.Id
+                select userMandatorRole.MandatorRole.Role.Name;
+            return query.ToList();
         }
 
         public IList<MandatorRole> GetMandatorRolesForMandator(Session session)
