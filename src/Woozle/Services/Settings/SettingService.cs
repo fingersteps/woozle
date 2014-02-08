@@ -3,6 +3,7 @@ using ServiceStack.ServiceInterface;
 using Woozle.Domain.Settings;
 using Woozle.Model;
 using Woozle.Model.Validation.Creation;
+using Woozle.Services.Authority;
 
 namespace Woozle.Services.Settings
 {
@@ -34,6 +35,7 @@ namespace Woozle.Services.Settings
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
+        [RequiredRole(Roles.Administrator)]
         public SaveResultDto<Setting> Post(Setting requestDto)
         {
             return Save(requestDto);
@@ -45,6 +47,7 @@ namespace Woozle.Services.Settings
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
+        [RequiredRole(Roles.Administrator)]
         public SaveResultDto<Setting> Put(Setting requestDto)
         {
             return Save(requestDto);

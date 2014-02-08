@@ -34,6 +34,7 @@ namespace Woozle.Services.Authority
         /// <param name="requestDto"></param>
         /// <returns></returns>
         [ExceptionCatcher]
+        [RequiredRole(Roles.Administrator)]
         public void Put(SavePermissions requestDto)
         {
             var role = Mapper.Map<Role, Woozle.Model.Role>(requestDto.Role);

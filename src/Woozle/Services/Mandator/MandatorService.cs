@@ -2,6 +2,7 @@
 using ServiceStack.ServiceInterface;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Model.Validation.Creation;
+using Woozle.Services.Authority;
 
 namespace Woozle.Services.Mandator
 {
@@ -33,6 +34,7 @@ namespace Woozle.Services.Mandator
         /// <param name="request"></param>
         /// <returns></returns>
         [ExceptionCatcher]
+        [RequiredRole(Roles.Administrator)]
         public SaveResultDto<Mandator> Put(Mandator request)
         {
             var modelObj = Mapper.Map<Mandator, Woozle.Model.Mandator>(request);

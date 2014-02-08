@@ -131,6 +131,7 @@
     <Compile Include="Services\Authentication\WoozleCredentialsAuthProvider.cs" />
     <Compile Include="Services\Authority\MandatorRoleService.cs" />
     <Compile Include="Services\Authority\PermissionService.cs" />
+    <Compile Include="Services\Authority\Roles.cs" />
     <Compile Include="Services\Authority\RoleService.cs" />
     <Compile Include="Services\ExceptionCatcher.cs" />
     <Compile Include="Services\Fields\Status.cs" />

@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using ServiceStack.ServiceInterface;
 using Woozle.Domain.UserManagement;
 using Woozle.Model.UserSearch;
 using Woozle.Model.Validation.Creation;
 using Woozle.Services.Authentication;
+using Woozle.Services.Authority;
 
 namespace Woozle.Services.UserManagement
 {
     [MandatorAuthenticate]
+    [RequiredRole(Roles.Administrator)]
     public class UserService : AbstractService
     {
         private readonly IUserLogic logic;
@@ -40,28 +43,8 @@ namespace Woozle.Services.UserManagement
         [ExceptionCatcher]
         public UserResponse Get(User request)
         {
-            if (request.Id == 0)
-            {
-                return new UserResponse
-                           {
-                               User = Mapper.Map <Model.User,User>(this.Session.SessionObject.User)
-                           };
-            }
-
             var result = logic.LoadUser(request.Id, Session);
             var response = new UserResponse() {User = Mapper.Map<Model.User, User>(result)};
-            return response;
-        }
-
-        [ExceptionCatcher]
-        public UserResponse Get()
-        {
-            var result = logic.LoadUser(this.Session.SessionObject.User.Id, Session);
-            var response = new UserResponse
-                               {
-                                   User = Mapper.Map<Model.User, User>(result)
-                               };
-
             return response;
         }
 
