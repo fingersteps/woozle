@@ -5,7 +5,7 @@ namespace Woozle.Test.Domain.ExternalSystem.Testdata
 {
     public class TestExternalSystemRepository : IExternalSystemRepository
     {
-        public Woozle.Model.ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, Session session)
+        public Woozle.Model.ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, SessionData sessionData)
         {
             return null;
         }

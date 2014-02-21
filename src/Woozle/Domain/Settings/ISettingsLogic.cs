@@ -12,16 +12,16 @@ namespace Woozle.Domain.Settings
         /// <summary>
         /// Loads a specific <see cref="Setting"/>
         /// </summary>
-        /// <param name="session">The session</param>
+        /// <param name="sessionData">The session</param>
         /// <returns>The loaded <see cref="Setting"/></returns>
-        Setting Load(Session session);
+        Setting Load(SessionData sessionData);
 
         /// <summary>
         /// Saves a specific <see cref="Setting"/>
         /// </summary>
         /// <param name="saveableObject">The <see cref="Setting"/> to save.</param>
-        /// <param name="session"><see cref="Session"/></param>
+        /// <param name="sessionData"><see cref="Session"/></param>
         /// <returns>The result of the save process as <see cref="ISaveResult{T}"/></returns>
-        ISaveResult<Setting> Save(Setting saveableObject, Session session);
+        ISaveResult<Setting> Save(Setting saveableObject, SessionData sessionData);
     }
 }

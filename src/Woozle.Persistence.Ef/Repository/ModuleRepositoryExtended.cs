@@ -10,16 +10,16 @@ namespace Woozle.Persistence.Ef.Repository
 {
     public partial class ModuleRepository : IModuleRepository
     {
-        public IList<ModulePermissionsResult> FindModulePermissions(Role role, Session session)
+        public IList<ModulePermissionsResult> FindModulePermissions(Role role, SessionData sessionData)
         {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                var selection = from module in Context.Get<Module>(session)
+                var selection = from module in Context.Get<Module>(sessionData)
                              from function in module.Functions
                              from functionPermission in function.FunctionPermissions
-                             from mandatorRoleFunctionPermission in functionPermission.MandatorRoles.DefaultIfEmpty() 
-                             join permission in Context.Get<Permission>(session) on functionPermission.PermissionId equals permission.Id
+                             from mandatorRoleFunctionPermission in functionPermission.MandatorRoles.DefaultIfEmpty()
+                                join permission in Context.Get<Permission>(sessionData) on functionPermission.PermissionId equals permission.Id
                              group mandatorRoleFunctionPermission by new {functionPermissionId = functionPermission.Id, moduleId = module.Id, moduleName = module.Name, functionName = function.Name, permissionName = permission.Name } into g
                              select new ModulePermissionsResult()
                              {
@@ -30,7 +30,7 @@ namespace Woozle.Persistence.Ef.Repository
                                  PermissionName = g.Key.permissionName,
 
                                  //Check if there is a record in table MandatorRoleFunctionPermission and set HasPermission to true if there is one
-                                 HasPermission = g.Count(n => n != null && n.RoleId == role.Id && n.MandId == session.SessionObject.Mandator.Id) > 0
+                                 HasPermission = g.Count(n => n != null && n.RoleId == role.Id && n.MandId == sessionData.Mandator.Id) > 0
                              };
                 var result = selection.ToList();
 
@@ -40,21 +40,21 @@ namespace Woozle.Persistence.Ef.Repository
                 return result;
         }
 
-        public List<ModuleForMandator> FindModulesForMandator(Session session)
+        public List<ModuleForMandator> FindModulesForMandator(SessionData sessionData)
         {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                var selection = from module in Context.Get<Module>(session)
-                                join moduleTranslation in Context.Get<Translation>(session) on module.TranslationId equals moduleTranslation.Id
+                var selection = from module in Context.Get<Module>(sessionData)
+                                join moduleTranslation in Context.Get<Translation>(sessionData) on module.TranslationId equals moduleTranslation.Id
                                 from mandator in module.Mandators
                                 from function in module.Functions
-                                join functionTranslation in Context.Get<Translation>(session) on function.TranslationId equals functionTranslation.Id
+                                join functionTranslation in Context.Get<Translation>(sessionData) on function.TranslationId equals functionTranslation.Id
                                 from moduleTranslationItem in module.Translation.TranslationItems.DefaultIfEmpty()
                                 from functionTranslationItem in function.Translation.TranslationItems.DefaultIfEmpty()
-                                where mandator.Id == session.SessionObject.Mandator.Id && 
-                                (moduleTranslationItem == null || moduleTranslationItem.LanguageId == session.SessionObject.User.LanguageId) &&
-                                (functionTranslationItem == null || functionTranslationItem.LanguageId == session.SessionObject.User.LanguageId)
+                                where mandator.Id == sessionData.Mandator.Id &&
+                                (moduleTranslationItem == null || moduleTranslationItem.LanguageId == sessionData.User.LanguageId) &&
+                                (functionTranslationItem == null || functionTranslationItem.LanguageId == sessionData.User.LanguageId)
                                 orderby module.Sequence, module.Id, function.Sequence, function.Id
                                 select new
                                 {

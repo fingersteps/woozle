@@ -84,7 +84,7 @@ namespace Woozle.Services.Authentication
             var se = session as Session;
             if (se != null)
             {
-                se.SessionObject = sessionData;
+                se.SessionData = sessionData;
                 authService.SaveSession(session, new TimeSpan(0, 1, 0, 0));
             }
         }

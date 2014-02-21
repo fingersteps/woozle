@@ -6,8 +6,8 @@ namespace Woozle.Domain.Location
 {
     public interface ILocationLogic
     {
-        IList<City> GetCities(Session session);
-        IList<Country> GetCountries(Session session);
-        IList<Language> GetLanguages(Session session);
+        IList<City> GetCities(SessionData sessionData);
+        IList<Country> GetCountries(SessionData sessionData);
+        IList<Language> GetLanguages(SessionData sessionData);
     }
 }

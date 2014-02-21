@@ -15,37 +15,51 @@ namespace Woozle.Domain.UserManagement
         /// Searchs users by given criteria.
         /// </summary>
         /// <param name="criteriaUser">The user criteria</param>
-        /// <param name="session">The session</param>
+        /// <param name="sessionData">The session</param>
         /// <returns>A list of users</returns>
-        IList<UserSearchResult> Search(UserSearchCriteria criteriaUser, Session session);
+        IList<UserSearchResult> Search(UserSearchCriteria criteriaUser, SessionData sessionData);
 
         /// <summary>
         /// Saves the specified user.
         /// </summary>
         /// <param name="user"><see cref="User"/></param>
-        /// <param name="session"><see cref="Session"/></param>
+        /// <param name="sessionData"><see cref="Session"/></param>
         /// <returns><see cref="ISaveResult{TO}"/>.</returns>
-        ISaveResult<User> Save(User user, Session session);
+        ISaveResult<User> Save(User user, SessionData sessionData);
 
         /// <summary>
         /// Deletes the specific user.
         /// </summary>
         /// <param name="id"><see cref="User"/></param>
-        /// <param name="session"><see cref="Session"/></param>
-        void Delete(int id, Session session);
+        /// <param name="sessionData"><see cref="Session"/></param>
+        void Delete(int id, SessionData sessionData);
 
         /// <summary>
         /// Loads a user by the given id.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="session"></param>
-        User LoadUser(int id, Session session);
+        /// <param name="sessionData"></param>
+        User LoadUser(int id, SessionData sessionData);
 
         /// <summary>
         /// Gets all users of the current mandator
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        IList<User> GetUsersOfMandator(Session session);
+        IList<User> GetUsersOfMandator(SessionData sessionData);
+
+        /// <summary>
+        /// Gets the user of the given id or null if no user was found.
+        /// </summary>
+        /// <param name="parse"></param>
+        /// <returns></returns>
+        User FindUserById(int parse);
+
+        /// <summary>
+        /// Gets the user by the given username or null if no user was found.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="sessionData"></param>
+        User GetUserByUsername(string username, SessionData sessionData);
     }
 }

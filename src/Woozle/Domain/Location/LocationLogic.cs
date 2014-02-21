@@ -30,25 +30,25 @@ namespace Woozle.Domain.Location
         /// <summary>
         /// <see cref="ILocationLogic.GetCities"/>
         /// </summary>
-        public IList<City> GetCities(Session session)
+        public IList<City> GetCities(SessionData sessionData)
         {
-            return this.cityRepository.FindAll(session).ToList();
+            return this.cityRepository.FindAll(sessionData).ToList();
         }
 
         /// <summary>
         /// <see cref="ILocationLogic.GetCountries"/>
         /// </summary>
-        public IList<Country> GetCountries(Session session)
+        public IList<Country> GetCountries(SessionData sessionData)
         {
-            return this.countryRepository.FindAll(session).ToList();
+            return this.countryRepository.FindAll(sessionData).ToList();
         }
 
         /// <summary>
         /// <see cref="ILocationLogic.GetLanguages"/>
         /// </summary>
-        public IList<Language> GetLanguages(Session session)
+        public IList<Language> GetLanguages(SessionData sessionData)
         {
-            return this.languageRepository.FindAll(session).ToList();
+            return this.languageRepository.FindAll(sessionData).ToList();
         }
 
         #endregion

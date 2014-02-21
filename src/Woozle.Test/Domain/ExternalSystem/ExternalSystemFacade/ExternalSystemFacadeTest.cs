@@ -25,7 +25,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
                                                                                        }), DateTime.Now.AddHours(2));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
-            externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session))
+            externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session.SessionData))
                                          .Returns(new Woozle.Model.ExternalSystem
                                                          {
                                                              ExternalSystemType = new ExternalSystemType
@@ -43,7 +43,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
                 new ExternalSystemFacade<IExternalTestSystem>(null, externalServiceRepositoryMock.Object,
                                                                new AssemblyCatalog(this.GetType().Assembly), TypeId);
 
-            var foundSystem = externalServiceFacade.GetExternalSystem(session);
+            var foundSystem = externalServiceFacade.GetExternalSystem(session.SessionData);
 
             var expectedSystem = new ExternalTestSystem();
 
@@ -67,7 +67,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
                 new ExternalSystemFacade<IExternalTestSystem>(null, externalServiceRepositoryMock.Object,
                                                                new AssemblyCatalog(this.GetType().Assembly), TypeId);
 
-            var foundSystem = externalServiceFacade.GetExternalSystem(session);
+            var foundSystem = externalServiceFacade.GetExternalSystem(session.SessionData);
 
             Assert.Null(foundSystem);
         }
@@ -85,7 +85,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
                 new ExternalSystemFacade<IExternalTestSystem>(null, externalServiceRepositoryMock.Object,
                                                                new AssemblyCatalog(this.GetType().Assembly), TypeId);
 
-            var foundSystem = externalServiceFacade.GetExternalSystem(session);
+            var foundSystem = externalServiceFacade.GetExternalSystem(session.SessionData);
 
             Assert.Null(foundSystem);
         }
@@ -117,7 +117,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
             }), DateTime.Now.AddHours(2));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
-            externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session))
+            externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session.SessionData))
                                          .Returns(new Model.ExternalSystem
                                          {
                                              ExternalSystemType = new ExternalSystemType
@@ -135,7 +135,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
                 new ExternalSystemFacade<IExternalTestSystem>(null, externalServiceRepositoryMock.Object,
                                                                new AssemblyCatalog(this.GetType().Assembly), TypeId);
 
-            var foundSystem = externalServiceFacade.GetExternalSystem(session);
+            var foundSystem = externalServiceFacade.GetExternalSystem(session.SessionData);
 
             var expectedSystem = new ExternalTestSystem();
 
@@ -157,7 +157,7 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
             Assert.Throws<ArgumentNullException>(() =>
             {
                 var externalServiceFacade = new ExternalSystemFacade<IExternalTestSystem>(null, null, new AssemblyCatalog(this.GetType().Assembly), TypeId);
-                externalServiceFacade.GetExternalSystem(session);
+                externalServiceFacade.GetExternalSystem(session.SessionData);
             });
         }
     }

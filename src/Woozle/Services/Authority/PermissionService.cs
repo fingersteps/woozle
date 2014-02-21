@@ -24,7 +24,7 @@ namespace Woozle.Services.Authority
         [ExceptionCatcher]
         public IList<FunctionPermission> Get(Permissions requestDto)
         {
-            var result = permissionLogic.GetAssignedPermissions(Session);
+            var result = permissionLogic.GetAssignedPermissions(Session.SessionData);
             return Mapper.Map<IList<Woozle.Model.FunctionPermission>, List<FunctionPermission>>(result);
         }
 
@@ -40,7 +40,7 @@ namespace Woozle.Services.Authority
             var role = Mapper.Map<Role, Woozle.Model.Role>(requestDto.Role);
             var permissionsToSave = Mapper.Map<List<ChangedModulePermission>,
                 List<Woozle.Model.ModulePermissions.ChangedModulePermission>>(requestDto.ChangedPermissions);
-            this.permissionLogic.SaveChangedPermissions(role, permissionsToSave, Session);
+            this.permissionLogic.SaveChangedPermissions(role, permissionsToSave, Session.SessionData);
         }
     }
 }

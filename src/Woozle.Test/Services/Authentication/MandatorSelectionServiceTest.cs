@@ -38,7 +38,7 @@ namespace Woozle.Test.Services.Authentication
 
             this.mandatorSelectionService = new MandatorSelectionService(mockedAuthenticationLogic.Object)
                                                 {
-                                                    RequestContext = GetRequestContextMock(session)
+                                                    RequestContext = GetFakeRequestContext(session)
                                                 };
         }
 

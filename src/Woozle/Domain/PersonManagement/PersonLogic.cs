@@ -14,12 +14,12 @@ namespace Woozle.Domain.PersonManagement
             this.personRepository = personRepository;
         }
 
-        public Person SearchForExistingPerson(Person personToCheck, Session session)
+        public Person SearchForExistingPerson(Person personToCheck, SessionData sessionData)
         {
             //Check only for existing persons if the person to check is new 
             if (personToCheck.Id == 0)
             {
-                var persons = personRepository.CreateQueryable(session);
+                var persons = personRepository.CreateQueryable(sessionData);
                 var query = from person in persons
                             where
                                 ((string.IsNullOrEmpty(personToCheck.EnterpriseName) &&

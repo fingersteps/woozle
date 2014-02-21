@@ -11,15 +11,15 @@ namespace Woozle.Persistence
         /// Finds all permissions related to modules/functions for the current mandant (acc. the given session)
         /// </summary>
         /// <param name="role"> </param>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        IList<ModulePermissionsResult> FindModulePermissions(Role role, Session session);
+        IList<ModulePermissionsResult> FindModulePermissions(Role role, SessionData sessionData);
 
         /// <summary>
         /// Finds modules for a given mandator.
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        List<ModuleForMandator> FindModulesForMandator(Session session);
+        List<ModuleForMandator> FindModulesForMandator(SessionData sessionData);
     }
 }

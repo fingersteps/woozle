@@ -23,7 +23,7 @@ namespace Woozle.Services.Navigation
         [ExceptionCatcher]
         public List<Header> Get(Navigation requestDto)
         {
-            var modules = moduleLogic.GetModulesByMandator(Session);
+            var modules = moduleLogic.GetModulesByMandator(Session.SessionData);
             var result = Mapper.Map<IList<Woozle.Model.ModulePermissions.ModuleForMandator>, List<Header>>(modules);
             return result;
         }

@@ -17,6 +17,6 @@ namespace Woozle.Domain.UserManagement
         /// <summary>
         /// <see cref="Session"/>
         /// </summary>
-        Session Session { get; set; }
+        SessionData SessionData { get; set; }
     }
 }

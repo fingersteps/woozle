@@ -28,24 +28,24 @@ namespace Woozle.Domain.ModuleManagement
         /// <summary>
         /// <see cref="IModuleLogic.GetModulesByMandator"/>
         /// </summary>
-        public IList<ModuleForMandator> GetModulesByMandator(Session session)
+        public IList<ModuleForMandator> GetModulesByMandator(SessionData sessionData)
         {
-            var modules = this.moduleRepository.FindModulesForMandator(session);
+            var modules = this.moduleRepository.FindModulesForMandator(sessionData);
 
-            CheckFunctionPermissions(session, modules);
+            CheckFunctionPermissions(sessionData, modules);
             FilterEmptyModules(modules);
 
             return modules;
         }
 
-        private void CheckFunctionPermissions(Session session, IEnumerable<ModuleForMandator> modules)
+        private void CheckFunctionPermissions(SessionData sessionData, IEnumerable<ModuleForMandator> modules)
         {
             foreach (ModuleForMandator module in modules)
             {
                 var authorizedFunctions = new ObservableCollection<Function>();
                 foreach (Function function in module.Functions)
                 {
-                    if (PermissionManager.HasPermission(session.SessionObject, function.LogicalId, Permissions.PERMISSION_FUNCTION))
+                    if (PermissionManager.HasPermission(sessionData, function.LogicalId, Permissions.PERMISSION_FUNCTION))
                     {
                         authorizedFunctions.Add(function);
                     }
@@ -65,9 +65,9 @@ namespace Woozle.Domain.ModuleManagement
             }
         }
 
-        public IList<ModulePermissionsResult> FindModulePermissions(Role role, Session session)
+        public IList<ModulePermissionsResult> FindModulePermissions(Role role, SessionData sessionData)
         {
-            var modules = this.moduleRepository.FindModulePermissions(role, session);
+            var modules = this.moduleRepository.FindModulePermissions(role, sessionData);
             return modules;
         }
     }

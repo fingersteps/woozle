@@ -2,6 +2,7 @@
 
 using System.Linq;
 using AutoMapper;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Model;
 using Woozle.Model.UserSearch;
 using Woozle.Model.Validation.Creation;
@@ -204,6 +205,8 @@ namespace Woozle.Services
 
             Mapper.CreateMap<Function, Item>()
                   .ForMember(n => n.TranslatedValue, opt => opt.ResolveUsing(new FunctionTranslatedValueResolver()));
+
+            Mapper.CreateMap<UserAuth, Model.User>().ConvertUsing<UserAuthToUserConverter>();
         }
 
         private class ModuleTranslatedValueResolver : ValueResolver<ModuleForMandator, string>
@@ -227,5 +230,23 @@ namespace Woozle.Services
             var translationItem = translation.TranslationItems.FirstOrDefault();
             return translationItem != null ? translationItem.Description : translation.DefaultDescription;
         }
+
+        class UserAuthToUserConverter : TypeConverter<UserAuth, Model.User>
+        {
+            protected override Model.User ConvertCore(UserAuth source)
+            {
+                return new Model.User()
+                {
+                    Username = source.UserName,
+                    MandatorId = source.RefId.HasValue ? source.RefId.Value : 0,
+                    Password = source.PasswordHash,
+                    FirstName = source.FirstName,
+                    LastName = source.LastName,
+                    FlagActive = true
+                };
+            }
+        }
     }
+
+
 }

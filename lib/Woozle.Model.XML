@@ -91,7 +91,7 @@
             Initializes a new instance of the <see cref="T:Woozle.Model.SessionHandling.Session"/> class.
             </summary>
             <param name="sessionId">The session id.</param>
-            <param name="sessionObject">The session object.</param>
+            <param name="sessionData">The session object.</param>
             <param name="expirationDate">The expiration date.</param>
             <remarks></remarks>
         </member>
@@ -101,7 +101,7 @@
             </summary>
             <remarks></remarks>
         </member>
-        <member name="P:Woozle.Model.SessionHandling.Session.SessionObject">
+        <member name="P:Woozle.Model.SessionHandling.Session.SessionData">
             <summary>
             Gets the session object.
             </summary>

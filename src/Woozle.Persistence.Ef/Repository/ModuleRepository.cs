@@ -24,16 +24,16 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override Module Synchronize(Module entity, Session session) 
+    	 public override Module Synchronize(Module entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.ModuleGroup = Context.SynchronizeObject(entity.ModuleGroup, session); 
+    			attachedObj.ModuleGroup = Context.SynchronizeObject(entity.ModuleGroup, sessionData); 
     
-    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, session); 
+    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, sessionData); 
     
     			
     			//Navigation Property 'Functions'
@@ -43,12 +43,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.Functions.Contains(n)) attachedObj.Functions.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.Functions.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Functions", stopwatch.ElapsedMilliseconds));
@@ -59,12 +59,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.Mandators.Contains(n)) attachedObj.Mandators.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.Mandators.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Mandators", stopwatch.ElapsedMilliseconds));

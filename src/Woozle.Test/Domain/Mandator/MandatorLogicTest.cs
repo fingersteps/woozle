@@ -35,7 +35,7 @@ namespace Woozle.Test.Domain.Mandator
                                          CityId = 75
                                      };
 
-            this.mandatorRepository.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.mandatorRepository.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                                 .Returns(new List<Model.Mandator>
                                              {
                                                  new Model.Mandator
@@ -55,7 +55,7 @@ namespace Woozle.Test.Domain.Mandator
 
             var session = new Session(Guid.NewGuid(), new SessionData(new User(), mandator), DateTime.Now);
 
-            var result = this.mandatorLogic.LoadMandator(session);
+            var result = this.mandatorLogic.LoadMandator(session.SessionData);
             Assert.Equal(expectedMandator, result);
         }
 
@@ -68,20 +68,19 @@ namespace Woozle.Test.Domain.Mandator
                                        Name = "Test Mandant"
                                    };
 
-            this.mandatorRepository.Setup(n => n.Synchronize(saveMandator, It.IsAny<Session>()))
+            this.mandatorRepository.Setup(n => n.Synchronize(saveMandator, It.IsAny<SessionData>()))
                                     .Returns(saveMandator);
 
             this.mandatorRepository.Setup(n => n.UnitOfWork)
                                     .Returns(this.unitOfWorkMock.Object);
 
             var result = this.mandatorLogic.Save(saveMandator,
-                                    new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator()),
-                                                DateTime.Now));
+                new SessionData(new User(), new Model.Mandator()));
 
             Assert.Equal(saveMandator, result.TargetObject);
             Assert.False(result.HasSystemErrors);
 
-            mandatorRepository.Verify(n => n.Synchronize(saveMandator, It.IsAny<Session>()), Times.Once());
+            mandatorRepository.Verify(n => n.Synchronize(saveMandator, It.IsAny<SessionData>()), Times.Once());
         }
     }
 }

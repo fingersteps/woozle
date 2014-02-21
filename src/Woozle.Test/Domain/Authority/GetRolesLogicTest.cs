@@ -60,13 +60,13 @@ namespace Woozle.Test.Domain.Authority
         [Fact]
         public void GetAllMandatorRolesByMandatorGroupTest()
         {
-            session.SessionObject.Mandator.Id = 1;
-            session.SessionObject.Mandator.MandatorGroupId = 1;
+            session.SessionData.Mandator.Id = 1;
+            session.SessionData.Mandator.MandatorGroupId = 1;
 
-            this.mandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.mandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(mandatorRoles);
 
-            var result = getRolesLogic.GetAllMandatorRolesByMandator(session);
+            var result = getRolesLogic.GetAllMandatorRolesByMandator(session.SessionData);
 
             Assert.Equal(2, result.Count);
             Assert.Equal(1, result[0].MandId);
@@ -80,12 +80,12 @@ namespace Woozle.Test.Domain.Authority
         [Fact]
         public void GetAllMandatorRolesByMandatorWithoutGroupTest()
         {
-            session.SessionObject.Mandator.Id = 3;
+            session.SessionData.Mandator.Id = 3;
 
-            this.mandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.mandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(mandatorRoles);
 
-            var result = getRolesLogic.GetAllMandatorRolesByMandator(session);
+            var result = getRolesLogic.GetAllMandatorRolesByMandator(session.SessionData);
 
             Assert.Equal(1, result.Count);
             Assert.Equal(3, result[0].MandId);
@@ -153,7 +153,7 @@ namespace Woozle.Test.Domain.Authority
             userMandatorRoleRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userMandatorRoles);
 
-            var result = getRolesLogic.GetUserRoles(session.SessionObject);
+            var result = getRolesLogic.GetUserRoles(session.SessionData);
 
             Assert.Equal(2, result.Count);
             Assert.Equal("User", result[0]);

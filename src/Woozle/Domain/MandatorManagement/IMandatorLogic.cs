@@ -6,7 +6,7 @@ namespace Woozle.Domain.MandatorManagement
 {
     public interface IMandatorLogic
     {
-        Mandator LoadMandator(Session session);
-        ISaveResult<Mandator> Save(Mandator mandator, Session session);
+        Mandator LoadMandator(SessionData sessionData);
+        ISaveResult<Mandator> Save(Mandator mandator, SessionData sessionData);
     }
 }

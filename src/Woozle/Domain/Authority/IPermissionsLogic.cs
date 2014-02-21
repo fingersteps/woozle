@@ -12,14 +12,14 @@ namespace Woozle.Domain.Authority
         /// </summary>
         /// <param name="role"></param>
         /// <param name="changedPermissions"></param>
-        /// <param name="session"></param>
-        void SaveChangedPermissions(Role role, List<ChangedModulePermission> changedPermissions, Session session);
+        /// <param name="sessionData"></param>
+        void SaveChangedPermissions(Role role, List<ChangedModulePermission> changedPermissions, SessionData sessionData);
 
         /// <summary>
         /// Gets the assigned <see cref="FunctionPermission"/> for the logged in <see cref="User"/>
         /// </summary>
-        /// <param name="session"><see cref="Session"/></param>
+        /// <param name="sessionData"><see cref="Session"/></param>
         /// <returns>A list of <see cref="FunctionPermission"/></returns>
-        IList<FunctionPermission> GetAssignedPermissions(Session session);
+        IList<FunctionPermission> GetAssignedPermissions(SessionData sessionData);
     }
 }

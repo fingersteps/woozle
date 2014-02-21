@@ -26,26 +26,17 @@ namespace Woozle.Domain.Authority
         }
 
         /// <summary>
-        /// <see cref="IPermissionProvider.GetAssignedPermissions(SessionData)"/>
+        /// <see cref="IPermissionsLogic.GetAssignedPermissions(SessionData)"/>
         /// </summary>
         public IList<FunctionPermission> GetAssignedPermissions(SessionData sessionData)
         {
-            var session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddHours(1));
-            return GetAssignedPermissions(session);
-        }
-
-        /// <summary>
-        /// <see cref="IPermissionsLogic.GetAssignedPermissions(Session)"/>
-        /// </summary>
-        public IList<FunctionPermission> GetAssignedPermissions(Session session)
-        {
-            log.Debug(string.Format("Getting assigned permissions for user {0}", session.SessionObject.User.Id));
-            var users = UserRepository.CreateQueryable(session);
+            log.Debug(string.Format("Getting assigned permissions for user {0}", sessionData.User.Id));
+            var users = UserRepository.CreateQueryable(sessionData);
             var query = from user in users
                         from userMandatorRole in user.UserMandatorRoles
                         from functionPermission in userMandatorRole.MandatorRole.FunctionPermissions
-                        where user.Id == session.SessionObject.User.Id &&
-                              userMandatorRole.MandatorRole.MandId == session.SessionObject.Mandator.Id
+                        where user.Id == sessionData.User.Id &&
+                              userMandatorRole.MandatorRole.MandId == sessionData.Mandator.Id
                         select new
                         {
                             functionPermission,
@@ -57,19 +48,19 @@ namespace Woozle.Domain.Authority
             return functionPermissions;
         }
 
-        public void SaveChangedPermissions(Role role, List<ChangedModulePermission> changedPermissions, Session session)
+        public void SaveChangedPermissions(Role role, List<ChangedModulePermission> changedPermissions, SessionData sessionData)
         {
-            int mandatorId = session.SessionObject.Mandator.Id;
+            int mandatorId = sessionData.Mandator.Id;
             var foundMandatorRole =
-                this.MandatorRoleRepository.FindByExp(n => n.MandId == mandatorId && n.RoleId == role.Id, session, "FunctionPermissions").
+                this.MandatorRoleRepository.FindByExp(n => n.MandId == mandatorId && n.RoleId == role.Id, sessionData, "FunctionPermissions").
                     FirstOrDefault();
             if (foundMandatorRole != null)
             {
-                SaveChangedPermissionsToMandatorRole(foundMandatorRole, changedPermissions, session);
+                SaveChangedPermissionsToMandatorRole(foundMandatorRole, changedPermissions, sessionData);
             }
         }
 
-        private void SaveChangedPermissionsToMandatorRole(MandatorRole mandatorRole, IEnumerable<ChangedModulePermission> changedPermissions, Session session)
+        private void SaveChangedPermissionsToMandatorRole(MandatorRole mandatorRole, IEnumerable<ChangedModulePermission> changedPermissions, SessionData sessionData)
         {
             foreach (var entry in changedPermissions)
             {
@@ -84,7 +75,7 @@ namespace Woozle.Domain.Authority
                     mandatorRole.FunctionPermissions.Remove(existingPermission);
                 }
             }
-            this.MandatorRoleRepository.Save(mandatorRole, session);
+            this.MandatorRoleRepository.Save(mandatorRole, sessionData);
             this.MandatorRoleRepository.UnitOfWork.Commit();
         }
     }

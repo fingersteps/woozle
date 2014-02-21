@@ -12,16 +12,16 @@ namespace Woozle.Domain.Authority
         /// <summary>
         /// Gets a list of assigned <see cref="MandatorRole"/> of an <see cref="Mandator"/>
         /// </summary>
-        /// <param name="session"><see cref="Session"/></param>
+        /// <param name="sessionData"><see cref="Session"/></param>
         /// <returns></returns>
-        IList<MandatorRole> GetAllMandatorRolesByMandator(Session session);
+        IList<MandatorRole> GetAllMandatorRolesByMandator(SessionData sessionData);
 
         /// <summary>
         /// Gets all mandatorRoles for the mandator of the given session.
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        IList<MandatorRole> GetMandatorRolesForMandator(Session session);
+        IList<MandatorRole> GetMandatorRolesForMandator(SessionData sessionData);
 
         /// <summary>
         /// Gets all roles of the given session (user & mandator are considered)

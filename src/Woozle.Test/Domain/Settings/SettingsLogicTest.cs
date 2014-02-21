@@ -38,8 +38,8 @@ namespace Woozle.Test.Domain.Settings
         [Fact]
         public void LoadTest()
         {
-            settingsRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(settings);
-            var setting = settingsLogic.Load(session);
+            settingsRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(settings);
+            var setting = settingsLogic.Load(session.SessionData);
             Assert.NotNull(setting);
             Assert.Equal(settings.First().EventManagementPlanningEMail, setting.EventManagementPlanningEMail);
             Assert.Equal(settings.First().EventManagementPlanningMobile, setting.EventManagementPlanningMobile);
@@ -52,10 +52,10 @@ namespace Woozle.Test.Domain.Settings
 
             var unitOfWorkMock = new Mock<IUnitOfWork>(MockBehavior.Strict);
             unitOfWorkMock.Setup(n => n.Commit());
-            settingsRepositoryMock.Setup(n => n.Save(setting, session)).Returns(setting);
+            settingsRepositoryMock.Setup(n => n.Save(setting, session.SessionData)).Returns(setting);
             settingsRepositoryMock.Setup(n => n.UnitOfWork).Returns(unitOfWorkMock.Object);
 
-            var savedSetting = settingsLogic.Save(setting, session);
+            var savedSetting = settingsLogic.Save(setting, session.SessionData);
             Assert.NotNull(setting);
             Assert.Equal(setting.EventManagementPlanningEMail, savedSetting.TargetObject.EventManagementPlanningEMail);
             Assert.Equal(setting.EventManagementPlanningMobile, savedSetting.TargetObject.EventManagementPlanningMobile);

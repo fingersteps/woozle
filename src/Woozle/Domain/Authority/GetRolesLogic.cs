@@ -28,14 +28,14 @@ namespace Woozle.Domain.Authority
         /// <summary>
         /// <see cref="IGetRolesLogic.GetAllMandatorRolesByMandator"/>
         /// </summary>
-        public IList<MandatorRole> GetAllMandatorRolesByMandator(Session session)
+        public IList<MandatorRole> GetAllMandatorRolesByMandator(SessionData sessionData)
         {
-            var mandatorRoles = mandatorRoleRepository.CreateQueryable(session);
+            var mandatorRoles = mandatorRoleRepository.CreateQueryable(sessionData);
 
             var query = from mandatorRole in mandatorRoles
-                        where mandatorRole.MandId == session.SessionObject.Mandator.Id ||
-                    (session.SessionObject.Mandator.MandatorGroupId != 0 &&
-                     mandatorRole.Mandator.MandatorGroupId == session.SessionObject.Mandator.MandatorGroupId)
+                        where mandatorRole.MandId == sessionData.Mandator.Id ||
+                    (sessionData.Mandator.MandatorGroupId != 0 &&
+                     mandatorRole.Mandator.MandatorGroupId == sessionData.Mandator.MandatorGroupId)
                         orderby mandatorRole.MandId
                         select new
                         {
@@ -62,10 +62,10 @@ namespace Woozle.Domain.Authority
             return query.ToList();
         }
 
-        public IList<MandatorRole> GetMandatorRolesForMandator(Session session)
+        public IList<MandatorRole> GetMandatorRolesForMandator(SessionData sessionData)
         {
             return
-                this.mandatorRoleRepository.FindByExp(n => n.MandId == session.SessionObject.Mandator.Id, session,
+                this.mandatorRoleRepository.FindByExp(n => n.MandId == sessionData.Mandator.Id, sessionData,
                                                       "Role", "Mandator").ToList();
         }
     }

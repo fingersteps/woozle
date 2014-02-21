@@ -47,7 +47,7 @@ namespace Woozle.Test.Domain.UserManagement
             
             results.Add(userSearchResult1);
 
-            userRepositoryMock.Setup(n => n.FindByUserCriteria(It.IsAny<UserSearchCriteria>(), It.IsAny<Session>()))
+            userRepositoryMock.Setup(n => n.FindByUserCriteria(It.IsAny<UserSearchCriteria>(), It.IsAny<SessionData>()))
                               .Returns(results);
 
 
@@ -62,8 +62,7 @@ namespace Woozle.Test.Domain.UserManagement
 
 
             var result = this.userLogic.Search(criteria, 
-                            new Session(Guid.NewGuid(), 
-                            new SessionData(null, null), DateTime.Now.AddHours(10)));
+                            new SessionData(null, null));
 
             Assert.NotNull(result);
             Assert.Equal(results, result);
@@ -76,8 +75,7 @@ namespace Woozle.Test.Domain.UserManagement
             this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object, permissionManagerMock.Object);
 
             var result = this.userLogic.Search(null,
-                            new Session(Guid.NewGuid(),
-                            new SessionData(null, null), DateTime.Now.AddHours(10)));
+                            new SessionData(null, null));
 
             Assert.Null(result);
         }
@@ -139,12 +137,12 @@ namespace Woozle.Test.Domain.UserManagement
                         }
                 }.AsQueryable();
 
-            userRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(users);
+            userRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(users);
 
             this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object,
                                            permissionManagerMock.Object);
 
-            var result = this.userLogic.GetUsersOfMandator(session);
+            var result = this.userLogic.GetUsersOfMandator(session.SessionData);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);

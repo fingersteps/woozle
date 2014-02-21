@@ -24,16 +24,16 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override TranslationItem Synchronize(TranslationItem entity, Session session) 
+    	 public override TranslationItem Synchronize(TranslationItem entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.Language = Context.SynchronizeObject(entity.Language, session); 
+    			attachedObj.Language = Context.SynchronizeObject(entity.Language, sessionData); 
     
-    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, session); 
+    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, sessionData); 
     
     			
     			return attachedObj; 

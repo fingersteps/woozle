@@ -24,12 +24,12 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override ModuleGroup Synchronize(ModuleGroup entity, Session session) 
+    	 public override ModuleGroup Synchronize(ModuleGroup entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
     			
     			//Navigation Property 'Modules'
@@ -39,12 +39,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.Modules.Contains(n)) attachedObj.Modules.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.Modules.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Modules", stopwatch.ElapsedMilliseconds));

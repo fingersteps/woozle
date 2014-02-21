@@ -44,7 +44,7 @@ namespace Woozle.Test.Domain.Authentication
 
             var selectedSessionData = new SessionData(foundUser, exampleMandator);
 
-            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<Session>()))
+            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<SessionData>()))
                               .Returns(new UserSearchForLoginResult
                                          {
                                              Mandators = new List<Model.Mandator> {exampleMandator},
@@ -78,7 +78,7 @@ namespace Woozle.Test.Domain.Authentication
                  Password = "correctPW"
              };
 
-             userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<Session>()))
+             userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<SessionData>()))
                             .Returns(new UserSearchForLoginResult
                             {
                                 Mandators = new List<Model.Mandator> { exampleMandator1, exampleMandator2 },
@@ -135,7 +135,7 @@ namespace Woozle.Test.Domain.Authentication
                 Password = "correctPW"
             };
 
-            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<Session>()))
+            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<SessionData>()))
                               .Returns(new UserSearchForLoginResult
                               {
                                   Mandators = new List<Model.Mandator> { exampleMandator },

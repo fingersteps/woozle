@@ -24,16 +24,16 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override ExternalSystem Synchronize(ExternalSystem entity, Session session) 
+    	 public override ExternalSystem Synchronize(ExternalSystem entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.ExternalSystemType = Context.SynchronizeObject(entity.ExternalSystemType, session); 
+    			attachedObj.ExternalSystemType = Context.SynchronizeObject(entity.ExternalSystemType, sessionData); 
     
-    			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, session); 
+    			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, sessionData); 
     
     			
     			return attachedObj; 

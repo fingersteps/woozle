@@ -24,12 +24,12 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override Language Synchronize(Language entity, Session session) 
+    	 public override Language Synchronize(Language entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
     			
     			//Navigation Property 'TranslationItems'
@@ -39,12 +39,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.TranslationItems.Contains(n)) attachedObj.TranslationItems.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.TranslationItems.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "TranslationItems", stopwatch.ElapsedMilliseconds));
@@ -55,12 +55,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.Users.Contains(n)) attachedObj.Users.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.Users.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Users", stopwatch.ElapsedMilliseconds));

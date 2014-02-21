@@ -24,16 +24,16 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override UserMandatorRole Synchronize(UserMandatorRole entity, Session session) 
+    	 public override UserMandatorRole Synchronize(UserMandatorRole entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.MandatorRole = Context.SynchronizeObject(entity.MandatorRole, session); 
+    			attachedObj.MandatorRole = Context.SynchronizeObject(entity.MandatorRole, sessionData); 
     
-    			attachedObj.User = Context.SynchronizeObject(entity.User, session); 
+    			attachedObj.User = Context.SynchronizeObject(entity.User, sessionData); 
     
     			
     			return attachedObj; 

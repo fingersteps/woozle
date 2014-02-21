@@ -25,7 +25,7 @@ namespace Woozle.Test.Services.Mandator
         [Fact]
         public void LoadTest()
         {
-            mandatorLogicMock.Setup(n => n.LoadMandator(It.IsAny<Session>())).Returns(modelMandator);
+            mandatorLogicMock.Setup(n => n.LoadMandator(It.IsAny<SessionData>())).Returns(modelMandator);
 
             var service = CreateMandatorService();
             var result = service.Get(new Woozle.Services.Mandator.Mandator { Id = 1 });
@@ -48,12 +48,12 @@ namespace Woozle.Test.Services.Mandator
 
         private MandatorService CreateMandatorService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var mandatorService = new MandatorService(mandatorLogicMock.Object)
             {
                 RequestContext =
-                    requestContextMock.Object
+                    requestContextMock
             };
 
             return mandatorService;
@@ -62,7 +62,7 @@ namespace Woozle.Test.Services.Mandator
         private void MockSave()
         {
             var modelSaveResult = new SaveResult<Model.Mandator>() { TargetObject = modelMandator };
-            mandatorLogicMock.Setup(n => n.Save(It.IsAny<Model.Mandator>(), It.IsAny<Session>())).Returns(modelSaveResult);
+            mandatorLogicMock.Setup(n => n.Save(It.IsAny<Model.Mandator>(), It.IsAny<SessionData>())).Returns(modelSaveResult);
         }
     }
 }

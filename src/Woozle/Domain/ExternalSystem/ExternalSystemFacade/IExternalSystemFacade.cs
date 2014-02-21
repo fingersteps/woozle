@@ -17,8 +17,8 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
         /// The external system facade is looking for a specific external system.
         /// The target external system will be loaded dynamically and with a lazy mechnism.
         /// </remarks>
-        /// <param name="session"><see cref="Session"/></param>
+        /// <param name="sessionData"><see cref="SessionData"/></param>
         /// <returns>An instance of the external system (wrapper)</returns>
-        T GetExternalSystem(Session session);
+        T GetExternalSystem(SessionData sessionData);
     }
 }

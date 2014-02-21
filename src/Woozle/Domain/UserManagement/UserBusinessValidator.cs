@@ -33,7 +33,7 @@ namespace Woozle.Domain.UserManagement
         /// <summary>
         /// <see cref="Session"/>
         /// </summary>
-        public Session Session { get; set; }
+        public SessionData SessionData { get; set; }
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace Woozle.Domain.UserManagement
         {
             if (!EditMode || user.PersistanceState == PState.Modified)
             {
-                var result = this.userRepository.FindByExp(usr => usr.Username == username, this.Session).FirstOrDefault();
+                var result = this.userRepository.FindByExp(usr => usr.Username == username, this.SessionData).FirstOrDefault();
                 return  result == null || result.Id == user.Id;
             }
             return true;

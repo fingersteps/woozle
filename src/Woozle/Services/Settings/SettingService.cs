@@ -24,7 +24,7 @@ namespace Woozle.Services.Settings
         [ExceptionCatcher]
         public Setting Get(Setting requestDto)
         {
-            var result = settingsLogic.Load(Session);
+            var result = settingsLogic.Load(Session.SessionData);
             var response = Mapper.Map<Woozle.Model.Setting, Setting>(result);
             return response;
         }
@@ -55,7 +55,7 @@ namespace Woozle.Services.Settings
 
         private SaveResultDto<Setting> Save(Setting requestDto)
         {
-            var saveResult = this.settingsLogic.Save(Mapper.Map<Setting, Woozle.Model.Setting>(requestDto), Session);
+            var saveResult = this.settingsLogic.Save(Mapper.Map<Setting, Woozle.Model.Setting>(requestDto), Session.SessionData);
             var result =
                 Mapper.Map<ISaveResult<Setting>, SaveResultDto<Setting>>(saveResult);
             return result;

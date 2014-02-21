@@ -36,7 +36,7 @@ namespace Woozle.Test.Services.UserManagement
                     new UserSearchResult() {Id = 1, Firstname = "Andreas"},
                     new UserSearchResult() {Id = 2, Firstname = "Patrick"}
                 };
-            logicMock.Setup(n => n.Search(It.IsAny<UserSearchCriteria>(), It.IsAny<Session>())).Returns(users);
+            logicMock.Setup(n => n.Search(It.IsAny<UserSearchCriteria>(), It.IsAny<SessionData>())).Returns(users);
 
             var service = CreateUserService();
             var result = service.Get(new Users());
@@ -54,7 +54,7 @@ namespace Woozle.Test.Services.UserManagement
                     new Model.User() {Id = 2}
                 };
 
-            logicMock.Setup(n => n.GetUsersOfMandator(It.IsAny<Session>())).Returns(users);
+            logicMock.Setup(n => n.GetUsersOfMandator(It.IsAny<SessionData>())).Returns(users);
 
             var service = CreateUserService();
             var result = service.Get(new UsersForDropDownDto());
@@ -68,7 +68,7 @@ namespace Woozle.Test.Services.UserManagement
         [Fact]
         public void LoadTest()
         {
-            logicMock.Setup(n => n.LoadUser(1, It.IsAny<Session>())).Returns(modelUser);
+            logicMock.Setup(n => n.LoadUser(1, It.IsAny<SessionData>())).Returns(modelUser);
 
             var service = CreateUserService();
             var result = service.Get(new User() {Id = 1});
@@ -106,17 +106,17 @@ namespace Woozle.Test.Services.UserManagement
         private void MockSave()
         {
             var modelSaveResult = new SaveResult<Model.User>() {TargetObject = modelUser};
-            logicMock.Setup(n => n.Save(It.IsAny<Model.User>(), It.IsAny<Session>())).Returns(modelSaveResult);
+            logicMock.Setup(n => n.Save(It.IsAny<Model.User>(), It.IsAny<SessionData>())).Returns(modelSaveResult);
         }
 
         private UserService CreateUserService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var locationService = new UserService(logicMock.Object)
             {
                 RequestContext =
-                    requestContextMock.Object
+                    requestContextMock
             };
 
             return locationService;

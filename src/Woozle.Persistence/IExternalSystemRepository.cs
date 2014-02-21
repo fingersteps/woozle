@@ -5,6 +5,6 @@ namespace Woozle.Persistence
 {
     public interface IExternalSystemRepository
     {
-        ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, Session session);
+        ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, SessionData sessionData);
     }
 }

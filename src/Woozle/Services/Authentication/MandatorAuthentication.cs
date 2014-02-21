@@ -32,14 +32,14 @@ namespace Woozle.Services.Authentication
                 if (session != null)
                 {
                     //Check the session object if the mandator is set.
-                    if (session.SessionObject != null && session.SessionObject.Mandator == null && session.SessionObject.User != null)
+                    if (session.SessionData != null && session.SessionData.Mandator == null && session.SessionData.User != null)
                     {
                         //If not throw a specific HttpError
                         throw new HttpError(601, "Please select a mandator.");
                     }
 
-                    if (session.SessionObject != null && session.SessionObject.User == null &&
-                             session.SessionObject.Mandator == null)
+                    if (session.SessionData != null && session.SessionData.User == null &&
+                             session.SessionData.Mandator == null)
                     {
                         if (!session.IsAuthenticated)
                         {
@@ -48,7 +48,7 @@ namespace Woozle.Services.Authentication
                     }
                 }
 
-                base.Execute(req, res, requestDto);
+                    base.Execute(req, res, requestDto);
         }
     }
 }

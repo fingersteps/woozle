@@ -29,7 +29,7 @@ namespace Woozle.Test.Services.Authority
                     new FunctionPermission() {Id = 2}
                 };
 
-            permissionLogicMock.Setup(n => n.GetAssignedPermissions(It.IsAny<Session>())).Returns(permissions);
+            permissionLogicMock.Setup(n => n.GetAssignedPermissions(It.IsAny<SessionData>())).Returns(permissions);
 
             var service = CreatePermissionService();
             var result = service.Get(new Permissions());
@@ -43,7 +43,7 @@ namespace Woozle.Test.Services.Authority
             permissionLogicMock.Setup(
                 n =>
                 n.SaveChangedPermissions(It.IsAny<Role>(), It.IsAny<List<Woozle.Model.ModulePermissions.ChangedModulePermission>>(),
-                                         It.IsAny<Session>()));
+                                         It.IsAny<SessionData>()));
             var service = CreatePermissionService();
             service.Put(new SavePermissions()
                 {
@@ -56,11 +56,11 @@ namespace Woozle.Test.Services.Authority
 
         private PermissionService CreatePermissionService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var permissionService = new PermissionService(permissionLogicMock.Object)
             {
-                RequestContext = requestContextMock.Object
+                RequestContext = requestContextMock
             };
 
             return permissionService;

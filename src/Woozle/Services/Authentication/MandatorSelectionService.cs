@@ -35,8 +35,8 @@ namespace Woozle.Services.Authentication
 
             
             var loginUser = this.authenticationLogic.GetLoginUser(
-                                                  session.SessionObject.User.Username,
-                                                  session.SessionObject.User.Password);
+                                                  session.SessionData.User.Username,
+                                                  session.SessionData.User.Password);
 
             return Mapper.Map<IEnumerable<Model.Mandator>, List<Mandator.Mandator>>(loginUser.Mandators);
         }
@@ -52,15 +52,15 @@ namespace Woozle.Services.Authentication
             //Login with the selected Mandator
             var result = this.authenticationLogic.Login(new LoginRequest
                                                             {
-                                                                Username = session.SessionObject.User.Username,
-                                                                Password = session.SessionObject.User.Password,
+                                                                Username = session.SessionData.User.Username,
+                                                                Password = session.SessionData.User.Password,
                                                                 Mandator = mappedMandator
                                                             });
 
             if (result.LoginSuccessful)
             {
                 //Set session object with the login result
-                session.SessionObject = result.SessionData;
+                session.SessionData = result.SessionData;
 
                 //Save the new session (with the mandator information)
                 this.SaveSession(session);

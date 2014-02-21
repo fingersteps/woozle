@@ -29,7 +29,7 @@ namespace Woozle.Test.Services.Authority
                     new ModulePermissionsResult() {ModuleId = 2}
                 };
 
-            logic.Setup(n => n.FindModulePermissions(It.IsAny<Role>(), It.IsAny<Session>())).Returns(permissions);
+            logic.Setup(n => n.FindModulePermissions(It.IsAny<Role>(), It.IsAny<SessionData>())).Returns(permissions);
 
             var service = this.CreateRoleService();
             var result = service.Get(new RoleModulePermissions());
@@ -42,12 +42,11 @@ namespace Woozle.Test.Services.Authority
 
         private RoleService CreateRoleService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var roleService = new RoleService(this.logic.Object)
             {
-                RequestContext =
-                    requestContextMock.Object
+                RequestContext = requestContextMock
             };
 
             return roleService;

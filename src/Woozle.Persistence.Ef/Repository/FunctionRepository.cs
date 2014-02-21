@@ -24,16 +24,16 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override Function Synchronize(Function entity, Session session) 
+    	 public override Function Synchronize(Function entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.Module = Context.SynchronizeObject(entity.Module, session); 
+    			attachedObj.Module = Context.SynchronizeObject(entity.Module, sessionData); 
     
-    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, session); 
+    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, sessionData); 
     
     			
     			//Navigation Property 'FunctionPermissions'
@@ -43,12 +43,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.FunctionPermissions.Contains(n)) attachedObj.FunctionPermissions.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.FunctionPermissions.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "FunctionPermissions", stopwatch.ElapsedMilliseconds));

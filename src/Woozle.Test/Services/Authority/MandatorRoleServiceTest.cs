@@ -29,7 +29,7 @@ namespace Woozle.Test.Services.Authority
                     new MandatorRole() {Id = 2}
                 };
 
-            getRolesLogicMock.Setup(n => n.GetMandatorRolesForMandator(It.IsAny<Session>())).Returns(mandatorRoles);
+            getRolesLogicMock.Setup(n => n.GetMandatorRolesForMandator(It.IsAny<SessionData>())).Returns(mandatorRoles);
 
             var service = CreateService();
             var result = service.Get(new MandatorRoles());
@@ -49,7 +49,7 @@ namespace Woozle.Test.Services.Authority
                     new MandatorRole() {Id = 2}
                 };
 
-            getRolesLogicMock.Setup(n => n.GetAllMandatorRolesByMandator(It.IsAny<Session>())).Returns(mandatorRoles);
+            getRolesLogicMock.Setup(n => n.GetAllMandatorRolesByMandator(It.IsAny<SessionData>())).Returns(mandatorRoles);
 
             var service = CreateService();
             var result = service.Get(new MandatorRolesForDropDown());
@@ -63,12 +63,12 @@ namespace Woozle.Test.Services.Authority
 
        private MandatorRoleService CreateService()
        {
-           var requestContextMock = this.GetRequestContextMock();
+           var requestContext = this.GetFakeRequestContext();
 
            var mandatorRoleService = new MandatorRoleService(getRolesLogicMock.Object)
                                          {
                                              RequestContext =
-                                                 requestContextMock.Object
+                                                 requestContext
                                          };
 
            return mandatorRoleService;

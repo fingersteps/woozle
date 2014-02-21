@@ -13,20 +13,20 @@ namespace Woozle.Persistence.Ef.Repository
     {
         #region IUserRepository Members
 
-        public IList<UserSearchResult> FindByUserCriteria(UserSearchCriteria criteria, Session session)
+        public IList<UserSearchResult> FindByUserCriteria(UserSearchCriteria criteria, SessionData sessionData)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var selection = from u in Context.Get<User>(session)
+            var selection = from u in Context.Get<User>(sessionData)
                             from userMandatorRole in u.UserMandatorRoles.DefaultIfEmpty() 
                             where u.Username.Contains(criteria.Username) &&
                                   (u.FirstName == null || u.FirstName.Contains(criteria.Firstname)) &&
                                   (u.LastName == null || u.LastName.Contains(criteria.Lastname)) &&
-                                  userMandatorRole != null && 
-                                  (userMandatorRole.MandatorRole.Mandator.Id == session.SessionObject.Mandator.Id
-                                      || (session.SessionObject.Mandator.MandatorGroupId.HasValue && userMandatorRole.MandatorRole.Mandator.MandatorGroupId == 
-                                      session.SessionObject.Mandator.MandatorGroupId))
+                                  userMandatorRole != null &&
+                                  (userMandatorRole.MandatorRole.Mandator.Id == sessionData.Mandator.Id
+                                      || (sessionData.Mandator.MandatorGroupId.HasValue && userMandatorRole.MandatorRole.Mandator.MandatorGroupId ==
+                                      sessionData.Mandator.MandatorGroupId))
                             group userMandatorRole by new { u.Id, u.Username, u.FirstName, u.LastName } into g
                             select new UserSearchResult()
                                 {
@@ -44,7 +44,7 @@ namespace Woozle.Persistence.Ef.Repository
             return result;
         }
 
-        public UserSearchForLoginResult FindForLogin(string username, string password, Session session)
+        public UserSearchForLoginResult FindForLogin(string username, string password, SessionData sessionData)
         {
             try
             {
@@ -52,9 +52,9 @@ namespace Woozle.Persistence.Ef.Repository
                 stopwatch.Start();
 
                 var selection =
-                    from u in Context.Get<User>(session)
+                    from u in Context.Get<User>(sessionData)
                     from userMandatorRole in u.UserMandatorRoles
-                    join language in Context.Get<Language>(session) on u.LanguageId equals language.Id
+                    join language in Context.Get<Language>(sessionData) on u.LanguageId equals language.Id
                     where u.Username == username &&
                           u.Password == password &&
                           u.Status.Value == StatusConstants.ACTIVE
@@ -87,17 +87,17 @@ namespace Woozle.Persistence.Ef.Repository
             }
         }
 
-        public User LoadUser(int id, Session session)
+        public User LoadUser(int id, SessionData sessionData)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var selection = from user in Context.Get<User>(session)
+            var selection = from user in Context.Get<User>(sessionData)
                             from userMandatorRole in user.UserMandatorRoles.DefaultIfEmpty()
-                            join language in Context.Get<Language>(session) on user.LanguageId equals language.Id
-                            join status in Context.Get<Status>(session) on user.FlagActiveStatusId equals status.Id
+                            join language in Context.Get<Language>(sessionData) on user.LanguageId equals language.Id
+                            join status in Context.Get<Status>(sessionData) on user.FlagActiveStatusId equals status.Id
                             let statusTranslationItem = status.Translation.TranslationItems.FirstOrDefault(
-                                n => n.LanguageId == session.SessionObject.User.LanguageId)
+                                n => n.LanguageId == sessionData.User.LanguageId)
                             where user.Id == id
                             select new
                                 {

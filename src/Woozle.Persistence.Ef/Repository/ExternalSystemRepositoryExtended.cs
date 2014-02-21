@@ -9,15 +9,15 @@ namespace Woozle.Persistence.Ef.Repository
     {
         #region IExternalServiceRepository Members
 
-        public ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, Session session)
+        public ExternalSystem FindServiceByMandantAndType(string externalServiceTypeName, SessionData sessionData)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var selection = from service in Context.Get<ExternalSystem>(session)
-                            join serviceType in Context.Get<ExternalSystemType>(session) on service.ExternalSystemTypeId
+            var selection = from service in Context.Get<ExternalSystem>(sessionData)
+                            join serviceType in Context.Get<ExternalSystemType>(sessionData) on service.ExternalSystemTypeId
                                 equals serviceType.Id
-                            where service.MandatorId == session.SessionObject.Mandator.Id &&
+                            where service.MandatorId == sessionData.Mandator.Id &&
                                   serviceType.Name == externalServiceTypeName
                             select service;
             stopwatch.Stop();

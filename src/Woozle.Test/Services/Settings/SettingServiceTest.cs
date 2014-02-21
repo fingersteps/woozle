@@ -25,7 +25,7 @@ namespace Woozle.Test.Services.Settings
         [Fact]
         public void LoadTest()
         {
-            SettingLogicMock.Setup(n => n.Load(It.IsAny<Session>())).Returns(modelSetting);
+            SettingLogicMock.Setup(n => n.Load(It.IsAny<SessionData>())).Returns(modelSetting);
 
             var service = CreateSettingService();
             var result = service.Get(new Setting());
@@ -61,12 +61,12 @@ namespace Woozle.Test.Services.Settings
 
         private SettingService CreateSettingService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var settingService = new SettingService(SettingLogicMock.Object)
             {
                 RequestContext =
-                    requestContextMock.Object
+                    requestContextMock
             };
 
             return settingService;
@@ -75,7 +75,7 @@ namespace Woozle.Test.Services.Settings
         private void MockSave()
         {
             var modelSaveResult = new SaveResult<Setting>() { TargetObject = modelSetting };
-            SettingLogicMock.Setup(n => n.Save(It.IsAny<Setting>(), It.IsAny<Session>())).Returns(modelSaveResult);
+            SettingLogicMock.Setup(n => n.Save(It.IsAny<Setting>(), It.IsAny<SessionData>())).Returns(modelSaveResult);
         }
     }
 }

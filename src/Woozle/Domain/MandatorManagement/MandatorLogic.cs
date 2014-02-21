@@ -16,13 +16,13 @@ namespace Woozle.Domain.MandatorManagement
             this.mandatorRepository = mandatorRepository;
         }
 
-        public Mandator LoadMandator(Session session)
+        public Mandator LoadMandator(SessionData sessionData)
         {
-            var query = this.mandatorRepository.CreateQueryable(session);
+            var query = this.mandatorRepository.CreateQueryable(sessionData);
 
             var result = (from mandator in query
-                       
-                           where mandator.Id == session.SessionObject.Mandator.Id
+
+                          where mandator.Id == sessionData.Mandator.Id
                            select new
                                       {
                                           mandator,
@@ -32,9 +32,9 @@ namespace Woozle.Domain.MandatorManagement
             return result != null ? result.mandator : null;
         }
 
-        public ISaveResult<Mandator> Save(Mandator mandator, Session session)
+        public ISaveResult<Mandator> Save(Mandator mandator, SessionData sessionData)
         {
-            mandator = this.mandatorRepository.Synchronize(mandator, session);
+            mandator = this.mandatorRepository.Synchronize(mandator, sessionData);
             this.mandatorRepository.UnitOfWork.Commit();
             return new SaveResult<Mandator> { TargetObject = mandator, HasSystemErrors = false };
         }

@@ -53,14 +53,14 @@ namespace Woozle.Domain.UserManagement
         /// <summary>
         /// <see cref="IUserLogic.Search"/>
         /// </summary>
-        public IList<UserSearchResult> Search(UserSearchCriteria criteriaUser, Session session)
+        public IList<UserSearchResult> Search(UserSearchCriteria criteriaUser, SessionData sessionData)
         {
             if(criteriaUser == null)
             {
                 return null;
             }
 
-            var users = this.repository.FindByUserCriteria(criteriaUser, session);
+            var users = this.repository.FindByUserCriteria(criteriaUser, sessionData);
 
             return users;
         }
@@ -69,18 +69,18 @@ namespace Woozle.Domain.UserManagement
         /// Saves the specified user.
         /// </summary>
         /// <param name="user">The user.</param>
-        /// <param name="session">The required session.</param>
+        /// <param name="sessionData">The required session.</param>
         /// <returns><see cref="ISaveResult{TO}"/></returns>
-        public ISaveResult<User> Save(User user, Session session)
+        public ISaveResult<User> Save(User user, SessionData sessionData)
         {
-            var synchronizedUser = this.repository.Synchronize(user, session);
-            userValidator.Session = session;
+            var synchronizedUser = this.repository.Synchronize(user, sessionData);
+            userValidator.SessionData = sessionData;
             userValidator.EditMode = synchronizedUser.Id != 0;
 
             //Check permissions for creating or editing a new / old user
-            if (!(!userValidator.EditMode && (this.permissionManager.HasPermission(session.SessionObject, Constants.LogicalIdDetailUserV1,
+            if (!(!userValidator.EditMode && (this.permissionManager.HasPermission(sessionData, Constants.LogicalIdDetailUserV1,
                                                   Permissions.PERMISSION_CREATE)) ||
-                 (userValidator.EditMode && (this.permissionManager.HasPermission(session.SessionObject, Constants.LogicalIdDetailUserV1,
+                 (userValidator.EditMode && (this.permissionManager.HasPermission(sessionData, Constants.LogicalIdDetailUserV1,
                                                   Permissions.PERMISSION_EDIT)))))
             {
                 throw new NoPermissionException(Constants.LogicalIdSearchUserV1, userValidator.EditMode ? Permissions.PERMISSION_EDIT : Permissions.PERMISSION_CREATE);
@@ -114,42 +114,52 @@ namespace Woozle.Domain.UserManagement
             savedUser.UserMandatorRoles = new ObservableCollection<UserMandatorRole>(returnedRoles.OrderBy(n => n.Id));
         }
 
-        public void Delete(int id, Session session)
+        public void Delete(int id, SessionData sessionData)
         {
-            if (!this.permissionManager.HasPermission(session.SessionObject, Constants.LogicalIdSearchUserV1,
+            if (!this.permissionManager.HasPermission(sessionData, Constants.LogicalIdSearchUserV1,
                                                    Permissions.PERMISSION_DELETE))
             {
                 throw new NoPermissionException(Constants.LogicalIdSearchUserV1, Permissions.PERMISSION_DELETE);
             }
 
             var user = this.repository.FindById(id);
-            this.repository.Delete(user, session);
+            this.repository.Delete(user, sessionData);
             this.repository.UnitOfWork.Commit();
         }
 
-        public User LoadUser(int id, Session session)
+        public User LoadUser(int id, SessionData sessionData)
         {
             if (id == 0)
             {
                 return null;
             }
 
-            var users = this.repository.LoadUser(id, session);
+            var users = this.repository.LoadUser(id, sessionData);
 
             return users;
         }
 
-        public IList<User> GetUsersOfMandator(Session session)
+        public IList<User> GetUsersOfMandator(SessionData sessionData)
         {
-            var users = repository.CreateQueryable(session);
+            var users = repository.CreateQueryable(sessionData);
             var result = from user in users
                          where
-                             user.UserMandatorRoles.FirstOrDefault(n => n.MandatorRole.MandId == session.SessionObject.Mandator.Id) !=
+                             user.UserMandatorRoles.FirstOrDefault(n => n.MandatorRole.MandId == sessionData.Mandator.Id) !=
                              null
                          select user;
 
             var foundUsers = result.ToList();
             return foundUsers;
+        }
+
+        public User FindUserById(int id)
+        {
+            return repository.FindById(id);
+        }
+
+        public User GetUserByUsername(string username, SessionData sessionData)
+        {
+            return repository.FindByExp(n => n.Username == username, sessionData).FirstOrDefault();
         }
 
         #endregion

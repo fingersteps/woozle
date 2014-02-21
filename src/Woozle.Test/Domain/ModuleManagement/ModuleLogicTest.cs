@@ -54,11 +54,11 @@ namespace Woozle.Test.Domain.ModuleManagement
 
 
             var repositoryMock = new Mock<IModuleRepository>();
-            repositoryMock.Setup(n => n.FindModulesForMandator(session)).Returns(
+            repositoryMock.Setup(n => n.FindModulesForMandator(session.SessionData)).Returns(
                     new List<ModuleForMandator> { module1, module2 });
 
             var moduleLogic = new ModuleLogic(permissionManagerMock.Object, repositoryMock.Object);
-            var modules = moduleLogic.GetModulesByMandator(session);
+            var modules = moduleLogic.GetModulesByMandator(session.SessionData);
 
             Assert.Equal(1, modules.Count);
             Assert.Equal(1, modules[0].Functions.Count);

@@ -23,7 +23,7 @@ namespace Woozle.Services.Authority
         [ExceptionCatcher]
         public IList<MandatorRole> Get(MandatorRoles requestDto)
         {
-            var result = getRolesLogic.GetMandatorRolesForMandator(Session);
+            var result = getRolesLogic.GetMandatorRolesForMandator(Session.SessionData);
             return Mapper.Map<IList<Woozle.Model.MandatorRole>, List<MandatorRole>>(result);
         }
 
@@ -35,7 +35,7 @@ namespace Woozle.Services.Authority
         [ExceptionCatcher]
         public IList<MandatorRole> Get(MandatorRolesForDropDown requestDto)
         {
-            var result = getRolesLogic.GetAllMandatorRolesByMandator(Session);
+            var result = getRolesLogic.GetAllMandatorRolesByMandator(Session.SessionData);
             return Mapper.Map<IList<Woozle.Model.MandatorRole>, List<MandatorRole>>(result);
         }
     }

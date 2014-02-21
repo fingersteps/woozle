@@ -25,25 +25,25 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.Count(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.Count(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Counts all entities of the repository
             </summary>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <returns>The number of records</returns>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.Delete(`0,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.Delete(`0,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Deletes the given entity and synchronizes it with the entity framework context.
             </summary>
             <param name="item"></param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindAll(Woozle.Model.SessionHandling.Session,System.String[])">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindAll(Woozle.Model.SessionHandling.SessionData,System.String[])">
             <summary>
             Searches for all entities in the repository
             </summary>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <param name="includedEntities">Included entities for the related entities which should be loaded (ATTENTION: Consider creating a separate query because includins entities is slow!)</param>
             <returns></returns>
         </member>
@@ -63,12 +63,12 @@
             <param name="neededCollectionProperties">Entities which should be load for the record of the given primary key (n:m).</param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindByExp(System.Func{`0,System.Boolean},Woozle.Model.SessionHandling.Session,System.String[])">
+        <member name="M:Woozle.Persistence.Ef.Repository.AbstractRepository`1.FindByExp(System.Func{`0,System.Boolean},Woozle.Model.SessionHandling.SessionData,System.String[])">
             <summary>
             Searches for records which match the given expression.
             </summary>
             <param name="predicate"></param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <param name="lazyIncludeStrings"></param>
             <returns></returns>
         </member>

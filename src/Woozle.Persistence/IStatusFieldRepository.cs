@@ -10,8 +10,8 @@ namespace Woozle.Persistence
         /// Gets status information (status records) for a given field.
         /// </summary>
         /// <param name="statusFieldName"></param>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        IList<Status> GetStatusInformation(string statusFieldName, Session session);
+        IList<Status> GetStatusInformation(string statusFieldName, SessionData sessionData);
     }
 }

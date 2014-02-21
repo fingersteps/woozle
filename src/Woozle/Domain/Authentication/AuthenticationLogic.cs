@@ -52,8 +52,7 @@ namespace Woozle.Domain.Authentication
         /// <returns>The <see cref="UserSearchForLoginResult"/></returns>
         public UserSearchForLoginResult GetLoginUser(string username, string password)
         {
-            var systemSession = new Session(Guid.Empty, null, new DateTime());
-            var result = this.userRepository.FindForLogin(username, password, systemSession);
+            var result = this.userRepository.FindForLogin(username, password, null);
             if (result != null)
             {
                 return result;

@@ -321,7 +321,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 
 	foreach(var b in navigationProperties)
 	{
-	  singleNavProperties += Environment.NewLine + "			attachedObj." + b.Name + " = Context.SynchronizeObject(entity." + b.Name + ", session); " + Environment.NewLine;
+	  singleNavProperties += Environment.NewLine + "			attachedObj." + b.Name + " = Context.SynchronizeObject(entity." + b.Name + ", sessionData); " + Environment.NewLine;
 	}
 	
 	foreach(var t in collectionNavigationProperties)
@@ -334,7 +334,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 
 			foreach(var x in t.ToEndMember.GetEntityType().NavigationProperties.Where(np => np.DeclaringType == t.ToEndMember.GetEntityType() && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.One))
 			{
-				subTypes += Environment.NewLine + "					Context.SynchronizeObject(n." + x.Name + ", session);";
+				subTypes += Environment.NewLine + "					Context.SynchronizeObject(n." + x.Name + ", sessionData);";
 			}
 
 			navProperties += Environment.NewLine +
@@ -345,24 +345,24 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 				"				if (!attachedObj." + t + ".Contains(n)) attachedObj." + t + ".Add(n);" + Environment.NewLine +
 				"				if (n is IMandatorCapable)" + Environment.NewLine +
 				"				{" + Environment.NewLine +
-				"					n.MandatorId = session.SessionObject.Mandator.Id;" + Environment.NewLine +
+				"					n.MandatorId = sessionData.Mandator.Id;" + Environment.NewLine +
 				"				}" + Environment.NewLine +
 				"			} "  + Environment.NewLine +
 				"			foreach(var n in entity." + t + ".Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))" + Environment.NewLine + 
 				"			{ " + Environment.NewLine + 
-				"					Context.SynchronizeObject(n, session); " + Environment.NewLine +
+				"					Context.SynchronizeObject(n, sessionData); " + Environment.NewLine +
 				"			} "+ Environment.NewLine +
 				"			stopwatch.Stop();"+ Environment.NewLine +
 				"			this.Logger.Info(string.Format(\"Synchronize state of '{0}', took {1} ms\", \"" + t + "\", stopwatch.ElapsedMilliseconds));";
 
 	}
 
-	return" public override " + entity.Name + " Synchronize(" + entity.Name + " entity, Session session) " + Environment.NewLine +
+	return" public override " + entity.Name + " Synchronize(" + entity.Name + " entity, SessionData sessionData) " + Environment.NewLine +
 		  "	 { " + Environment.NewLine +
 		  "		try" + Environment.NewLine + 
           "		{" + Environment.NewLine + 
 		  "			var stopwatch = new Stopwatch();" + Environment.NewLine +
-		  "			var attachedObj = Context.SynchronizeObject(entity, session);" + Environment.NewLine + 
+		  "			var attachedObj = Context.SynchronizeObject(entity, sessionData);" + Environment.NewLine + 
 		  "			" + singleNavProperties + Environment.NewLine + 
 		  "			" + navProperties + Environment.NewLine +
 		  "			return attachedObj; " + Environment.NewLine +

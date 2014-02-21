@@ -2,6 +2,7 @@
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Testing;
+using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
 namespace Woozle.Test.Services
@@ -16,11 +17,16 @@ namespace Woozle.Test.Services
             return requestContextMock;
         }
 
-        public IRequestContext GetRequestContextMock(Session session)
+        public IRequestContext GetFakeRequestContext()
+        {
+            return GetFakeRequestContext(new Session() {SessionData = new SessionData(new User(), new Model.Mandator())});
+        }
+
+        public IRequestContext GetFakeRequestContext(Session session)
         {
             var mockedRequestContext = new MockRequestContext();
             mockedRequestContext.Get<IHttpRequest>().Items.Add(
-            ServiceExtensions.RequestItemsSessionKey, session);
+                ServiceExtensions.RequestItemsSessionKey, session);
             return mockedRequestContext;
         }
     }

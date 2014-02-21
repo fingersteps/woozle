@@ -141,10 +141,10 @@ namespace Woozle.Test.Domain.Authority
             UnitOfWorkMock.Setup(n => n.Commit());
 
             MandatorRoleRepositoryMock.Setup(
-                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session, It.IsAny<string>())).Returns(
+                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session.SessionData, It.IsAny<string>())).Returns(
                     mandatorRoles);
 
-            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<Session>()));
+            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<SessionData>()));
             MandatorRoleRepositoryMock.Setup(n => n.UnitOfWork).Returns(UnitOfWorkMock.Object);
 
             var changedRecord1 = new ChangedModulePermission { FunctionPermissionId = 1 , HasPermission = true};
@@ -163,7 +163,7 @@ namespace Woozle.Test.Domain.Authority
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,
                                              this.FunctionPermissionRepositoryMock.Object, null);
-            logic.SaveChangedPermissions(Role, changedPermissions, Session);
+            logic.SaveChangedPermissions(Role, changedPermissions, Session.SessionData);
 
             Assert.Equal(2, mandatorRole.FunctionPermissions.Count);
             Assert.Equal(functionPermission1.Id, mandatorRole.FunctionPermissions[0].Id);
@@ -186,10 +186,10 @@ namespace Woozle.Test.Domain.Authority
             UnitOfWorkMock.Setup(n => n.Commit());
 
             MandatorRoleRepositoryMock.Setup(
-                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session, It.IsAny<string>())).Returns(
+                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session.SessionData, It.IsAny<string>())).Returns(
                     mandatorRoles);
 
-            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<Session>()));
+            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<SessionData>()));
             MandatorRoleRepositoryMock.Setup(n => n.UnitOfWork).Returns(UnitOfWorkMock.Object);
 
             var changedRecord1 = new ChangedModulePermission { FunctionPermissionId = 1 , HasPermission = false};
@@ -206,7 +206,7 @@ namespace Woozle.Test.Domain.Authority
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,
                                              this.FunctionPermissionRepositoryMock.Object, null);
-            logic.SaveChangedPermissions(Role, changedPermissions, Session);
+            logic.SaveChangedPermissions(Role, changedPermissions, Session.SessionData);
 
             Assert.Equal(0, mandatorRole.FunctionPermissions.Count);
         }
@@ -226,10 +226,10 @@ namespace Woozle.Test.Domain.Authority
             UnitOfWorkMock.Setup(n => n.Commit());
 
             MandatorRoleRepositoryMock.Setup(
-                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session, It.IsAny<string>())).Returns(
+                n => n.FindByExp(It.IsAny<Func<MandatorRole, bool>>(), Session.SessionData, It.IsAny<string>())).Returns(
                     mandatorRoles);
 
-            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<Session>()));
+            MandatorRoleRepositoryMock.Setup(n => n.Save(mandatorRole, It.IsAny<SessionData>()));
             MandatorRoleRepositoryMock.Setup(n => n.UnitOfWork).Returns(UnitOfWorkMock.Object);
 
             var changedRecord1 = new ChangedModulePermission { FunctionPermissionId = 1, HasPermission = false};
@@ -246,7 +246,7 @@ namespace Woozle.Test.Domain.Authority
 
             var logic = new PermissionsLogic(this.MandatorRoleRepositoryMock.Object,
                                              this.FunctionPermissionRepositoryMock.Object, null);
-            logic.SaveChangedPermissions(Role, changedPermissions, Session);
+            logic.SaveChangedPermissions(Role, changedPermissions, Session.SessionData);
 
             Assert.Equal(1, mandatorRole.FunctionPermissions.Count);
             Assert.Equal(functionPermission2.Id, mandatorRole.FunctionPermissions[0].Id);
@@ -264,10 +264,10 @@ namespace Woozle.Test.Domain.Authority
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 
-            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);
 
-            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
+            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionData);
 
             Assert.Equal(3, result.Count);
         }
@@ -285,10 +285,10 @@ namespace Woozle.Test.Domain.Authority
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 
-            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);
 
-            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
+            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionData);
 
             Assert.Equal(0, result.Count);
         }
@@ -305,10 +305,10 @@ namespace Woozle.Test.Domain.Authority
 
             this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
 
-            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<Session>()))
+            this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);
 
-            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionObject);
+            var result = this.permissionsLogic.GetAssignedPermissions(this.Session.SessionData);
 
             Assert.Equal(0, result.Count);
         }

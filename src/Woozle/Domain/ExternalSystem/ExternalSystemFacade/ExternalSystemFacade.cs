@@ -90,9 +90,9 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
         /// <summary>
         /// <see cref="IExternalSystemFacade{T}.GetExternalSystem"/>
         /// </summary>
-        public T GetExternalSystem(Session session)
+        public T GetExternalSystem(SessionData sessionData)
         {
-            var externalService = this.externalServiceRepository.FindServiceByMandantAndType(this.SystemType, session);
+            var externalService = this.externalServiceRepository.FindServiceByMandantAndType(this.SystemType, sessionData);
             if (externalService != null)
             {
                 var externalSystem = FindExternalSystem(externalService);

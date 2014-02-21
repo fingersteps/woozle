@@ -80,9 +80,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Street = "Street 1";
             person.CityId = 55;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(6, result.Id);
             Assert.Equal(PState.Modified, result.PersistanceState);
@@ -95,9 +95,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Street = "Street 2";
             person.CityId = 55;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(0, result.Id);
             Assert.Equal(PState.Added, result.PersistanceState);
@@ -113,9 +113,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Mobile = "Mobile";
             person.CityId = 55;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(0, result.Id);
             Assert.Equal(PState.Added, result.PersistanceState);
@@ -132,9 +132,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Street = "DieAndereStrasse 1";
             person.CityId = 55;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(0, result.Id);
             Assert.Equal(PState.Added, result.PersistanceState);
@@ -149,9 +149,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Street = "Street 1";
             person.CityId = 1;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(1, result.Id);
             Assert.Equal(PState.Modified, result.PersistanceState);
@@ -166,9 +166,9 @@ namespace Woozle.Test.Domain.PersonManagement
             person.Street = "Street 1";
             person.CityId = 1;
 
-            personRepositoryMock.Setup(n => n.CreateQueryable(session)).Returns(personData);
+            personRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(personData);
 
-            var result = logic.SearchForExistingPerson(person, session);
+            var result = logic.SearchForExistingPerson(person, session.SessionData);
 
             Assert.Equal(55, result.Id);
         }

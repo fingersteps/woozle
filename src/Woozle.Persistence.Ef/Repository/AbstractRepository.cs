@@ -35,54 +35,49 @@ namespace Woozle.Persistence.Ef.Repository
             return Context.Get<T>(sessionData);
         }
 
-        public IQueryable<T> CreateQueryable(Session session)
-        {
-            return Context.Get<T>(session);
-        }
-
         /// <summary>
         /// Counts all entities of the repository
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns>The number of records</returns>
-        public int Count(Session session)
+        public int Count(SessionData sessionData)
         {
-            return Context.Get<T>(session).Count();
+            return Context.Get<T>(sessionData).Count();
         }
 
-        public T Save(T item, Session session)
+        public T Save(T item, SessionData sessionData)
         {
             item.PersistanceState = item.Id == 0 ? PState.Added : PState.Modified;
-            return Context.SynchronizeObject(item, session);
+            return Context.SynchronizeObject(item, sessionData);
         }
 
-        public abstract T Synchronize(T item, Session session);
+        public abstract T Synchronize(T item, SessionData sessionDatan);
 
-        public bool Contains(T item, Session session)
+        public bool Contains(T item, SessionData sessionData)
         {
-            return Context.Get<T>(session).FirstOrDefault(t => t == item) != null;
+            return Context.Get<T>(sessionData).FirstOrDefault(t => t == item) != null;
         }
 
         /// <summary>
         /// Deletes the given entity and synchronizes it with the entity framework context.
         /// </summary>
         /// <param name="item"></param>
-        /// <param name="session"></param>
-        public void Delete(T item, Session session)
+        /// <param name="sessionData"></param>
+        public void Delete(T item, SessionData sessionData)
         {
             item.PersistanceState = PState.Deleted;
-            Synchronize(item, session);
+            Synchronize(item, sessionData);
         }
 
         /// <summary>
         /// Searches for all entities in the repository
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <param name="includedEntities">Included entities for the related entities which should be loaded (ATTENTION: Consider creating a separate query because includins entities is slow!)</param>
         /// <returns></returns>
-        public virtual List<T> FindAll(Session session, params string[] includedEntities)
+        public virtual List<T> FindAll(SessionData sessionData, params string[] includedEntities)
         {
-            var set = Context.Get<T>(session);
+            var set = Context.Get<T>(sessionData);
             foreach (string include in includedEntities)
             {
                 set = set.Include(include);
@@ -117,12 +112,12 @@ namespace Woozle.Persistence.Ef.Repository
         /// Searches for records which match the given expression.
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <param name="lazyIncludeStrings"></param>
         /// <returns></returns>
-        public virtual List<T> FindByExp(Func<T, bool> predicate, Session session, params string[] lazyIncludeStrings)
+        public virtual List<T> FindByExp(Func<T, bool> predicate, SessionData sessionData, params string[] lazyIncludeStrings)
         {
-            var set = Context.Get<T>(session);
+            var set = Context.Get<T>(sessionData);
             foreach (string include in lazyIncludeStrings)
             {
                 set = set.Include(include);

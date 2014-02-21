@@ -13,17 +13,17 @@ namespace Woozle.Domain.ModuleManagement
         /// <summary>
         /// Gets all modules by given mandator
         /// </summary>
-        /// <param name="session">The session</param>
+        /// <param name="sessionData">The session</param>
         /// <returns>All Modules of the mandator</returns>
         /// 
-        IList<ModuleForMandator> GetModulesByMandator(Session session);
+        IList<ModuleForMandator> GetModulesByMandator(SessionData sessionData);
 
         /// <summary>
         /// Gets all permissions of modules/functions acc. the mandant of the given session.
         /// </summary>
         /// <param name="role"> </param>
-        /// <param name="session"></param>
+        /// <param name="sessionData"></param>
         /// <returns></returns>
-        IList<ModulePermissionsResult> FindModulePermissions(Role role, Session session);
+        IList<ModulePermissionsResult> FindModulePermissions(Role role, SessionData sessionData);
     }
 }

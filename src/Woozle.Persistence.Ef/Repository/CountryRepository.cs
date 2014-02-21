@@ -24,14 +24,14 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override Country Synchronize(Country entity, Session session) 
+    	 public override Country Synchronize(Country entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, session); 
+    			attachedObj.Translation = Context.SynchronizeObject(entity.Translation, sessionData); 
     
     			
     			return attachedObj; 

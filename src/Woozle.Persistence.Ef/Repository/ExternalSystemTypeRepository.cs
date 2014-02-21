@@ -24,12 +24,12 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override ExternalSystemType Synchronize(ExternalSystemType entity, Session session) 
+    	 public override ExternalSystemType Synchronize(ExternalSystemType entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
     			
     			//Navigation Property 'ExternalSystems'
@@ -39,12 +39,12 @@ namespace Woozle.Persistence.Ef.Repository
     				if (!attachedObj.ExternalSystems.Contains(n)) attachedObj.ExternalSystems.Add(n);
     				if (n is IMandatorCapable)
     				{
-    					n.MandatorId = session.SessionObject.Mandator.Id;
+    					n.MandatorId = sessionData.Mandator.Id;
     				}
     			} 
     			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
     			{ 
-    					Context.SynchronizeObject(n, session); 
+    					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));

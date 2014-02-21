@@ -23,7 +23,7 @@ namespace Woozle.Services.Authority
         [ExceptionCatcher]
         public IList<ModulePermissionsResult> Get(RoleModulePermissions requestDto)
         {
-            var result = moduleLogic.FindModulePermissions(new Woozle.Model.Role() {Id = requestDto.Id}, Session);
+            var result = moduleLogic.FindModulePermissions(new Woozle.Model.Role() { Id = requestDto.Id }, Session.SessionData);
             var responseDto = Mapper.Map<IList<Woozle.Model.ModulePermissions.ModulePermissionsResult>, List<ModulePermissionsResult>>(result);
             return responseDto;
         }

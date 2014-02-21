@@ -24,7 +24,7 @@ namespace Woozle.Services.Mandator
         [ExceptionCatcher]
         public Mandator Get(Mandator mandator)
         {
-            var result = mandatorLogic.LoadMandator(Session);
+            var result = mandatorLogic.LoadMandator(Session.SessionData);
             return Mapper.Map<Model.Mandator, Mandator>(result);
         }
 
@@ -38,7 +38,7 @@ namespace Woozle.Services.Mandator
         public SaveResultDto<Mandator> Put(Mandator request)
         {
             var modelObj = Mapper.Map<Mandator, Woozle.Model.Mandator>(request);
-            var result = mandatorLogic.Save(modelObj, Session);
+            var result = mandatorLogic.Save(modelObj, Session.SessionData);
             return
                 Mapper.Map<ISaveResult<Woozle.Model.Mandator>, SaveResultDto<Mandator>>(result);
         }

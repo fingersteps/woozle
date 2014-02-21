@@ -21,13 +21,13 @@ namespace Woozle.Model.SessionHandling
         /// Initializes a new instance of the <see cref="Session"/> class.
         /// </summary>
         /// <param name="sessionId">The session id.</param>
-        /// <param name="sessionObject">The session object.</param>
+        /// <param name="sessionData">The session object.</param>
         /// <param name="expirationDate">The expiration date.</param>
         /// <remarks></remarks>
-        public Session(Guid sessionId, SessionData sessionObject, DateTime expirationDate)
+        public Session(Guid sessionId, SessionData sessionData, DateTime expirationDate)
         {
             this.Id = sessionId;
-            this.SessionObject = sessionObject;
+            this.SessionData = sessionData;
             this.ExpirationDate = expirationDate;
 
             Roles = new List<string>();
@@ -43,7 +43,7 @@ namespace Woozle.Model.SessionHandling
         /// Gets the session object.
         /// </summary>
         /// <remarks></remarks>
-        public SessionData SessionObject { get; set; }
+        public SessionData SessionData { get; set; }
 
         /// <summary>
         /// Gets or sets the expiration date.
@@ -57,7 +57,7 @@ namespace Woozle.Model.SessionHandling
 
         public override bool HasRole(string role)
         {
-            return SessionObject.Roles != null && SessionObject.Roles.Contains(role);
+            return SessionData.Roles != null && SessionData.Roles.Contains(role);
         }
     }
 }

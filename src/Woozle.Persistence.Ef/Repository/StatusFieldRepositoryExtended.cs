@@ -8,16 +8,16 @@ namespace Woozle.Persistence.Ef.Repository
 {
     public partial class StatusFieldRepository : IStatusFieldRepository
     {
-        public IList<Status> GetStatusInformation(string statusFieldName, Session session)
+        public IList<Status> GetStatusInformation(string statusFieldName, SessionData sessionData)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var selection = from statusField in Context.Get<StatusField>(session)
+            var selection = from statusField in Context.Get<StatusField>(sessionData)
                             from status in statusField.Status
                             let translationItem =
                                 status.Translation.TranslationItems.FirstOrDefault(
-                                    n => n.LanguageId == session.SessionObject.User.LanguageId)
+                                    n => n.LanguageId == sessionData.User.LanguageId)
                             where statusField.Name == statusFieldName
                             select new
                                 {

@@ -27,7 +27,7 @@ namespace Woozle.Test.Services.Modules
                     new ModuleForMandator() {Id = 1},
                     new ModuleForMandator() {Id = 2}
                 };
-            moduleLogicMock.Setup(n => n.GetModulesByMandator(It.IsAny<Session>())).Returns(modules);
+            moduleLogicMock.Setup(n => n.GetModulesByMandator(It.IsAny<SessionData>())).Returns(modules);
 
             var service = CreateModuleService();
             var result = service.Get(new Woozle.Services.Modules.Modules());
@@ -38,12 +38,12 @@ namespace Woozle.Test.Services.Modules
 
         private ModuleService CreateModuleService()
         {
-            var requestContextMock = this.GetRequestContextMock();
+            var requestContextMock = this.GetFakeRequestContext();
 
             var moduleService = new ModuleService(moduleLogicMock.Object)
             {
                 RequestContext =
-                    requestContextMock.Object
+                    requestContextMock
             };
 
             return moduleService;

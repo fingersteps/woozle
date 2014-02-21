@@ -23,7 +23,7 @@ namespace Woozle.Services.Modules
         [ExceptionCatcher]
         public IList<ModuleForMandator> Get(Modules request)
         {
-            var result = moduleLogic.GetModulesByMandator(Session);
+            var result = moduleLogic.GetModulesByMandator(Session.SessionData);
             return Mapper.Map<IList<Model.ModulePermissions.ModuleForMandator>, List<ModuleForMandator>>(result);
         }
     }

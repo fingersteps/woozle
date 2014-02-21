@@ -24,18 +24,18 @@ namespace Woozle.Persistence.Ef.Repository
     	}
     
     
-    	 public override Person Synchronize(Person entity, Session session) 
+    	 public override Person Synchronize(Person entity, SessionData sessionData) 
     	 { 
     		try
     		{
     			var stopwatch = new Stopwatch();
-    			var attachedObj = Context.SynchronizeObject(entity, session);
+    			var attachedObj = Context.SynchronizeObject(entity, sessionData);
     			
-    			attachedObj.City = Context.SynchronizeObject(entity.City, session); 
+    			attachedObj.City = Context.SynchronizeObject(entity.City, sessionData); 
     
-    			attachedObj.SalutationStatus = Context.SynchronizeObject(entity.SalutationStatus, session); 
+    			attachedObj.SalutationStatus = Context.SynchronizeObject(entity.SalutationStatus, sessionData); 
     
-    			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, session); 
+    			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, sessionData); 
     
     			
     			return attachedObj; 

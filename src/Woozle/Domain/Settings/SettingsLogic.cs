@@ -15,15 +15,15 @@ namespace Woozle.Domain.Settings
             this.settingsRepository = settingsRepository;
         }
 
-        public Setting Load(Session session)
+        public Setting Load(SessionData sessionData)
         {
-            var mandatorSettings = settingsRepository.CreateQueryable(session).FirstOrDefault();
+            var mandatorSettings = settingsRepository.CreateQueryable(sessionData).FirstOrDefault();
             return mandatorSettings;
         }
 
-        public ISaveResult<Setting> Save(Setting saveableObject, Session session)
+        public ISaveResult<Setting> Save(Setting saveableObject, SessionData sessionData)
         {
-            var savedSettings = settingsRepository.Save(saveableObject, session);
+            var savedSettings = settingsRepository.Save(saveableObject, sessionData);
             settingsRepository.UnitOfWork.Commit();
             return new SaveResult<Setting>() {TargetObject = savedSettings};
         }

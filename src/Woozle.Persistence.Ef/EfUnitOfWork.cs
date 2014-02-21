@@ -23,12 +23,6 @@ namespace Woozle.Persistence.Ef
 
         #region IUnitOfWork Members
 
-        public virtual IQueryable<T> Get<T>(Session session) where T : WoozleObject
-        {
-            return Get<T>(session.SessionObject);
-        }
-
-
         public virtual IQueryable<T> Get<T>(SessionData sessionData) where T : WoozleObject
         {
             if (typeof(IMandatorCapable).IsAssignableFrom(typeof(T)))
@@ -39,12 +33,12 @@ namespace Woozle.Persistence.Ef
             return Set<T>();
         }
 
-        public T SynchronizeObject<T>(T obj, Session session) where T : WoozleObject
+        public T SynchronizeObject<T>(T obj, SessionData sessionData) where T : WoozleObject
         {
             if (obj == null) return null;
             if (typeof (IMandatorCapable).IsAssignableFrom(typeof (T)))
             {
-                obj.MandatorId = session.SessionObject.Mandator.Id;
+                obj.MandatorId = sessionData.Mandator.Id;
             }
             if(obj.PersistanceState == PState.Added)
             {

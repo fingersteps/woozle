@@ -49,7 +49,7 @@ namespace Woozle.Persistence.Ef.Test.Repository
             MockUnitOfWorkForCity();
 
             var cityRepo = new CityRepository(unitofworkMock.Object);
-            var result = cityRepo.Count(this.Session);
+            var result = cityRepo.Count(this.Session.SessionData);
 
             Assert.Equal(3, result);
         }
@@ -60,7 +60,7 @@ namespace Woozle.Persistence.Ef.Test.Repository
             MockUnitOfWorkForCity();
 
             var cityRepo = new CityRepository(unitofworkMock.Object);
-            var result = cityRepo.FindAll(this.Session);
+            var result = cityRepo.FindAll(this.Session.SessionData);
 
             Assert.Equal(3, result.Count);
         }
@@ -84,7 +84,7 @@ namespace Woozle.Persistence.Ef.Test.Repository
             MockUnitOfWorkForCity();
 
             var cityRepo = new CityRepository(unitofworkMock.Object);
-            var result = cityRepo.FindByExp(city => city.Name == "Luzern", this.Session);
+            var result = cityRepo.FindByExp(city => city.Name == "Luzern", this.Session.SessionData);
 
             Assert.Equal(1, result.Count);
             Assert.Equal(3, result[0].Id);
@@ -93,7 +93,7 @@ namespace Woozle.Persistence.Ef.Test.Repository
         private void MockUnitOfWorkForCity()
         {
             unitofworkMock = new Mock<IEfUnitOfWork>();
-            unitofworkMock.Setup(n => n.Get<City>(this.Session)).Returns(this.cityData.AsQueryable());
+            unitofworkMock.Setup(n => n.Get<City>(this.Session.SessionData)).Returns(this.cityData.AsQueryable());
         }
     }
 }

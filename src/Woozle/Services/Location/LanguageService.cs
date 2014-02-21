@@ -23,7 +23,7 @@ namespace Woozle.Services.Location
         [ExceptionCatcher]
         public IList<Language> Get(Languages request)
         {
-            var result = locationLogic.GetLanguages(Session);
+            var result = locationLogic.GetLanguages(Session.SessionData);
             return Mapper.Map<IEnumerable<Woozle.Model.Language>, List<Language>>(result);
         }
     }

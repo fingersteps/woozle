@@ -22,7 +22,7 @@ namespace Woozle.Test.Services.Authentication
             var sessionData = new SessionData(user, mandator);
             var session = new Session(Guid.NewGuid(), sessionData, DateTime.Now);
 
-            var requestContextMock = this.GetRequestContextMock(session);
+            var requestContextMock = this.GetFakeRequestContext(session);
 
             loginContextService = new LoginContextService()
                 {

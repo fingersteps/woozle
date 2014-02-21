@@ -34,7 +34,7 @@
             </summary>
             <typeparam name="T">Type of the target external system</typeparam>
         </member>
-        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Get the external system.
             </summary>
@@ -42,7 +42,7 @@
             The external system facade is looking for a specific external system.
             The target external system will be loaded dynamically and with a lazy mechnism.
             </remarks>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
             <returns>An instance of the external system (wrapper)</returns>
         </member>
         <member name="F:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.externalServiceRepository">
@@ -65,9 +65,9 @@
             <param name="catalog"> <see cref="T:System.ComponentModel.Composition.Primitives.ComposablePartCatalog"/> </param>
             <param name="systemType">The external system type name which is used to lookup external systems in the database.</param>
         </member>
-        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacade`1.GetExternalSystem(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.FindExternalSystem(Woozle.Model.ExternalSystem)">
@@ -206,18 +206,18 @@
             Logic for searchig <see cref="T:Woozle.Model.Role">roles</see>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Authority.IGetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Authority.IGetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets a list of assigned <see cref="T:Woozle.Model.MandatorRole"/> of an <see cref="T:Woozle.Model.Mandator"/>
             </summary>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Domain.Authority.IGetRolesLogic.GetMandatorRolesForMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Authority.IGetRolesLogic.GetMandatorRolesForMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets all mandatorRoles for the mandator of the given session.
             </summary>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Woozle.Domain.Authority.IGetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)" -->
@@ -227,9 +227,9 @@
             </summary>
             <see cref="T:Woozle.Persistence.IRepository`1">Repository for getting the role navigation property of the <see cref="T:Woozle.Model.Mandator"/>.</see>
         </member>
-        <member name="M:Woozle.Domain.Authority.GetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Authority.GetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.Authority.IGetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.Authority.IGetRolesLogic.GetAllMandatorRolesByMandator(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="M:Woozle.Domain.Authority.GetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)">
@@ -237,19 +237,19 @@
             <see cref="M:Woozle.Domain.Authority.IGetRolesLogic.GetUserRoles(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Authority.IPermissionsLogic.SaveChangedPermissions(Woozle.Model.Role,System.Collections.Generic.List{Woozle.Model.ModulePermissions.ChangedModulePermission},Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Authority.IPermissionsLogic.SaveChangedPermissions(Woozle.Model.Role,System.Collections.Generic.List{Woozle.Model.ModulePermissions.ChangedModulePermission},Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Persists the given changed permissions to database.
             </summary>
             <param name="role"></param>
             <param name="changedPermissions"></param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
         </member>
-        <member name="M:Woozle.Domain.Authority.IPermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Authority.IPermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets the assigned <see cref="T:Woozle.Model.FunctionPermission"/> for the logged in <see cref="T:Woozle.Model.User"/>
             </summary>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns>A list of <see cref="T:Woozle.Model.FunctionPermission"/></returns>
         </member>
         <member name="T:Woozle.Domain.PermissionManagement.IPermissionProvider">
@@ -266,12 +266,7 @@
         </member>
         <member name="M:Woozle.Domain.Authority.PermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.PermissionManagement.IPermissionProvider.GetAssignedPermissions(Woozle.Model.SessionHandling.SessionData)"/>
-            </summary>
-        </member>
-        <member name="M:Woozle.Domain.Authority.PermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.Session)">
-            <summary>
-            <see cref="M:Woozle.Domain.Authority.IPermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.Authority.IPermissionsLogic.GetAssignedPermissions(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="M:Woozle.Domain.Location.LocationLogic.#ctor(Woozle.Persistence.IRepository{Woozle.Model.City},Woozle.Persistence.IRepository{Woozle.Model.Country},Woozle.Persistence.IRepository{Woozle.Model.Language})">
@@ -282,19 +277,19 @@
             <param name="countryRepository"></param>
             <param name="languageRepository"></param>
         </member>
-        <member name="M:Woozle.Domain.Location.LocationLogic.GetCities(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Location.LocationLogic.GetCities(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetCities(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetCities(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Location.LocationLogic.GetCountries(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Location.LocationLogic.GetCountries(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetCountries(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetCountries(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Location.LocationLogic.GetLanguages(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Location.LocationLogic.GetLanguages(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetLanguages(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.Location.ILocationLogic.GetLanguages(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="T:Woozle.Domain.ModuleManagement.IModuleLogic">
@@ -302,20 +297,20 @@
             Definition of the module management functionalities.
             </summary>
         </member>
-        <member name="M:Woozle.Domain.ModuleManagement.IModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.ModuleManagement.IModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets all modules by given mandator
             </summary>
-            <param name="session">The session</param>
+            <param name="sessionData">The session</param>
             <returns>All Modules of the mandator</returns>
             
         </member>
-        <member name="M:Woozle.Domain.ModuleManagement.IModuleLogic.FindModulePermissions(Woozle.Model.Role,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.ModuleManagement.IModuleLogic.FindModulePermissions(Woozle.Model.Role,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets all permissions of modules/functions acc. the mandant of the given session.
             </summary>
             <param name="role"> </param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <returns></returns>
         </member>
         <member name="T:Woozle.Domain.ModuleManagement.ModuleLogic">
@@ -323,9 +318,9 @@
             Contains the logic to manage modules.
             </summary>
         </member>
-        <member name="M:Woozle.Domain.ModuleManagement.ModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.ModuleManagement.ModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.ModuleManagement.IModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.ModuleManagement.IModuleLogic.GetModulesByMandator(Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
         <member name="T:Woozle.Domain.PermissionManagement.IPermissionManager">
@@ -358,12 +353,12 @@
             <see cref="M:Woozle.Domain.PermissionManagement.IPermissionManager.HasPermission(Woozle.Model.SessionHandling.SessionData,System.String,System.String)"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.PersonManagement.IPersonLogic.SearchForExistingPerson(Woozle.Model.Person,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.PersonManagement.IPersonLogic.SearchForExistingPerson(Woozle.Model.Person,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Checks if the given person is already existing in the database. If so, the existing person will be used for the further steps.
             </summary>
             <param name="person"></param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <returns>A found person or the same person which was given as parameter when there was no matching person found.</returns>
         </member>
         <member name="T:Woozle.Domain.Settings.ISettingsLogic">
@@ -371,19 +366,19 @@
             Settings related logic
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Load(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Load(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Loads a specific <see cref="T:Woozle.Model.Setting"/>
             </summary>
-            <param name="session">The session</param>
+            <param name="sessionData">The session</param>
             <returns>The loaded <see cref="T:Woozle.Model.Setting"/></returns>
         </member>
-        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Save(Woozle.Model.Setting,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.Settings.ISettingsLogic.Save(Woozle.Model.Setting,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Saves a specific <see cref="T:Woozle.Model.Setting"/>
             </summary>
             <param name="saveableObject">The <see cref="T:Woozle.Model.Setting"/> to save.</param>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns>The result of the save process as <see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/></returns>
         </member>
         <member name="T:Woozle.Domain.UserManagement.Constants">
@@ -406,42 +401,56 @@
             Definition of a UserLogic.
             </summary>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Searchs users by given criteria.
             </summary>
             <param name="criteriaUser">The user criteria</param>
-            <param name="session">The session</param>
+            <param name="sessionData">The session</param>
             <returns>A list of users</returns>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Save(Woozle.Model.User,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Save(Woozle.Model.User,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Saves the specified user.
             </summary>
             <param name="user"><see cref="T:Woozle.Model.User"/></param>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns><see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/>.</returns>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Delete(System.Int32,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.Delete(System.Int32,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Deletes the specific user.
             </summary>
             <param name="id"><see cref="T:Woozle.Model.User"/></param>
-            <param name="session"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.IUserLogic.LoadUser(System.Int32,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.LoadUser(System.Int32,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Loads a user by the given id.
             </summary>
             <param name="id"></param>
-            <param name="session"></param>
+            <param name="sessionData"></param>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.IUserLogic.GetUsersOfMandator(Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.GetUsersOfMandator(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets all users of the current mandator
             </summary>
-            <param name="session"></param>
+            <param name="sessionData"></param>
             <returns></returns>
+        </member>
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.FindUserById(System.Int32)">
+            <summary>
+            Gets the user of the given id or null if no user was found.
+            </summary>
+            <param name="parse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woozle.Domain.UserManagement.IUserLogic.GetUserByUsername(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets the user by the given username or null if no user was found.
+            </summary>
+            <param name="username"></param>
+            <param name="sessionData"></param>
         </member>
         <member name="T:Woozle.Domain.UserManagement.IUserValidator">
             <summary>
@@ -453,9 +462,9 @@
             Check if the user will be edited.
             </summary>
         </member>
-        <member name="P:Woozle.Domain.UserManagement.IUserValidator.Session">
+        <member name="P:Woozle.Domain.UserManagement.IUserValidator.SessionData">
             <summary>
-            <see cref="P:Woozle.Domain.UserManagement.IUserValidator.Session"/>
+            <see cref="T:Woozle.Model.SessionHandling.Session"/>
             </summary>
         </member>
         <member name="T:Woozle.Domain.UserManagement.UserBusinessValidator">
@@ -481,9 +490,9 @@
             Flag if the use case editing an user or create an user.
             </summary>
         </member>
-        <member name="P:Woozle.Domain.UserManagement.UserBusinessValidator.Session">
+        <member name="P:Woozle.Domain.UserManagement.UserBusinessValidator.SessionData">
             <summary>
-            <see cref="P:Woozle.Domain.UserManagement.UserBusinessValidator.Session"/>
+            <see cref="T:Woozle.Model.SessionHandling.Session"/>
             </summary>
         </member>
         <member name="T:Woozle.Domain.UserManagement.UserLogic">
@@ -514,17 +523,17 @@
             <param name="repository"><see cref="T:Woozle.Persistence.IRepository`1"/></param>
             <param name="permissionManager"><see cref="T:Woozle.Domain.PermissionManagement.IPermissionManager"/></param>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.UserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.UserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.SessionData)">
             <summary>
-            <see cref="M:Woozle.Domain.UserManagement.IUserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.Session)"/>
+            <see cref="M:Woozle.Domain.UserManagement.IUserLogic.Search(Woozle.Model.UserSearch.UserSearchCriteria,Woozle.Model.SessionHandling.SessionData)"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.UserLogic.Save(Woozle.Model.User,Woozle.Model.SessionHandling.Session)">
+        <member name="M:Woozle.Domain.UserManagement.UserLogic.Save(Woozle.Model.User,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Saves the specified user.
             </summary>
             <param name="user">The user.</param>
-            <param name="session">The required session.</param>
+            <param name="sessionData">The required session.</param>
             <returns><see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/></returns>
         </member>
         <member name="T:Woozle.Host.WoozleHost">
