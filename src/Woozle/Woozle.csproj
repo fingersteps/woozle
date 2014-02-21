@@ -128,6 +128,7 @@
     <Compile Include="Services\Authentication\LoginContextService.cs" />
     <Compile Include="Services\Authentication\MandatorAuthentication.cs" />
     <Compile Include="Services\Authentication\MandatorSelectionService.cs" />
+    <Compile Include="Services\Authentication\WoozleAuthRepository.cs" />
     <Compile Include="Services\Authentication\WoozleCredentialsAuthProvider.cs" />
     <Compile Include="Services\Authority\MandatorRoleService.cs" />
     <Compile Include="Services\Authority\PermissionService.cs" />

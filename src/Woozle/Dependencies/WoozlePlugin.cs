@@ -1,4 +1,5 @@
-﻿using ServiceStack.WebHost.Endpoints;
+﻿using ServiceStack.ServiceInterface.Auth;
+using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
 using Woozle.Domain.Location;
@@ -8,6 +9,7 @@ using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.UserManagement;
+using Woozle.Services.Authentication;
 
 namespace Woozle.Dependencies
 {
@@ -30,6 +32,7 @@ namespace Woozle.Dependencies
             appHost.RegisterAs<PersonLogic, IPersonLogic>();
             appHost.RegisterAs<MandatorLogic, IMandatorLogic>();
             appHost.RegisterAs<SettingsLogic, ISettingsLogic>();
+            appHost.RegisterAs<WoozleAuthRepository, IUserAuthRepository>();
         }
     }
 }
