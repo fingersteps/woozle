@@ -18,7 +18,20 @@ namespace Woozle.Host
     /// </summary>
     public class WoozleHost : AppHostHttpListenerBase
     {
-      
+        private readonly string defaultMandatorName;
+
+        /// <summary>
+        /// Initializes a new <see cref="WoozleHost"/>
+        /// </summary>
+        /// <param name="defaultMandatorName">The default mandator name used in Woozle when no mandator is necessary (for example in public web services or in user registration)</param>
+        /// <param name="serviceName">The name of the service</param>
+        /// <param name="assemblies">The assemblies which contain services</param>
+        protected WoozleHost(string defaultMandatorName, string serviceName, params Assembly[] assemblies)
+            : base(serviceName, assemblies)
+        {
+            this.defaultMandatorName = defaultMandatorName;
+        }
+
         /// <summary>
         /// Initializes a new <see cref="WoozleHost"/>
         /// </summary>
@@ -45,6 +58,7 @@ namespace Woozle.Host
             Plugins.Add(CreateAuthFeature(container));
             Plugins.Add(new WoozleEntityFrameworkPlugin());
             Plugins.Add(new WoozlePlugin());
+            ConfigureDefaultMandator(container);
         }
 
         /// <summary>
@@ -69,13 +83,15 @@ namespace Woozle.Host
         }
 
         /// <summary>
-        /// The given mandator will be used as default for all public services (where no authentification is needed) and for user registration.
+        /// The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
         /// </summary>
-        /// <param name="defaultMandatorName">The mandator name (The mandator record gets loaded by this name)</param>
-        protected void ConfigureDefaultMandator(string defaultMandatorName)
+        private void ConfigureDefaultMandator(Container container)
         {
-            var defaultMandator = Container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
-            Container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
+            if (!string.IsNullOrEmpty(defaultMandatorName))
+            {
+                var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
+                container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
+            }
         }
     }
 }
