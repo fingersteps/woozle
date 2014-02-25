@@ -207,6 +207,7 @@ namespace Woozle.Services
                   .ForMember(n => n.TranslatedValue, opt => opt.ResolveUsing(new FunctionTranslatedValueResolver()));
 
             Mapper.CreateMap<UserAuth, Model.User>().ConvertUsing<UserAuthToUserConverter>();
+            Mapper.CreateMap<Model.User, UserAuth>().ConvertUsing<UserToUserAuthConverter>();
         }
 
         private class ModuleTranslatedValueResolver : ValueResolver<ModuleForMandator, string>
@@ -235,14 +236,34 @@ namespace Woozle.Services
         {
             protected override Model.User ConvertCore(UserAuth source)
             {
+                if (source == null)
+                {
+                    return null;
+                }
                 return new Model.User()
                 {
                     Username = source.UserName,
-                    MandatorId = source.RefId.HasValue ? source.RefId.Value : 0,
                     Password = source.PasswordHash,
                     FirstName = source.FirstName,
                     LastName = source.LastName,
-                    FlagActive = true
+                };
+            }
+        }
+
+        class UserToUserAuthConverter : TypeConverter<Model.User, UserAuth>
+        {
+            protected override UserAuth ConvertCore(Model.User source)
+            {
+                if (source == null)
+                {
+                    return null;
+                }
+                return new UserAuth()
+                {
+                    UserName = source.Username,
+                    PasswordHash = source.Password,
+                    FirstName = source.FirstName,
+                    LastName = source.LastName
                 };
             }
         }

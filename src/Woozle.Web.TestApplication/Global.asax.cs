@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Host;
+using Woozle.Services.Authentication;
 
 namespace Woozle.Web.TestApplication
 {
@@ -30,6 +31,9 @@ namespace Woozle.Web.TestApplication
                     {"Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"},
                 },
                 });
+
+                Plugins.Add(new WoozleRegistrationFeature());
+
             }
         }
 

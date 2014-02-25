@@ -86,8 +86,7 @@ namespace Woozle.Test.Services.UserManagement
             var result = service.Post(new User() { Id = 1 });
 
             Assert.NotNull(result);
-            Assert.NotNull(result.TargetObject);
-            Assert.Equal(1, result.TargetObject.Id);
+            Assert.Equal(1, result.Id);
         }
 
         [Fact]
@@ -99,14 +98,12 @@ namespace Woozle.Test.Services.UserManagement
             var result = service.Put(new User() { Id = 1 });
 
             Assert.NotNull(result);
-            Assert.NotNull(result.TargetObject);
-            Assert.Equal(1, result.TargetObject.Id);
+            Assert.Equal(1, result.Id);
         }
 
         private void MockSave()
         {
-            var modelSaveResult = new SaveResult<Model.User>() {TargetObject = modelUser};
-            logicMock.Setup(n => n.Save(It.IsAny<Model.User>(), It.IsAny<SessionData>())).Returns(modelSaveResult);
+            logicMock.Setup(n => n.Save(It.IsAny<Model.User>(), It.IsAny<SessionData>())).Returns(modelUser);
         }
 
         private UserService CreateUserService()

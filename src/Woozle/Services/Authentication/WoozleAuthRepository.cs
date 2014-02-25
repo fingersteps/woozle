@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using AutoMapper;
 using ServiceStack.Common.Extensions;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.Text;
+using Woozle.Domain.Authentication;
+using Woozle.Domain.Authority;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
+using Woozle.Services.Authority;
+using Woozle.Settings;
 
 namespace Woozle.Services.Authentication
 {
@@ -18,17 +23,23 @@ namespace Woozle.Services.Authentication
         public Regex ValidUserNameRegEx = new Regex(@"^(?=.{3,15}$)([A-Za-z0-9][._-]?)*$", RegexOptions.Compiled);
 
         private readonly IUserLogic userLogic;
+        private readonly IWoozleSettings woozleSettings;
+        private readonly IRegistrationSettings registrationSettings;
+        private readonly IGetRolesLogic getRolesLogic;
         private readonly IHashProvider passwordHasher;
 
-        public WoozleAuthRepository(IUserLogic userLogic)
+        public WoozleAuthRepository(IUserLogic userLogic, IWoozleSettings woozleSettings, IRegistrationSettings registrationSettings, IGetRolesLogic getRolesLogic)
         {
             this.userLogic = userLogic;
+            this.woozleSettings = woozleSettings;
+            this.registrationSettings = registrationSettings;
+            this.getRolesLogic = getRolesLogic;
             this.passwordHasher = new SaltedHash();
         }
 
         private void ValidateNewUser(UserAuth newUser, string password)
         {
-            newUser.ThrowIfNull("newUser");
+            newUser.ThrowIfNull("updatedUser");
             password.ThrowIfNullOrEmpty("password");
 
             if (newUser.UserName.IsNullOrEmpty() && newUser.Email.IsNullOrEmpty())
@@ -53,39 +64,34 @@ namespace Woozle.Services.Authentication
             // passwordHasher.GetHashAndSaltString(password, out hash, out salt);
 
             //var digestHelper = new DigestAuthFunctions();
-            //newUser.DigestHa1Hash = digestHelper.CreateHa1(newUser.UserName, DigestAuthProvider.Realm, password);
-            //newUser.PasswordHash = hash;
-            //newUser.Salt = salt;
+            //updatedUser.DigestHa1Hash = digestHelper.CreateHa1(updatedUser.UserName, DigestAuthProvider.Realm, password);
+            //updatedUser.PasswordHash = hash;
+            //updatedUser.Salt = salt;
 
             newUser.PasswordHash = password;
             newUser.CreatedDate = DateTime.UtcNow;
             newUser.ModifiedDate = newUser.CreatedDate;
 
-            return SaveUser(newUser);
-        }
-
-        private UserAuth SaveUser(UserAuth newUser)
-        {
-            //TODO: Add a "default mandator" in Woozle which can be set in configuration of a specific AppHost
-            var sessionData = CreateSessionData(1);
             var user = Mapper.Map<UserAuth, User>(newUser);
 
-            //TODO: Fill with default values!
-            user.FlagActiveStatusId = 1;
-            user.LanguageId = 1;
+            user.PersistanceState = PState.Added;
+            user.FlagActiveStatusId = registrationSettings.DefaultFlagActiveStatus.Id;
+            user.LanguageId = registrationSettings.DefaultLanguage.Id;
+
+            var sessionData = CreateSessionData();
+            user.UserMandatorRoles.Add(new UserMandatorRole()
+            {
+                PersistanceState = PState.Added,
+                MandatorRoleId = getRolesLogic.GetMandatorRoleByName(Roles.User, sessionData).Id
+            });
 
             userLogic.Save(user, sessionData);
             return newUser;
         }
 
-        private static SessionData CreateSessionData(int? mandatorId)
+        private SessionData CreateSessionData()
         {
-            if (!mandatorId.HasValue)
-            {
-                throw new ArgumentException(
-                    "The given mandator is not valid. Please fill the mandator to which the user needs to be registered into the 'RefId' field.");
-            }
-           return new SessionData(new User() {Username = "system"}, new Model.Mandator() {Id = mandatorId.Value});
+           return new SessionData(new User() {Username = "system"}, woozleSettings.DefaultMandator);
         }
 
         private void AssertNoExistingUser(UserAuth newUser, UserAuth exceptForExistingUser = null)
@@ -106,39 +112,43 @@ namespace Woozle.Services.Authentication
             }
         }
 
-        public UserAuth UpdateUserAuth(UserAuth existingUser, UserAuth newUser, string password)
+        public UserAuth UpdateUserAuth(UserAuth existingUser, UserAuth updatedUser, string password)
         {
-            ValidateNewUser(newUser, password);
+            //TODO: Uncomment, Test and check the following code as soon update of a user is needed
+            return updatedUser;
+            //ValidateNewUser(updatedUser, password);
 
-            AssertNoExistingUser(newUser, existingUser);
+            //AssertNoExistingUser(updatedUser, existingUser);
 
-            var hash = existingUser.PasswordHash;
-            var salt = existingUser.Salt;
-            if (password != null)
-            {
-                passwordHasher.GetHashAndSaltString(password, out hash, out salt);
-            }
-            // If either one changes the digest hash has to be recalculated
-            var digestHash = existingUser.DigestHa1Hash;
-            if (password != null || existingUser.UserName != newUser.UserName)
-            {
-                var digestHelper = new DigestAuthFunctions();
-                digestHash = digestHelper.CreateHa1(newUser.UserName, DigestAuthProvider.Realm, password);
-            }
-            newUser.Id = existingUser.Id;
-            newUser.PasswordHash = hash;
-            newUser.Salt = salt;
-            newUser.DigestHa1Hash = digestHash;
-            newUser.CreatedDate = existingUser.CreatedDate;
-            newUser.ModifiedDate = DateTime.UtcNow;
+            //var hash = existingUser.PasswordHash;
+            //var salt = existingUser.Salt;
+            //if (password != null)
+            //{
+            //    passwordHasher.GetHashAndSaltString(password, out hash, out salt);
+            //}
+            //// If either one changes the digest hash has to be recalculated
+            //var digestHash = existingUser.DigestHa1Hash;
+            //if (password != null || existingUser.UserName != updatedUser.UserName)
+            //{
+            //    var digestHelper = new DigestAuthFunctions();
+            //    digestHash = digestHelper.CreateHa1(updatedUser.UserName, DigestAuthProvider.Realm, password);
+            //}
+            //updatedUser.Id = existingUser.Id;
+            //updatedUser.PasswordHash = hash;
+            //updatedUser.Salt = salt;
+            //updatedUser.DigestHa1Hash = digestHash;
+            //updatedUser.CreatedDate = existingUser.CreatedDate;
+            //updatedUser.ModifiedDate = DateTime.UtcNow;
 
-            return SaveUser(newUser);
+            //var user = Mapper.Map<UserAuth, User>(updatedUser);
+            //var sessionData = CreateSessionData();
+            //userLogic.Save(user, sessionData);
+            //return updatedUser;
         }
 
         public UserAuth GetUserAuthByUserName(string userNameOrEmail)
         {
-            var sessionData = CreateSessionData(0);
-            var user = userLogic.GetUserByUsername(userNameOrEmail, sessionData);
+            var user = userLogic.GetUserByUsername(userNameOrEmail, CreateSessionData());
             return Mapper.Map<User, UserAuth>(user);
         }
 

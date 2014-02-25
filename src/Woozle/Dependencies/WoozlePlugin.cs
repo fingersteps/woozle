@@ -1,4 +1,5 @@
-﻿using ServiceStack.ServiceInterface.Auth;
+﻿using Funq;
+using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
@@ -8,8 +9,10 @@ using Woozle.Domain.ModuleManagement;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
+using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
 using Woozle.Services.Authentication;
+using Woozle.Settings;
 
 namespace Woozle.Dependencies
 {
@@ -20,19 +23,21 @@ namespace Woozle.Dependencies
     {
         public void Register(IAppHost appHost)
         {
-            appHost.RegisterAs<PermissionsLogic, IPermissionProvider>();
-            appHost.RegisterAs<PermissionManager, IPermissionManager>();
-            appHost.RegisterAs<AuthenticationLogic, IAuthenticationLogic>();
-            appHost.RegisterAs<ModuleLogic, IModuleLogic>();
-            appHost.RegisterAs<UserLogic, IUserLogic>();
-            appHost.RegisterAs<UserBusinessValidator, IUserValidator>();
-            appHost.RegisterAs<LocationLogic, ILocationLogic>();
-            appHost.RegisterAs<GetRolesLogic, IGetRolesLogic>();
-            appHost.RegisterAs<PermissionsLogic, IPermissionsLogic>();
-            appHost.RegisterAs<PersonLogic, IPersonLogic>();
-            appHost.RegisterAs<MandatorLogic, IMandatorLogic>();
-            appHost.RegisterAs<SettingsLogic, ISettingsLogic>();
-            appHost.RegisterAs<WoozleAuthRepository, IUserAuthRepository>();
+            var container = appHost.Config.ServiceManager.Container;
+            container.RegisterAs<PermissionsLogic, IPermissionProvider>();
+            container.RegisterAs<PermissionManager, IPermissionManager>();
+            container.RegisterAs<AuthenticationLogic, IAuthenticationLogic>();
+            container.RegisterAs<ModuleLogic, IModuleLogic>();
+            container.RegisterAs<UserLogic, IUserLogic>();
+            container.RegisterAs<LocationLogic, ILocationLogic>();
+            container.RegisterAs<GetRolesLogic, IGetRolesLogic>();
+            container.RegisterAs<PermissionsLogic, IPermissionsLogic>();
+            container.RegisterAs<PersonLogic, IPersonLogic>();
+            container.RegisterAs<MandatorLogic, IMandatorLogic>();
+            container.RegisterAs<SettingsLogic, ISettingsLogic>();
+            container.RegisterAs<WoozleSettings, IWoozleSettings>()
+                .ReusedWithin(ReuseScope.Container);
+            container.RegisterAs<StatusFieldLogic, IStatusFieldLogic>();
         }
     }
 }

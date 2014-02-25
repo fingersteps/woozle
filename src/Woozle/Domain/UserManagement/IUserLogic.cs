@@ -24,8 +24,8 @@ namespace Woozle.Domain.UserManagement
         /// </summary>
         /// <param name="user"><see cref="User"/></param>
         /// <param name="sessionData"><see cref="Session"/></param>
-        /// <returns><see cref="ISaveResult{TO}"/>.</returns>
-        ISaveResult<User> Save(User user, SessionData sessionData);
+        /// <returns><see cref="User"/>.</returns>
+        User Save(User user, SessionData sessionData);
 
         /// <summary>
         /// Deletes the specific user.

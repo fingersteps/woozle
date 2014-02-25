@@ -85,6 +85,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Authentication\IRegistrationSettings.cs" />
+    <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
+    <Compile Include="Services\Authentication\WoozleRegistrationFeature.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemAttribute.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacade.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\FunqExternalSystemFacadeFactory.cs" />
@@ -92,6 +95,8 @@
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\IExternalSystemFacadeFactory.cs" />
     <Compile Include="Domain\ExternalSystem\IExternalSystem.cs" />
     <Compile Include="Domain\ExternalSystem\IExternalSystemMetadata.cs" />
+    <Compile Include="Domain\StatusFields\IStatusFieldLogic.cs" />
+    <Compile Include="Domain\StatusFields\StatusFieldLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\Extensions\ExceptionExtensions.cs" />
     <Compile Include="Dependencies\WoozlePlugin.cs" />
@@ -120,8 +125,6 @@
     <Compile Include="Domain\Settings\SettingsLogic.cs" />
     <Compile Include="Domain\UserManagement\Constants.cs" />
     <Compile Include="Domain\UserManagement\IUserLogic.cs" />
-    <Compile Include="Domain\UserManagement\IUserValidator.cs" />
-    <Compile Include="Domain\UserManagement\UserBusinessValidator.cs" />
     <Compile Include="Domain\UserManagement\UserLogic.cs" />
     <Compile Include="Host\WoozleHost.cs" />
     <Compile Include="Services\AbstractService.cs" />
@@ -186,11 +189,17 @@
     <Compile Include="Services\Settings\SettingService.cs" />
     <Compile Include="Services\UserManagement\UserService.cs" />
     <Compile Include="Services\WoozleDto.cs" />
+    <Compile Include="Settings\WoozleSettings.cs" />
+    <Compile Include="Settings\IWoozleSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Woozle.Model\Woozle.Model.csproj">
       <Project>{fd53051b-7161-4ac0-9c89-51a3969324a4}</Project>
       <Name>Woozle.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Woozle.Persistence.Ef\Woozle.Persistence.Ef.csproj">
+      <Project>{47F0F1A6-0FCC-453C-BACB-DDBCA6DC605F}</Project>
+      <Name>Woozle.Persistence.Ef</Name>
     </ProjectReference>
     <ProjectReference Include="..\Woozle.Persistence\Woozle.Persistence.csproj">
       <Project>{a915ce7b-78f1-4b88-9360-faa95d7cbf87}</Project>

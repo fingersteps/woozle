@@ -4,9 +4,12 @@ using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Dependencies;
+using Woozle.Domain.MandatorManagement;
 using Woozle.Model.SessionHandling;
+using Woozle.Persistence.Ef.Dependencies;
 using Woozle.Services;
 using Woozle.Services.Authentication;
+using Woozle.Settings;
 
 namespace Woozle.Host
 {
@@ -40,6 +43,7 @@ namespace Woozle.Host
             MappingConfiguration.Configure();
             Plugins.Add(new SessionFeature());
             Plugins.Add(CreateAuthFeature(container));
+            Plugins.Add(new WoozleEntityFrameworkPlugin());
             Plugins.Add(new WoozlePlugin());
         }
 
@@ -62,6 +66,16 @@ namespace Woozle.Host
                 HtmlRedirect = string.Empty
             };
             return authFeature;
+        }
+
+        /// <summary>
+        /// The given mandator will be used as default for all public services (where no authentification is needed) and for user registration.
+        /// </summary>
+        /// <param name="defaultMandatorName">The mandator name (The mandator record gets loaded by this name)</param>
+        protected void ConfigureDefaultMandator(string defaultMandatorName)
+        {
+            var defaultMandator = Container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
+            Container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
         }
     }
 }

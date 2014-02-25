@@ -18,18 +18,14 @@ namespace Woozle.Test.Domain.UserManagement
     {
         private IUserLogic userLogic;
         private readonly Mock<IUserRepository> userRepositoryMock;
-        private readonly Mock<IUserValidator> userValidatorMock;
         private readonly Mock<IPermissionManager> permissionManagerMock;
 
         public UserLogicTest()
         {
             userRepositoryMock = new Mock<IUserRepository>();
-            userValidatorMock = new Mock<IUserValidator>();
             permissionManagerMock = new Mock<IPermissionManager>();
             permissionManagerMock.Setup(n => n.HasPermission(It.IsAny<SessionData>(), It.IsAny<string>(), It.IsAny<string>()))
                                  .Returns(true);
-
-            userValidatorMock.Setup(n => n.Validate(It.IsAny<User>())).Returns(new ValidationResult());
         }
 
         [Fact]
@@ -51,7 +47,7 @@ namespace Woozle.Test.Domain.UserManagement
                               .Returns(results);
 
 
-            this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object, permissionManagerMock.Object);
+            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
 
             var criteria = new UserSearchCriteria
                                {
@@ -72,7 +68,7 @@ namespace Woozle.Test.Domain.UserManagement
         [Fact]
         public void UserSearchWithNullableCriteriaTest()
         {
-            this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object, permissionManagerMock.Object);
+            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
 
             var result = this.userLogic.Search(null,
                             new SessionData(null, null));
@@ -139,7 +135,7 @@ namespace Woozle.Test.Domain.UserManagement
 
             userRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(users);
 
-            this.userLogic = new UserLogic(userValidatorMock.Object, userRepositoryMock.Object,
+            this.userLogic = new UserLogic(userRepositoryMock.Object,
                                            permissionManagerMock.Object);
 
             var result = this.userLogic.GetUsersOfMandator(session.SessionData);

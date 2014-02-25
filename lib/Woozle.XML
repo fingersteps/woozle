@@ -4,6 +4,11 @@
         <name>Woozle</name>
     </assembly>
     <members>
+        <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
+            <summary>
+            This Feature is a Woozle specific extension of ServiceStacks built in Registration feature.
+            </summary>
+        </member>
         <member name="T:Woozle.Domain.ExternalSystem.ExternalSystemAttribute">
             <summary>
             Attribute for tagging an external system with metadata.
@@ -119,6 +124,13 @@
             Marker interface for an external system
             </summary>
         </member>
+        <member name="M:Woozle.Domain.StatusFields.IStatusFieldLogic.LoadStatusByValue(System.String)">
+            <summary>
+            Loads a Status record by its value.
+            </summary>
+            <param name="statusValue"></param>
+            <returns></returns>
+        </member>
         <member name="T:Woozle.Dependencies.WoozlePlugin">
             <summary>
             Register all dependencies for running Woozle (Core)
@@ -217,6 +229,14 @@
             <summary>
             Gets all mandatorRoles for the mandator of the given session.
             </summary>
+            <param name="sessionData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woozle.Domain.Authority.IGetRolesLogic.GetMandatorRoleByName(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets a specific mandator role by the given role name.
+            </summary>
+            <param name="roleName"></param>
             <param name="sessionData"></param>
             <returns></returns>
         </member>
@@ -415,7 +435,7 @@
             </summary>
             <param name="user"><see cref="T:Woozle.Model.User"/></param>
             <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
-            <returns><see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/>.</returns>
+            <returns><see cref="T:Woozle.Model.User"/>.</returns>
         </member>
         <member name="M:Woozle.Domain.UserManagement.IUserLogic.Delete(System.Int32,Woozle.Model.SessionHandling.SessionData)">
             <summary>
@@ -452,49 +472,6 @@
             <param name="username"></param>
             <param name="sessionData"></param>
         </member>
-        <member name="T:Woozle.Domain.UserManagement.IUserValidator">
-            <summary>
-            Marker interface for a user validator.
-            </summary>
-        </member>
-        <member name="P:Woozle.Domain.UserManagement.IUserValidator.EditMode">
-            <summary>
-            Check if the user will be edited.
-            </summary>
-        </member>
-        <member name="P:Woozle.Domain.UserManagement.IUserValidator.SessionData">
-            <summary>
-            <see cref="T:Woozle.Model.SessionHandling.Session"/>
-            </summary>
-        </member>
-        <member name="T:Woozle.Domain.UserManagement.UserBusinessValidator">
-            <summary>
-            Validator for the user creation process.
-            </summary>
-        </member>
-        <member name="M:Woozle.Domain.UserManagement.UserBusinessValidator.#ctor(Woozle.Persistence.IUserRepository)">
-            <summary>
-            ctor.
-            </summary>
-        </member>
-        <member name="M:Woozle.Domain.UserManagement.UserBusinessValidator.UserNameNotExists(Woozle.Model.User,System.String)">
-            <summary>
-            Checks, if a user with the specified username already exists.
-            </summary>
-            <param name="user">The user</param>
-            <param name="username">Username</param>
-            <returns>true, if the username not exists.</returns>
-        </member>
-        <member name="P:Woozle.Domain.UserManagement.UserBusinessValidator.EditMode">
-            <summary>
-            Flag if the use case editing an user or create an user.
-            </summary>
-        </member>
-        <member name="P:Woozle.Domain.UserManagement.UserBusinessValidator.SessionData">
-            <summary>
-            <see cref="T:Woozle.Model.SessionHandling.Session"/>
-            </summary>
-        </member>
         <member name="T:Woozle.Domain.UserManagement.UserLogic">
             <summary>
             The implementation for the UserLogic.
@@ -505,21 +482,16 @@
             <see cref="T:Woozle.Persistence.IUserRepository"/>
             </summary>
         </member>
-        <member name="F:Woozle.Domain.UserManagement.UserLogic.userValidator">
-            <summary>
-            <see cref="T:Woozle.Domain.UserManagement.IUserValidator"/>
-            </summary>
-        </member>
         <member name="F:Woozle.Domain.UserManagement.UserLogic.permissionManager">
             <summary>
             <see cref="T:Woozle.Domain.PermissionManagement.IPermissionManager"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.UserManagement.UserLogic.#ctor(Woozle.Domain.UserManagement.IUserValidator,Woozle.Persistence.IUserRepository,Woozle.Domain.PermissionManagement.IPermissionManager)">
+        <member name="M:Woozle.Domain.UserManagement.UserLogic.#ctor(Woozle.Persistence.IUserRepository,Woozle.Domain.PermissionManagement.IPermissionManager)">
             <summary>
             ctor.
             </summary>
-            <param name="validator"><see cref="T:Woozle.Domain.UserManagement.IUserValidator"/></param>
+            <param name="validator"><see cref="!:IUserValidator"/></param>
             <param name="repository"><see cref="T:Woozle.Persistence.IRepository`1"/></param>
             <param name="permissionManager"><see cref="T:Woozle.Domain.PermissionManagement.IPermissionManager"/></param>
         </member>
@@ -534,7 +506,7 @@
             </summary>
             <param name="user">The user.</param>
             <param name="sessionData">The required session.</param>
-            <returns><see cref="T:Woozle.Model.Validation.Creation.ISaveResult`1"/></returns>
+            <returns><see cref="T:Woozle.Model.User"/></returns>
         </member>
         <member name="T:Woozle.Host.WoozleHost">
             <summary>
@@ -564,6 +536,12 @@
             Sets the default reuse scope for the IoC container, which takes effect for all default dependency injection bindings.
             </summary>
             <param name="container"></param>
+        </member>
+        <member name="M:Woozle.Host.WoozleHost.ConfigureDefaultMandator(System.String)">
+            <summary>
+            The given mandator will be used as default for all public services (where no authentification is needed) and for user registration.
+            </summary>
+            <param name="defaultMandatorName">The mandator name (The mandator record gets loaded by this name)</param>
         </member>
         <member name="T:Woozle.Services.AbstractService">
             <summary>
@@ -807,6 +785,16 @@
             </summary>
             <param name="user"></param>
             <returns></returns>
+        </member>
+        <member name="T:Woozle.Settings.IWoozleSettings">
+            <summary>
+            Holds all global settings configured in your Woozle Application.
+            </summary>
+        </member>
+        <member name="P:Woozle.Settings.IWoozleSettings.DefaultMandator">
+            <summary>
+            Returns the configured default mandator for your Woozle Application or null if no default mandator was configured or no mandator was found with the given name.
+            </summary>
         </member>
     </members>
 </doc>

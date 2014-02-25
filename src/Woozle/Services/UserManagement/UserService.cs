@@ -54,7 +54,7 @@ namespace Woozle.Services.UserManagement
         /// <param name="user"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResultDto<User> Post(User user)
+        public User Post(User user)
         {
             return Save(user);
         }
@@ -65,15 +65,15 @@ namespace Woozle.Services.UserManagement
         /// <param name="user"></param>
         /// <returns></returns>
         [ExceptionCatcher]
-        public SaveResultDto<User> Put(User user)
+        public User Put(User user)
         {
             return Save(user);
         }
 
-        private SaveResultDto<User> Save(User user)
+        private User Save(User user)
         {
             var saveResult = logic.Save(Mapper.Map<User, Model.User>(user), Session.SessionData);
-            return Mapper.Map<ISaveResult<Model.User>, SaveResultDto<User>>(saveResult);
+            return Mapper.Map<Model.User, User>(saveResult);
         }
 
         [ExceptionCatcher]

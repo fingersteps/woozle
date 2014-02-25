@@ -9,5 +9,6 @@ namespace Woozle.Domain.Location
         IList<City> GetCities(SessionData sessionData);
         IList<Country> GetCountries(SessionData sessionData);
         IList<Language> GetLanguages(SessionData sessionData);
+        Language LoadLanguage(string languageCode);
     }
 }

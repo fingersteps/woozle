@@ -22,11 +22,6 @@ namespace Woozle.Domain.UserManagement
         private readonly IUserRepository repository;
 
         /// <summary>
-        /// <see cref="IUserValidator"/>
-        /// </summary>
-        private readonly IUserValidator userValidator;
-
-        /// <summary>
         /// <see cref="IPermissionManager"/>
         /// </summary>
         private readonly IPermissionManager permissionManager;
@@ -38,12 +33,10 @@ namespace Woozle.Domain.UserManagement
         /// <param name="repository"><see cref="IRepository{T}"/></param>
         /// <param name="permissionManager"><see cref="IPermissionManager"/></param>
         public UserLogic(
-            IUserValidator validator, 
             IUserRepository repository,
             IPermissionManager permissionManager )
         {
             this.repository = repository;
-            this.userValidator = validator;
             this.repository = repository;
             this.permissionManager = permissionManager;
         }
@@ -70,48 +63,12 @@ namespace Woozle.Domain.UserManagement
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="sessionData">The required session.</param>
-        /// <returns><see cref="ISaveResult{TO}"/></returns>
-        public ISaveResult<User> Save(User user, SessionData sessionData)
+        /// <returns><see cref="User"/></returns>
+        public User Save(User user, SessionData sessionData)
         {
             var synchronizedUser = this.repository.Synchronize(user, sessionData);
-            userValidator.SessionData = sessionData;
-            userValidator.EditMode = synchronizedUser.Id != 0;
-
-            //Check permissions for creating or editing a new / old user
-            if (!(!userValidator.EditMode && (this.permissionManager.HasPermission(sessionData, Constants.LogicalIdDetailUserV1,
-                                                  Permissions.PERMISSION_CREATE)) ||
-                 (userValidator.EditMode && (this.permissionManager.HasPermission(sessionData, Constants.LogicalIdDetailUserV1,
-                                                  Permissions.PERMISSION_EDIT)))))
-            {
-                throw new NoPermissionException(Constants.LogicalIdSearchUserV1, userValidator.EditMode ? Permissions.PERMISSION_EDIT : Permissions.PERMISSION_CREATE);
-            }
-
-            var result = userValidator.Validate(synchronizedUser);
-            if (!result.IsValid)
-            {
-                var creationResult = new SaveResult<User> {TargetObject = user};
-                result.Errors.ToList().ForEach(n => creationResult.Errors.Add(new Error(n.PropertyName, n.ErrorMessage)));
-                return creationResult;
-            }
-
             this.repository.UnitOfWork.Commit();
-
-            PrepareTargetObject(user, synchronizedUser);
-            return new SaveResult<User> { TargetObject = synchronizedUser, HasSystemErrors = false };
-        }
-
-        private static void PrepareTargetObject(User userFromClient, User savedUser)
-        {
-            //Set not mandatory navigation fields to saved object, to avoid re-loading them on client side. TODO: Check to solve this better with EF synchronisation
-            var rolesFromClient = userFromClient.UserMandatorRoles;
-            var returnedRoles = savedUser.UserMandatorRoles;
-            var unchangedOrModifiedRoles =
-                rolesFromClient.Where(n => n.PersistanceState == PState.Unchanged || n.PersistanceState == PState.Modified);
-            foreach (var role in unchangedOrModifiedRoles)
-            {
-                if (!returnedRoles.Contains(role)) returnedRoles.Add(role);
-            }
-            savedUser.UserMandatorRoles = new ObservableCollection<UserMandatorRole>(returnedRoles.OrderBy(n => n.Id));
+            return synchronizedUser;
         }
 
         public void Delete(int id, SessionData sessionData)

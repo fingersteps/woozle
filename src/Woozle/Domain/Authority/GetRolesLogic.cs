@@ -48,6 +48,17 @@ namespace Woozle.Domain.Authority
         }
 
 
+        public MandatorRole GetMandatorRoleByName(string roleName, SessionData sessionData)
+        {
+            var mandatorRoles = mandatorRoleRepository.CreateQueryable(sessionData);
+
+            var query = from mandatorRole in mandatorRoles
+                where mandatorRole.Role.Name == roleName
+                select mandatorRole;
+
+            return query.First();
+        }
+
         /// <summary>
         /// <see cref="IGetRolesLogic.GetUserRoles"/>
         /// </summary>

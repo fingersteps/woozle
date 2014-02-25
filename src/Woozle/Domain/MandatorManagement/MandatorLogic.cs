@@ -32,6 +32,12 @@ namespace Woozle.Domain.MandatorManagement
             return result != null ? result.mandator : null;
         }
 
+        public Mandator LoadMandator(string mandatorName)
+        {
+            var systemSessionData = new SessionData(null, null);
+            return mandatorRepository.FindByExp(n => n.Name == mandatorName, systemSessionData).FirstOrDefault();
+        }
+
         public ISaveResult<Mandator> Save(Mandator mandator, SessionData sessionData)
         {
             mandator = this.mandatorRepository.Synchronize(mandator, sessionData);

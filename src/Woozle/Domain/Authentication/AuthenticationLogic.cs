@@ -63,13 +63,6 @@ namespace Woozle.Domain.Authentication
 
         private LoginResult LoginUser(UserSearchForLoginResult user, Mandator mandator)
         {
-            //Check if user is marked as active.
-            if (user.User.FlagActive == false)
-            {
-                log.Warn(string.Format("The user {0} couldn't login because it's not active.", user.User.Id));
-                return new LoginResult(null, false);
-            }
-
             if (mandator != null)
             {
                 return CreateSessionLoginResult(user, mandator);

@@ -24,6 +24,14 @@ namespace Woozle.Domain.Authority
         IList<MandatorRole> GetMandatorRolesForMandator(SessionData sessionData);
 
         /// <summary>
+        /// Gets a specific mandator role by the given role name.
+        /// </summary>
+        /// <param name="roleName"></param>
+        /// <param name="sessionData"></param>
+        /// <returns></returns>
+        MandatorRole GetMandatorRoleByName(string roleName, SessionData sessionData);
+
+        /// <summary>
         /// Gets all roles of the given session (user & mandator are considered)
         /// </summary>
         /// <param name="sessionData"></param>

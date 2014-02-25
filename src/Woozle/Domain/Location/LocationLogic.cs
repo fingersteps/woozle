@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
@@ -49,6 +50,12 @@ namespace Woozle.Domain.Location
         public IList<Language> GetLanguages(SessionData sessionData)
         {
             return this.languageRepository.FindAll(sessionData).ToList();
+        }
+
+        public Language LoadLanguage(string languageCode)
+        {
+            var systemSessionData = new SessionData(null, null);
+            return languageRepository.FindByExp(n => n.Code == languageCode, systemSessionData).First();
         }
 
         #endregion

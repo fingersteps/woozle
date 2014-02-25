@@ -1,4 +1,5 @@
-﻿using Woozle.Model.Authentication;
+﻿using Woozle.Model;
+using Woozle.Model.Authentication;
 using Woozle.Model.UserSearch;
 
 namespace Woozle.Domain.Authentication

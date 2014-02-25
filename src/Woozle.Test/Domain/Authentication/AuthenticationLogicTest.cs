@@ -115,39 +115,5 @@ namespace Woozle.Test.Domain.Authentication
                                                          authLogic.Login(loginRequest);
                                                      });
         }
-
-        [Fact]
-        public void LoginWithOneMandatorUserIsInactiveTest()
-        {
-            var exampleMandator = new Model.Mandator { Id = 0, Name = "Test" };
-
-            var foundUser = new User
-            {
-                Id = 0,
-                FlagActive = false,
-                Username = "sha"
-            };
-
-            var loginRequest = new LoginRequest
-            {
-                Mandator = exampleMandator,
-                Username = "sha",
-                Password = "correctPW"
-            };
-
-            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username, loginRequest.Password, It.IsAny<SessionData>()))
-                              .Returns(new UserSearchForLoginResult
-                              {
-                                  Mandators = new List<Model.Mandator> { exampleMandator },
-                                  User = foundUser
-                              });
-
-
-            var result = this.authLogic.Login(loginRequest);
-
-            Assert.False(result.LoginSuccessful);
-            Assert.False(result.CheckMandators);
-            Assert.Null(result.SuggestedMandators);
-        }
     }
 }
