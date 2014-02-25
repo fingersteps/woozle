@@ -53,7 +53,7 @@ namespace Woozle.Domain.Authority
             var mandatorRoles = mandatorRoleRepository.CreateQueryable(sessionData);
 
             var query = from mandatorRole in mandatorRoles
-                where mandatorRole.Role.Name == roleName
+                where mandatorRole.Role.Name == roleName && mandatorRole.MandId == sessionData.Mandator.Id
                 select mandatorRole;
 
             return query.First();
