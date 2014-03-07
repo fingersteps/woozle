@@ -29,5 +29,6 @@ namespace Woozle.Services.UserManagement
         public DateTime? LastLogin { get; set; }
         public Language Language { get; set; }
         public int FlagActiveStatusId { get; set; }
+        public string Email { get; set; }
     }
 }
