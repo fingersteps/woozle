@@ -39,7 +39,7 @@ namespace Woozle.Services.UserManagement
             var result = logic.GetUsersOfMandator(Session.SessionData);
             return Mapper.Map<IList<Model.User>, List<User>>(result);
         }
-
+        
         [ExceptionCatcher]
         public UserResponse Get(User request)
         {

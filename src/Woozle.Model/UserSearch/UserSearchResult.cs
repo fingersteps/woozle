@@ -1,4 +1,6 @@
-﻿namespace Woozle.Model.UserSearch
+﻿using System;
+
+namespace Woozle.Model.UserSearch
 {
     public class UserSearchResult
     {
@@ -6,5 +8,8 @@
         public string Username { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public DateTime? LastLogin { get; set; }
+        public Language Language { get; set; }
+        public int FlagActiveStatusId { get; set; }
     }
 }

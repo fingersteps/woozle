@@ -27,13 +27,16 @@ namespace Woozle.Persistence.Ef.Repository
                                   (userMandatorRole.MandatorRole.Mandator.Id == sessionData.Mandator.Id
                                       || (sessionData.Mandator.MandatorGroupId.HasValue && userMandatorRole.MandatorRole.Mandator.MandatorGroupId ==
                                       sessionData.Mandator.MandatorGroupId))
-                            group userMandatorRole by new { u.Id, u.Username, u.FirstName, u.LastName } into g
-                            select new UserSearchResult()
+                            group userMandatorRole by new { u.Id, u.Username, u.FirstName, u.LastName, u.LastLogin, u.Language, u.FlagActiveStatusId } into g
+                            select new UserSearchResult
                                 {
                                     Id = g.Key.Id,
                                     Username = g.Key.Username,
                                     Firstname = g.Key.FirstName,
-                                    Lastname = g.Key.LastName
+                                    Lastname = g.Key.LastName,
+                                    LastLogin = g.Key.LastLogin,
+                                    Language = g.Key.Language,
+                                    FlagActiveStatusId = g.Key.FlagActiveStatusId
                                 };
 
             var result = selection.ToList();

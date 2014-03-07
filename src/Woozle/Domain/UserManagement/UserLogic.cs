@@ -66,6 +66,18 @@ namespace Woozle.Domain.UserManagement
         /// <returns><see cref="User"/></returns>
         public User Save(User user, SessionData sessionData)
         {
+            if (user.Id > 0)
+            {
+                var selectedUser = this.FindUserById(user.Id);
+                selectedUser.Username = user.Username;
+                selectedUser.FirstName = user.FirstName;
+                selectedUser.FlagActiveStatusId = user.FlagActiveStatusId;
+                selectedUser.Language = user.Language;
+                selectedUser.LastName = user.LastName;
+                selectedUser.PersistanceState = PState.Modified;
+                user = selectedUser;
+            }
+            
             var synchronizedUser = this.repository.Synchronize(user, sessionData);
             this.repository.UnitOfWork.Commit();
             return synchronizedUser;
