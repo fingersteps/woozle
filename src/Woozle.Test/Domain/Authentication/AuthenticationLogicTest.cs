@@ -7,6 +7,7 @@ using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
 using Woozle.Persistence;
+using Woozle.Persistence.Ef;
 using Xunit;
 
 namespace Woozle.Test.Domain.Authentication
@@ -15,12 +16,15 @@ namespace Woozle.Test.Domain.Authentication
     {
         private readonly IAuthenticationLogic authLogic;
         private readonly Mock<IUserRepository> userRepositoryMock;
+        private readonly Mock<IEfUnitOfWork> unitOfWorkMock;
 
         public AuthenticationLogicTest()
         {
             this.userRepositoryMock = new Mock<IUserRepository>();
+            this.unitOfWorkMock = new Mock<IEfUnitOfWork>();
 
-            this.authLogic = new AuthenticationLogic(userRepositoryMock.Object);
+            this.authLogic = new AuthenticationLogic(
+                userRepositoryMock.Object, this.unitOfWorkMock.Object);
         }
        
         [Fact]
@@ -57,6 +61,9 @@ namespace Woozle.Test.Domain.Authentication
             Assert.False(result.CheckMandators);
             Assert.Null(result.SuggestedMandators);
             Assert.Equal(selectedSessionData, result.SessionData);
+
+            this.userRepositoryMock.Verify(n => n.Save(foundUser, selectedSessionData));
+            this.unitOfWorkMock.Verify(n => n.Commit(), Times.Once);
         }
 
         [Fact]

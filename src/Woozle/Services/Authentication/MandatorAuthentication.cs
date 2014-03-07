@@ -48,7 +48,7 @@ namespace Woozle.Services.Authentication
                     }
                 }
 
-                    base.Execute(req, res, requestDto);
+                base.Execute(req, res, requestDto);
         }
     }
 }

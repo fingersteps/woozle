@@ -10,6 +10,7 @@ using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
+using Woozle.Persistence;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies

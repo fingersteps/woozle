@@ -14,8 +14,6 @@
 <#@ template language="C#" debug="false" hostspecific="true"#>
 <#@ include file="EF.Utility.CS.ttinclude"#><#@ output extension=".cs"#><#
 
-
-
 CodeGenerationTools code = new CodeGenerationTools(this);
 MetadataLoader loader = new MetadataLoader(this);
 CodeRegion region = new CodeRegion(this, 1);

@@ -174,13 +174,9 @@
     <Compile Include="Repository\UserRepositoryExtended.cs" />
     <Compile Include="StateHelpers.cs" />
     <Compile Include="WoozleModel.Views.cs" />
-    <Compile Include="WoozleModel1.Designer.cs">
-      <DependentUpon>WoozleModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Repository\RepositoryGeneration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

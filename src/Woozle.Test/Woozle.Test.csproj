@@ -111,6 +111,10 @@
       <Project>{fd53051b-7161-4ac0-9c89-51a3969324a4}</Project>
       <Name>Woozle.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Woozle.Persistence.Ef\Woozle.Persistence.Ef.csproj">
+      <Project>{47f0f1a6-0fcc-453c-bacb-ddbca6dc605f}</Project>
+      <Name>Woozle.Persistence.Ef</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Woozle.Persistence\Woozle.Persistence.csproj">
       <Project>{a915ce7b-78f1-4b88-9360-faa95d7cbf87}</Project>
       <Name>Woozle.Persistence</Name>

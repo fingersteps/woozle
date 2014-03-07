@@ -5,6 +5,7 @@ using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
 using Woozle.Persistence;
+using Woozle.Persistence.Ef;
 
 
 namespace Woozle.Domain.Authentication
@@ -21,12 +22,21 @@ namespace Woozle.Domain.Authentication
         private readonly IUserRepository userRepository;
 
         /// <summary>
+        /// <see cref="IUnitOfWork"/>
+        /// </summary>
+        private readonly IEfUnitOfWork unitOfWork;
+
+        /// <summary>
         /// ctor.
         /// </summary>
         /// <param name="userRepository"><see cref="IUserRepository"/></param>
-        public AuthenticationLogic(IUserRepository userRepository)
+        /// <param name="unitOfWork"><see cref="IUnitOfWork"/></param>
+        public AuthenticationLogic(
+            IUserRepository userRepository,
+            IEfUnitOfWork unitOfWork)
         {
             this.userRepository = userRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         #region IAuthenticationLogic Members
@@ -81,13 +91,21 @@ namespace Woozle.Domain.Authentication
             throw new InvalidLoginException("Invalid login.");
         }
 
-
         private LoginResult CreateSessionLoginResult(UserSearchForLoginResult result, Mandator mandator)
         {
             //Clear mandators picture to avoid sending the logo in each service call :)
             mandator.Picture = null;
-            var sessionData = new SessionData(result.User, mandator);
+            var user = result.User;
+            var sessionData = new SessionData(user, mandator);
+            this.UpdateLastLogin(user, sessionData);
             return new LoginResult(sessionData, true);
+        }
+
+        private void UpdateLastLogin(User user, SessionData sessionData)
+        {
+            user.LastLogin = DateTime.Now;
+            this.userRepository.Save(user, sessionData); 
+            this.unitOfWork.Commit();
         }
     }
 }

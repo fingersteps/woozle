@@ -35,6 +35,7 @@ namespace Woozle.Model
         private byte[] changecounter;
         private string firstname;
         private string lastname;
+        private string email;
     
         public string Username 
     	{ 
@@ -133,6 +134,16 @@ namespace Woozle.Model
     			if(this.lastname != value)
     			{
     				this.lastname = value;
+    			}
+    		}
+    	}
+        public string Email 
+    	{ 
+    		get { return this.email;} 
+    		set { 
+    			if(this.email != value)
+    			{
+    				this.email = value;
     			}
     		}
     	}

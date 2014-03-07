@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle", "Woozle\Woozle.csproj", "{6F8BE8CE-8E99-4914-9482-37369345435C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Init", "01_Init", "{52C71382-206E-4807-929E-2E63AECDB68C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Database", "01_Database", "{52C71382-206E-4807-929E-2E63AECDB68C}"
 	ProjectSection(SolutionItems) = preProject
-		..\init\01_Create_Database.sql = ..\init\01_Create_Database.sql
-		..\init\02_Create_Mandator.sql = ..\init\02_Create_Mandator.sql
-		..\init\03_Create_User.sql = ..\init\03_Create_User.sql
+		..\database\init\01_Create_Database.sql = ..\database\init\01_Create_Database.sql
+		..\database\init\02_Create_Mandator.sql = ..\database\init\02_Create_Mandator.sql
+		..\database\init\03_Create_User.sql = ..\database\init\03_Create_User.sql
+		..\database\init\04_Create_Module.sql = ..\database\init\04_Create_Module.sql
+		..\database\init\05_Create_Permissions.sql = ..\database\init\05_Create_Permissions.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Source", "02_Source", "{2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}"
@@ -30,6 +32,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_TestProjects", "03_TestProjects", "{ADE80369-82C2-4E2B-9C27-887A48CDB564}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woozle.Web.TestApplication", "Woozle.Web.TestApplication\Woozle.Web.TestApplication.csproj", "{57543839-AEF7-49FE-B384-36FC41AA7CF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Updates", "Updates", "{EC4B4B78-9839-4774-8F6C-0724FB2C78EA}"
+	ProjectSection(SolutionItems) = preProject
+		..\database\update\Woozle_001.sql = ..\database\update\Woozle_001.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +83,7 @@ Global
 		{47F0F1A6-0FCC-453C-BACB-DDBCA6DC605F} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
 		{E574246F-FAB2-4BD5-9005-B6D2D28053FC} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
 		{20F0D12E-DE39-4FE3-9B9E-19084C4AD896} = {2E9D3579-EA7F-4361-BF3B-5E9D5E2909F3}
+		{EC4B4B78-9839-4774-8F6C-0724FB2C78EA} = {52C71382-206E-4807-929E-2E63AECDB68C}
 		{57543839-AEF7-49FE-B384-36FC41AA7CF9} = {ADE80369-82C2-4E2B-9C27-887A48CDB564}
 	EndGlobalSection
 EndGlobal

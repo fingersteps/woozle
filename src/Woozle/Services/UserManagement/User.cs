@@ -29,6 +29,7 @@ namespace Woozle.Services.UserManagement
         public byte[] ChangeCounter { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Email { get; set; }
     
         public Language Language { get; set; }
         public Status Status { get; set; }

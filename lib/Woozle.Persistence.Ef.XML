@@ -72,319 +72,319 @@
             <param name="lazyIncludeStrings"></param>
             <returns></returns>
         </member>
-        <member name="T:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b">
+        <member name="T:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1">
             <summary>
             Implements a mapping view cache.
             </summary>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView(System.Data.Entity.Core.Metadata.Edm.EntitySetBase)">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView(System.Data.Entity.Core.Metadata.Edm.EntitySetBase)">
             <summary>
             Gets a view corresponding to the specified extent.
             </summary>
             <param name="extent">The extent.</param>
             <returns>The mapping view, or null if the extent is not associated with a mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView0">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView0">
             <summary>
             Gets the view for WoozleModelStoreContainer.City.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView1">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView1">
             <summary>
             Gets the view for WoozleModelStoreContainer.Country.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView2">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView2">
             <summary>
             Gets the view for WoozleModelStoreContainer.Function.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView3">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView3">
             <summary>
             Gets the view for WoozleModelStoreContainer.FunctionPermission.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView4">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView4">
             <summary>
             Gets the view for WoozleModelStoreContainer.Language.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView5">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView5">
             <summary>
             Gets the view for WoozleModelStoreContainer.Mandator.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView6">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView6">
             <summary>
             Gets the view for WoozleModelStoreContainer.Module.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView7">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView7">
             <summary>
             Gets the view for WoozleModelStoreContainer.ModuleGroup.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView8">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView8">
             <summary>
             Gets the view for WoozleModelStoreContainer.Permission.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView9">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView9">
             <summary>
             Gets the view for WoozleModelStoreContainer.Role.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView10">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView10">
             <summary>
             Gets the view for WoozleModelStoreContainer.Status.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView11">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView11">
             <summary>
             Gets the view for WoozleModelStoreContainer.StatusField.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView12">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView12">
             <summary>
             Gets the view for WoozleModelStoreContainer.Translation.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView13">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView13">
             <summary>
             Gets the view for WoozleModelStoreContainer.TranslationItem.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView14">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView14">
             <summary>
             Gets the view for WoozleModelStoreContainer.User.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView15">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView15">
             <summary>
             Gets the view for WoozleModelStoreContainer.Location.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView16">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView16">
             <summary>
             Gets the view for WoozleModelStoreContainer.MandatorRole.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView17">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView17">
             <summary>
             Gets the view for WoozleModelStoreContainer.UserMandatorRole.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView18">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView18">
             <summary>
             Gets the view for WoozleModelStoreContainer.Person.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView19">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView19">
             <summary>
             Gets the view for WoozleModelStoreContainer.Settings.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView20">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView20">
             <summary>
             Gets the view for WoozleModelStoreContainer.MandatorGroup.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView21">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView21">
             <summary>
             Gets the view for WoozleModelStoreContainer.ExternalSystem.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView22">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView22">
             <summary>
             Gets the view for WoozleModelStoreContainer.ExternalSystemType.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView23">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView23">
             <summary>
             Gets the view for WoozleModelStoreContainer.MandatorModules.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView24">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView24">
             <summary>
             Gets the view for WoozleModelStoreContainer.MandatorRoleFunctionPermission.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView25">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView25">
             <summary>
             Gets the view for EfWoozleEntity.Cities.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView26">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView26">
             <summary>
             Gets the view for EfWoozleEntity.Countries.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView27">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView27">
             <summary>
             Gets the view for EfWoozleEntity.Functions.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView28">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView28">
             <summary>
             Gets the view for EfWoozleEntity.FunctionPermissions.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView29">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView29">
             <summary>
             Gets the view for EfWoozleEntity.Languages.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView30">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView30">
             <summary>
             Gets the view for EfWoozleEntity.Mandators.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView31">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView31">
             <summary>
             Gets the view for EfWoozleEntity.Modules.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView32">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView32">
             <summary>
             Gets the view for EfWoozleEntity.ModuleGroups.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView33">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView33">
             <summary>
             Gets the view for EfWoozleEntity.Permissions.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView34">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView34">
             <summary>
             Gets the view for EfWoozleEntity.Roles.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView35">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView35">
             <summary>
             Gets the view for EfWoozleEntity.Status.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView36">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView36">
             <summary>
             Gets the view for EfWoozleEntity.StatusFields.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView37">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView37">
             <summary>
             Gets the view for EfWoozleEntity.Translations.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView38">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView38">
             <summary>
             Gets the view for EfWoozleEntity.TranslationItems.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView39">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView39">
             <summary>
             Gets the view for EfWoozleEntity.Users.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView40">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView40">
             <summary>
             Gets the view for EfWoozleEntity.Locations.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView41">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView41">
             <summary>
             Gets the view for EfWoozleEntity.MandatorRoles.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView42">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView42">
             <summary>
             Gets the view for EfWoozleEntity.UserMandatorRoles.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView43">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView43">
             <summary>
             Gets the view for EfWoozleEntity.People.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView44">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView44">
             <summary>
             Gets the view for EfWoozleEntity.Settings.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView45">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView45">
             <summary>
             Gets the view for EfWoozleEntity.MandatorGroups.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView46">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView46">
             <summary>
             Gets the view for EfWoozleEntity.ExternalSystems.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView47">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView47">
             <summary>
             Gets the view for EfWoozleEntity.ExternalSystemTypes.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView48">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView48">
             <summary>
             Gets the view for EfWoozleEntity.MandatorModules.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.GetView49">
+        <member name="M:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.GetView49">
             <summary>
             Gets the view for EfWoozleEntity.MandatorRoleFunctionPermission.
             </summary>
             <returns>The mapping view.</returns>
         </member>
-        <member name="P:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7f69f511523d0fcf59e0ddff632d1352a05c23b7b8844ec068d6157eee6a377b.MappingHashValue">
+        <member name="P:Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1.MappingHashValue">
             <summary>
             Gets a hash value computed over the mapping closure.
             </summary>
