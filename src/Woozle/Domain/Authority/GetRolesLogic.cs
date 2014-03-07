@@ -64,6 +64,7 @@ namespace Woozle.Domain.Authority
         /// </summary>
         public List<string> GetUserRoles(SessionData sessionData)
         {
+
             var userMandatorRoles = userMandatorRoleRepository.CreateQueryable(sessionData);
 
             var query = from userMandatorRole in userMandatorRoles

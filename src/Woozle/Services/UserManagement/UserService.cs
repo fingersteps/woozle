@@ -3,7 +3,6 @@ using AutoMapper;
 using ServiceStack.ServiceInterface;
 using Woozle.Domain.UserManagement;
 using Woozle.Model.UserSearch;
-using Woozle.Model.Validation.Creation;
 using Woozle.Services.Authentication;
 using Woozle.Services.Authority;
 
