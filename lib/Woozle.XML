@@ -136,6 +136,11 @@
             Register all dependencies for running Woozle (Core)
             </summary>
         </member>
+        <member name="M:Woozle.Dependencies.WoozlePlugin.ConfigureDefaultMandator(Funq.Container)">
+            <summary>
+            The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
+            </summary>
+        </member>
         <member name="F:Woozle.Domain.AbstractLogic.log">
             <summary>
             The logger.
@@ -545,11 +550,14 @@
             </summary>
             <param name="container"></param>
         </member>
+<<<<<<< HEAD
         <member name="M:Woozle.Host.WoozleHost.ConfigureDefaultMandator(Funq.Container)">
             <summary>
             The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
             </summary>
         </member>
+=======
+>>>>>>> 175004d26eaf96f9b787dbb1aa63fd008556f68f
         <member name="T:Woozle.Services.AbstractService">
             <summary>
             Base Service

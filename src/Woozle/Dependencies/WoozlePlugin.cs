@@ -1,5 +1,4 @@
 ﻿using Funq;
-using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
@@ -11,7 +10,6 @@ using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
-using Woozle.Services.Authentication;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies
@@ -21,6 +19,13 @@ namespace Woozle.Dependencies
     /// </summary>
     public class WoozlePlugin : IPlugin
     {
+        private readonly string defaultMandatorName;
+
+        public WoozlePlugin(string defaultMandatorName)
+        {
+            this.defaultMandatorName = defaultMandatorName;
+        }
+
         public void Register(IAppHost appHost)
         {
             var container = appHost.Config.ServiceManager.Container;
@@ -38,6 +43,21 @@ namespace Woozle.Dependencies
             container.RegisterAs<WoozleSettings, IWoozleSettings>()
                 .ReusedWithin(ReuseScope.Container);
             container.RegisterAs<StatusFieldLogic, IStatusFieldLogic>();
+
+            ConfigureDefaultMandator(container);
+        }
+
+
+        /// <summary>
+        /// The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
+        /// </summary>
+        private void ConfigureDefaultMandator(Container container)
+        {
+            if (!string.IsNullOrEmpty(defaultMandatorName))
+            {
+                var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
+                container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
+            }
         }
     }
 }
