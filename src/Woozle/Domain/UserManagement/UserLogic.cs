@@ -72,7 +72,7 @@ namespace Woozle.Domain.UserManagement
                 selectedUser.Username = user.Username;
                 selectedUser.FirstName = user.FirstName;
                 selectedUser.FlagActiveStatusId = user.FlagActiveStatusId;
-                selectedUser.Language = user.Language;
+                selectedUser.LanguageId = user.LanguageId;
                 selectedUser.LastName = user.LastName;
                 selectedUser.PersistanceState = PState.Modified;
                 user = selectedUser;
