@@ -57,8 +57,7 @@ namespace Woozle.Host
             Plugins.Add(new SessionFeature());
             Plugins.Add(CreateAuthFeature(container));
             Plugins.Add(new WoozleEntityFrameworkPlugin());
-            Plugins.Add(new WoozlePlugin());
-            ConfigureDefaultMandator(container);
+            Plugins.Add(new WoozlePlugin(defaultMandatorName));
         }
 
         /// <summary>
@@ -80,18 +79,6 @@ namespace Woozle.Host
                 HtmlRedirect = string.Empty
             };
             return authFeature;
-        }
-
-        /// <summary>
-        /// The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
-        /// </summary>
-        private void ConfigureDefaultMandator(Container container)
-        {
-            if (!string.IsNullOrEmpty(defaultMandatorName))
-            {
-                var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
-                container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
-            }
         }
     }
 }
