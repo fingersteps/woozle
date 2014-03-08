@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using ServiceStack.Common.Extensions;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Model.UserSearch;
-using Woozle.Model.Validation;
-using Woozle.Model.Validation.Creation;
 using Woozle.Persistence;
 
 namespace Woozle.Domain.UserManagement
