@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ServiceStack.Common.Extensions;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
@@ -74,6 +75,7 @@ namespace Woozle.Domain.UserManagement
                 selectedUser.FlagActiveStatusId = user.FlagActiveStatusId;
                 selectedUser.LanguageId = user.LanguageId;
                 selectedUser.LastName = user.LastName;
+                selectedUser.Email = user.Email;
                 selectedUser.PersistanceState = PState.Modified;
                 user = selectedUser;
             }
@@ -91,7 +93,8 @@ namespace Woozle.Domain.UserManagement
                 throw new NoPermissionException(Constants.LogicalIdSearchUserV1, Permissions.PERMISSION_DELETE);
             }
 
-            var user = this.repository.FindById(id);
+            var user = this.repository.LoadUser(id, sessionData);
+            user.UserMandatorRoles.ForEach(n => n.PersistanceState = PState.Deleted);
             this.repository.Delete(user, sessionData);
             this.repository.UnitOfWork.Commit();
         }
