@@ -180,9 +180,11 @@
     <Compile Include="Services\Modules\ModuleGroup.cs" />
     <Compile Include="Services\Modules\Modules.cs" />
     <Compile Include="Services\Modules\Permission.cs" />
+    <Compile Include="Services\UserManagement\CheckForExistingUserService.cs" />
     <Compile Include="Services\UserManagement\Person.cs" />
     <Compile Include="Services\Settings\SettingDto.cs" />
     <Compile Include="Services\UserManagement\User.cs" />
+    <Compile Include="Services\UserManagement\UserAlreadyExists.cs" />
     <Compile Include="Services\UserManagement\UserMandatorRole.cs" />
     <Compile Include="Services\UserManagement\Users.cs" />
     <Compile Include="Services\UserManagement\UsersForDropDownDto.cs" />

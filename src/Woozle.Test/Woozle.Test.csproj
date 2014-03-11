@@ -104,6 +104,7 @@
     <Compile Include="Services\Modules\ModuleServiceTest.cs" />
     <Compile Include="Services\SessionTestbase.cs" />
     <Compile Include="Services\Settings\SettingServiceTest.cs" />
+    <Compile Include="Services\UserManagement\CheckForExistingUserServiceTest.cs" />
     <Compile Include="Services\UserManagement\UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
