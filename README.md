@@ -32,9 +32,11 @@ See [Woozle Wiki](https://github.com/fingersteps/woozle/wiki)
 ###Step 1: Create the database
 Create a new database for your application which contains all Woozle tables needed. To initialize all database related Woozle stuff, use the following scripts:
 
-* [Create Woozle tables](https://github.com/fingersteps/woozle/blob/master/init/01_Create_Database.sql)
-* [Create sample mandator](https://github.com/fingersteps/woozle/blob/master/init/02_Create_Mandator.sql)
-* [Create sample user](https://github.com/fingersteps/woozle/blob/master/init/03_Create_User.sql)
+* [Create Woozle tables](https://github.com/fingersteps/woozle/blob/master/database/init/01_Create_Database.sql)
+* [Create sample mandator](https://github.com/fingersteps/woozle/blob/master/database/init/02_Create_Mandator.sql)
+* [Create sample user](https://github.com/fingersteps/woozle/blob/master/init/database/03_Create_User.sql)
+* [Create sample module] (https://github.com/fingersteps/woozle/blob/master/database/init/04_Create_Module.sql)
+* [Create sample permissions] (https://github.com/fingersteps/woozle/blob/master/database/init/05_Create_Permissions.sql)
 
 ###Step 2: Create an appliation
 Create an empty ASP.NET web application in visual studio.
