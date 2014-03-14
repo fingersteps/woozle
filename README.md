@@ -37,6 +37,7 @@ Create a new database for your application which contains all Woozle tables need
 * [Create sample user](https://github.com/fingersteps/woozle/blob/master/init/database/03_Create_User.sql)
 * [Create sample module] (https://github.com/fingersteps/woozle/blob/master/database/init/04_Create_Module.sql)
 * [Create sample permissions] (https://github.com/fingersteps/woozle/blob/master/database/init/05_Create_Permissions.sql)
+* Run Database-Updates (https://github.com/fingersteps/woozle/tree/master/database/update)
 
 ###Step 2: Create an appliation
 Create an empty ASP.NET web application in visual studio.
