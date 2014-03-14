@@ -12,7 +12,7 @@ Woozle is a .NET business application framework which will increase your develop
 * [Repository / Unit of Work generator](https://github.com/fingersteps/woozle.generators)
 
 
-[![Build status](https://ci.appveyor.com/api/projects/status?id=b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/woozles-woozle)
+[![Build status](https://ci.appveyor.com/api/projects/status/b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/paroos/woozles-woozle)
 
 ##Demo
 Check out woozle in action here: http://woozle-demo.azurewebsites.net
