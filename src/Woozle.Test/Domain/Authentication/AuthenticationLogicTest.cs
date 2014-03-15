@@ -85,7 +85,9 @@ namespace Woozle.Test.Domain.Authentication
             {
                 Id = 0,
                 FlagActive = true,
-                Username = "sha"
+                Username = "sha",
+                PasswordHash = "Hash",
+                PasswordSalt = "Salt"
             };
 
             var loginRequest = new LoginRequest
@@ -127,6 +129,38 @@ namespace Woozle.Test.Domain.Authentication
                 Username = "wrongUsername",
                 Password = "wrongPW"
             };
+
+            Assert.Throws<InvalidLoginException>(() =>
+            {
+                authLogic.Login(loginRequest);
+            });
+        }
+
+        [Fact]
+        public void LoginWitNoPersistedHash()
+        {
+            var loginRequest = new LoginRequest
+            {
+                Mandator = new Model.Mandator { Id = 0, Name = "Test" },
+                Username = "sha",
+                Password = "wrongPW"
+            };
+
+            var foundUser = new User
+            {
+                Id = 0,
+                FlagActive = true,
+                Username = "sha",
+                PasswordHash = null,
+                PasswordSalt = null
+            };
+
+            userRepositoryMock.Setup(n => n.FindForLogin(loginRequest.Username))
+                .Returns(new UserSearchForLoginResult
+                {
+                    Mandators = null,
+                    User = foundUser
+                });
 
             Assert.Throws<InvalidLoginException>(() =>
             {

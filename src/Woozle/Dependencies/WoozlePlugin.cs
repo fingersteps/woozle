@@ -31,10 +31,10 @@ namespace Woozle.Dependencies
         public void Register(IAppHost appHost)
         {
             var container = appHost.Config.ServiceManager.Container;
+            container.Register<IHashProvider>(c => new SaltedHash());
             container.RegisterAs<PermissionsLogic, IPermissionProvider>();
             container.RegisterAs<PermissionManager, IPermissionManager>();
             container.RegisterAs<AuthenticationLogic, IAuthenticationLogic>();
-            container.RegisterAs<SaltedHash, IHashProvider>();
             container.RegisterAs<ModuleLogic, IModuleLogic>();
             container.RegisterAs<UserLogic, IUserLogic>();
             container.RegisterAs<LocationLogic, ILocationLogic>();

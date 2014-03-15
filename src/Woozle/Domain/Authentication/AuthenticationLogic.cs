@@ -61,8 +61,13 @@ namespace Woozle.Domain.Authentication
 
         private void ValidatePassword(User user, string password)
         {
-            bool passwordIsCorrect = passwordHasher.VerifyHashString(password, user.PasswordHash, user.PasswordSalt);
-            if (!passwordIsCorrect)
+            bool validPassword = false;
+            if (user.PasswordHash != null && user.PasswordSalt != null)
+            {
+                validPassword = passwordHasher.VerifyHashString(password, user.PasswordHash, user.PasswordSalt);
+            }
+            
+            if (!validPassword)
             {
                 throw new InvalidLoginException("Invalid login.");
             }
