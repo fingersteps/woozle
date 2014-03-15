@@ -12,7 +12,7 @@ Woozle is a .NET business application framework which will increase your develop
 * [Repository / Unit of Work generator](https://github.com/fingersteps/woozle.generators)
 
 
-[![Build status](https://ci.appveyor.com/api/projects/status?id=b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/woozles-woozle)
+[![Build status](https://ci.appveyor.com/api/projects/status/b0hyo0w1s3movd6s)](https://ci.appveyor.com/project/paroos/woozles-woozle)
 
 ##Demo
 Check out woozle in action here: http://woozle-demo.azurewebsites.net
@@ -32,9 +32,12 @@ See [Woozle Wiki](https://github.com/fingersteps/woozle/wiki)
 ###Step 1: Create the database
 Create a new database for your application which contains all Woozle tables needed. To initialize all database related Woozle stuff, use the following scripts:
 
-* [Create Woozle tables](https://github.com/fingersteps/woozle/blob/master/init/01_Create_Database.sql)
-* [Create sample mandator](https://github.com/fingersteps/woozle/blob/master/init/02_Create_Mandator.sql)
-* [Create sample user](https://github.com/fingersteps/woozle/blob/master/init/03_Create_User.sql)
+* [Create Woozle tables](https://github.com/fingersteps/woozle/blob/master/database/init/01_Create_Database.sql)
+* [Create sample mandator](https://github.com/fingersteps/woozle/blob/master/database/init/02_Create_Mandator.sql)
+* [Create sample user](https://github.com/fingersteps/woozle/blob/master/init/database/03_Create_User.sql)
+* [Create sample module] (https://github.com/fingersteps/woozle/blob/master/database/init/04_Create_Module.sql)
+* [Create sample permissions] (https://github.com/fingersteps/woozle/blob/master/database/init/05_Create_Permissions.sql)
+* [Run Database-Updates] (https://github.com/fingersteps/woozle/tree/master/database/update)
 
 ###Step 2: Create an appliation
 Create an empty ASP.NET web application in visual studio.
