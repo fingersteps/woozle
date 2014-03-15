@@ -1,4 +1,5 @@
 ﻿using Funq;
+using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
@@ -33,6 +34,7 @@ namespace Woozle.Dependencies
             container.RegisterAs<PermissionsLogic, IPermissionProvider>();
             container.RegisterAs<PermissionManager, IPermissionManager>();
             container.RegisterAs<AuthenticationLogic, IAuthenticationLogic>();
+            container.RegisterAs<SaltedHash, IHashProvider>();
             container.RegisterAs<ModuleLogic, IModuleLogic>();
             container.RegisterAs<UserLogic, IUserLogic>();
             container.RegisterAs<LocationLogic, ILocationLogic>();

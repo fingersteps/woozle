@@ -47,7 +47,7 @@ namespace Woozle.Persistence.Ef.Repository
             return result;
         }
 
-        public UserSearchForLoginResult FindForLogin(string username, string password, SessionData sessionData)
+        public UserSearchForLoginResult FindForLogin(string username)
         {
             try
             {
@@ -55,11 +55,10 @@ namespace Woozle.Persistence.Ef.Repository
                 stopwatch.Start();
 
                 var selection =
-                    from u in Context.Get<User>(sessionData)
+                    from u in Context.Get<User>(null)
                     from userMandatorRole in u.UserMandatorRoles
-                    join language in Context.Get<Language>(sessionData) on u.LanguageId equals language.Id
+                    join language in Context.Get<Language>(null) on u.LanguageId equals language.Id
                     where u.Username == username &&
-                          u.Password == password &&
                           u.Status.Value == StatusConstants.ACTIVE
                     select new
                         {

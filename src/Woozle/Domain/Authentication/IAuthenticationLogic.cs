@@ -23,8 +23,7 @@ namespace Woozle.Domain.Authentication
         /// Gets the login user.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <param name="password">The password.</param>
         /// <returns>The <see cref="UserSearchForLoginResult"/></returns>
-        UserSearchForLoginResult GetLoginUser(string username, string password);
+        UserSearchForLoginResult GetLoginUser(string username);
     }
 }

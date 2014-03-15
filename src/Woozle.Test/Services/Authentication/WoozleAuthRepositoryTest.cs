@@ -21,6 +21,7 @@ namespace Woozle.Test.Services.Authentication
         private Mock<IWoozleSettings> woozleSettingsMock;
         private Mock<IRegistrationSettings> registrationSettingsMock;
         private Mock<IGetRolesLogic> getRolesLogicMock;
+        private Mock<IHashProvider> passwordHasherMock;
         private WoozleAuthRepository authRepository;
 
         public WoozleAuthRepositoryTest()
@@ -29,9 +30,10 @@ namespace Woozle.Test.Services.Authentication
             woozleSettingsMock = new Mock<IWoozleSettings>();
             registrationSettingsMock = new Mock<IRegistrationSettings>();
             getRolesLogicMock = new Mock<IGetRolesLogic>();
+            passwordHasherMock = new Mock<IHashProvider>();
 
             authRepository = new WoozleAuthRepository(userLogicMock.Object, woozleSettingsMock.Object,
-                registrationSettingsMock.Object, getRolesLogicMock.Object);
+                registrationSettingsMock.Object, getRolesLogicMock.Object, passwordHasherMock.Object);
 
             MappingConfiguration.Configure();
         }
@@ -65,9 +67,16 @@ namespace Woozle.Test.Services.Authentication
                 FirstName = "firstname",
                 LastName = "lastname",
             };
-            var registeredUser = authRepository.CreateUserAuth(user, "password");
+
+            string password = "MyPassword";
+            string hash = "Hash";
+            string salt = "Salt";
+            passwordHasherMock.Setup(n => n.GetHashAndSaltString(password, out hash, out salt));
+
+            var registeredUser = authRepository.CreateUserAuth(user, password);
             
-            Assert.Equal("password", registeredUser.PasswordHash);
+            Assert.Equal(hash, registeredUser.PasswordHash);
+            Assert.Equal(salt, registeredUser.Salt);
         }
 
         [Fact]

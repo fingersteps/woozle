@@ -28,13 +28,13 @@ namespace Woozle.Services.Authentication
         private readonly IGetRolesLogic getRolesLogic;
         private readonly IHashProvider passwordHasher;
 
-        public WoozleAuthRepository(IUserLogic userLogic, IWoozleSettings woozleSettings, IRegistrationSettings registrationSettings, IGetRolesLogic getRolesLogic)
+        public WoozleAuthRepository(IUserLogic userLogic, IWoozleSettings woozleSettings, IRegistrationSettings registrationSettings, IGetRolesLogic getRolesLogic, IHashProvider passwordHasher)
         {
             this.userLogic = userLogic;
             this.woozleSettings = woozleSettings;
             this.registrationSettings = registrationSettings;
             this.getRolesLogic = getRolesLogic;
-            this.passwordHasher = new SaltedHash();
+            this.passwordHasher = passwordHasher;
         }
 
         private void ValidateNewUser(UserAuth newUser, string password)
@@ -58,17 +58,13 @@ namespace Woozle.Services.Authentication
 
             AssertNoExistingUser(newUser);
 
-            //TODO: Check password hashing
-            //string salt;
-            // string hash;
-            // passwordHasher.GetHashAndSaltString(password, out hash, out salt);
+            string salt;
+            string hash;
+            passwordHasher.GetHashAndSaltString(password, out hash, out salt);
 
-            //var digestHelper = new DigestAuthFunctions();
-            //updatedUser.DigestHa1Hash = digestHelper.CreateHa1(updatedUser.UserName, DigestAuthProvider.Realm, password);
-            //updatedUser.PasswordHash = hash;
-            //updatedUser.Salt = salt;
+            newUser.PasswordHash = hash;
+            newUser.Salt = salt;
 
-            newUser.PasswordHash = password;
             newUser.CreatedDate = DateTime.UtcNow;
             newUser.ModifiedDate = newUser.CreatedDate;
 

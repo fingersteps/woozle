@@ -132,13 +132,11 @@
             <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns>A list of <see cref="T:Woozle.Model.UserSearch.UserSearchResult"/></returns>
         </member>
-        <member name="M:Woozle.Persistence.IUserRepository.FindForLogin(System.String,System.String,Woozle.Model.SessionHandling.SessionData)">
+        <member name="M:Woozle.Persistence.IUserRepository.FindForLogin(System.String)">
             <summary>
             Gets the user object and its assigned mandator(s)
             </summary>
             <param name="username">The username</param>
-            <param name="password">The password</param>
-            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
             <returns></returns>
         </member>
         <member name="M:Woozle.Persistence.IUserRepository.LoadUser(System.Int32,Woozle.Model.SessionHandling.SessionData)">

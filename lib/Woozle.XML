@@ -166,12 +166,11 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Woozle.Domain.Authentication.IAuthenticationLogic.GetLoginUser(System.String,System.String)">
+        <member name="M:Woozle.Domain.Authentication.IAuthenticationLogic.GetLoginUser(System.String)">
             <summary>
             Gets the login user.
             </summary>
             <param name="username">The username.</param>
-            <param name="password">The password.</param>
             <returns>The <see cref="T:Woozle.Model.UserSearch.UserSearchForLoginResult"/></returns>
         </member>
         <member name="F:Woozle.Domain.Authentication.AuthenticationLogic.userRepository">
@@ -184,12 +183,13 @@
             <see cref="T:Woozle.Persistence.IUnitOfWork"/>
             </summary>
         </member>
-        <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.#ctor(Woozle.Persistence.IUserRepository,Woozle.Persistence.Ef.IEfUnitOfWork)">
+        <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.#ctor(Woozle.Persistence.IUserRepository,Woozle.Persistence.Ef.IEfUnitOfWork,ServiceStack.ServiceInterface.Auth.IHashProvider)">
             <summary>
             ctor.
             </summary>
             <param name="userRepository"><see cref="T:Woozle.Persistence.IUserRepository"/></param>
             <param name="unitOfWork"><see cref="T:Woozle.Persistence.IUnitOfWork"/></param>
+            <param name="passwordHasher"></param>
         </member>
         <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.Login(Woozle.Model.Authentication.LoginRequest)">
             <summary>
@@ -198,12 +198,11 @@
             <param name="loginRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.GetLoginUser(System.String,System.String)">
+        <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.GetLoginUser(System.String)">
             <summary>
             Gets the login user.
             </summary>
             <param name="username">The username.</param>
-            <param name="password">The password.</param>
             <returns>The <see cref="T:Woozle.Model.UserSearch.UserSearchForLoginResult"/></returns>
         </member>
         <member name="T:Woozle.Domain.Authentication.InvalidLoginException">

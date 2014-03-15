@@ -34,9 +34,7 @@ namespace Woozle.Services.Authentication
             var session = (Session)base.Request.GetSession();
 
             
-            var loginUser = this.authenticationLogic.GetLoginUser(
-                                                  session.SessionData.User.Username,
-                                                  session.SessionData.User.Password);
+            var loginUser = this.authenticationLogic.GetLoginUser(session.SessionData.User.Username);
 
             return Mapper.Map<IEnumerable<Model.Mandator>, List<Mandator.Mandator>>(loginUser.Mandators);
         }

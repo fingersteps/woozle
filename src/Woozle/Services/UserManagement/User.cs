@@ -20,7 +20,6 @@ namespace Woozle.Services.UserManagement
         }
     
         public string Username { get; set; }
-        public string Password { get; set; }
         public bool FlagActive { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
         public Nullable<System.DateTime> LastPasswordChange { get; set; }

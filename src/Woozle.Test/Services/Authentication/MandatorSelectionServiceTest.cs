@@ -54,7 +54,7 @@ namespace Woozle.Test.Services.Authentication
                                              new Model.Mandator {Name = NameMandator2}
                                          };
 
-            this.mockedAuthenticationLogic.Setup(n => n.GetLoginUser(Username, Password))
+            this.mockedAuthenticationLogic.Setup(n => n.GetLoginUser(Username))
                                           .Returns(new UserSearchForLoginResult
                                                          {
                                                              Mandators = suggestedMandators

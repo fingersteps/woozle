@@ -229,7 +229,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
           <Property Name="FlagActive" Type="bit" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
           <Property Name="LastPasswordChange" Type="date" />
@@ -239,6 +239,8 @@
           <Property Name="FirstName" Type="varchar" MaxLength="20" />
           <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="100" />
+          <Property Name="PasswordSalt" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserMandatorRole">
           <Key>
@@ -272,18 +274,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MandatorR__MandI__1CBC4616">
-          <End Role="Mandator" Type="Self.Mandator" Multiplicity="1" />
-          <End Role="MandatorRole" Type="Self.MandatorRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mandator">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MandatorRole">
-              <PropertyRef Name="MandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__MandatorR__MandI__4AB81AF0">
           <End Role="Mandator" Type="Self.Mandator" Multiplicity="1" />
           <End Role="MandatorRole" Type="Self.MandatorRole" Multiplicity="*" />
@@ -293,18 +283,6 @@
             </Principal>
             <Dependent Role="MandatorRole">
               <PropertyRef Name="MandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MandatorR__RoleI__1DB06A4F">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="MandatorRole" Type="Self.MandatorRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MandatorRole">
-              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -678,16 +656,8 @@
             <End Role="Permission" EntitySet="Permission" />
             <End Role="FunctionPermission" EntitySet="FunctionPermission" />
           </AssociationSet>
-          <AssociationSet Name="FK__MandatorR__MandI__1CBC4616" Association="Self.FK__MandatorR__MandI__1CBC4616">
-            <End Role="Mandator" EntitySet="Mandator" />
-            <End Role="MandatorRole" EntitySet="MandatorRole" />
-          </AssociationSet>
           <AssociationSet Name="FK__MandatorR__MandI__4AB81AF0" Association="Self.FK__MandatorR__MandI__4AB81AF0">
             <End Role="Mandator" EntitySet="Mandator" />
-            <End Role="MandatorRole" EntitySet="MandatorRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MandatorR__RoleI__1DB06A4F" Association="Self.FK__MandatorR__RoleI__1DB06A4F">
-            <End Role="Role" EntitySet="Role" />
             <End Role="MandatorRole" EntitySet="MandatorRole" />
           </AssociationSet>
           <AssociationSet Name="FK__MandatorR__RoleI__4BAC3F29" Association="Self.FK__MandatorR__RoleI__4BAC3F29">
@@ -822,7 +792,6 @@
           <EntitySet Name="StatusFields" EntityType="WoozleModel.StatusField" />
           <EntitySet Name="Translations" EntityType="WoozleModel.Translation" />
           <EntitySet Name="TranslationItems" EntityType="WoozleModel.TranslationItem" />
-          <EntitySet Name="Users" EntityType="WoozleModel.User" />
           <AssociationSet Name="FK_Country_Translation" Association="WoozleModel.FK_Country_Translation">
             <End Role="Translation" EntitySet="Translations" />
             <End Role="Country" EntitySet="Countries" />
@@ -847,10 +816,6 @@
             <End Role="Language" EntitySet="Languages" />
             <End Role="TranslationItem" EntitySet="TranslationItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Language" Association="WoozleModel.FK_User_Language">
-            <End Role="Language" EntitySet="Languages" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_Module_ModuleGroup" Association="WoozleModel.FK_Module_ModuleGroup">
             <End Role="ModuleGroup" EntitySet="ModuleGroups" />
             <End Role="Module" EntitySet="Modules" />
@@ -866,10 +831,6 @@
           <AssociationSet Name="FK_Status_Translation" Association="WoozleModel.FK_Status_Translation">
             <End Role="Translation" EntitySet="Translations" />
             <End Role="Status" EntitySet="Status" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Status" Association="WoozleModel.FK_User_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_TranslationItem_Translation" Association="WoozleModel.FK_TranslationItem_Translation">
             <End Role="Translation" EntitySet="Translations" />
@@ -904,10 +865,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_UserMandatorRole_MandatorRole" Association="WoozleModel.FK_UserMandatorRole_MandatorRole">
             <End Role="MandatorRole" EntitySet="MandatorRoles" />
-            <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserMandatorRole_User" Association="WoozleModel.FK_UserMandatorRole_User">
-            <End Role="User" EntitySet="Users" />
             <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
           </AssociationSet>
           <AssociationSet Name="MandatorRoleFunctionPermission" Association="WoozleModel.MandatorRoleFunctionPermission">
@@ -946,6 +903,19 @@
           <AssociationSet Name="FK_ExternalService_Mandator" Association="WoozleModel.FK_ExternalService_Mandator">
             <End Role="Mandator" EntitySet="Mandators" />
             <End Role="ExternalSystem" EntitySet="ExternalSystems" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="WoozleModel.User" />
+          <AssociationSet Name="FK_User_Language" Association="WoozleModel.FK_User_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="WoozleModel.FK_User_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMandatorRole_User" Association="WoozleModel.FK_UserMandatorRole_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="City">
@@ -1086,6 +1056,7 @@
           <NavigationProperty Name="StatusField" Relationship="WoozleModel.FK_Status_StatusField" FromRole="Status" ToRole="StatusField" />
           <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Status_Translation" FromRole="Status" ToRole="Translation" />
           <NavigationProperty Name="People" Relationship="WoozleModel.FK_Person_Status_Salutation" FromRole="Status" ToRole="Person" />
+          <NavigationProperty Name="Users" Relationship="WoozleModel.FK_User_Status" FromRole="Status" ToRole="User" />
           </EntityType>
         <EntityType Name="StatusField">
           <Key>
@@ -1117,26 +1088,6 @@
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Language" Relationship="WoozleModel.FK_TranslationItem_Language" FromRole="TranslationItem" ToRole="Language" />
           <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_TranslationItem_Translation" FromRole="TranslationItem" ToRole="Translation" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Username" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="FlagActive" Nullable="false" />
-          <Property Type="DateTime" Name="LastLogin" Precision="3" />
-          <Property Type="DateTime" Name="LastPasswordChange" Precision="0" />
-          <Property Type="Int32" Name="LanguageId" Nullable="false" />
-          <Property Type="Int32" Name="FlagActiveStatusId" Nullable="false" />
-          <Property Type="Binary" Name="ChangeCounter" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="FirstName" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LastName" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Language" Relationship="WoozleModel.FK_User_Language" FromRole="User" ToRole="Language" />
-          <NavigationProperty Name="Status" Relationship="WoozleModel.FK_User_Status" FromRole="User" ToRole="Status" />
-          <NavigationProperty Name="UserMandatorRoles" Relationship="WoozleModel.FK_UserMandatorRole_User" FromRole="User" ToRole="UserMandatorRole" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Country_Translation">
           <End Type="WoozleModel.Translation" Role="Translation" Multiplicity="1" />
@@ -1210,18 +1161,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Language">
-          <End Type="WoozleModel.Language" Role="Language" Multiplicity="1" />
-          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Language">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="LanguageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Module_ModuleGroup">
           <End Type="WoozleModel.ModuleGroup" Role="ModuleGroup" Multiplicity="1" />
           <End Type="WoozleModel.Module" Role="Module" Multiplicity="*" />
@@ -1267,18 +1206,6 @@
             </Principal>
             <Dependent Role="Status">
               <PropertyRef Name="TranslationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Status">
-          <End Type="WoozleModel.Status" Role="Status" Multiplicity="1" />
-          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="FlagActiveStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1401,18 +1328,6 @@
             </Principal>
             <Dependent Role="UserMandatorRole">
               <PropertyRef Name="MandatorRoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserMandatorRole_User">
-          <End Type="WoozleModel.User" Role="User" Multiplicity="1" />
-          <End Type="WoozleModel.UserMandatorRole" Role="UserMandatorRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserMandatorRole">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1561,6 +1476,64 @@
             </Principal>
             <Dependent Role="ExternalSystem">
               <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FlagActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="LastPasswordChange" Type="DateTime" Precision="0" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="FlagActiveStatusId" Type="Int32" Nullable="false" />
+          <Property Name="ChangeCounter" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" a:StoreGeneratedPattern="Computed" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Language" Relationship="WoozleModel.FK_User_Language" FromRole="User" ToRole="Language" />
+          <NavigationProperty Name="Status" Relationship="WoozleModel.FK_User_Status" FromRole="User" ToRole="Status" />
+          <NavigationProperty Name="UserMandatorRoles" Relationship="WoozleModel.FK_UserMandatorRole_User" FromRole="User" ToRole="UserMandatorRole" />
+        </EntityType>
+        <Association Name="FK_User_Language">
+          <End Type="WoozleModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Type="WoozleModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="WoozleModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="FlagActiveStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMandatorRole_User">
+          <End Type="WoozleModel.User" Role="User" Multiplicity="1" />
+          <End Type="WoozleModel.UserMandatorRole" Role="UserMandatorRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMandatorRole">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1716,24 +1689,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="WoozleModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
-                <ScalarProperty Name="FlagActiveStatusId" ColumnName="FlagActiveStatusId" />
-                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
-                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
-                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="MandatorModules" TypeName="WoozleModel.MandatorModules" StoreEntitySet="MandatorModules">
             <EndProperty Name="Module">
               <ScalarProperty Name="Id" ColumnName="ModuleId" />
@@ -1836,6 +1791,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WoozleModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="FlagActiveStatusId" ColumnName="FlagActiveStatusId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1874,19 +1849,16 @@
         <EntityTypeShape EntityType="WoozleModel.StatusField" Width="1.5" PointX="4" PointY="4.25" />
         <EntityTypeShape EntityType="WoozleModel.Translation" Width="1.5" PointX="0.5" PointY="10.375" />
         <EntityTypeShape EntityType="WoozleModel.TranslationItem" Width="1.5" PointX="1" PointY="3.875" />
-        <EntityTypeShape EntityType="WoozleModel.User" Width="1.5" PointX="10" PointY="0.625" />
         <AssociationConnector Association="WoozleModel.FK_Country_Translation" />
         <AssociationConnector Association="WoozleModel.FK__FunctionP__Funct__4183B671" />
         <AssociationConnector Association="WoozleModel.FK_Function_Module" />
         <AssociationConnector Association="WoozleModel.FK_Function_Translation" />
         <AssociationConnector Association="WoozleModel.FK__FunctionP__Permi__4277DAAA" />
         <AssociationConnector Association="WoozleModel.FK_TranslationItem_Language" />
-        <AssociationConnector Association="WoozleModel.FK_User_Language" />
         <AssociationConnector Association="WoozleModel.FK_Module_ModuleGroup" />
         <AssociationConnector Association="WoozleModel.FK_Module_Translation" />
         <AssociationConnector Association="WoozleModel.FK_Status_StatusField" />
         <AssociationConnector Association="WoozleModel.FK_Status_Translation" />
-        <AssociationConnector Association="WoozleModel.FK_User_Status" />
         <AssociationConnector Association="WoozleModel.FK_TranslationItem_Translation" />
         <AssociationConnector Association="WoozleModel.MandatorModules" />
         <EntityTypeShape EntityType="WoozleModel.Location" Width="1.5" PointX="11.144946550552243" PointY="7.9147383756538563" />
@@ -1898,7 +1870,6 @@
         <AssociationConnector Association="WoozleModel.FK__MandatorR__MandI__412EB0B6" />
         <AssociationConnector Association="WoozleModel.FK__MandatorR__RoleI__4222D4EF" />
         <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_MandatorRole" />
-        <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_User" />
         <AssociationConnector Association="WoozleModel.MandatorRoleFunctionPermission" />
         <EntityTypeShape EntityType="WoozleModel.Person" Width="1.5" PointX="7" PointY="5.125" />
         <AssociationConnector Association="WoozleModel.FK_Person_City" />
@@ -1912,6 +1883,10 @@
         <EntityTypeShape EntityType="WoozleModel.ExternalSystemType" Width="1.5" PointX="5.741445033690634" PointY="19.774221012263663" />
         <AssociationConnector Association="WoozleModel.FK_ExternalService_ExternalServiceType" />
         <AssociationConnector Association="WoozleModel.FK_ExternalService_Mandator" />
+        <EntityTypeShape EntityType="WoozleModel.User" Width="1.5" PointX="12.5" PointY="26.25" />
+        <AssociationConnector Association="WoozleModel.FK_User_Language" />
+        <AssociationConnector Association="WoozleModel.FK_User_Status" />
+        <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_User" />
         </Diagram>
     </Diagrams>
   </Designer>

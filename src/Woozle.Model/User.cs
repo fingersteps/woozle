@@ -36,6 +36,8 @@ namespace Woozle.Model
         private string firstname;
         private string lastname;
         private string email;
+        private string passwordhash;
+        private string passwordsalt;
     
         public string Username 
     	{ 
@@ -144,6 +146,26 @@ namespace Woozle.Model
     			if(this.email != value)
     			{
     				this.email = value;
+    			}
+    		}
+    	}
+        public string PasswordHash 
+    	{ 
+    		get { return this.passwordhash;} 
+    		set { 
+    			if(this.passwordhash != value)
+    			{
+    				this.passwordhash = value;
+    			}
+    		}
+    	}
+        public string PasswordSalt 
+    	{ 
+    		get { return this.passwordsalt;} 
+    		set { 
+    			if(this.passwordsalt != value)
+    			{
+    				this.passwordsalt = value;
     			}
     		}
     	}

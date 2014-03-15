@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Model;
 using Woozle.Model.Authentication;
 using Woozle.Model.SessionHandling;
@@ -26,17 +27,22 @@ namespace Woozle.Domain.Authentication
         /// </summary>
         private readonly IEfUnitOfWork unitOfWork;
 
+        private readonly IHashProvider passwordHasher;
+
         /// <summary>
         /// ctor.
         /// </summary>
         /// <param name="userRepository"><see cref="IUserRepository"/></param>
         /// <param name="unitOfWork"><see cref="IUnitOfWork"/></param>
+        /// <param name="passwordHasher"></param>
         public AuthenticationLogic(
             IUserRepository userRepository,
-            IEfUnitOfWork unitOfWork)
+            IEfUnitOfWork unitOfWork,
+            IHashProvider passwordHasher)
         {
             this.userRepository = userRepository;
             this.unitOfWork = unitOfWork;
+            this.passwordHasher = passwordHasher;
         }
 
         #region IAuthenticationLogic Members
@@ -48,8 +54,18 @@ namespace Woozle.Domain.Authentication
         /// <returns></returns>
         public LoginResult Login(LoginRequest loginRequest)
         {
-            var user = GetLoginUser(loginRequest.Username, loginRequest.Password);
-            return LoginUser(user, loginRequest.Mandator);
+            var userAndMandators = GetLoginUser(loginRequest.Username);
+            ValidatePassword(userAndMandators.User, loginRequest.Password);
+            return LoginUser(userAndMandators, loginRequest.Mandator);
+        }
+
+        private void ValidatePassword(User user, string password)
+        {
+            bool passwordIsCorrect = passwordHasher.VerifyHashString(password, user.PasswordHash, user.PasswordSalt);
+            if (!passwordIsCorrect)
+            {
+                throw new InvalidLoginException("Invalid login.");
+            }
         }
 
         #endregion
@@ -58,11 +74,10 @@ namespace Woozle.Domain.Authentication
         /// Gets the login user.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <param name="password">The password.</param>
         /// <returns>The <see cref="UserSearchForLoginResult"/></returns>
-        public UserSearchForLoginResult GetLoginUser(string username, string password)
+        public UserSearchForLoginResult GetLoginUser(string username)
         {
-            var result = this.userRepository.FindForLogin(username, password, null);
+            var result = this.userRepository.FindForLogin(username);
             if (result != null)
             {
                 return result;

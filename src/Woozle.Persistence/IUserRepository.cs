@@ -22,10 +22,8 @@ namespace Woozle.Persistence
         /// Gets the user object and its assigned mandator(s)
         /// </summary>
         /// <param name="username">The username</param>
-        /// <param name="password">The password</param>
-        /// <param name="sessionData"><see cref="Session"/></param>
         /// <returns></returns>
-        UserSearchForLoginResult FindForLogin(string username, string password, SessionData sessionData);
+        UserSearchForLoginResult FindForLogin(string username);
 
         /// <summary>
         /// Loads a user by the given id.

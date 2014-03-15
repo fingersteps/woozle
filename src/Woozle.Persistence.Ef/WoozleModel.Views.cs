@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(Woozle.Persistence.Ef.EfWoozleEntity),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySetsff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "54acd979a40e9b913a4f0b1e836edbe35eb1f867e2b4c97a371d6ed24ace7df1"; }
+            get { return "ff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd"; }
         }
 
         /// <summary>
@@ -117,47 +117,47 @@ namespace Edm_EntityMappingGeneratedViews
                 return GetView13();
             }
 
-            if (extentName == "WoozleModelStoreContainer.User")
+            if (extentName == "WoozleModelStoreContainer.Location")
             {
                 return GetView14();
             }
 
-            if (extentName == "WoozleModelStoreContainer.Location")
+            if (extentName == "WoozleModelStoreContainer.MandatorRole")
             {
                 return GetView15();
             }
 
-            if (extentName == "WoozleModelStoreContainer.MandatorRole")
+            if (extentName == "WoozleModelStoreContainer.UserMandatorRole")
             {
                 return GetView16();
             }
 
-            if (extentName == "WoozleModelStoreContainer.UserMandatorRole")
+            if (extentName == "WoozleModelStoreContainer.Person")
             {
                 return GetView17();
             }
 
-            if (extentName == "WoozleModelStoreContainer.Person")
+            if (extentName == "WoozleModelStoreContainer.Settings")
             {
                 return GetView18();
             }
 
-            if (extentName == "WoozleModelStoreContainer.Settings")
+            if (extentName == "WoozleModelStoreContainer.MandatorGroup")
             {
                 return GetView19();
             }
 
-            if (extentName == "WoozleModelStoreContainer.MandatorGroup")
+            if (extentName == "WoozleModelStoreContainer.ExternalSystem")
             {
                 return GetView20();
             }
 
-            if (extentName == "WoozleModelStoreContainer.ExternalSystem")
+            if (extentName == "WoozleModelStoreContainer.ExternalSystemType")
             {
                 return GetView21();
             }
 
-            if (extentName == "WoozleModelStoreContainer.ExternalSystemType")
+            if (extentName == "WoozleModelStoreContainer.User")
             {
                 return GetView22();
             }
@@ -242,47 +242,47 @@ namespace Edm_EntityMappingGeneratedViews
                 return GetView38();
             }
 
-            if (extentName == "EfWoozleEntity.Users")
+            if (extentName == "EfWoozleEntity.Locations")
             {
                 return GetView39();
             }
 
-            if (extentName == "EfWoozleEntity.Locations")
+            if (extentName == "EfWoozleEntity.MandatorRoles")
             {
                 return GetView40();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorRoles")
+            if (extentName == "EfWoozleEntity.UserMandatorRoles")
             {
                 return GetView41();
             }
 
-            if (extentName == "EfWoozleEntity.UserMandatorRoles")
+            if (extentName == "EfWoozleEntity.People")
             {
                 return GetView42();
             }
 
-            if (extentName == "EfWoozleEntity.People")
+            if (extentName == "EfWoozleEntity.Settings")
             {
                 return GetView43();
             }
 
-            if (extentName == "EfWoozleEntity.Settings")
+            if (extentName == "EfWoozleEntity.MandatorGroups")
             {
                 return GetView44();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorGroups")
+            if (extentName == "EfWoozleEntity.ExternalSystems")
             {
                 return GetView45();
             }
 
-            if (extentName == "EfWoozleEntity.ExternalSystems")
+            if (extentName == "EfWoozleEntity.ExternalSystemTypes")
             {
                 return GetView46();
             }
 
-            if (extentName == "EfWoozleEntity.ExternalSystemTypes")
+            if (extentName == "EfWoozleEntity.Users")
             {
                 return GetView47();
             }
@@ -587,38 +587,10 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
-        /// Gets the view for WoozleModelStoreContainer.User.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView14()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing User
-        [WoozleModel.Store.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email)
-    FROM (
-        SELECT 
-            T.Id AS User_Id, 
-            T.Username AS User_Username, 
-            T.Password AS User_Password, 
-            T.FlagActive AS User_FlagActive, 
-            T.LastLogin AS User_LastLogin, 
-            T.LastPasswordChange AS User_LastPasswordChange, 
-            T.LanguageId AS User_LanguageId, 
-            T.FlagActiveStatusId AS User_FlagActiveStatusId, 
-            T.ChangeCounter AS User_ChangeCounter, 
-            T.FirstName AS User_FirstName, 
-            T.LastName AS User_LastName, 
-            T.Email AS User_Email, 
-            True AS _from0
-        FROM EfWoozleEntity.Users AS T
-    ) AS T1");
-        }
-
-        /// <summary>
         /// Gets the view for WoozleModelStoreContainer.Location.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView15()
+        private static DbMappingView GetView14()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Location
@@ -639,7 +611,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.MandatorRole.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView16()
+        private static DbMappingView GetView15()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorRole
@@ -658,7 +630,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.UserMandatorRole.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView17()
+        private static DbMappingView GetView16()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing UserMandatorRole
@@ -677,7 +649,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.Person.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView18()
+        private static DbMappingView GetView17()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Person
@@ -707,7 +679,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.Settings.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView19()
+        private static DbMappingView GetView18()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Settings
@@ -728,7 +700,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.MandatorGroup.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView20()
+        private static DbMappingView GetView19()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorGroup
@@ -746,7 +718,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.ExternalSystem.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView21()
+        private static DbMappingView GetView20()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystem
@@ -766,7 +738,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.ExternalSystemType.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView22()
+        private static DbMappingView GetView21()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystemType
@@ -777,6 +749,36 @@ namespace Edm_EntityMappingGeneratedViews
             T.Name AS ExternalSystemType_Name, 
             True AS _from0
         FROM EfWoozleEntity.ExternalSystemTypes AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.User.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView22()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing User
+        [WoozleModel.Store.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
+    FROM (
+        SELECT 
+            T.Id AS User_Id, 
+            T.Username AS User_Username, 
+            T.Password AS User_Password, 
+            T.FlagActive AS User_FlagActive, 
+            T.LastLogin AS User_LastLogin, 
+            T.LastPasswordChange AS User_LastPasswordChange, 
+            T.LanguageId AS User_LanguageId, 
+            T.FlagActiveStatusId AS User_FlagActiveStatusId, 
+            T.ChangeCounter AS User_ChangeCounter, 
+            T.FirstName AS User_FirstName, 
+            T.LastName AS User_LastName, 
+            T.Email AS User_Email, 
+            T.PasswordHash AS User_PasswordHash, 
+            T.PasswordSalt AS User_PasswordSalt, 
+            True AS _from0
+        FROM EfWoozleEntity.Users AS T
     ) AS T1");
         }
 
@@ -1103,38 +1105,10 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
-        /// Gets the view for EfWoozleEntity.Users.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView39()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing Users
-        [WoozleModel.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email)
-    FROM (
-        SELECT 
-            T.Id AS User_Id, 
-            T.Username AS User_Username, 
-            T.Password AS User_Password, 
-            T.FlagActive AS User_FlagActive, 
-            T.LastLogin AS User_LastLogin, 
-            T.LastPasswordChange AS User_LastPasswordChange, 
-            T.LanguageId AS User_LanguageId, 
-            T.FlagActiveStatusId AS User_FlagActiveStatusId, 
-            T.ChangeCounter AS User_ChangeCounter, 
-            T.FirstName AS User_FirstName, 
-            T.LastName AS User_LastName, 
-            T.Email AS User_Email, 
-            True AS _from0
-        FROM WoozleModelStoreContainer.User AS T
-    ) AS T1");
-        }
-
-        /// <summary>
         /// Gets the view for EfWoozleEntity.Locations.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView40()
+        private static DbMappingView GetView39()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Locations
@@ -1155,7 +1129,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.MandatorRoles.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView41()
+        private static DbMappingView GetView40()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorRoles
@@ -1174,7 +1148,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.UserMandatorRoles.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView42()
+        private static DbMappingView GetView41()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing UserMandatorRoles
@@ -1193,7 +1167,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.People.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView43()
+        private static DbMappingView GetView42()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing People
@@ -1223,7 +1197,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Settings.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView44()
+        private static DbMappingView GetView43()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Settings
@@ -1244,7 +1218,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.MandatorGroups.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView45()
+        private static DbMappingView GetView44()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorGroups
@@ -1262,7 +1236,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.ExternalSystems.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView46()
+        private static DbMappingView GetView45()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystems
@@ -1282,7 +1256,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.ExternalSystemTypes.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView47()
+        private static DbMappingView GetView46()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystemTypes
@@ -1293,6 +1267,36 @@ namespace Edm_EntityMappingGeneratedViews
             T.Name AS ExternalSystemType_Name, 
             True AS _from0
         FROM WoozleModelStoreContainer.ExternalSystemType AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for EfWoozleEntity.Users.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView47()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Users
+        [WoozleModel.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
+    FROM (
+        SELECT 
+            T.Id AS User_Id, 
+            T.Username AS User_Username, 
+            T.Password AS User_Password, 
+            T.FlagActive AS User_FlagActive, 
+            T.LastLogin AS User_LastLogin, 
+            T.LastPasswordChange AS User_LastPasswordChange, 
+            T.LanguageId AS User_LanguageId, 
+            T.FlagActiveStatusId AS User_FlagActiveStatusId, 
+            T.ChangeCounter AS User_ChangeCounter, 
+            T.FirstName AS User_FirstName, 
+            T.LastName AS User_LastName, 
+            T.Email AS User_Email, 
+            T.PasswordHash AS User_PasswordHash, 
+            T.PasswordSalt AS User_PasswordSalt, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.User AS T
     ) AS T1");
         }
 

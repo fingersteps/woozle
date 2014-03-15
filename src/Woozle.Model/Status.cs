@@ -23,6 +23,7 @@ namespace Woozle.Model
         public Status()
         {
             this.People = new ObservableCollection<Person>();
+            this.Users = new ObservableCollection<User>();
         }
     
         private string value;
@@ -81,6 +82,18 @@ namespace Woozle.Model
     	set
     	{
     		people = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<User> users;
+    
+    public virtual ObservableCollection<User> Users 
+    { 
+    	get { return users; } 
+    	set
+    	{
+    		users = value;
     	}
     }
     
