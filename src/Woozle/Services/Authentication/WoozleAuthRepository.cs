@@ -22,6 +22,8 @@ namespace Woozle.Services.Authentication
         //http://stackoverflow.com/questions/3588623/c-sharp-regex-for-a-username-with-a-few-restrictions
         public Regex ValidUserNameRegEx = new Regex(@"^(?=.{3,15}$)([A-Za-z0-9][._-]?)*$", RegexOptions.Compiled);
 
+        public Regex ValidPasswordRegex = new Regex(@"^(.{5,20}$)", RegexOptions.Compiled);
+
         private readonly IUserLogic userLogic;
         private readonly IWoozleSettings woozleSettings;
         private readonly IRegistrationSettings registrationSettings;
@@ -48,7 +50,14 @@ namespace Woozle.Services.Authentication
             if (!newUser.UserName.IsNullOrEmpty())
             {
                 if (!ValidUserNameRegEx.IsMatch(newUser.UserName))
+                {
                     throw new ArgumentException("UserName contains invalid characters", "UserName");
+                }
+            }
+
+            if (!ValidPasswordRegex.IsMatch(password))
+            {
+                throw new ArgumentException("Password contains invalid characters", "Password");
             }
         }
 
