@@ -16,7 +16,6 @@ namespace Woozle.Test.Services.Authentication
     public class MandatorSelectionServiceTest : SessionTestBase
     {
         private const string Username = "test-user";
-        private const string Password = "test-passwordr";
 
         private readonly Mock<IAuthenticationLogic> mockedAuthenticationLogic;
 
@@ -29,7 +28,7 @@ namespace Woozle.Test.Services.Authentication
         {
             MappingConfiguration.Configure();
 
-            user = new User() { Username = Username, Password = Password };
+            user = new User() { Username = Username};
             mandator = new Woozle.Model.Mandator();
             var sessionObject = new SessionData(user, mandator);
             var session = new Session(Guid.NewGuid(), sessionObject, DateTime.Now);
@@ -73,11 +72,8 @@ namespace Woozle.Test.Services.Authentication
             const string MandatorName = "selected-mandator";
 
             user.Username = Username;
-            user.Password = Password;
 
-            this.mockedAuthenticationLogic.Setup(n => n.Login(
-                It.Is<LoginRequest>(
-                    b => b.Username == Username && b.Password == Password && b.Mandator.Name == MandatorName)))
+            this.mockedAuthenticationLogic.Setup(n => n.LoginMandator(Username, It.IsAny<Model.Mandator>()))
                 .Returns(new LoginResult(new SessionData(user, new Model.Mandator
                                                                    {
                                                                        Name = MandatorName
@@ -100,9 +96,7 @@ namespace Woozle.Test.Services.Authentication
         {
             const string MandatorName = "selected-mandator";
 
-            this.mockedAuthenticationLogic.Setup(n => n.Login(
-                It.Is<LoginRequest>(
-                    b => b.Username == Username && b.Password == Password && b.Mandator.Name == MandatorName)))
+            this.mockedAuthenticationLogic.Setup(n => n.LoginMandator(Username, It.IsAny<Model.Mandator>()))
                 .Returns(new LoginResult(new SessionData(user,null), false));
 
             var selectedMandator = new Woozle.Services.Mandator.Mandator

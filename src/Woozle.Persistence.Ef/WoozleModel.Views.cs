@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(Woozle.Persistence.Ef.EfWoozleEntity),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets3286951195009357ff034cf88fc5cc13a0ccf658075eacd1e0d32fb67d94cebf))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySetsff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySets3286951195009357ff034cf88fc5cc13a0ccf658075eacd1e0d32fb67d94cebf : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "ff85767385727b9eef4b44640f48867ff62579694c4767dcb5d7380675e0adcd"; }
+            get { return "3286951195009357ff034cf88fc5cc13a0ccf658075eacd1e0d32fb67d94cebf"; }
         }
 
         /// <summary>
@@ -760,12 +760,11 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing User
-        [WoozleModel.Store.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
+        [WoozleModel.Store.User](T1.User_Id, T1.User_Username, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
     FROM (
         SELECT 
             T.Id AS User_Id, 
             T.Username AS User_Username, 
-            T.Password AS User_Password, 
             T.FlagActive AS User_FlagActive, 
             T.LastLogin AS User_LastLogin, 
             T.LastPasswordChange AS User_LastPasswordChange, 
@@ -1278,12 +1277,11 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Users
-        [WoozleModel.User](T1.User_Id, T1.User_Username, T1.User_Password, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
+        [WoozleModel.User](T1.User_Id, T1.User_Username, T1.User_FlagActive, T1.User_LastLogin, T1.User_LastPasswordChange, T1.User_LanguageId, T1.User_FlagActiveStatusId, T1.User_ChangeCounter, T1.User_FirstName, T1.User_LastName, T1.User_Email, T1.User_PasswordHash, T1.User_PasswordSalt)
     FROM (
         SELECT 
             T.Id AS User_Id, 
             T.Username AS User_Username, 
-            T.Password AS User_Password, 
             T.FlagActive AS User_FlagActive, 
             T.LastLogin AS User_LastLogin, 
             T.LastPasswordChange AS User_LastPasswordChange, 

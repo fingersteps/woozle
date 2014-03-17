@@ -148,7 +148,6 @@ namespace Woozle.Services
 
             Mapper.CreateMap<User, Model.User>()
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
-                .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest => dest.PasswordSalt, opt => opt.Ignore());
             Mapper.CreateMap<Model.User, User>();
 

@@ -26,7 +26,6 @@ namespace Woozle.Model
         }
     
         private string username;
-        private string password;
         private bool flagactive;
         private Nullable<System.DateTime> lastlogin;
         private Nullable<System.DateTime> lastpasswordchange;
@@ -46,16 +45,6 @@ namespace Woozle.Model
     			if(this.username != value)
     			{
     				this.username = value;
-    			}
-    		}
-    	}
-        public string Password 
-    	{ 
-    		get { return this.password;} 
-    		set { 
-    			if(this.password != value)
-    			{
-    				this.password = value;
     			}
     		}
     	}

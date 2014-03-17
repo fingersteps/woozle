@@ -48,12 +48,7 @@ namespace Woozle.Services.Authentication
                 mandators.SelectedMandator);
 
             //Login with the selected Mandator
-            var result = this.authenticationLogic.Login(new LoginRequest
-                                                            {
-                                                                Username = session.SessionData.User.Username,
-                                                                Password = session.SessionData.User.Password,
-                                                                Mandator = mappedMandator
-                                                            });
+            var result = this.authenticationLogic.LoginMandator(session.SessionData.User.Username, mappedMandator);
 
             if (result.LoginSuccessful)
             {

@@ -62,7 +62,6 @@ namespace Woozle.Services.Authentication
                     sessionData = new SessionData(new User
                                                {
                                                    Username = userName,
-                                                   Password = password
                                                }, null);
                 }
             }

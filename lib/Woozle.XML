@@ -166,6 +166,14 @@
             <returns></returns>
             <remarks></remarks>
         </member>
+        <member name="M:Woozle.Domain.Authentication.IAuthenticationLogic.LoginMandator(System.String,Woozle.Model.Mandator)">
+            <summary>
+            Logins the already authenticated userd to a specific mandator
+            </summary>
+            <param name="username"></param>
+            <param name="mandator"></param>
+            <returns></returns>
+        </member>
         <member name="M:Woozle.Domain.Authentication.IAuthenticationLogic.GetLoginUser(System.String)">
             <summary>
             Gets the login user.

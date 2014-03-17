@@ -20,6 +20,14 @@ namespace Woozle.Domain.Authentication
         LoginResult Login(LoginRequest loginRequest);
 
         /// <summary>
+        /// Logins the already authenticated userd to a specific mandator
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="mandator"></param>
+        /// <returns></returns>
+        LoginResult LoginMandator(string username, Mandator mandator);
+
+        /// <summary>
         /// Gets the login user.
         /// </summary>
         /// <param name="username">The username.</param>

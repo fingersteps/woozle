@@ -229,7 +229,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="20" />
           <Property Name="FlagActive" Type="bit" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
           <Property Name="LastPasswordChange" Type="date" />
@@ -239,8 +238,8 @@
           <Property Name="FirstName" Type="varchar" MaxLength="20" />
           <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
-          <Property Name="PasswordHash" Type="varchar" MaxLength="100" />
-          <Property Name="PasswordSalt" Type="varchar" MaxLength="50" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserMandatorRole">
           <Key>
@@ -1485,7 +1484,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FlagActive" Type="Boolean" Nullable="false" />
           <Property Name="LastLogin" Type="DateTime" Precision="3" />
           <Property Name="LastPasswordChange" Type="DateTime" Precision="0" />
@@ -1495,8 +1493,8 @@
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PasswordSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Language" Relationship="WoozleModel.FK_User_Language" FromRole="User" ToRole="Language" />
           <NavigationProperty Name="Status" Relationship="WoozleModel.FK_User_Status" FromRole="User" ToRole="Status" />
           <NavigationProperty Name="UserMandatorRoles" Relationship="WoozleModel.FK_UserMandatorRole_User" FromRole="User" ToRole="UserMandatorRole" />
@@ -1805,7 +1803,6 @@
                 <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="FlagActive" ColumnName="FlagActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

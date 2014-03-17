@@ -59,6 +59,12 @@ namespace Woozle.Domain.Authentication
             return LoginUser(userAndMandators, loginRequest.Mandator);
         }
 
+        public LoginResult LoginMandator(string username, Mandator mandator)
+        {
+            var userAndMandators = GetLoginUser(username);
+            return LoginUser(userAndMandators, mandator);
+        }
+
         private void ValidatePassword(User user, string password)
         {
             bool validPassword = false;
