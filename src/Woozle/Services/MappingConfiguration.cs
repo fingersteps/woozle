@@ -191,8 +191,7 @@ namespace Woozle.Services
             Mapper.CreateMap<Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
 
             Mapper.CreateMap<Status, Model.Status>()
-                .ForMember(dest => dest.People, opt => opt.Ignore())
-                .ForMember(dest => dest.Users, opt => opt.Ignore());
+                .ForMember(dest => dest.People, opt => opt.Ignore());
             Mapper.CreateMap<Model.Status, Status>();
 
             Mapper.CreateMap<StatusField, Model.StatusField>()

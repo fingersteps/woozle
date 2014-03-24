@@ -1055,7 +1055,6 @@
           <NavigationProperty Name="StatusField" Relationship="WoozleModel.FK_Status_StatusField" FromRole="Status" ToRole="StatusField" />
           <NavigationProperty Name="Translation" Relationship="WoozleModel.FK_Status_Translation" FromRole="Status" ToRole="Translation" />
           <NavigationProperty Name="People" Relationship="WoozleModel.FK_Person_Status_Salutation" FromRole="Status" ToRole="Person" />
-          <NavigationProperty Name="Users" Relationship="WoozleModel.FK_User_Status" FromRole="Status" ToRole="User" />
           </EntityType>
         <EntityType Name="StatusField">
           <Key>
