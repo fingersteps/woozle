@@ -28,6 +28,7 @@ namespace Woozle.Model
             this.People = new ObservableCollection<Person>();
             this.Settings = new ObservableCollection<Setting>();
             this.ExternalSystems = new ObservableCollection<ExternalSystem>();
+            this.NumberRanges = new ObservableCollection<NumberRange>();
         }
     
         private string name;
@@ -195,6 +196,18 @@ namespace Woozle.Model
     	set
     	{
     		externalsystems = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<NumberRange> numberranges;
+    
+    public virtual ObservableCollection<NumberRange> NumberRanges 
+    { 
+    	get { return numberranges; } 
+    	set
+    	{
+    		numberranges = value;
     	}
     }
     

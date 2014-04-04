@@ -4,6 +4,23 @@
         <name>Woozle</name>
     </assembly>
     <members>
+        <member name="M:Woozle.Domain.Numerator.INumberProvider.GetNextNumber(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets a number from a <see cref="T:Woozle.Model.NumberRange"/> of the number range name
+            </summary>
+            <param name="numberRangeName"></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.Session"/></param>
+            <returns>The new number as a string</returns>
+        </member>
+        <member name="M:Woozle.Domain.Numerator.INumberProvider.GetNextNumber(System.String,System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets a number from a <see cref="T:Woozle.Model.NumberRange"/> of the number range name in a specified format.
+            </summary>
+            <param name="numberRangeName"></param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <param name="format">The specified format.</param>
+            <returns>The new number as a string</returns>
+        </member>
         <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
             <summary>
             This Feature is a Woozle specific extension of ServiceStacks built in Registration feature.

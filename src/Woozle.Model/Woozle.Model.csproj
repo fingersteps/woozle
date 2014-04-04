@@ -116,6 +116,9 @@
     <Compile Include="ModulePermissions\ChangedModulePermissions.cs" />
     <Compile Include="ModulePermissions\ModuleForMandator.cs" />
     <Compile Include="ModulePermissions\ModulePermissionsResult.cs" />
+    <Compile Include="NumberRange.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permission.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>

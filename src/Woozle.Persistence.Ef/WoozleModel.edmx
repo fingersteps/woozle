@@ -144,6 +144,18 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="NumberRange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="From" Type="int" Nullable="false" />
+          <Property Name="Till" Type="int" />
+          <Property Name="Current" Type="int" />
+          <Property Name="MandatorId" Type="int" />
+          <Property Name="ChangeCounter" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="Id" />
@@ -477,6 +489,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NumberRange_Mandator">
+          <End Role="Mandator" Type="Self.Mandator" Multiplicity="0..1" />
+          <End Role="NumberRange" Type="Self.NumberRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NumberRange">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Person_City">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
@@ -637,6 +661,7 @@
           <EntitySet Name="MandatorRoleFunctionPermission" EntityType="Self.MandatorRoleFunctionPermission" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Module" EntityType="Self.Module" Schema="woo" store:Type="Tables" />
           <EntitySet Name="ModuleGroup" EntityType="Self.ModuleGroup" Schema="woo" store:Type="Tables" />
+          <EntitySet Name="NumberRange" EntityType="Self.NumberRange" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="woo" store:Type="Tables" />
@@ -722,6 +747,10 @@
           <AssociationSet Name="FK_Module_Translation" Association="Self.FK_Module_Translation">
             <End Role="Translation" EntitySet="Translation" />
             <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NumberRange_Mandator" Association="Self.FK_NumberRange_Mandator">
+            <End Role="Mandator" EntitySet="Mandator" />
+            <End Role="NumberRange" EntitySet="NumberRange" />
           </AssociationSet>
           <AssociationSet Name="FK_Person_City" Association="Self.FK_Person_City">
             <End Role="City" EntitySet="City" />
@@ -916,6 +945,11 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
           </AssociationSet>
+          <EntitySet Name="NumberRanges" EntityType="WoozleModel.NumberRange" />
+          <AssociationSet Name="FK_NumberRange_Mandator" Association="WoozleModel.FK_NumberRange_Mandator">
+            <End Role="Mandator" EntitySet="Mandators" />
+            <End Role="NumberRange" EntitySet="NumberRanges" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -995,6 +1029,7 @@
           <Property Type="Int32" Name="MandatorGroupId" />
           <NavigationProperty Name="MandatorGroup" Relationship="WoozleModel.FK_Mandator_MandatorGroup" FromRole="Mandator" ToRole="MandatorGroup" />
           <NavigationProperty Name="ExternalSystems" Relationship="WoozleModel.FK_ExternalService_Mandator" FromRole="Mandator" ToRole="ExternalSystem" />
+          <NavigationProperty Name="NumberRanges" Relationship="WoozleModel.FK_NumberRange_Mandator" FromRole="Mandator" ToRole="NumberRange" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
@@ -1534,6 +1569,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="NumberRange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="From" Type="Int32" Nullable="false" />
+          <Property Name="Till" Type="Int32" />
+          <Property Name="Current" Type="Int32" />
+          <Property Name="MandatorId" Type="Int32" />
+          <Property Name="ChangeCounter" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" a:StoreGeneratedPattern="Computed" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="Mandator" Relationship="WoozleModel.FK_NumberRange_Mandator" FromRole="NumberRange" ToRole="Mandator" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_NumberRange_Mandator">
+          <End Type="WoozleModel.Mandator" Role="Mandator" Multiplicity="0..1" />
+          <End Type="WoozleModel.NumberRange" Role="NumberRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NumberRange">
+              <PropertyRef Name="MandatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1807,6 +1867,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NumberRanges">
+            <EntityTypeMapping TypeName="WoozleModel.NumberRange">
+              <MappingFragment StoreEntitySet="NumberRange">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ChangeCounter" ColumnName="ChangeCounter" />
+                <ScalarProperty Name="MandatorId" ColumnName="MandatorId" />
+                <ScalarProperty Name="Current" ColumnName="Current" />
+                <ScalarProperty Name="Till" ColumnName="Till" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1883,6 +1956,8 @@
         <AssociationConnector Association="WoozleModel.FK_User_Language" />
         <AssociationConnector Association="WoozleModel.FK_User_Status" />
         <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_User" />
+        <EntityTypeShape EntityType="WoozleModel.NumberRange" Width="1.5" PointX="5" PointY="31.375" />
+        <AssociationConnector Association="WoozleModel.FK_NumberRange_Mandator" />
         </Diagram>
     </Diagrams>
   </Designer>

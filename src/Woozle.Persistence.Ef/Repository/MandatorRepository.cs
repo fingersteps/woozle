@@ -132,6 +132,22 @@ namespace Woozle.Persistence.Ef.Repository
     			} 
     			stopwatch.Stop();
     			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'NumberRanges'
+    			stopwatch.Start();
+    			foreach(var n in entity.NumberRanges.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.NumberRanges.Contains(n)) attachedObj.NumberRanges.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.NumberRanges.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "NumberRanges", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)

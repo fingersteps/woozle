@@ -6,6 +6,7 @@ using Woozle.Domain.Authority;
 using Woozle.Domain.Location;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Domain.ModuleManagement;
+using Woozle.Domain.Numerator;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
@@ -46,6 +47,7 @@ namespace Woozle.Dependencies
             container.RegisterAs<WoozleSettings, IWoozleSettings>()
                 .ReusedWithin(ReuseScope.Container);
             container.RegisterAs<StatusFieldLogic, IStatusFieldLogic>();
+            container.RegisterAs<NumberProvider, INumberProvider>();
 
             ConfigureDefaultMandator(container);
         }
