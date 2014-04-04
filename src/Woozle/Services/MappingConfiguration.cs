@@ -82,7 +82,8 @@ namespace Woozle.Services
                 .ForMember(n => n.People, opt => opt.Ignore())
                 .ForMember(n => n.Settings, opt => opt.Ignore())
                 .ForMember(n => n.MandatorGroup, opt => opt.Ignore())
-                .ForMember(n => n.ExternalSystems, opt => opt.Ignore());
+                .ForMember(n => n.ExternalSystems, opt => opt.Ignore())
+                .ForMember(n => n.NumberRanges, opt => opt.Ignore());
 
             Mapper.CreateMap<Model.Mandator, Mandator.Mandator>()
                 .ForMember(n => n.MandatorGroup, opt => opt.Ignore())
