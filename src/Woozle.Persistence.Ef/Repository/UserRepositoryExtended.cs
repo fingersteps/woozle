@@ -42,7 +42,7 @@ namespace Woozle.Persistence.Ef.Repository
             var result = selection.ToList();
 
             stopwatch.Stop();
-            this.Logger.Info(string.Format("FindByUserCriteria took {0} ms.", stopwatch.ElapsedMilliseconds));
+            Trace.TraceInformation("FindByUserCriteria took {0} ms.", stopwatch.ElapsedMilliseconds);
 
             return result;
         }
@@ -78,13 +78,13 @@ namespace Woozle.Persistence.Ef.Repository
 
                 stopwatch.Stop();
 
-                this.Logger.Info(string.Format("FindForLogin took {0} ms.", stopwatch.ElapsedMilliseconds));
+                Trace.TraceInformation(string.Format("FindForLogin took {0} ms.", stopwatch.ElapsedMilliseconds));
 
                 return result;
             }
             catch (Exception e)
             {
-                Logger.Error("Error while searching for user to authenticate", e);
+                Trace.TraceError("Error while searching for user to authenticate", e);
                 throw new PersistenceException(PersistenceOperation.SEARCH, e);
             }
         }
@@ -127,7 +127,7 @@ namespace Woozle.Persistence.Ef.Repository
 
             stopwatch.Stop();
 
-            this.Logger.Info(string.Format("LoadUser took {0} ms.", stopwatch.ElapsedMilliseconds));
+            Trace.TraceInformation("LoadUser took {0} ms.", stopwatch.ElapsedMilliseconds);
 
             return userResult;
         }

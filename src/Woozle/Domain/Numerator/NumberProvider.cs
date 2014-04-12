@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
-using ServiceStack.Logging;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
@@ -10,8 +10,6 @@ namespace Woozle.Domain.Numerator
     public class NumberProvider : INumberProvider
     {
         private readonly IRepository<NumberRange> numberRangeRepository;
-        private readonly ILog logger = LogManager.GetLogger(typeof(NumberProvider));
-
 
         private static volatile object lockObj = new object();
 
@@ -27,7 +25,7 @@ namespace Woozle.Domain.Numerator
 
         public string GetNextNumber(string numberRangeName, string format, SessionData sessionData)
         {
-            logger.Debug("Waiting for getting a number...");
+            Trace.TraceInformation("Waiting for getting a number...");
 
             lock (lockObj)
             {
@@ -37,7 +35,7 @@ namespace Woozle.Domain.Numerator
 
                 if (numberRange != null)
                 {
-                    logger.Debug(string.Format("Numberrange found. Oldvalue: {0}", numberRange.Current));
+                    Trace.TraceInformation("Numberrange found. Oldvalue: {0}", numberRange.Current);
 
                     if (numberRange.Current == null)
                     {
@@ -50,11 +48,10 @@ namespace Woozle.Domain.Numerator
                         numberRange.Current += 1;
                         return SaveAndFormatNumberString(format, sessionData, numberRange);
                     }
-                    logger.Warn(string.Format("Numberrange is empty! Current: {0}, Till: {1}", numberRange.Current,
-                        numberRange.Till));
+                    Trace.TraceWarning("Numberrange is empty! Current: {0}, Till: {1}", numberRange.Current, numberRange.Till);
                 }
 
-                logger.Warn("Warn couldn't find any numberrange record for the specified mandator.");
+                Trace.TraceWarning("Warn couldn't find any numberrange record for the specified mandator.");
             }
 
             return string.Empty;
@@ -83,7 +80,7 @@ namespace Woozle.Domain.Numerator
 
         private int? SaveCurrentNumber(SessionData sessionData, NumberRange numberRange)
         {
-            logger.Debug(string.Format("New value: {0}", numberRange.Current));
+            Trace.TraceInformation("New value: {0}", numberRange.Current);
             this.numberRangeRepository.Synchronize(numberRange, sessionData);
             this.numberRangeRepository.Save(numberRange, sessionData);
             var number = numberRange.Current;

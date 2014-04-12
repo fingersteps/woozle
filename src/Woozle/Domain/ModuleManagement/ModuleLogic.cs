@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
@@ -12,7 +13,7 @@ namespace Woozle.Domain.ModuleManagement
     /// <summary>
     /// Contains the logic to manage modules.
     /// </summary>
-    public class ModuleLogic : AbstractLogic, IModuleLogic
+    public class ModuleLogic : IModuleLogic
     {
         private readonly IModuleRepository moduleRepository;
 
@@ -30,6 +31,7 @@ namespace Woozle.Domain.ModuleManagement
         /// </summary>
         public IList<ModuleForMandator> GetModulesByMandator(SessionData sessionData)
         {
+            Trace.TraceInformation("Get modules of the mandator");
             var modules = this.moduleRepository.FindModulesForMandator(sessionData);
 
             CheckFunctionPermissions(sessionData, modules);

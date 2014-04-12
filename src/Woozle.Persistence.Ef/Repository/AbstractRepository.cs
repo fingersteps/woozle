@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using ServiceStack.Logging;
 using Woozle.Model;
@@ -18,20 +19,18 @@ namespace Woozle.Persistence.Ef.Repository
         {
             this.Context = unitOfWork;
             this.UnitOfWork = unitOfWork;
-            this.Logger = LogManager.GetLogger(this.GetType());
         }
 
         protected IEfUnitOfWork Context { get; set; }
 
         public IUnitOfWork UnitOfWork { get; private set; }
 
-        protected ILog Logger { get; set; }
-
         #region IRepository<T> Members
 
 
         public IQueryable<T> CreateQueryable(SessionData sessionData)
         {
+            Trace.TraceInformation("Create queryable of type " + typeof(T));
             return Context.Get<T>(sessionData);
         }
 
@@ -42,11 +41,13 @@ namespace Woozle.Persistence.Ef.Repository
         /// <returns>The number of records</returns>
         public int Count(SessionData sessionData)
         {
+            Trace.TraceInformation("Counting records.");
             return Context.Get<T>(sessionData).Count();
         }
 
         public T Save(T item, SessionData sessionData)
         {
+            Trace.TraceInformation("Saving record of type " + typeof(T));
             item.PersistanceState = item.Id == 0 ? PState.Added : PState.Modified;
             return Context.SynchronizeObject(item, sessionData);
         }
@@ -55,6 +56,7 @@ namespace Woozle.Persistence.Ef.Repository
 
         public bool Contains(T item, SessionData sessionData)
         {
+            Trace.TraceInformation("Check if there is already a record of type " + typeof(T));
             return Context.Get<T>(sessionData).FirstOrDefault(t => t == item) != null;
         }
 
@@ -65,6 +67,7 @@ namespace Woozle.Persistence.Ef.Repository
         /// <param name="sessionData"></param>
         public void Delete(T item, SessionData sessionData)
         {
+            Trace.TraceInformation("Deleting a record of type " + typeof(T));
             item.PersistanceState = PState.Deleted;
             Synchronize(item, sessionData);
         }
@@ -77,6 +80,7 @@ namespace Woozle.Persistence.Ef.Repository
         /// <returns></returns>
         public virtual List<T> FindAll(SessionData sessionData, params string[] includedEntities)
         {
+            Trace.TraceInformation("Find all records of type " + typeof(T));
             var set = Context.Get<T>(sessionData);
             foreach (string include in includedEntities)
             {

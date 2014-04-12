@@ -47,12 +47,12 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Mandators", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Mandators", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)
     		{
-    			this.Logger.Error(e.Message); 
+    			Trace.TraceError(e.Message); 
     			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
     		} 
          } 

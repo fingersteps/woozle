@@ -3,8 +3,8 @@ using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
-using ServiceStack.Logging;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
@@ -13,7 +13,6 @@ namespace Woozle.Persistence.Ef
     public abstract class EfUnitOfWork : DbContext, IEfUnitOfWork
     {
         private const string CHANGE_COUNTER = "ChangeCounter";
-        private readonly ILog log = LogManager.GetLogger(typeof(EfUnitOfWork));
 
 
         protected EfUnitOfWork(string connectionString) : base(connectionString)
@@ -25,6 +24,8 @@ namespace Woozle.Persistence.Ef
 
         public virtual IQueryable<T> Get<T>(SessionData sessionData) where T : WoozleObject
         {
+            Trace.TraceInformation("Getting data of type " + typeof(T).ToString());
+
             if (typeof(IMandatorCapable).IsAssignableFrom(typeof(T)))
             {
                 var result = Set<T>().Where(record => record.MandatorId == sessionData.Mandator.Id);
@@ -35,6 +36,8 @@ namespace Woozle.Persistence.Ef
 
         public T SynchronizeObject<T>(T obj, SessionData sessionData) where T : WoozleObject
         {
+            Trace.TraceInformation("Synchronize object.");
+
             if (obj == null) return null;
             if (typeof (IMandatorCapable).IsAssignableFrom(typeof (T)))
             {
@@ -57,11 +60,14 @@ namespace Woozle.Persistence.Ef
 
         public TSource LoadCollection<TSource>(int id, params string[] navigationProperties) where TSource : WoozleObject
         {
+            Trace.TraceInformation("Load collection.");
             return LoadRelatedData<TSource>(id, null, navigationProperties);
         }
 
         public TSource LoadRelatedData<TSource>(int id, IEnumerable<string> referenceProperties, IEnumerable<string> collectionProperties) where TSource : WoozleObject
         {
+            Trace.TraceInformation("Load related data.");
+
             var entry = Entry(Set<TSource>().Find(id));
             if (entry != null)
             {
@@ -88,11 +94,13 @@ namespace Woozle.Persistence.Ef
 
         public void Commit()
         {
+            Trace.TraceInformation("Commit data.");
             SaveChanges();
         }
 
         public void Rollback()
         {
+            Trace.TraceInformation("Rollback data.");
             ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
         }
 
@@ -100,6 +108,8 @@ namespace Woozle.Persistence.Ef
 
         public override int SaveChanges()
         {
+            Trace.TraceInformation("Save changes.");
+
             try
             {
                 var changeSet = ChangeTracker.Entries<WoozleObject>().Where(f => f.State != EntityState.Unchanged);
@@ -114,11 +124,11 @@ namespace Woozle.Persistence.Ef
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    this.log.Error(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    Trace.TraceError(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
                                                  eve.Entry.Entity.GetType().Name, eve.Entry.State));
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        this.log.Error(string.Format("- Property: \"{0}\", Error: \"{1}\"",
+                        Trace.TraceError(string.Format("- Property: \"{0}\", Error: \"{1}\"",
                                                      ve.PropertyName, ve.ErrorMessage));
                     }
                 }

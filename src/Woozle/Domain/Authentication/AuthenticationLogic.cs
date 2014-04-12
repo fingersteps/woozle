@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using ServiceStack.ServiceInterface.Auth;
 using Woozle.Model;
@@ -15,7 +16,7 @@ namespace Woozle.Domain.Authentication
     /// Contains authentication related logic.
     /// </summary>
     /// <remarks></remarks>
-    public class AuthenticationLogic : AbstractLogic, IAuthenticationLogic
+    public class AuthenticationLogic : IAuthenticationLogic
     {
         /// <summary>
         /// <see cref="IUserRepository"/>
@@ -27,6 +28,9 @@ namespace Woozle.Domain.Authentication
         /// </summary>
         private readonly IEfUnitOfWork unitOfWork;
 
+        /// <summary>
+        /// <see cref="IHashProvider"/>
+        /// </summary>
         private readonly IHashProvider passwordHasher;
 
         /// <summary>
@@ -54,6 +58,7 @@ namespace Woozle.Domain.Authentication
         /// <returns></returns>
         public LoginResult Login(LoginRequest loginRequest)
         {
+            Trace.TraceInformation(loginRequest.Username + " try to login.");
             var userAndMandators = GetLoginUser(loginRequest.Username);
             ValidatePassword(userAndMandators.User, loginRequest.Password);
             return LoginUser(userAndMandators, loginRequest.Mandator);
@@ -75,6 +80,7 @@ namespace Woozle.Domain.Authentication
             
             if (!validPassword)
             {
+                Trace.TraceWarning("Invalid password of user " + user.Username);
                 throw new InvalidLoginException("Invalid login.");
             }
         }
@@ -106,11 +112,13 @@ namespace Woozle.Domain.Authentication
 
             if (user.Mandators.Count() == 1)
             {
+                Trace.TraceInformation("Login information are correct.");
                 return CreateSessionLoginResult(user, user.Mandators.First());
             }
 
             if (user.Mandators.Count() > 1)
             {
+                Trace.TraceWarning("There are more than one assigned mandators.");
                 return new LoginResult(null, false, true, user.Mandators);
             }
 

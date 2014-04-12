@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
@@ -7,7 +6,7 @@ using Woozle.Persistence;
 
 namespace Woozle.Domain.Location
 {
-    public class LocationLogic : AbstractLogic, ILocationLogic
+    public class LocationLogic : ILocationLogic
     {
         private readonly IRepository<City> cityRepository;
         private readonly IRepository<Country> countryRepository;

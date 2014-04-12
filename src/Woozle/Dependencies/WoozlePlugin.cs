@@ -1,4 +1,5 @@
-﻿using Funq;
+﻿using System.Diagnostics;
+using Funq;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
@@ -12,7 +13,6 @@ using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
-using Woozle.Persistence;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies
@@ -31,6 +31,7 @@ namespace Woozle.Dependencies
 
         public void Register(IAppHost appHost)
         {
+            Trace.TraceInformation("Register all dependencies.");
             var container = appHost.Config.ServiceManager.Container;
             container.Register<IHashProvider>(c => new SaltedHash());
             container.RegisterAs<PermissionsLogic, IPermissionProvider>();
@@ -58,6 +59,7 @@ namespace Woozle.Dependencies
         /// </summary>
         private void ConfigureDefaultMandator(Container container)
         {
+            Trace.TraceInformation("Configure default mandator.");
             if (!string.IsNullOrEmpty(defaultMandatorName))
             {
                 var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);

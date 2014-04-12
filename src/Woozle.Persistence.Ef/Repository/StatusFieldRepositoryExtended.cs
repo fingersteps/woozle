@@ -39,7 +39,7 @@ namespace Woozle.Persistence.Ef.Repository
             }
 
             stopwatch.Stop();
-            this.Logger.Info(string.Format("GetStatusInformation took {0} ms.", stopwatch.ElapsedMilliseconds));
+            Trace.TraceInformation("GetStatusInformation took {0} ms.", stopwatch.ElapsedMilliseconds);
 
             return statusList;
         }

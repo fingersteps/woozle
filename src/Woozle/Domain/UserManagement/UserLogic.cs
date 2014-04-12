@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ServiceStack.Common.Extensions;
 using Woozle.Domain.PermissionManagement;
@@ -46,6 +47,8 @@ namespace Woozle.Domain.UserManagement
         /// </summary>
         public IList<UserSearchResult> Search(UserSearchCriteria criteriaUser, SessionData sessionData)
         {
+            Trace.TraceInformation("Search users.");
+
             if(criteriaUser == null)
             {
                 return null;
@@ -64,6 +67,8 @@ namespace Woozle.Domain.UserManagement
         /// <returns><see cref="User"/></returns>
         public User Save(User user, SessionData sessionData)
         {
+            Trace.TraceInformation("Save user " + user.Username);
+
             if (user.Id > 0)
             {
                 var selectedUser = this.FindUserById(user.Id);
@@ -84,6 +89,8 @@ namespace Woozle.Domain.UserManagement
 
         public void Delete(int id, SessionData sessionData)
         {
+            Trace.TraceInformation("Delete user with the id " + id);
+
             if (!this.permissionManager.HasPermission(sessionData, Constants.LogicalIdSearchUserV1,
                                                    Permissions.PERMISSION_DELETE))
             {
@@ -98,6 +105,8 @@ namespace Woozle.Domain.UserManagement
 
         public User LoadUser(int id, SessionData sessionData)
         {
+            Trace.TraceInformation("Loading user with id " + id);
+
             if (id == 0)
             {
                 return null;
@@ -110,6 +119,7 @@ namespace Woozle.Domain.UserManagement
 
         public IList<User> GetUsersOfMandator(SessionData sessionData)
         {
+            Trace.TraceInformation("Get users of a specific mandator.");
             var users = repository.CreateQueryable(sessionData);
             var result = from user in users
                          where
@@ -123,11 +133,13 @@ namespace Woozle.Domain.UserManagement
 
         public User FindUserById(int id)
         {
+            Trace.TraceInformation("Find user by a specific id " + id);
             return repository.FindById(id);
         }
 
         public User GetUserByUsername(string username, SessionData sessionData)
         {
+            Trace.TraceInformation("Get user by username " + username);
             return repository.FindByExp(n => n.Username == username, sessionData).FirstOrDefault();
         }
 

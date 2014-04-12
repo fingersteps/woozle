@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Diagnostics;
 using System.Linq;
-using ServiceStack.Logging;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 
@@ -25,11 +25,6 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
         private readonly IExternalSystemRepository externalServiceRepository;
 
         /// <summary>
-        /// <see cref="ILog"/>
-        /// </summary>
-        private ILog logger = LogManager.GetLogger(typeof(ExternalSystemFacade<T>));
-
-        /// <summary>
         /// ctor.
         /// </summary>
         /// <param name="externalSystemFacadeFactory">A factory to create external system facades 
@@ -42,14 +37,14 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
             if(externalServiceRepository == null)
             {
                 const string message = "The external service repository is null.";
-                logger.Error(message);
+                Trace.TraceError(message);
                 throw new ArgumentNullException("externalServiceRepository");
             }
 
             if(catalog == null)
             {
                 const string message = "The composable catalog is null. Initializing a default assembly catalog.";
-                logger.Warn(message);
+                Trace.TraceWarning(message);
                 catalog = new AssemblyCatalog(this.GetType().Assembly);
             }
 
@@ -98,7 +93,7 @@ namespace Woozle.Domain.ExternalSystem.ExternalSystemFacade
                 var externalSystem = FindExternalSystem(externalService);
                 if (externalSystem != null)
                 {
-                    logger.Info(string.Format("Connecting to external system '{0}'.", externalService.Name));
+                    Trace.TraceInformation("Connecting to external system '{0}'.", externalService.Name);
                     return externalSystem;
                 }
             }

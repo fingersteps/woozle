@@ -47,7 +47,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "TranslationItems", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TranslationItems", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'Users'
     			stopwatch.Start();
     			foreach(var n in entity.Users.Where(n => n.PersistanceState == PState.Added))
@@ -63,12 +63,12 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Users", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Users", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)
     		{
-    			this.Logger.Error(e.Message); 
+    			Trace.TraceError(e.Message); 
     			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
     		} 
          } 

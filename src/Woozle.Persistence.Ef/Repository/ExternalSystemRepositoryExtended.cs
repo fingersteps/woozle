@@ -23,7 +23,7 @@ namespace Woozle.Persistence.Ef.Repository
             stopwatch.Stop();
 
             var result = selection.FirstOrDefault();
-            this.Logger.Info(string.Format("FindServiceByMandantAndType took {0} ms.", stopwatch.ElapsedMilliseconds));
+            Trace.TraceInformation("FindServiceByMandantAndType took {0} ms.", stopwatch.ElapsedMilliseconds);
 
             return result;
         }

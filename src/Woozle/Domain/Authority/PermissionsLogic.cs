@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
@@ -9,7 +9,7 @@ using Woozle.Persistence;
 
 namespace Woozle.Domain.Authority
 {
-    public class PermissionsLogic : AbstractLogic, IPermissionsLogic, IPermissionProvider
+    public class PermissionsLogic : IPermissionsLogic, IPermissionProvider
     {
         private IRepository<MandatorRole> MandatorRoleRepository { get; set; }
         private IRepository<FunctionPermission> FunctionPermissionRepository { get; set; }
@@ -30,7 +30,7 @@ namespace Woozle.Domain.Authority
         /// </summary>
         public IList<FunctionPermission> GetAssignedPermissions(SessionData sessionData)
         {
-            log.Debug(string.Format("Getting assigned permissions for user {0}", sessionData.User.Id));
+            Trace.TraceInformation(string.Format("Getting assigned permissions for user {0}", sessionData.User.Id));
             var users = UserRepository.CreateQueryable(sessionData);
             var query = from user in users
                         from userMandatorRole in user.UserMandatorRoles

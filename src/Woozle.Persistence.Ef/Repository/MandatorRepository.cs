@@ -51,7 +51,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Modules", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Modules", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'Locations'
     			stopwatch.Start();
     			foreach(var n in entity.Locations.Where(n => n.PersistanceState == PState.Added))
@@ -67,7 +67,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Locations", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Locations", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'MandatorRoles'
     			stopwatch.Start();
     			foreach(var n in entity.MandatorRoles.Where(n => n.PersistanceState == PState.Added))
@@ -83,7 +83,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "MandatorRoles", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "MandatorRoles", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'People'
     			stopwatch.Start();
     			foreach(var n in entity.People.Where(n => n.PersistanceState == PState.Added))
@@ -99,7 +99,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "People", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "People", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'Settings'
     			stopwatch.Start();
     			foreach(var n in entity.Settings.Where(n => n.PersistanceState == PState.Added))
@@ -115,7 +115,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "Settings", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Settings", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'ExternalSystems'
     			stopwatch.Start();
     			foreach(var n in entity.ExternalSystems.Where(n => n.PersistanceState == PState.Added))
@@ -131,7 +131,7 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'NumberRanges'
     			stopwatch.Start();
     			foreach(var n in entity.NumberRanges.Where(n => n.PersistanceState == PState.Added))
@@ -147,12 +147,12 @@ namespace Woozle.Persistence.Ef.Repository
     					Context.SynchronizeObject(n, sessionData); 
     			} 
     			stopwatch.Stop();
-    			this.Logger.Info(string.Format("Synchronize state of '{0}', took {1} ms", "NumberRanges", stopwatch.ElapsedMilliseconds));
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "NumberRanges", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)
     		{
-    			this.Logger.Error(e.Message); 
+    			Trace.TraceError(e.Message); 
     			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); 
     		} 
          } 

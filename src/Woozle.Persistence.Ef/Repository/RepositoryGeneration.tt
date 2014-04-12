@@ -353,7 +353,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 				"					Context.SynchronizeObject(n, sessionData); " + Environment.NewLine +
 				"			} "+ Environment.NewLine +
 				"			stopwatch.Stop();"+ Environment.NewLine +
-				"			this.Logger.Info(string.Format(\"Synchronize state of '{0}', took {1} ms\", \"" + t + "\", stopwatch.ElapsedMilliseconds));";
+				"			Trace.TraceInformation(string.Format(\"Synchronize state of '{0}', took {1} ms\", \"" + t + "\", stopwatch.ElapsedMilliseconds));";
 
 	}
 
@@ -369,7 +369,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
           "		}" + Environment.NewLine + 
           "		catch (Exception e)" + Environment.NewLine + 
           "		{" + Environment.NewLine + 
-	      "			this.Logger.Error(e.Message); " + Environment.NewLine +
+	      "			Trace.TraceError(e.Message); " + Environment.NewLine +
 		  "			throw new PersistenceException(PersistenceOperation.SYNCHRONIZE, e); " + Environment.NewLine +
           "		} " + Environment.NewLine +
 		  "     } ";

@@ -35,7 +35,7 @@ namespace Woozle.Persistence.Ef.Repository
                 var result = selection.ToList();
 
                 stopwatch.Stop();
-                this.Logger.Info(string.Format("FindModulePermissions took {0} ms.", stopwatch.ElapsedMilliseconds));
+                Trace.TraceInformation("FindModulePermissions took {0} ms.", stopwatch.ElapsedMilliseconds);
 
                 return result;
         }
@@ -103,7 +103,7 @@ namespace Woozle.Persistence.Ef.Repository
                 }
 
                 stopwatch.Stop();
-                this.Logger.Info(string.Format("FindModulesForMandator took {0} ms.", stopwatch.ElapsedMilliseconds));
+                Trace.TraceInformation("FindModulesForMandator took {0} ms.", stopwatch.ElapsedMilliseconds);
 
                 return modules;
         }

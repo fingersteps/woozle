@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using PostSharp.Aspects;
-using ServiceStack.Logging;
 
 namespace Woozle.Services
 {
@@ -10,13 +10,11 @@ namespace Woozle.Services
     [Serializable]
     public class ExceptionCatcher : OnExceptionAspect
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof (ExceptionCatcher));
-
         public override void OnException(MethodExecutionArgs args)
         {
             var msg = string.Format("{0} threw the following exception: {1}\n{2}",
                 args.Method.Name, args.Exception.Message, args.Exception.StackTrace);
-            Logger.Error(msg);
+            Trace.TraceError(msg);
             var message = "The following exception occured: " + args.Exception.Message;
             throw new ServiceException(message);
         }

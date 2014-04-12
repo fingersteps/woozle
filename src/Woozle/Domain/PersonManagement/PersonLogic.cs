@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
@@ -16,6 +17,8 @@ namespace Woozle.Domain.PersonManagement
 
         public Person SearchForExistingPerson(Person personToCheck, SessionData sessionData)
         {
+            Trace.TraceInformation("Search for existing person.");
+
             //Check only for existing persons if the person to check is new 
             if (personToCheck.Id == 0)
             {
