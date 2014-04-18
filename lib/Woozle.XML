@@ -72,11 +72,6 @@
             <see cref="T:Woozle.Persistence.IExternalSystemRepository"/>
             </summary>
         </member>
-        <member name="F:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.logger">
-            <summary>
-            <see cref="T:ServiceStack.Logging.ILog"/>
-            </summary>
-        </member>
         <member name="M:Woozle.Domain.ExternalSystem.ExternalSystemFacade.ExternalSystemFacade`1.#ctor(Woozle.Domain.ExternalSystem.ExternalSystemFacade.IExternalSystemFacadeFactory,Woozle.Persistence.IExternalSystemRepository,System.ComponentModel.Composition.Primitives.ComposablePartCatalog,System.String)">
             <summary>
             ctor.
@@ -158,11 +153,6 @@
             The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
             </summary>
         </member>
-        <member name="F:Woozle.Domain.AbstractLogic.log">
-            <summary>
-            The logger.
-            </summary>
-        </member>
         <member name="T:Woozle.Domain.Authentication.AuthenticationLogic">
             <summary>
             Contains authentication related logic.
@@ -206,6 +196,11 @@
         <member name="F:Woozle.Domain.Authentication.AuthenticationLogic.unitOfWork">
             <summary>
             <see cref="T:Woozle.Persistence.IUnitOfWork"/>
+            </summary>
+        </member>
+        <member name="F:Woozle.Domain.Authentication.AuthenticationLogic.passwordHasher">
+            <summary>
+            <see cref="T:ServiceStack.ServiceInterface.Auth.IHashProvider"/>
             </summary>
         </member>
         <member name="M:Woozle.Domain.Authentication.AuthenticationLogic.#ctor(Woozle.Persistence.IUserRepository,Woozle.Persistence.Ef.IEfUnitOfWork,ServiceStack.ServiceInterface.Auth.IHashProvider)">
