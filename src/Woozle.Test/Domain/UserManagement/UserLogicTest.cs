@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
-using ServiceStack.FluentValidation.Results;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
@@ -19,13 +19,19 @@ namespace Woozle.Test.Domain.UserManagement
         private IUserLogic userLogic;
         private readonly Mock<IUserRepository> userRepositoryMock;
         private readonly Mock<IPermissionManager> permissionManagerMock;
+        private readonly IHashProvider hashProvider;
+        private Mock<IUserValidator> userValidatorMock;
 
         public UserLogicTest()
         {
             userRepositoryMock = new Mock<IUserRepository>();
             permissionManagerMock = new Mock<IPermissionManager>();
+            userValidatorMock = new Mock<IUserValidator>();
+            hashProvider = new SaltedHash();
             permissionManagerMock.Setup(n => n.HasPermission(It.IsAny<SessionData>(), It.IsAny<string>(), It.IsAny<string>()))
                                  .Returns(true);
+            this.userLogic = new UserLogic(userRepositoryMock.Object,
+                                     permissionManagerMock.Object, hashProvider, userValidatorMock.Object);
         }
 
         [Fact]
@@ -46,9 +52,6 @@ namespace Woozle.Test.Domain.UserManagement
             userRepositoryMock.Setup(n => n.FindByUserCriteria(It.IsAny<UserSearchCriteria>(), It.IsAny<SessionData>()))
                               .Returns(results);
 
-
-            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
-
             var criteria = new UserSearchCriteria
                                {
                                    Firstname = "Patrick",
@@ -68,8 +71,6 @@ namespace Woozle.Test.Domain.UserManagement
         [Fact]
         public void UserSearchWithNullableCriteriaTest()
         {
-            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
-
             var result = this.userLogic.Search(null,
                             new SessionData(null, null));
 
@@ -135,8 +136,7 @@ namespace Woozle.Test.Domain.UserManagement
 
             userRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(users);
 
-            this.userLogic = new UserLogic(userRepositoryMock.Object,
-                                           permissionManagerMock.Object);
+      
 
             var result = this.userLogic.GetUsersOfMandator(session.SessionData);
 
@@ -146,5 +146,57 @@ namespace Woozle.Test.Domain.UserManagement
             Assert.Equal(3, result[1].Id);
         }
 
+
+
+        [Fact]
+        public void ChangePasswordWithWrongOldPasswordTest()
+        {
+            var user = new User
+            {
+                Username = "abcde",
+                Email = "test",
+                PasswordHash = "97RhIcjrsCviqG/ExjKXuvT3tLknq0nRflunO/rFGSs=",
+                PasswordSalt = "Kw7EgQ=="
+            };
+
+            Assert.Throws<ArgumentException>(() => this.userLogic.ChangePassword("wrongPassword", "newPassword", new SessionData(user, null)));
+        }
+
+        [Fact]
+        public void ChangePasswordWithInvalidNewPasswordTest()
+        {
+            userValidatorMock.Setup(n => n.ValidateUserPassword("1")).Throws<ArgumentException>();
+            var user = new User
+            {
+                Username = "abcde",
+                Email = "test",
+                PasswordHash = "97RhIcjrsCviqG/ExjKXuvT3tLknq0nRflunO/rFGSs=",
+                PasswordSalt = "Kw7EgQ=="
+            };
+
+            Assert.Throws<ArgumentException>(() => this.userLogic.ChangePassword("tia$123", "1", new SessionData(user, null)));
+
+            userValidatorMock.Verify();
+        }
+
+        [Fact]
+        public void ChangePasswordWithValidNewPasswordTest()
+        {
+            var user = new User
+            {
+                Id = 1,
+                Username = "abcde",
+                Email = "test",
+                PasswordHash = "97RhIcjrsCviqG/ExjKXuvT3tLknq0nRflunO/rFGSs=",
+                PasswordSalt = "Kw7EgQ=="
+            };
+            var sessionData = new SessionData(user, null);
+
+            this.userRepositoryMock.Setup(n => n.FindById(1)).Returns(user);
+            this.userRepositoryMock.Setup(n => n.Synchronize(user, sessionData)).Returns(user);
+            this.userRepositoryMock.Setup(n => n.UnitOfWork).Returns(new Mock<IUnitOfWork>().Object);
+
+            this.userLogic.ChangePassword("tia$123", "test123", sessionData);
+        }
     }
 }

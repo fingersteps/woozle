@@ -89,6 +89,8 @@
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
     <Compile Include="Domain\Numerator\INumberProvider.cs" />
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
+    <Compile Include="Domain\UserManagement\IUserValidator.cs" />
+    <Compile Include="Domain\UserManagement\UserValidator.cs" />
     <Compile Include="Services\Authentication\WoozleRegistrationFeature.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemAttribute.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacade.cs" />
@@ -181,7 +183,10 @@
     <Compile Include="Services\Modules\ModuleGroup.cs" />
     <Compile Include="Services\Modules\Modules.cs" />
     <Compile Include="Services\Modules\Permission.cs" />
+    <Compile Include="Services\userProfile\ChangeMyPasswordData.cs" />
     <Compile Include="Services\UserManagement\CheckForExistingUserService.cs" />
+    <Compile Include="Services\userProfile\MyProfileData.cs" />
+    <Compile Include="Services\userProfile\MyProfileService.cs" />
     <Compile Include="Services\UserManagement\Person.cs" />
     <Compile Include="Services\Settings\SettingDto.cs" />
     <Compile Include="Services\UserManagement\User.cs" />
