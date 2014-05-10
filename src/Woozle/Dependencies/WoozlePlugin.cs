@@ -13,6 +13,7 @@ using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
+using Woozle.Domain.userProfile;
 using Woozle.Services.Authentication;
 using Woozle.Settings;
 
@@ -41,6 +42,7 @@ namespace Woozle.Dependencies
             container.RegisterAs<ModuleLogic, IModuleLogic>();
             container.RegisterAs<UserValidator, IUserValidator>();
             container.RegisterAs<UserLogic, IUserLogic>();
+            container.RegisterAs<MyProfileLogic, IMyProfileLogic>();
             container.RegisterAs<LocationLogic, ILocationLogic>();
             container.RegisterAs<GetRolesLogic, IGetRolesLogic>();
             container.RegisterAs<PermissionsLogic, IPermissionsLogic>();

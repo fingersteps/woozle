@@ -1,4 +1,5 @@
 ﻿using Woozle.Domain.UserManagement;
+using Woozle.Domain.userProfile;
 using Woozle.Services.Authentication;
 
 namespace Woozle.Services.userProfile
@@ -6,9 +7,9 @@ namespace Woozle.Services.userProfile
     [MandatorAuthenticate]
     public class MyProfileService : AbstractService
     {
-        private readonly IUserLogic logic;
+        private readonly IMyProfileLogic logic;
 
-        public MyProfileService(IUserLogic logic)
+        public MyProfileService(IMyProfileLogic logic)
         {
             this.logic = logic;
         }
@@ -21,10 +22,7 @@ namespace Woozle.Services.userProfile
         [ExceptionCatcher]
         public void Put(MyProfileData changedProfileData)
         {
-            var user = Session.SessionData.User;
-            user.Email = changedProfileData.Email;
-            user.LanguageId = changedProfileData.LanguageId;
-            logic.Save(user, Session.SessionData);
+            logic.Update(changedProfileData.Email, changedProfileData.LanguageId, Session.SessionData);
         }
         
         /// <summary>

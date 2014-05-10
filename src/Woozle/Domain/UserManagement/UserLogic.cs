@@ -27,24 +27,18 @@ namespace Woozle.Domain.UserManagement
         /// </summary>
         private readonly IPermissionManager permissionManager;
 
-        private readonly IHashProvider passwordHasher;
-        private readonly IUserValidator userValidator;
-
         /// <summary>
         /// ctor.
         /// </summary>
         /// <param name="repository"><see cref="IRepository{T}"/></param>
         /// <param name="permissionManager"><see cref="IPermissionManager"/></param>
-        /// <param name="passwordHasher"></param>
         public UserLogic(
             IUserRepository repository,
-            IPermissionManager permissionManager, IHashProvider passwordHasher, IUserValidator userValidator)
+            IPermissionManager permissionManager)
         {
             this.repository = repository;
             this.repository = repository;
             this.permissionManager = permissionManager;
-            this.passwordHasher = passwordHasher;
-            this.userValidator = userValidator;
         }
 
         #region IUserLogic Members
@@ -151,30 +145,6 @@ namespace Woozle.Domain.UserManagement
             Trace.TraceInformation("Get user by username " + username);
             return repository.FindByExp(n => n.Username == username, sessionData).FirstOrDefault();
         }
-
-        public User ChangePassword(string oldPassword, string newPassword, SessionData sessionData)
-        {
-            var user = sessionData.User;
-            ValidateOldPassword(user, oldPassword, sessionData);
-            userValidator.ValidateUserPassword(newPassword);
-
-            string newHash;
-            string newSalt;
-            passwordHasher.GetHashAndSaltString(newPassword, out newHash, out newSalt);
-            user.PasswordHash = newHash;
-            user.PasswordSalt = newSalt;
-
-            return Save(user, sessionData);
-        }
-
-        private void ValidateOldPassword(User user, string oldPassword, SessionData sessionData)
-        {
-            if (!passwordHasher.VerifyHashString(oldPassword, user.PasswordHash, user.PasswordSalt))
-            {
-                throw new ArgumentException("The given old password is wrong.");
-            }
-        }
-
         #endregion
     }
 }

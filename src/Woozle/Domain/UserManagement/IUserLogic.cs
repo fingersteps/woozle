@@ -61,13 +61,5 @@ namespace Woozle.Domain.UserManagement
         /// <param name="username"></param>
         /// <param name="sessionData"></param>
         User GetUserByUsername(string username, SessionData sessionData);
-
-        /// <summary>
-        /// Changes the password of the logged in user acc. to the given parameters.
-        /// </summary>
-        /// <param name="oldPassword"></param>
-        /// <param name="newPassword"></param>
-        /// <param name="sessionData"></param>
-        User ChangePassword(string oldPassword, string newPassword, SessionData sessionData);
     }
 }
