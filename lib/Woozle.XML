@@ -21,6 +21,26 @@
             <param name="format">The specified format.</param>
             <returns>The new number as a string</returns>
         </member>
+        <member name="T:Woozle.ExternalSystem.IExternalEMailSystem">
+            <summary>
+            Definition for an external system which is able to perform EMail related stuff.
+            </summary>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.IExternalSystem">
+            <summary>
+            Marker interface for an external system
+            </summary>
+        </member>
+        <member name="M:Woozle.ExternalSystem.IExternalEMailSystem.SendEMail(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Sends an EMail to a desired destination address
+            </summary>
+            <param name="fromName"> </param>
+            <param name="fromAddress"></param>
+            <param name="toAddress"></param>
+            <param name="subject"> </param>
+            <param name="text"></param>
+        </member>
         <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
             <summary>
             This Feature is a Woozle specific extension of ServiceStacks built in Registration feature.
@@ -130,11 +150,6 @@
             </summary>
             <typeparam name="T">An external system <see cref="T:Woozle.Domain.ExternalSystem.IExternalSystem"/></typeparam>
             <returns></returns>
-        </member>
-        <member name="T:Woozle.Domain.ExternalSystem.IExternalSystem">
-            <summary>
-            Marker interface for an external system
-            </summary>
         </member>
         <member name="M:Woozle.Domain.StatusFields.IStatusFieldLogic.LoadStatusByValue(System.String)">
             <summary>

@@ -89,6 +89,7 @@
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
     <Compile Include="Domain\Numerator\INumberProvider.cs" />
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
+    <Compile Include="ExternalSystem\IExternalEmailSystem.cs" />
     <Compile Include="Services\Authentication\WoozleRegistrationFeature.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemAttribute.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacade.cs" />
