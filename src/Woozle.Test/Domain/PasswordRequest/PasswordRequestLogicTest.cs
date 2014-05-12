@@ -1,5 +1,6 @@
 ﻿using System;
 using Moq;
+using ServiceStack.DataAnnotations;
 using Woozle.Domain.ExternalSystem.ExternalSystemFacade;
 using Woozle.Domain.PasswordRequest;
 using Woozle.Domain.UserManagement;
@@ -34,7 +35,6 @@ namespace Woozle.Test.Domain.PasswordRequest
             Assert.Throws<ArgumentNullException>(() => this.logic.RequestNewPassword(String.Empty, sessionData));
         }
 
-        [Fact]
         public void UsernameRequestShouldGetTheMailAdressOfTheSpecifiedUser()
         {
             const string username = "myUsername";
