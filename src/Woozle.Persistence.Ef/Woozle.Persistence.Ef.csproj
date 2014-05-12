@@ -99,6 +99,9 @@
     <Compile Include="Repository\CountryRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\CustomerRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\ExternalSystemRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
@@ -160,6 +163,12 @@
     </Compile>
     <Compile Include="Repository\StatusFieldRepositoryExtended.cs" />
     <Compile Include="Repository\StatusRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\TextFieldPlaceHolderRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\TextFieldRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\TranslationItemRepository.cs">

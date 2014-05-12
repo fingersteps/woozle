@@ -28,6 +28,8 @@ namespace Woozle.Model
             this.People = new ObservableCollection<Person>();
             this.Settings = new ObservableCollection<Setting>();
             this.ExternalSystems = new ObservableCollection<ExternalSystem>();
+            this.Customers = new ObservableCollection<Customer>();
+            this.TextFields = new ObservableCollection<TextField>();
             this.NumberRanges = new ObservableCollection<NumberRange>();
         }
     
@@ -196,6 +198,30 @@ namespace Woozle.Model
     	set
     	{
     		externalsystems = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<Customer> customers;
+    
+    public virtual ObservableCollection<Customer> Customers 
+    { 
+    	get { return customers; } 
+    	set
+    	{
+    		customers = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<TextField> textfields;
+    
+    public virtual ObservableCollection<TextField> TextFields 
+    { 
+    	get { return textfields; } 
+    	set
+    	{
+    		textfields = value;
     	}
     }
     

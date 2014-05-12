@@ -112,6 +112,70 @@ namespace Woozle.Persistence.Ef.Repository
     			} 
     			stopwatch.Stop();
     			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TranslationItems", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'TextFields'
+    			stopwatch.Start();
+    			foreach(var n in entity.TextFields.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.TextFields.Contains(n)) attachedObj.TextFields.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.TextFields.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TextFields", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'TextFields1'
+    			stopwatch.Start();
+    			foreach(var n in entity.TextFields1.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.TextFields1.Contains(n)) attachedObj.TextFields1.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.TextFields1.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TextFields1", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'TextFieldPlaceHolders'
+    			stopwatch.Start();
+    			foreach(var n in entity.TextFieldPlaceHolders.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.TextFieldPlaceHolders.Contains(n)) attachedObj.TextFieldPlaceHolders.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.TextFieldPlaceHolders.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TextFieldPlaceHolders", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'TextFieldPlaceHolders1'
+    			stopwatch.Start();
+    			foreach(var n in entity.TextFieldPlaceHolders1.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.TextFieldPlaceHolders1.Contains(n)) attachedObj.TextFieldPlaceHolders1.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.TextFieldPlaceHolders1.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TextFieldPlaceHolders1", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)

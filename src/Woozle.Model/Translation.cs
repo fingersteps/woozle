@@ -27,6 +27,10 @@ namespace Woozle.Model
             this.Modules = new ObservableCollection<Module>();
             this.Status = new ObservableCollection<Status>();
             this.TranslationItems = new ObservableCollection<TranslationItem>();
+            this.TextFields = new ObservableCollection<TextField>();
+            this.TextFields1 = new ObservableCollection<TextField>();
+            this.TextFieldPlaceHolders = new ObservableCollection<TextFieldPlaceHolder>();
+            this.TextFieldPlaceHolders1 = new ObservableCollection<TextFieldPlaceHolder>();
         }
     
         private string defaultdescription;
@@ -99,6 +103,54 @@ namespace Woozle.Model
     	set
     	{
     		translationitems = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<TextField> textfields;
+    
+    public virtual ObservableCollection<TextField> TextFields 
+    { 
+    	get { return textfields; } 
+    	set
+    	{
+    		textfields = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<TextField> textfields1;
+    
+    public virtual ObservableCollection<TextField> TextFields1 
+    { 
+    	get { return textfields1; } 
+    	set
+    	{
+    		textfields1 = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<TextFieldPlaceHolder> textfieldplaceholders;
+    
+    public virtual ObservableCollection<TextFieldPlaceHolder> TextFieldPlaceHolders 
+    { 
+    	get { return textfieldplaceholders; } 
+    	set
+    	{
+    		textfieldplaceholders = value;
+    	}
+    }
+    
+    
+    private ObservableCollection<TextFieldPlaceHolder> textfieldplaceholders1;
+    
+    public virtual ObservableCollection<TextFieldPlaceHolder> TextFieldPlaceHolders1 
+    { 
+    	get { return textfieldplaceholders1; } 
+    	set
+    	{
+    		textfieldplaceholders1 = value;
     	}
     }
     

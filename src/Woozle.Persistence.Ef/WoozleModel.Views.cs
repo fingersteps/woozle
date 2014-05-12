@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(Woozle.Persistence.Ef.EfWoozleEntity),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsc7e8e23d77dfe47a03c212601d5441fe03031a7ffb03123a208a9891478f4334))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySetsc7e8e23d77dfe47a03c212601d5441fe03031a7ffb03123a208a9891478f4334 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySets59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "c7e8e23d77dfe47a03c212601d5441fe03031a7ffb03123a208a9891478f4334"; }
+            get { return "59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782"; }
         }
 
         /// <summary>
@@ -157,154 +157,184 @@ namespace Edm_EntityMappingGeneratedViews
                 return GetView21();
             }
 
-            if (extentName == "WoozleModelStoreContainer.User")
+            if (extentName == "WoozleModelStoreContainer.Customer")
             {
                 return GetView22();
             }
 
-            if (extentName == "WoozleModelStoreContainer.NumberRange")
+            if (extentName == "WoozleModelStoreContainer.TextField")
             {
                 return GetView23();
             }
 
-            if (extentName == "WoozleModelStoreContainer.MandatorModules")
+            if (extentName == "WoozleModelStoreContainer.TextFieldPlaceHolder")
             {
                 return GetView24();
             }
 
-            if (extentName == "WoozleModelStoreContainer.MandatorRoleFunctionPermission")
+            if (extentName == "WoozleModelStoreContainer.NumberRange")
             {
                 return GetView25();
             }
 
-            if (extentName == "EfWoozleEntity.Cities")
+            if (extentName == "WoozleModelStoreContainer.User")
             {
                 return GetView26();
             }
 
-            if (extentName == "EfWoozleEntity.Countries")
+            if (extentName == "WoozleModelStoreContainer.MandatorModules")
             {
                 return GetView27();
             }
 
-            if (extentName == "EfWoozleEntity.Functions")
+            if (extentName == "WoozleModelStoreContainer.MandatorRoleFunctionPermission")
             {
                 return GetView28();
             }
 
-            if (extentName == "EfWoozleEntity.FunctionPermissions")
+            if (extentName == "EfWoozleEntity.Cities")
             {
                 return GetView29();
             }
 
-            if (extentName == "EfWoozleEntity.Languages")
+            if (extentName == "EfWoozleEntity.Countries")
             {
                 return GetView30();
             }
 
-            if (extentName == "EfWoozleEntity.Mandators")
+            if (extentName == "EfWoozleEntity.Functions")
             {
                 return GetView31();
             }
 
-            if (extentName == "EfWoozleEntity.Modules")
+            if (extentName == "EfWoozleEntity.FunctionPermissions")
             {
                 return GetView32();
             }
 
-            if (extentName == "EfWoozleEntity.ModuleGroups")
+            if (extentName == "EfWoozleEntity.Languages")
             {
                 return GetView33();
             }
 
-            if (extentName == "EfWoozleEntity.Permissions")
+            if (extentName == "EfWoozleEntity.Mandators")
             {
                 return GetView34();
             }
 
-            if (extentName == "EfWoozleEntity.Roles")
+            if (extentName == "EfWoozleEntity.Modules")
             {
                 return GetView35();
             }
 
-            if (extentName == "EfWoozleEntity.Status")
+            if (extentName == "EfWoozleEntity.ModuleGroups")
             {
                 return GetView36();
             }
 
-            if (extentName == "EfWoozleEntity.StatusFields")
+            if (extentName == "EfWoozleEntity.Permissions")
             {
                 return GetView37();
             }
 
-            if (extentName == "EfWoozleEntity.Translations")
+            if (extentName == "EfWoozleEntity.Roles")
             {
                 return GetView38();
             }
 
-            if (extentName == "EfWoozleEntity.TranslationItems")
+            if (extentName == "EfWoozleEntity.Status")
             {
                 return GetView39();
             }
 
-            if (extentName == "EfWoozleEntity.Locations")
+            if (extentName == "EfWoozleEntity.StatusFields")
             {
                 return GetView40();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorRoles")
+            if (extentName == "EfWoozleEntity.Translations")
             {
                 return GetView41();
             }
 
-            if (extentName == "EfWoozleEntity.UserMandatorRoles")
+            if (extentName == "EfWoozleEntity.TranslationItems")
             {
                 return GetView42();
             }
 
-            if (extentName == "EfWoozleEntity.People")
+            if (extentName == "EfWoozleEntity.Locations")
             {
                 return GetView43();
             }
 
-            if (extentName == "EfWoozleEntity.Settings")
+            if (extentName == "EfWoozleEntity.MandatorRoles")
             {
                 return GetView44();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorGroups")
+            if (extentName == "EfWoozleEntity.UserMandatorRoles")
             {
                 return GetView45();
             }
 
-            if (extentName == "EfWoozleEntity.ExternalSystems")
+            if (extentName == "EfWoozleEntity.People")
             {
                 return GetView46();
             }
 
-            if (extentName == "EfWoozleEntity.ExternalSystemTypes")
+            if (extentName == "EfWoozleEntity.Settings")
             {
                 return GetView47();
             }
 
-            if (extentName == "EfWoozleEntity.Users")
+            if (extentName == "EfWoozleEntity.MandatorGroups")
             {
                 return GetView48();
             }
 
-            if (extentName == "EfWoozleEntity.NumberRanges")
+            if (extentName == "EfWoozleEntity.ExternalSystems")
             {
                 return GetView49();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorModules")
+            if (extentName == "EfWoozleEntity.ExternalSystemTypes")
             {
                 return GetView50();
             }
 
-            if (extentName == "EfWoozleEntity.MandatorRoleFunctionPermission")
+            if (extentName == "EfWoozleEntity.Customers")
             {
                 return GetView51();
+            }
+
+            if (extentName == "EfWoozleEntity.TextFields")
+            {
+                return GetView52();
+            }
+
+            if (extentName == "EfWoozleEntity.TextFieldPlaceHolders")
+            {
+                return GetView53();
+            }
+
+            if (extentName == "EfWoozleEntity.NumberRanges")
+            {
+                return GetView54();
+            }
+
+            if (extentName == "EfWoozleEntity.Users")
+            {
+                return GetView55();
+            }
+
+            if (extentName == "EfWoozleEntity.MandatorModules")
+            {
+                return GetView56();
+            }
+
+            if (extentName == "EfWoozleEntity.MandatorRoleFunctionPermission")
+            {
+                return GetView57();
             }
 
             return null;
@@ -763,10 +793,97 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
-        /// Gets the view for WoozleModelStoreContainer.User.
+        /// Gets the view for WoozleModelStoreContainer.Customer.
         /// </summary>
         /// <returns>The mapping view.</returns>
         private static DbMappingView GetView22()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Customer
+        [WoozleModel.Store.Customer](T1.Customer_Id, T1.Customer_MandatorId, T1.Customer_ChangeCounter, T1.Customer_Remark, T1.Customer_PersonId)
+    FROM (
+        SELECT 
+            T.Id AS Customer_Id, 
+            T.MandatorId AS Customer_MandatorId, 
+            T.ChangeCounter AS Customer_ChangeCounter, 
+            T.Remark AS Customer_Remark, 
+            T.PersonId AS Customer_PersonId, 
+            True AS _from0
+        FROM EfWoozleEntity.Customers AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.TextField.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView23()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing TextField
+        [WoozleModel.Store.TextField](T1.TextField_Id, T1.TextField_Name, T1.TextField_DescriptionTranslationId, T1.TextField_FieldValueTranslationId, T1.TextField_MandId, T1.TextField_TextType)
+    FROM (
+        SELECT 
+            T.Id AS TextField_Id, 
+            T.Name AS TextField_Name, 
+            T.DescriptionTranslationId AS TextField_DescriptionTranslationId, 
+            T.FieldValueTranslationId AS TextField_FieldValueTranslationId, 
+            T.MandId AS TextField_MandId, 
+            T.TextType AS TextField_TextType, 
+            True AS _from0
+        FROM EfWoozleEntity.TextFields AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.TextFieldPlaceHolder.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView24()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing TextFieldPlaceHolder
+        [WoozleModel.Store.TextFieldPlaceHolder](T1.TextFieldPlaceHolder_Id, T1.TextFieldPlaceHolder_Name, T1.TextFieldPlaceHolder_DescriptionTranslationId, T1.TextFieldPlaceHolder_FieldValueTranslationId, T1.TextFieldPlaceHolder_PlaceHolderType)
+    FROM (
+        SELECT 
+            T.Id AS TextFieldPlaceHolder_Id, 
+            T.Name AS TextFieldPlaceHolder_Name, 
+            T.DescriptionTranslationId AS TextFieldPlaceHolder_DescriptionTranslationId, 
+            T.FieldValueTranslationId AS TextFieldPlaceHolder_FieldValueTranslationId, 
+            T.PlaceHolderType AS TextFieldPlaceHolder_PlaceHolderType, 
+            True AS _from0
+        FROM EfWoozleEntity.TextFieldPlaceHolders AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.NumberRange.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView25()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing NumberRange
+        [WoozleModel.Store.NumberRange](T1.NumberRange_Id, T1.NumberRange_From, T1.NumberRange_Till, T1.NumberRange_Current, T1.NumberRange_MandatorId, T1.NumberRange_ChangeCounter, T1.NumberRange_Name)
+    FROM (
+        SELECT 
+            T.Id AS NumberRange_Id, 
+            T.[From] AS NumberRange_From, 
+            T.Till AS NumberRange_Till, 
+            T.Current AS NumberRange_Current, 
+            T.MandatorId AS NumberRange_MandatorId, 
+            T.ChangeCounter AS NumberRange_ChangeCounter, 
+            T.Name AS NumberRange_Name, 
+            True AS _from0
+        FROM EfWoozleEntity.NumberRanges AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.User.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView26()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing User
@@ -792,33 +909,10 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
-        /// Gets the view for WoozleModelStoreContainer.NumberRange.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView23()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing NumberRange
-        [WoozleModel.Store.NumberRange](T1.NumberRange_Id, T1.NumberRange_From, T1.NumberRange_Till, T1.NumberRange_Current, T1.NumberRange_MandatorId, T1.NumberRange_ChangeCounter, T1.NumberRange_Name)
-    FROM (
-        SELECT 
-            T.Id AS NumberRange_Id, 
-            T.[From] AS NumberRange_From, 
-            T.Till AS NumberRange_Till, 
-            T.Current AS NumberRange_Current, 
-            T.MandatorId AS NumberRange_MandatorId, 
-            T.ChangeCounter AS NumberRange_ChangeCounter, 
-            T.Name AS NumberRange_Name, 
-            True AS _from0
-        FROM EfWoozleEntity.NumberRanges AS T
-    ) AS T1");
-        }
-
-        /// <summary>
         /// Gets the view for WoozleModelStoreContainer.MandatorModules.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView24()
+        private static DbMappingView GetView27()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorModules
@@ -836,7 +930,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for WoozleModelStoreContainer.MandatorRoleFunctionPermission.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView25()
+        private static DbMappingView GetView28()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorRoleFunctionPermission
@@ -854,7 +948,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Cities.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView26()
+        private static DbMappingView GetView29()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Cities
@@ -874,7 +968,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Countries.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView27()
+        private static DbMappingView GetView30()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Countries
@@ -892,7 +986,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Functions.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView28()
+        private static DbMappingView GetView31()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Functions
@@ -916,7 +1010,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.FunctionPermissions.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView29()
+        private static DbMappingView GetView32()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing FunctionPermissions
@@ -935,7 +1029,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Languages.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView30()
+        private static DbMappingView GetView33()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Languages
@@ -954,7 +1048,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Mandators.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView31()
+        private static DbMappingView GetView34()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Mandators
@@ -979,7 +1073,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Modules.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView32()
+        private static DbMappingView GetView35()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Modules
@@ -1004,7 +1098,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.ModuleGroups.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView33()
+        private static DbMappingView GetView36()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ModuleGroups
@@ -1024,7 +1118,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Permissions.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView34()
+        private static DbMappingView GetView37()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Permissions
@@ -1044,7 +1138,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Roles.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView35()
+        private static DbMappingView GetView38()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Roles
@@ -1064,7 +1158,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Status.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView36()
+        private static DbMappingView GetView39()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Status
@@ -1084,7 +1178,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.StatusFields.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView37()
+        private static DbMappingView GetView40()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing StatusFields
@@ -1102,7 +1196,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Translations.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView38()
+        private static DbMappingView GetView41()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Translations
@@ -1120,7 +1214,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.TranslationItems.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView39()
+        private static DbMappingView GetView42()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing TranslationItems
@@ -1140,7 +1234,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Locations.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView40()
+        private static DbMappingView GetView43()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Locations
@@ -1161,7 +1255,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.MandatorRoles.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView41()
+        private static DbMappingView GetView44()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorRoles
@@ -1180,7 +1274,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.UserMandatorRoles.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView42()
+        private static DbMappingView GetView45()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing UserMandatorRoles
@@ -1199,7 +1293,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.People.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView43()
+        private static DbMappingView GetView46()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing People
@@ -1229,7 +1323,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.Settings.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView44()
+        private static DbMappingView GetView47()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Settings
@@ -1250,7 +1344,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.MandatorGroups.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView45()
+        private static DbMappingView GetView48()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorGroups
@@ -1268,7 +1362,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.ExternalSystems.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView46()
+        private static DbMappingView GetView49()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystems
@@ -1288,7 +1382,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.ExternalSystemTypes.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView47()
+        private static DbMappingView GetView50()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing ExternalSystemTypes
@@ -1303,10 +1397,97 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
+        /// Gets the view for EfWoozleEntity.Customers.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView51()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Customers
+        [WoozleModel.Customer](T1.Customer_Id, T1.Customer_MandatorId, T1.Customer_ChangeCounter, T1.Customer_Remark, T1.Customer_PersonId)
+    FROM (
+        SELECT 
+            T.Id AS Customer_Id, 
+            T.MandatorId AS Customer_MandatorId, 
+            T.ChangeCounter AS Customer_ChangeCounter, 
+            T.Remark AS Customer_Remark, 
+            T.PersonId AS Customer_PersonId, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.Customer AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for EfWoozleEntity.TextFields.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView52()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing TextFields
+        [WoozleModel.TextField](T1.TextField_Id, T1.TextField_Name, T1.TextField_DescriptionTranslationId, T1.TextField_FieldValueTranslationId, T1.TextField_MandId, T1.TextField_TextType)
+    FROM (
+        SELECT 
+            T.Id AS TextField_Id, 
+            T.Name AS TextField_Name, 
+            T.DescriptionTranslationId AS TextField_DescriptionTranslationId, 
+            T.FieldValueTranslationId AS TextField_FieldValueTranslationId, 
+            T.MandId AS TextField_MandId, 
+            T.TextType AS TextField_TextType, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.TextField AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for EfWoozleEntity.TextFieldPlaceHolders.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView53()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing TextFieldPlaceHolders
+        [WoozleModel.TextFieldPlaceHolder](T1.TextFieldPlaceHolder_Id, T1.TextFieldPlaceHolder_Name, T1.TextFieldPlaceHolder_DescriptionTranslationId, T1.TextFieldPlaceHolder_FieldValueTranslationId, T1.TextFieldPlaceHolder_PlaceHolderType)
+    FROM (
+        SELECT 
+            T.Id AS TextFieldPlaceHolder_Id, 
+            T.Name AS TextFieldPlaceHolder_Name, 
+            T.DescriptionTranslationId AS TextFieldPlaceHolder_DescriptionTranslationId, 
+            T.FieldValueTranslationId AS TextFieldPlaceHolder_FieldValueTranslationId, 
+            T.PlaceHolderType AS TextFieldPlaceHolder_PlaceHolderType, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.TextFieldPlaceHolder AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for EfWoozleEntity.NumberRanges.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView54()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing NumberRanges
+        [WoozleModel.NumberRange](T1.NumberRange_Id, T1.NumberRange_From, T1.NumberRange_Till, T1.NumberRange_Current, T1.NumberRange_MandatorId, T1.NumberRange_ChangeCounter, T1.NumberRange_Name)
+    FROM (
+        SELECT 
+            T.Id AS NumberRange_Id, 
+            T.[From] AS NumberRange_From, 
+            T.Till AS NumberRange_Till, 
+            T.Current AS NumberRange_Current, 
+            T.MandatorId AS NumberRange_MandatorId, 
+            T.ChangeCounter AS NumberRange_ChangeCounter, 
+            T.Name AS NumberRange_Name, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.NumberRange AS T
+    ) AS T1");
+        }
+
+        /// <summary>
         /// Gets the view for EfWoozleEntity.Users.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView48()
+        private static DbMappingView GetView55()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Users
@@ -1332,33 +1513,10 @@ namespace Edm_EntityMappingGeneratedViews
         }
 
         /// <summary>
-        /// Gets the view for EfWoozleEntity.NumberRanges.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView49()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing NumberRanges
-        [WoozleModel.NumberRange](T1.NumberRange_Id, T1.NumberRange_From, T1.NumberRange_Till, T1.NumberRange_Current, T1.NumberRange_MandatorId, T1.NumberRange_ChangeCounter, T1.NumberRange_Name)
-    FROM (
-        SELECT 
-            T.Id AS NumberRange_Id, 
-            T.[From] AS NumberRange_From, 
-            T.Till AS NumberRange_Till, 
-            T.Current AS NumberRange_Current, 
-            T.MandatorId AS NumberRange_MandatorId, 
-            T.ChangeCounter AS NumberRange_ChangeCounter, 
-            T.Name AS NumberRange_Name, 
-            True AS _from0
-        FROM WoozleModelStoreContainer.NumberRange AS T
-    ) AS T1");
-        }
-
-        /// <summary>
         /// Gets the view for EfWoozleEntity.MandatorModules.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView50()
+        private static DbMappingView GetView56()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorModules
@@ -1386,7 +1544,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for EfWoozleEntity.MandatorRoleFunctionPermission.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView51()
+        private static DbMappingView GetView57()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing MandatorRoleFunctionPermission

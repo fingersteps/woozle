@@ -12,7 +12,7 @@ using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 using Xunit;
 
-namespace Woozle.Test.Domain.userProfile
+namespace Woozle.Test.Domain.UserProfile
 {
     public class MyProfileLogicTest
     {
@@ -80,5 +80,6 @@ namespace Woozle.Test.Domain.userProfile
 
             this.logic.ChangePassword("tia$123", "test123", sessionData);
         }
+
     }
 }

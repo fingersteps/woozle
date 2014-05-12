@@ -18,84 +18,48 @@ using System.Runtime.Serialization;
 namespace Woozle.Model
 {
     [Serializable]
-    public partial class Status : WoozleObject
+    public partial class Customer : WoozleObject, IMandatorCapable, IManagedConcurrency
     {
-        public Status()
-        {
-            this.People = new ObservableCollection<Person>();
-            this.Users = new ObservableCollection<User>();
-        }
+        private byte[] changecounter;
+        private string remark;
+        private int personid;
     
-        private string value;
-        private int statusfieldid;
-        private int translationid;
-    
-        public string Value 
+        public byte[] ChangeCounter 
     	{ 
-    		get { return this.value;} 
+    		get { return this.changecounter;} 
     		set { 
-    			if(this.value != value)
+    			if(this.changecounter != value)
     			{
-    				this.value = value;
+    				this.changecounter = value;
     			}
     		}
     	}
-        public int StatusFieldId 
+        public string Remark 
     	{ 
-    		get { return this.statusfieldid;} 
+    		get { return this.remark;} 
     		set { 
-    			if(this.statusfieldid != value)
+    			if(this.remark != value)
     			{
-    				this.statusfieldid = value;
+    				this.remark = value;
     			}
     		}
     	}
-        public int TranslationId 
+        public int PersonId 
     	{ 
-    		get { return this.translationid;} 
+    		get { return this.personid;} 
     		set { 
-    			if(this.translationid != value)
+    			if(this.personid != value)
     			{
-    				this.translationid = value;
+    				this.personid = value;
     			}
     		}
     	}
-    	
-    	/// <summary>
-        /// To use the translated value directly it needs to be filled explicit
-        /// </summary>
-        public string TranslatedValue 	{ get; set; }
     
     
-    
-    public virtual StatusField StatusField { get; set; }
-    
-    
-    public virtual Translation Translation { get; set; }
+    public virtual Mandator Mandator { get; set; }
     
     
-    private ObservableCollection<Person> people;
-    
-    public virtual ObservableCollection<Person> People 
-    { 
-    	get { return people; } 
-    	set
-    	{
-    		people = value;
-    	}
-    }
-    
-    
-    private ObservableCollection<User> users;
-    
-    public virtual ObservableCollection<User> Users 
-    { 
-    	get { return users; } 
-    	set
-    	{
-    		users = value;
-    	}
-    }
+    public virtual Person Person { get; set; }
     
     
     

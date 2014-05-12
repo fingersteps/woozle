@@ -18,84 +18,73 @@ using System.Runtime.Serialization;
 namespace Woozle.Model
 {
     [Serializable]
-    public partial class Status : WoozleObject
+    public partial class TextField : WoozleObject
     {
-        public Status()
-        {
-            this.People = new ObservableCollection<Person>();
-            this.Users = new ObservableCollection<User>();
-        }
+        private string name;
+        private int descriptiontranslationid;
+        private int fieldvaluetranslationid;
+        private Nullable<int> mandid;
+        private string texttype;
     
-        private string value;
-        private int statusfieldid;
-        private int translationid;
-    
-        public string Value 
+        public string Name 
     	{ 
-    		get { return this.value;} 
+    		get { return this.name;} 
     		set { 
-    			if(this.value != value)
+    			if(this.name != value)
     			{
-    				this.value = value;
+    				this.name = value;
     			}
     		}
     	}
-        public int StatusFieldId 
+        public int DescriptionTranslationId 
     	{ 
-    		get { return this.statusfieldid;} 
+    		get { return this.descriptiontranslationid;} 
     		set { 
-    			if(this.statusfieldid != value)
+    			if(this.descriptiontranslationid != value)
     			{
-    				this.statusfieldid = value;
+    				this.descriptiontranslationid = value;
     			}
     		}
     	}
-        public int TranslationId 
+        public int FieldValueTranslationId 
     	{ 
-    		get { return this.translationid;} 
+    		get { return this.fieldvaluetranslationid;} 
     		set { 
-    			if(this.translationid != value)
+    			if(this.fieldvaluetranslationid != value)
     			{
-    				this.translationid = value;
+    				this.fieldvaluetranslationid = value;
     			}
     		}
     	}
-    	
-    	/// <summary>
-        /// To use the translated value directly it needs to be filled explicit
-        /// </summary>
-        public string TranslatedValue 	{ get; set; }
+        public Nullable<int> MandId 
+    	{ 
+    		get { return this.mandid;} 
+    		set { 
+    			if(this.mandid != value)
+    			{
+    				this.mandid = value;
+    			}
+    		}
+    	}
+        public string TextType 
+    	{ 
+    		get { return this.texttype;} 
+    		set { 
+    			if(this.texttype != value)
+    			{
+    				this.texttype = value;
+    			}
+    		}
+    	}
     
     
-    
-    public virtual StatusField StatusField { get; set; }
+    public virtual Mandator Mandator { get; set; }
     
     
     public virtual Translation Translation { get; set; }
     
     
-    private ObservableCollection<Person> people;
-    
-    public virtual ObservableCollection<Person> People 
-    { 
-    	get { return people; } 
-    	set
-    	{
-    		people = value;
-    	}
-    }
-    
-    
-    private ObservableCollection<User> users;
-    
-    public virtual ObservableCollection<User> Users 
-    { 
-    	get { return users; } 
-    	set
-    	{
-    		users = value;
-    	}
-    }
+    public virtual Translation Translation1 { get; set; }
     
     
     

@@ -357,6 +357,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 
 	}
 
+
 	return" public override " + entity.Name + " Synchronize(" + entity.Name + " entity, SessionData sessionData) " + Environment.NewLine +
 		  "	 { " + Environment.NewLine +
 		  "		try" + Environment.NewLine + 

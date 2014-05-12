@@ -87,12 +87,13 @@
     <Compile Include="Domain\Mandator\MandatorLogicTest.cs" />
     <Compile Include="Domain\ModuleManagement\ModuleLogicTest.cs" />
     <Compile Include="Domain\Numerator\NumberProviderTest.cs" />
+    <Compile Include="Domain\PasswordRequest\PasswordRequestLogicTest.cs" />
     <Compile Include="Domain\PermissionManagement\PermissionManagerTest.cs" />
     <Compile Include="Domain\PersonManagement\PersonLogicTest.cs" />
     <Compile Include="Domain\Settings\SettingsLogicTest.cs" />
     <Compile Include="Domain\UserManagement\UserLogicTest.cs" />
     <Compile Include="Domain\UserManagement\UserValidatorTest.cs" />
-    <Compile Include="Domain\userProfile\MyProfileLogicTest.cs" />
+    <Compile Include="Domain\UserProfile\MyProfileLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication\LoginContextServiceTest.cs" />
     <Compile Include="Services\Authentication\MandatorAuthenticationTest.cs" />

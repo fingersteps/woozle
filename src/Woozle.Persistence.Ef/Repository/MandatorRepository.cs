@@ -132,6 +132,38 @@ namespace Woozle.Persistence.Ef.Repository
     			} 
     			stopwatch.Stop();
     			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "ExternalSystems", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'Customers'
+    			stopwatch.Start();
+    			foreach(var n in entity.Customers.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.Customers.Contains(n)) attachedObj.Customers.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.Customers.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Customers", stopwatch.ElapsedMilliseconds));
+    			//Navigation Property 'TextFields'
+    			stopwatch.Start();
+    			foreach(var n in entity.TextFields.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.TextFields.Contains(n)) attachedObj.TextFields.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.TextFields.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "TextFields", stopwatch.ElapsedMilliseconds));
     			//Navigation Property 'NumberRanges'
     			stopwatch.Start();
     			foreach(var n in entity.NumberRanges.Where(n => n.PersistanceState == PState.Added))

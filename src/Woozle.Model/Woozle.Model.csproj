@@ -76,6 +76,9 @@
     <Compile Include="Country.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ExternalSystem.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +140,12 @@
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StatusField.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextField.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextFieldPlaceHolder.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Translation.cs">

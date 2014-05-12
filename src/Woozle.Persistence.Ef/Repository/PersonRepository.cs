@@ -38,6 +38,22 @@ namespace Woozle.Persistence.Ef.Repository
     			attachedObj.Mandator = Context.SynchronizeObject(entity.Mandator, sessionData); 
     
     			
+    			//Navigation Property 'Customers'
+    			stopwatch.Start();
+    			foreach(var n in entity.Customers.Where(n => n.PersistanceState == PState.Added))
+    			{ 
+    				if (!attachedObj.Customers.Contains(n)) attachedObj.Customers.Add(n);
+    				if (n is IMandatorCapable)
+    				{
+    					n.MandatorId = sessionData.Mandator.Id;
+    				}
+    			} 
+    			foreach(var n in entity.Customers.Where(n => n.PersistanceState == PState.Modified || n.PersistanceState == PState.Deleted))
+    			{ 
+    					Context.SynchronizeObject(n, sessionData); 
+    			} 
+    			stopwatch.Stop();
+    			Trace.TraceInformation(string.Format("Synchronize state of '{0}', took {1} ms", "Customers", stopwatch.ElapsedMilliseconds));
     			return attachedObj; 
     		}
     		catch (Exception e)

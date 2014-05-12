@@ -14,7 +14,9 @@ namespace Woozle.Domain.UserProfile
         private readonly IUserValidator userValidator;
         private readonly IHashProvider passwordHasher;
 
-        public MyProfileLogic(IRepository<Language> languageRepository, IUserLogic userLogic, IUserValidator userValidator, IHashProvider passwordHasher)
+        public MyProfileLogic(
+            IRepository<Language> languageRepository, 
+            IUserLogic userLogic, IUserValidator userValidator, IHashProvider passwordHasher)
         {
             this.languageRepository = languageRepository;
             this.userLogic = userLogic;

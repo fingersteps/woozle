@@ -20,6 +20,11 @@ namespace Woozle.Model
     [Serializable]
     public partial class Person : WoozleObject, IMandatorCapable, IManagedConcurrency
     {
+        public Person()
+        {
+            this.Customers = new ObservableCollection<Customer>();
+        }
+    
         private string lastname;
         private string firstname;
         private string email;
@@ -162,6 +167,18 @@ namespace Woozle.Model
     
     
     public virtual Mandator Mandator { get; set; }
+    
+    
+    private ObservableCollection<Customer> customers;
+    
+    public virtual ObservableCollection<Customer> Customers 
+    { 
+    	get { return customers; } 
+    	set
+    	{
+    		customers = value;
+    	}
+    }
     
     
     
