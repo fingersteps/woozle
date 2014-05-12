@@ -6,7 +6,6 @@ using Woozle.Domain.Authority;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Model.Validation.Creation;
 using Woozle.Services;
 using Woozle.Services.Authentication;
 using Woozle.Services.Authority;
@@ -23,6 +22,7 @@ namespace Woozle.Test.Services.Authentication
         private Mock<IGetRolesLogic> getRolesLogicMock;
         private Mock<IHashProvider> passwordHasherMock;
         private WoozleAuthRepository authRepository;
+        private Mock<IUserValidator> userValidatorMock;
 
         public WoozleAuthRepositoryTest()
         {
@@ -31,9 +31,10 @@ namespace Woozle.Test.Services.Authentication
             registrationSettingsMock = new Mock<IRegistrationSettings>();
             getRolesLogicMock = new Mock<IGetRolesLogic>();
             passwordHasherMock = new Mock<IHashProvider>();
+            userValidatorMock = new Mock<IUserValidator>();
 
             authRepository = new WoozleAuthRepository(userLogicMock.Object, woozleSettingsMock.Object,
-                registrationSettingsMock.Object, getRolesLogicMock.Object, passwordHasherMock.Object);
+                registrationSettingsMock.Object, getRolesLogicMock.Object, passwordHasherMock.Object, userValidatorMock.Object);
 
             MappingConfiguration.Configure();
         }
@@ -80,7 +81,7 @@ namespace Woozle.Test.Services.Authentication
         }
 
         [Fact]
-        public void CreateUserAuth_NoUsername()
+        public void CreateUserAuth_ShouldValidateUser()
         {
             MockCreateUserDependencies();
 
@@ -90,7 +91,11 @@ namespace Woozle.Test.Services.Authentication
                 LastName = "lastname",
             };
 
-            Assert.Throws<ArgumentNullException>(() => authRepository.CreateUserAuth(user, "password"));
+            userValidatorMock.Setup(n => n.ValidateNewUser(user.UserName, user.Email));
+            userValidatorMock.Setup(n => n.ValidateUserPassword("password"));
+
+            authRepository.CreateUserAuth(user, "password");
+            userLogicMock.Verify();
         }
 
         [Fact]
@@ -104,21 +109,6 @@ namespace Woozle.Test.Services.Authentication
                 FirstName = "firstname",
                 LastName = "lastname",
                 UserName = "user"
-            };
-
-            Assert.Throws<ArgumentException>(() => authRepository.CreateUserAuth(user, "password"));
-        }
-
-        [Fact]
-        public void CreateUserAuth_UsernameWithTooFewCharacters()
-        {
-            MockCreateUserDependencies();
-
-            var user = new UserAuth()
-            {
-                FirstName = "firstname",
-                LastName = "lastname",
-                UserName = "ab"
             };
 
             Assert.Throws<ArgumentException>(() => authRepository.CreateUserAuth(user, "password"));

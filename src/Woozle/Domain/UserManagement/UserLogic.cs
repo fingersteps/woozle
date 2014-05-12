@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using ServiceStack.Common.Extensions;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
@@ -28,12 +30,11 @@ namespace Woozle.Domain.UserManagement
         /// <summary>
         /// ctor.
         /// </summary>
-        /// <param name="validator"><see cref="IUserValidator"/></param>
         /// <param name="repository"><see cref="IRepository{T}"/></param>
         /// <param name="permissionManager"><see cref="IPermissionManager"/></param>
         public UserLogic(
             IUserRepository repository,
-            IPermissionManager permissionManager )
+            IPermissionManager permissionManager)
         {
             this.repository = repository;
             this.repository = repository;
@@ -78,6 +79,8 @@ namespace Woozle.Domain.UserManagement
                 selectedUser.LanguageId = user.LanguageId;
                 selectedUser.LastName = user.LastName;
                 selectedUser.Email = user.Email;
+                selectedUser.PasswordHash = user.PasswordHash;
+                selectedUser.PasswordSalt = user.PasswordSalt;
                 selectedUser.PersistanceState = PState.Modified;
                 user = selectedUser;
             }
@@ -142,7 +145,6 @@ namespace Woozle.Domain.UserManagement
             Trace.TraceInformation("Get user by username " + username);
             return repository.FindByExp(n => n.Username == username, sessionData).FirstOrDefault();
         }
-
         #endregion
     }
 }

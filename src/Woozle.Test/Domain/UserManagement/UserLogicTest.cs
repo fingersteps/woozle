@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Moq;
-using ServiceStack.FluentValidation.Results;
+using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
@@ -26,6 +26,8 @@ namespace Woozle.Test.Domain.UserManagement
             permissionManagerMock = new Mock<IPermissionManager>();
             permissionManagerMock.Setup(n => n.HasPermission(It.IsAny<SessionData>(), It.IsAny<string>(), It.IsAny<string>()))
                                  .Returns(true);
+            this.userLogic = new UserLogic(userRepositoryMock.Object,
+                                     permissionManagerMock.Object);
         }
 
         [Fact]
@@ -46,9 +48,6 @@ namespace Woozle.Test.Domain.UserManagement
             userRepositoryMock.Setup(n => n.FindByUserCriteria(It.IsAny<UserSearchCriteria>(), It.IsAny<SessionData>()))
                               .Returns(results);
 
-
-            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
-
             var criteria = new UserSearchCriteria
                                {
                                    Firstname = "Patrick",
@@ -68,8 +67,6 @@ namespace Woozle.Test.Domain.UserManagement
         [Fact]
         public void UserSearchWithNullableCriteriaTest()
         {
-            this.userLogic = new UserLogic(userRepositoryMock.Object, permissionManagerMock.Object);
-
             var result = this.userLogic.Search(null,
                             new SessionData(null, null));
 
@@ -135,8 +132,7 @@ namespace Woozle.Test.Domain.UserManagement
 
             userRepositoryMock.Setup(n => n.CreateQueryable(session.SessionData)).Returns(users);
 
-            this.userLogic = new UserLogic(userRepositoryMock.Object,
-                                           permissionManagerMock.Object);
+      
 
             var result = this.userLogic.GetUsersOfMandator(session.SessionData);
 
@@ -145,6 +141,5 @@ namespace Woozle.Test.Domain.UserManagement
             Assert.Equal(1, result[0].Id);
             Assert.Equal(3, result[1].Id);
         }
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using AutoMapper;
 using ServiceStack.Common.Extensions;
 using ServiceStack.ServiceInterface.Auth;
@@ -19,66 +17,40 @@ namespace Woozle.Services.Authentication
 {
     public class WoozleAuthRepository : IUserAuthRepository
     {
-        //http://stackoverflow.com/questions/3588623/c-sharp-regex-for-a-username-with-a-few-restrictions
-        public Regex ValidUserNameRegEx = new Regex(@"^(?=.{3,15}$)([A-Za-z0-9][._-]?)*$", RegexOptions.Compiled);
-
-        public Regex ValidPasswordRegex = new Regex(@"^(.{5,20}$)", RegexOptions.Compiled);
-
         private readonly IUserLogic userLogic;
         private readonly IWoozleSettings woozleSettings;
         private readonly IRegistrationSettings registrationSettings;
         private readonly IGetRolesLogic getRolesLogic;
         private readonly IHashProvider passwordHasher;
+        private readonly IUserValidator userValidator;
 
-        public WoozleAuthRepository(IUserLogic userLogic, IWoozleSettings woozleSettings, IRegistrationSettings registrationSettings, IGetRolesLogic getRolesLogic, IHashProvider passwordHasher)
+        public WoozleAuthRepository(IUserLogic userLogic, IWoozleSettings woozleSettings, 
+            IRegistrationSettings registrationSettings, IGetRolesLogic getRolesLogic, 
+            IHashProvider passwordHasher, IUserValidator userValidator)
         {
             this.userLogic = userLogic;
             this.woozleSettings = woozleSettings;
             this.registrationSettings = registrationSettings;
             this.getRolesLogic = getRolesLogic;
             this.passwordHasher = passwordHasher;
+            this.userValidator = userValidator;
         }
 
-        private void ValidateNewUser(UserAuth newUser, string password)
+        public UserAuth CreateUserAuth(UserAuth newUserAuth, string password)
         {
-            newUser.ThrowIfNull("updatedUser");
-            password.ThrowIfNullOrEmpty("password");
+            userValidator.ValidateNewUser(newUserAuth.UserName, newUserAuth.Email);
+            userValidator.ValidateUserPassword(password);
 
-            if (newUser.UserName.IsNullOrEmpty() && newUser.Email.IsNullOrEmpty())
-                throw new ArgumentNullException("UserName or Email is required");
-
-            if (!newUser.UserName.IsNullOrEmpty())
-            {
-                if (!ValidUserNameRegEx.IsMatch(newUser.UserName))
-                {
-                    throw new ArgumentException("UserName contains invalid characters", "UserName");
-                }
-            }
-
-            if (!ValidPasswordRegex.IsMatch(password))
-            {
-                throw new ArgumentException("Password contains invalid characters", "Password");
-            }
-        }
-
-        public UserAuth CreateUserAuth(UserAuth newUser, string password)
-        {
-            ValidateNewUser(newUser, password);
-
-            AssertNoExistingUser(newUser);
+            AssertNoExistingUser(newUserAuth);
 
             string salt;
             string hash;
             passwordHasher.GetHashAndSaltString(password, out hash, out salt);
 
-            newUser.PasswordHash = hash;
-            newUser.Salt = salt;
+            newUserAuth.PasswordHash = hash;
+            newUserAuth.Salt = salt;
 
-            newUser.CreatedDate = DateTime.UtcNow;
-            newUser.ModifiedDate = newUser.CreatedDate;
-
-            var user = Mapper.Map<UserAuth, User>(newUser);
-
+            var user = Mapper.Map<UserAuth, User>(newUserAuth);
             user.PersistanceState = PState.Added;
             user.FlagActiveStatusId = registrationSettings.DefaultFlagActiveStatus.Id;
             user.LanguageId = registrationSettings.DefaultLanguage.Id;
@@ -91,7 +63,7 @@ namespace Woozle.Services.Authentication
             });
 
             userLogic.Save(user, sessionData);
-            return newUser;
+            return newUserAuth;
         }
 
         private SessionData CreateSessionData()
@@ -119,36 +91,7 @@ namespace Woozle.Services.Authentication
 
         public UserAuth UpdateUserAuth(UserAuth existingUser, UserAuth updatedUser, string password)
         {
-            //TODO: Uncomment, Test and check the following code as soon update of a user is needed
-            return updatedUser;
-            //ValidateNewUser(updatedUser, password);
-
-            //AssertNoExistingUser(updatedUser, existingUser);
-
-            //var hash = existingUser.PasswordHash;
-            //var salt = existingUser.Salt;
-            //if (password != null)
-            //{
-            //    passwordHasher.GetHashAndSaltString(password, out hash, out salt);
-            //}
-            //// If either one changes the digest hash has to be recalculated
-            //var digestHash = existingUser.DigestHa1Hash;
-            //if (password != null || existingUser.UserName != updatedUser.UserName)
-            //{
-            //    var digestHelper = new DigestAuthFunctions();
-            //    digestHash = digestHelper.CreateHa1(updatedUser.UserName, DigestAuthProvider.Realm, password);
-            //}
-            //updatedUser.Id = existingUser.Id;
-            //updatedUser.PasswordHash = hash;
-            //updatedUser.Salt = salt;
-            //updatedUser.DigestHa1Hash = digestHash;
-            //updatedUser.CreatedDate = existingUser.CreatedDate;
-            //updatedUser.ModifiedDate = DateTime.UtcNow;
-
-            //var user = Mapper.Map<UserAuth, User>(updatedUser);
-            //var sessionData = CreateSessionData();
-            //userLogic.Save(user, sessionData);
-            //return updatedUser;
+            throw new NotImplementedException();
         }
 
         public UserAuth GetUserAuthByUserName(string userNameOrEmail)
