@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Moq;
 using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.UserManagement;
-using Woozle.Domain.userProfile;
+using Woozle.Domain.UserProfile;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;

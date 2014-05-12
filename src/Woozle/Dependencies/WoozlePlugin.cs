@@ -13,7 +13,7 @@ using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
-using Woozle.Domain.userProfile;
+using Woozle.Domain.UserProfile;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies

@@ -1,8 +1,7 @@
-﻿using Woozle.Domain.UserManagement;
-using Woozle.Domain.userProfile;
+﻿using Woozle.Domain.UserProfile;
 using Woozle.Services.Authentication;
 
-namespace Woozle.Services.userProfile
+namespace Woozle.Services.UserProfile
 {
     [MandatorAuthenticate]
     public class MyProfileService : AbstractService

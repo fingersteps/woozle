@@ -1,7 +1,7 @@
 ﻿using System;
 using ServiceStack.ServiceHost;
 
-namespace Woozle.Services.userProfile
+namespace Woozle.Services.UserProfile
 {
     [Serializable]
     [Route("/myProfile/changePassword", "PUT")]

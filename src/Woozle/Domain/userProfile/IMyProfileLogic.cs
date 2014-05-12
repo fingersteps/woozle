@@ -1,7 +1,7 @@
 ﻿using Woozle.Model;
 using Woozle.Model.SessionHandling;
 
-namespace Woozle.Domain.userProfile
+namespace Woozle.Domain.UserProfile
 {
     public interface IMyProfileLogic
     {

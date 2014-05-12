@@ -5,7 +5,7 @@ using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 
-namespace Woozle.Domain.userProfile
+namespace Woozle.Domain.UserProfile
 {
     public class MyProfileLogic : IMyProfileLogic
     {
