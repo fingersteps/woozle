@@ -14,7 +14,6 @@ using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
 using Woozle.Domain.userProfile;
-using Woozle.Services.Authentication;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies

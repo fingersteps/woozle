@@ -89,6 +89,7 @@
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
     <Compile Include="Domain\Numerator\INumberProvider.cs" />
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
+    <Compile Include="ExternalSystem\ExternalEmailSystemCredentials.cs" />
     <Compile Include="ExternalSystem\IExternalEmailSystem.cs" />
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />
     <Compile Include="Domain\UserManagement\UserValidator.cs" />
