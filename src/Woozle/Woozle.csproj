@@ -87,6 +87,13 @@
   <ItemGroup>
     <Compile Include="Domain\Authentication\IRegistrationSettings.cs" />
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
+    <Compile Include="Domain\Fields\AbstractPlaceHolderResolver.cs" />
+    <Compile Include="Domain\Fields\IPlaceholderLogic.cs" />
+    <Compile Include="Domain\Fields\ITextFieldLogic.cs" />
+    <Compile Include="Domain\Fields\PlaceHolderLogic.cs" />
+    <Compile Include="Domain\Fields\PlaceHolderSearchResult.cs" />
+    <Compile Include="Domain\Fields\TextFieldLogic.cs" />
+    <Compile Include="Domain\Fields\TextFieldSearchResult.cs" />
     <Compile Include="Domain\Numerator\INumberProvider.cs" />
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
     <Compile Include="Domain\PasswordRequest\IPasswordRequestLogic.cs" />

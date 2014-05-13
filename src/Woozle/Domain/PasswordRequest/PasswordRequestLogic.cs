@@ -38,7 +38,22 @@ namespace Woozle.Domain.PasswordRequest
                 throw new SystemException(message);
             }
 
-            return false;
+            return this.SendMail(mailSystem, user, sessionData);
+        }
+
+        private bool SendMail(IExternalEMailSystem mailSystem, string userEmail, SessionData sessionData)
+        {
+            mailSystem.SendEMail(
+                sessionData.Mandator.Name,
+                sessionData.Mandator.Email,
+                userEmail,
+                "Passwort Request",
+                "Your Password was set."
+                );
+
+
+
+            return true;
         }
 
         private IExternalEMailSystem GetMailSystem(SessionData sessionData)
