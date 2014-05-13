@@ -1291,9 +1291,7 @@
           <NavigationProperty Name="Status" Relationship="WoozleModel.FK_Status_Translation" FromRole="Translation" ToRole="Status" />
           <NavigationProperty Name="TranslationItems" Relationship="WoozleModel.FK_TranslationItem_Translation" FromRole="Translation" ToRole="TranslationItem" />
           <NavigationProperty Name="TextFields" Relationship="WoozleModel.FK_NDescriptionTranslationId_Translation" FromRole="Translation" ToRole="TextField" />
-          <NavigationProperty Name="TextFields1" Relationship="WoozleModel.FK_NFieldValueTranslationId_Translation" FromRole="Translation" ToRole="TextField" />
           <NavigationProperty Name="TextFieldPlaceHolders" Relationship="WoozleModel.FK_DTextFieldPlaceHolder_Translation" FromRole="Translation" ToRole="TextFieldPlaceHolder" />
-          <NavigationProperty Name="TextFieldPlaceHolders1" Relationship="WoozleModel.FK_FTextFieldPlaceHolder_Translation" FromRole="Translation" ToRole="TextFieldPlaceHolder" />
         </EntityType>
         <EntityType Name="TranslationItem">
           <Key>

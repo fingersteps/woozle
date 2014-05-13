@@ -83,6 +83,8 @@ namespace Woozle.Services
                 .ForMember(n => n.Settings, opt => opt.Ignore())
                 .ForMember(n => n.MandatorGroup, opt => opt.Ignore())
                 .ForMember(n => n.ExternalSystems, opt => opt.Ignore())
+                .ForMember(n => n.TextFields, opt => opt.Ignore())
+                .ForMember(n => n.Customers, opt => opt.Ignore())
                 .ForMember(n => n.NumberRanges, opt => opt.Ignore());
 
             Mapper.CreateMap<Model.Mandator, Mandator.Mandator>()
@@ -115,7 +117,8 @@ namespace Woozle.Services
             Mapper.CreateMap<Model.Permission, Permission>();
 
             Mapper.CreateMap<Person, Model.Person>()
-                .ForMember(dest => dest.Mandator, opt => opt.Ignore());
+                .ForMember(dest => dest.Mandator, opt => opt.Ignore())
+                .ForMember(dest => dest.Customers, opt => opt.Ignore());
 
             Mapper.CreateMap<Model.Person, Person>()
                 .ForMember(dest => dest.Mandator, opt => opt.Ignore());
@@ -140,6 +143,8 @@ namespace Woozle.Services
                 .ForMember(n => n.Functions, opt => opt.Ignore())
                 .ForMember(n => n.Modules, opt => opt.Ignore())
                 .ForMember(n => n.Status, opt => opt.Ignore())
+                .ForMember(n => n.TextFieldPlaceHolders, opt => opt.Ignore())
+                .ForMember(n => n.TextFields, opt => opt.Ignore())
                 .ForMember(n => n.TranslationItems, opt => opt.Ignore());
 
             Mapper.CreateMap<Translation, Location.Translation>();
@@ -192,11 +197,13 @@ namespace Woozle.Services
             Mapper.CreateMap<Model.ModulePermissions.ModulePermissionsResult, ModulePermissionsResult>();
 
             Mapper.CreateMap<Status, Model.Status>()
-                .ForMember(dest => dest.People, opt => opt.Ignore());
+                .ForMember(dest => dest.People, opt => opt.Ignore())
+                .ForMember(dest => dest.Users, opt => opt.Ignore());
             Mapper.CreateMap<Model.Status, Status>();
 
             Mapper.CreateMap<StatusField, Model.StatusField>()
                 .ForMember(dest => dest.Status, opt => opt.Ignore());
+
             Mapper.CreateMap<Model.StatusField, StatusField>();
 
             Mapper.CreateMap<Model.Country, Country>();

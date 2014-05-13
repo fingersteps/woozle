@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(Woozle.Persistence.Ef.EfWoozleEntity),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySets419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "59d3ac10a1db60a8613563356512bbccff5a5939236b66306a60b88275289782"; }
+            get { return "419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976"; }
         }
 
         /// <summary>
