@@ -34,6 +34,8 @@ namespace Woozle.Persistence.Ef.Dependencies
             container.RegisterAs<ExternalSystemRepository, IExternalSystemRepository>();
             container.RegisterAs<ExternalSystemTypeRepository, IRepository<ExternalSystemType>>();
             container.RegisterAs<NumberRangeRepository, IRepository<NumberRange>>();
+            container.RegisterAs<TextFieldPlaceHolderRepository, IRepository<TextFieldPlaceHolder>>();
+            container.RegisterAs<TextFieldRepository, IRepository<TextField>>();
         }
     }
 }

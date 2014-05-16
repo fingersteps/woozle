@@ -6,7 +6,7 @@ using Woozle.Persistence;
 
 namespace Woozle.Domain.Fields
 {
-    public class PlaceHolderLogic
+    public class PlaceHolderLogic : IPlaceholderLogic
     {
         private readonly IRepository<TextFieldPlaceHolder> repository; 
 
@@ -15,12 +15,10 @@ namespace Woozle.Domain.Fields
             this.repository = repository;
         }
 
-        public IList<PlaceHolderSearchResult> GetPlaceHolders(SessionData session)
+        public IEnumerable<PlaceHolderSearchResult> GetPlaceHolders(SessionData session)
         {
             var query = repository.CreateQueryable(session);
             var languageId = session.User.LanguageId;
-
-
             var placeHolders = from textField in query
                                let descriptionTranslation = textField.Translation.TranslationItems.FirstOrDefault(n => n.LanguageId == languageId)
                                let valueTranslation = textField.Translation1.TranslationItems.FirstOrDefault(n => n.LanguageId == languageId)

@@ -1,35 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
 using ServiceStack.ServiceInterface.Auth;
+using Woozle.Domain.PasswordChange;
 using Woozle.Domain.UserManagement;
-using Woozle.Domain.UserProfile;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
-using Woozle.Persistence;
 using Xunit;
 
-namespace Woozle.Test.Domain.UserProfile
+namespace Woozle.Test.Domain.PasswordChange
 {
-    public class MyProfileLogicTest
+    public class PasswordChangeLogicTest
     {
-        private Mock<IRepository<Language>> languageRepositoryMock;
-        private Mock<IUserLogic> userLogicMock;
-        private Mock<IUserValidator> userValidatorMock;
+        private readonly Mock<IUserLogic> userLogicMock;
+        private readonly Mock<IUserValidator> userValidatorMock;
         private SaltedHash hashProvider;
-        private MyProfileLogic logic;
+        private readonly PasswordChangeLogic logic;
 
-        public MyProfileLogicTest()
+        public PasswordChangeLogicTest()
         {
-            languageRepositoryMock = new Mock<IRepository<Language>>();
             userLogicMock = new Mock<IUserLogic>();
             userValidatorMock = new Mock<IUserValidator>();
             hashProvider = new SaltedHash();
-            this.logic = new MyProfileLogic(
-                languageRepositoryMock.Object, userLogicMock.Object, userValidatorMock.Object, hashProvider);
+            this.logic = new PasswordChangeLogic(
+                hashProvider, userValidatorMock.Object, userLogicMock.Object);
         }
 
         [Fact]
@@ -80,6 +73,5 @@ namespace Woozle.Test.Domain.UserProfile
 
             this.logic.ChangePassword("tia$123", "test123", sessionData);
         }
-
     }
 }

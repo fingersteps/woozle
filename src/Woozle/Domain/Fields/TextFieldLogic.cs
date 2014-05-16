@@ -17,9 +17,9 @@ namespace Woozle.Domain.Fields
         }
 
         /// <summary>
-        /// <see cref="IReportFieldLogic.GetReportFields"/>
+        /// <see cref="ITextFieldLogic.GetTextFields"/>
         /// </summary>
-        public List<TextFieldSearchResult> GetTextFields(SessionData session)
+        public IEnumerable<TextFieldSearchResult> GetTextFields(SessionData session)
         {
 
             var query = this.repository.CreateQueryable(session);

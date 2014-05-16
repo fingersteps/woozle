@@ -4,6 +4,19 @@
         <name>Woozle</name>
     </assembly>
     <members>
+        <member name="M:Woozle.Domain.Fields.AbstractPlaceHolderResolver`1.ResolveAllPlaceHolders(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Resolves all found placeHolders in the given text. Calls <see cref="M:Woozle.Domain.Fields.AbstractPlaceHolderResolver`1.GetPlaceHolderText(`0,Woozle.Model.SessionHandling.SessionData)"/> to resolve the specific placeholders.
+            </summary>
+            <param name="text"></param>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woozle.Domain.Fields.TextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            <see cref="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)"/>
+            </summary>
+        </member>
         <member name="M:Woozle.Domain.Numerator.INumberProvider.GetNextNumber(System.String,Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Gets a number from a <see cref="T:Woozle.Model.NumberRange"/> of the number range name
@@ -21,7 +34,25 @@
             <param name="format">The specified format.</param>
             <returns>The new number as a string</returns>
         </member>
-        <member name="T:Woozle.ExternalSystem.IExternalEMailSystem">
+        <member name="M:Woozle.Domain.PasswordChange.IPasswordChangeLogic.ChangePassword(Woozle.Model.User,System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Changes the password of a specific user.
+            </summary>
+            <param name="user">The specific user.</param>
+            <param name="newPassword">New password</param>
+            <param name="sessionData">The current <see cref="T:Woozle.Model.SessionHandling.SessionData">Session</see></param>
+            <returns>true, if the password was successfully changed.</returns>
+        </member>
+        <member name="M:Woozle.Domain.PasswordChange.IPasswordChangeLogic.ChangePassword(System.String,System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Changes the password of the current logged on user.
+            </summary>
+            <param name="newPassword">The new passsword.</param>
+            <param name="oldPassword">The old password.</param>
+            <param name="sessionData">The current <see cref="T:Woozle.Model.SessionHandling.SessionData">Session</see></param>
+            <returns>true, if the password was successfully changed.</returns>
+        </member>
+        <member name="T:Woozle.Domain.ExternalSystem.Mail.IExternalMailSystem">
             <summary>
             Definition for an external system which is able to perform EMail related stuff.
             </summary>
@@ -31,7 +62,7 @@
             Marker interface for an external system
             </summary>
         </member>
-        <member name="M:Woozle.ExternalSystem.IExternalEMailSystem.SendEMail(System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Woozle.Domain.ExternalSystem.Mail.IExternalMailSystem.SendEMail(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Sends an EMail to a desired destination address
             </summary>
@@ -40,6 +71,32 @@
             <param name="toAddress"></param>
             <param name="subject"> </param>
             <param name="text"></param>
+        </member>
+        <member name="P:Woozle.Domain.ExternalSystem.Mail.IExternalMailSystem.Credentials">
+            <summary>
+            Credentials for the specific email system.
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.UserManagement.IUserValidator.ValidateNewUser(System.String,System.String)">
+            <summary>
+            Validates a new User
+            </summary>
+            <param name="username"></param>
+            <param name="email"></param>
+        </member>
+        <member name="M:Woozle.Domain.UserManagement.IUserValidator.ValidateUserPassword(System.String)">
+            <summary>
+            Validates the given password of a user
+            </summary>
+            <param name="password"></param>
+        </member>
+        <member name="M:Woozle.Domain.UserProfile.IMyProfileLogic.Update(System.String,System.Int32,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Updates the users profile acc. to the given arguments
+            </summary>
+            <param name="email"></param>
+            <param name="languageId"></param>
+            <param name="sessionData"></param>
         </member>
         <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
             <summary>
@@ -536,7 +593,6 @@
             <summary>
             ctor.
             </summary>
-            <param name="validator"><see cref="!:IUserValidator"/></param>
             <param name="repository"><see cref="T:Woozle.Persistence.IRepository`1"/></param>
             <param name="permissionManager"><see cref="T:Woozle.Domain.PermissionManagement.IPermissionManager"/></param>
         </member>
@@ -791,6 +847,20 @@
             <summary>
             To use the translated value directly it needs to be filled explicit
             </summary>
+        </member>
+        <member name="M:Woozle.Services.UserProfile.MyProfileService.Put(Woozle.Services.UserProfile.MyProfileData)">
+            <summary>
+            Updates the given profile data
+            </summary>
+            <param name="changedProfileData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woozle.Services.UserProfile.MyProfileService.Put(Woozle.Services.UserProfile.ChangeMyPasswordData)">
+            <summary>
+            Changes the password of the logged in user acc. to the given new password
+            </summary>
+            <param name="changedProfileData"></param>
+            <returns></returns>
         </member>
         <member name="M:Woozle.Services.Settings.SettingService.Get(Woozle.Model.Setting)">
             <summary>

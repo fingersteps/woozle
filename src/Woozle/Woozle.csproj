@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Domain\Authentication\IRegistrationSettings.cs" />
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
+    <Compile Include="Domain\ExternalSystem\ExternalSystems.cs" />
     <Compile Include="Domain\Fields\AbstractPlaceHolderResolver.cs" />
     <Compile Include="Domain\Fields\IPlaceholderLogic.cs" />
     <Compile Include="Domain\Fields\ITextFieldLogic.cs" />
@@ -96,10 +97,12 @@
     <Compile Include="Domain\Fields\TextFieldSearchResult.cs" />
     <Compile Include="Domain\Numerator\INumberProvider.cs" />
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
+    <Compile Include="Domain\PasswordChange\IPasswordChangeLogic.cs" />
+    <Compile Include="Domain\PasswordChange\PasswordChangeLogic.cs" />
     <Compile Include="Domain\PasswordRequest\IPasswordRequestLogic.cs" />
     <Compile Include="Domain\PasswordRequest\PasswordRequestLogic.cs" />
-    <Compile Include="ExternalSystem\ExternalEmailSystemCredentials.cs" />
-    <Compile Include="ExternalSystem\IExternalEmailSystem.cs" />
+    <Compile Include="Domain\ExternalSystem\Mail\ExternalMailSystemCredentials.cs" />
+    <Compile Include="Domain\ExternalSystem\Mail\IExternalMailSystem.cs" />
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />
     <Compile Include="Domain\UserManagement\UserValidator.cs" />
     <Compile Include="Domain\UserProfile\IMyProfileLogic.cs" />
@@ -174,8 +177,6 @@
     <Compile Include="Services\Modules\ModuleService.cs" />
     <Compile Include="Services\Navigation\Navigation.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
-    <Compile Include="Services\PasswordRequest\ResetMyPassword.cs" />
-    <Compile Include="Services\PasswordRequest\ResetPasswordService.cs" />
     <Compile Include="Services\SaveResultDto.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\Authentication\LoginContext.cs" />

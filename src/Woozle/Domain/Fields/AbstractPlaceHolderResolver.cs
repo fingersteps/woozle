@@ -20,7 +20,7 @@ namespace Woozle.Domain.Fields
         /// <param name="session"></param>
         /// <returns></returns>
         protected string ResolveAllPlaceHolders(string text, SessionData session)
-        {
+        { 
             var placeHolders = this.placeHolderLogic.GetPlaceHolders(session);
 
             var replaceText = text;
