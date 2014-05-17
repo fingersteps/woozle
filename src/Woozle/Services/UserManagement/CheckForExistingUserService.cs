@@ -2,7 +2,7 @@
 
 namespace Woozle.Services.UserManagement
 {
-    public class CheckForExistingUserService : AbstractService
+    public class CheckForExistingUserService : MandatorAuthenticatedService
     {
         private readonly IUserLogic logic;
 

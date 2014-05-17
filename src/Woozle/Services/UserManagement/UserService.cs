@@ -10,7 +10,7 @@ namespace Woozle.Services.UserManagement
 {
     [MandatorAuthenticate]
     [RequiredRole(Roles.Administrator)]
-    public class UserService : AbstractService
+    public class UserService : MandatorAuthenticatedService
     {
         private readonly IUserLogic logic;
 

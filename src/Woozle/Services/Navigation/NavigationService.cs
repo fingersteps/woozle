@@ -6,7 +6,7 @@ using Woozle.Services.Authentication;
 namespace Woozle.Services.Navigation
 {
     [MandatorAuthenticate]
-    public class NavigationService : AbstractService
+    public class NavigationService : MandatorAuthenticatedService
     {
         private readonly IModuleLogic moduleLogic;
 

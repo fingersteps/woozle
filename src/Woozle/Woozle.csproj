@@ -148,7 +148,7 @@
     <Compile Include="Domain\UserManagement\IUserLogic.cs" />
     <Compile Include="Domain\UserManagement\UserLogic.cs" />
     <Compile Include="Host\WoozleHost.cs" />
-    <Compile Include="Services\AbstractService.cs" />
+    <Compile Include="Services\MandatorAuthenticatedService.cs" />
     <Compile Include="Services\Authentication\LoginContextService.cs" />
     <Compile Include="Services\Authentication\MandatorAuthentication.cs" />
     <Compile Include="Services\Authentication\MandatorSelectionService.cs" />
@@ -179,6 +179,7 @@
     <Compile Include="Services\Modules\ModuleService.cs" />
     <Compile Include="Services\Navigation\Navigation.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\PublicService.cs" />
     <Compile Include="Services\SaveResultDto.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\Authentication\LoginContext.cs" />

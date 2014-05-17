@@ -6,17 +6,10 @@ using Woozle.Settings;
 namespace Woozle.Services
 {
     /// <summary>
-    /// Base Service
+    /// Abstract service implementation for all services which can be used by successful authenticated Woozle users
     /// </summary>
-    public abstract class AbstractService : ServiceStack.ServiceInterface.Service
+    public abstract class MandatorAuthenticatedService : Service
     {
-       // private readonly IWoozleSettings woozleSettings;
-
-       // protected AbstractService(IWoozleSettings woozleSettings)
-        //{
-        //    this.woozleSettings = woozleSettings;
-       // }
-
         /// <summary>
         /// <see cref="Session">Session </see> for authorisation
         /// </summary>
@@ -26,10 +19,6 @@ namespace Woozle.Services
             {
                 var httpRequest = this.RequestContext.Get<IHttpRequest>();
                 var session = httpRequest.GetSession() as Session;
-                if (session != null && session.SessionData != null && session.SessionData.Mandator.Id == 0)
-                {
-              //      session.SessionData.Mandator = woozleSettings.DefaultMandator;
-                }
                 return session;
             }
         }

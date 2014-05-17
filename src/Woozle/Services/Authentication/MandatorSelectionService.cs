@@ -9,7 +9,7 @@ using Woozle.Services.Mandator;
 namespace Woozle.Services.Authentication
 {
     [Authenticate]
-    public class MandatorSelectionService : AbstractService
+    public class MandatorSelectionService : MandatorAuthenticatedService
     {
         private readonly IAuthenticationLogic authenticationLogic;
 

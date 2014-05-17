@@ -1,15 +1,16 @@
 ﻿using ServiceStack.ServiceInterface;
 using Woozle.Domain.Location;
 using Woozle.Model.SessionHandling;
-using Woozle.Services.Authentication;
+using Woozle.Settings;
 
 namespace Woozle.Services.Location
 {
-    public class DefaultUserLanguageService : AbstractService
+    public class DefaultUserLanguageService : PublicService
     {
         private readonly ILocationLogic languageLogic;
 
-        public DefaultUserLanguageService(ILocationLogic languageLogic)
+        public DefaultUserLanguageService(ILocationLogic languageLogic, IWoozleSettings woozleSettings)
+            : base(woozleSettings)
         {
             this.languageLogic = languageLogic;
         }

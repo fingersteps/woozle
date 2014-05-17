@@ -5,7 +5,7 @@ using Woozle.Services.Authentication;
 namespace Woozle.Services.UserProfile
 {
     [MandatorAuthenticate]
-    public class MyProfileService : AbstractService
+    public class MyProfileService : MandatorAuthenticatedService
     {
         private readonly IMyProfileLogic logic;
         private readonly IPasswordChangeLogic passwordChangeLogic;

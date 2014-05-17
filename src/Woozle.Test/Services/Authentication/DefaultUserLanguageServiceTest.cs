@@ -15,7 +15,6 @@ namespace Woozle.Test.Services.Authentication
         private readonly User user;
         private readonly Model.Mandator mandator;
         private readonly Mock<ILocationLogic> locationLogicMock;
-        private Session session;
 
         public DefaultUserLanguageServiceTest()
         {
@@ -24,13 +23,13 @@ namespace Woozle.Test.Services.Authentication
             user = new User();
             mandator = new Model.Mandator();
             var sessionData = new SessionData(user, mandator);
-            session = new Session(sessionData);
+            var session = new Session(sessionData);
 
             var requestContextMock = this.GetFakeRequestContext(session);
 
             locationLogicMock = new Mock<ILocationLogic>();
 
-            setUserDefaultsService = new DefaultUserLanguageService(locationLogicMock.Object)
+            setUserDefaultsService = new DefaultUserLanguageService(locationLogicMock.Object, null)
                 {
                     RequestContext = requestContextMock
                 };
@@ -42,7 +41,7 @@ namespace Woozle.Test.Services.Authentication
             const string userLang = "en";
             locationLogicMock.Setup(n => n.LoadLanguage(userLang)).Returns(new Language() { Code = userLang });
             setUserDefaultsService.Post(new SelectUserLanguage() { LanguageCode = userLang });
-            Assert.Equal(userLang, session.SessionData.User.Language.Code);
+            Assert.Equal(userLang, user.Language.Code);
         }
 
         [Fact]
@@ -51,7 +50,7 @@ namespace Woozle.Test.Services.Authentication
             const string userLang = "de";
             locationLogicMock.Setup(n => n.LoadLanguage(userLang)).Returns(new Language() { Code = userLang });
             setUserDefaultsService.Post(new SelectUserLanguage() { LanguageCode = userLang });
-            Assert.Equal(userLang, session.SessionData.User.Language.Code);
+            Assert.Equal(userLang, user.Language.Code);
         }
     }
 }
