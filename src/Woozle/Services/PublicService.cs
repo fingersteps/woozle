@@ -30,6 +30,7 @@ namespace Woozle.Services
                 if (session != null && session.SessionData != null && session.SessionData.Mandator.Id == 0)
                 {
                     session.SessionData.Mandator = woozleSettings.DefaultMandator;
+                    this.SaveSession(session);
                 }
                 return session;
             }

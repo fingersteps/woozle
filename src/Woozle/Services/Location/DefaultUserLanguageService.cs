@@ -22,6 +22,7 @@ namespace Woozle.Services.Location
             var language = languageLogic.LoadLanguage(selectUserLanguage.LanguageCode);
             session.SessionData.User.LanguageId = language.Id;
             session.SessionData.User.Language = language;
+            this.SaveSession(session);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using ServiceStack.ServiceInterface.Auth;
 
 namespace Woozle.Model.SessionHandling
@@ -32,6 +33,7 @@ namespace Woozle.Model.SessionHandling
         /// Gets the session object.
         /// </summary>
         /// <remarks></remarks>
+        [DataMember]
         public SessionData SessionData { get; set; }
 
         public override bool HasRole(string role)
