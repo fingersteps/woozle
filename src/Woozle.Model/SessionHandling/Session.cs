@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Funq;
 using ServiceStack.ServiceInterface.Auth;
 
 namespace Woozle.Model.SessionHandling
@@ -11,13 +12,6 @@ namespace Woozle.Model.SessionHandling
     /// <remarks></remarks>
     public class Session : AuthUserSession
     {
-        /// <summary>
-        /// Initializes a new <see cref="Session"/>
-        /// </summary>
-        public Session() : this(new SessionData(new User(), new Mandator()))
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Session"/> class.
         /// </summary>

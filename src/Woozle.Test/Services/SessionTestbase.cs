@@ -19,7 +19,7 @@ namespace Woozle.Test.Services
 
         public IRequestContext GetFakeRequestContext()
         {
-            return GetFakeRequestContext(new Session() {SessionData = new SessionData(new User(), new Model.Mandator())});
+            return GetFakeRequestContext(new Session(new SessionData(new User(), new Model.Mandator())));
         }
 
         public IRequestContext GetFakeRequestContext(Session session)

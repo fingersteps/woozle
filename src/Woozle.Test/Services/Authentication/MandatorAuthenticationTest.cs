@@ -25,9 +25,9 @@ namespace Woozle.Test.Services.Authentication
         public void MandatorAndUserNotSetExecuteTest()
         {
             var attribute = new MandatorAuthenticateAttribute();
-            AuthService.Init(() => new Session(), new CredentialsAuthProvider());
+            AuthService.Init(() => new Session(new SessionData(null, null)), new CredentialsAuthProvider());
 
-            Assert.Throws<HttpError>(() => attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object()));
+            Assert.Throws<ArgumentException>(() => attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object()));
         }
 
         [Fact]

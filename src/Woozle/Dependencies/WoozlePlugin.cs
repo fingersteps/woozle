@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Funq;
+using ServiceStack.Common;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
@@ -17,6 +18,7 @@ using Woozle.Domain.Settings;
 using Woozle.Domain.StatusFields;
 using Woozle.Domain.UserManagement;
 using Woozle.Domain.UserProfile;
+using Woozle.Host;
 using Woozle.Settings;
 
 namespace Woozle.Dependencies
@@ -26,11 +28,11 @@ namespace Woozle.Dependencies
     /// </summary>
     public class WoozlePlugin : IPlugin
     {
-        private readonly string defaultMandatorName;
+        private readonly WoozleDefaults defaults;
 
-        public WoozlePlugin(string defaultMandatorName)
+        public WoozlePlugin(WoozleDefaults defaults)
         {
-            this.defaultMandatorName = defaultMandatorName;
+            this.defaults = defaults;
         }
 
         public void Register(IAppHost appHost)
@@ -65,15 +67,24 @@ namespace Woozle.Dependencies
 
 
         /// <summary>
-        /// The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
+        /// The configured default mandator and languagewill be used as default for all public services (where no authentification is needed).
         /// </summary>
         private void ConfigureDefaultMandator(Container container)
         {
-            Trace.TraceInformation("Configure default mandator.");
-            if (!string.IsNullOrEmpty(defaultMandatorName))
+            Trace.TraceInformation("Configure Woozle defaults.");
+            if (defaults != null)
             {
-                var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaultMandatorName);
-                container.Resolve<IWoozleSettings>().DefaultMandator = defaultMandator;
+                var woozleSettings = container.Resolve<IWoozleSettings>();
+                if (!defaults.DefaultMandatorName.IsNullOrEmpty())
+                {
+                    var defaultMandator = container.Resolve<IMandatorLogic>().LoadMandator(defaults.DefaultMandatorName);
+                    woozleSettings.DefaultMandator = defaultMandator;
+                }
+                if (!defaults.DefaultLanguageCode.IsNullOrEmpty())
+                {
+                    var defaultLanguage = container.Resolve<ILocationLogic>().LoadLanguage(defaults.DefaultLanguageCode);
+                    woozleSettings.DefaultLanguage = defaultLanguage;
+                }
             }
         }
     }
