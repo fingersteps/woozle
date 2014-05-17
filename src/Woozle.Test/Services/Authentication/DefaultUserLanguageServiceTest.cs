@@ -29,7 +29,7 @@ namespace Woozle.Test.Services.Authentication
 
             locationLogicMock = new Mock<ILocationLogic>();
 
-            setUserDefaultsService = new DefaultUserLanguageService(locationLogicMock.Object, null)
+            setUserDefaultsService = new DefaultUserLanguageService(locationLogicMock.Object)
                 {
                     RequestContext = requestContextMock
                 };

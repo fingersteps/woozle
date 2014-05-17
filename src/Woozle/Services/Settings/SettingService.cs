@@ -8,7 +8,7 @@ using Woozle.Services.Authority;
 namespace Woozle.Services.Settings
 {
     [Authenticate]
-    public class SettingService : MandatorAuthenticatedService
+    public class SettingService : AbstractService
     {
         private readonly ISettingsLogic settingsLogic;
 

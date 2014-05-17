@@ -7,7 +7,7 @@ using Woozle.Services.Authority;
 namespace Woozle.Services.Mandator
 {
     [Authenticate]
-    public class MandatorService : MandatorAuthenticatedService
+    public class MandatorService : AbstractService
     {
         private readonly IMandatorLogic mandatorLogic;
 

@@ -9,7 +9,7 @@ using Woozle.Services.UserManagement;
 namespace Woozle.Services.Authentication
 {
     [MandatorAuthenticate]
-    public class LoginContextService : MandatorAuthenticatedService
+    public class LoginContextService : AbstractService
     {
         /// <summary>
         /// Gets the context of the user which is logged in to this Session (User and Mandator)

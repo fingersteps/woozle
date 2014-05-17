@@ -6,7 +6,7 @@ using Woozle.Domain.Location;
 namespace Woozle.Services.Location
 {
     [Authenticate]
-    public class LanguageService : MandatorAuthenticatedService
+    public class LanguageService : AbstractService
     {
         private readonly ILocationLogic locationLogic;
 

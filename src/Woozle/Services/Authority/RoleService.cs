@@ -6,7 +6,7 @@ using Woozle.Domain.ModuleManagement;
 namespace Woozle.Services.Authority
 {
     [Authenticate]
-    public class RoleService : MandatorAuthenticatedService
+    public class RoleService : AbstractService
     {
         private readonly IModuleLogic moduleLogic;
 

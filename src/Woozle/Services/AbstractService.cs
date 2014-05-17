@@ -1,14 +1,13 @@
 ﻿using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using Woozle.Model.SessionHandling;
-using Woozle.Settings;
 
 namespace Woozle.Services
 {
     /// <summary>
-    /// Abstract service implementation for all services which can be used by successful authenticated Woozle users
+    /// Abstract service implementation
     /// </summary>
-    public abstract class MandatorAuthenticatedService : Service
+    public abstract class AbstractService : Service
     {
         /// <summary>
         /// <see cref="Session">Session </see> for authorisation

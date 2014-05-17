@@ -7,7 +7,7 @@ using Woozle.Model;
 namespace Woozle.Services.Authority
 {
     [Authenticate]
-    public class PermissionService : MandatorAuthenticatedService
+    public class PermissionService : AbstractService
     {
         private readonly IPermissionsLogic permissionLogic;
 
