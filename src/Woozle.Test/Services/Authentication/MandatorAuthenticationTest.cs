@@ -31,18 +31,26 @@ namespace Woozle.Test.Services.Authentication
         }
 
         [Fact]
+        public void UserAndMandatorNullExecuteTest()
+        {
+            var attribute = new MandatorAuthenticateAttribute();
+            AuthService.Init(() => new Session(new SessionData(new User(), null)), new CredentialsAuthProvider());
+            Assert.Throws<ArgumentException>(() => attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object()));
+        }
+
+        [Fact]
         public void UserSetButMandatorNotExecuteTest()
         {
             var attribute = new MandatorAuthenticateAttribute();
-            AuthService.Init(() => new Session(Guid.NewGuid(), new SessionData(new User(), null), DateTime.Now), new CredentialsAuthProvider());
-            Assert.Throws<HttpError>(() => attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object()));
+            AuthService.Init(() => new Session(new SessionData(new User(), null)), new CredentialsAuthProvider());
+            Assert.Throws<ArgumentException>(() => attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object()));
         }
 
         [Fact]
         public void SessionObjectIsEmptyExecuteTest()
         {
             var attribute = new MandatorAuthenticateAttribute();
-            AuthService.Init(() => new Session(Guid.NewGuid(),null, DateTime.Now), new CredentialsAuthProvider());
+            AuthService.Init(() => new Session(null), new CredentialsAuthProvider());
             attribute.Execute(mockedHttpRequest, mockedHttpResponse, new object());
         }
 

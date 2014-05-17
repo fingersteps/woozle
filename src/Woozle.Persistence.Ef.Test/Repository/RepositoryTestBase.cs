@@ -29,7 +29,7 @@ namespace Woozle.Persistence.Ef.Test.Repository
             this.SessionUser = new User();
             this.SessionMandator = new Mandator();
             var sessionData = new SessionData(SessionUser, SessionMandator);
-            this.Session = new Session(Guid.Empty, sessionData, DateTime.Now);
+            this.Session = new Session( sessionData);
         }
     }
 }

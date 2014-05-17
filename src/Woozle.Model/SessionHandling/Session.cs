@@ -13,47 +13,26 @@ namespace Woozle.Model.SessionHandling
         /// <summary>
         /// Initializes a new <see cref="Session"/>
         /// </summary>
-        public Session() : this(Guid.NewGuid(), new SessionData(null, null), DateTime.Now.AddHours(1) )
+        public Session() : this(new SessionData(new User(), new Mandator()))
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Session"/> class.
         /// </summary>
-        /// <param name="sessionId">The session id.</param>
         /// <param name="sessionData">The session object.</param>
-        /// <param name="expirationDate">The expiration date.</param>
         /// <remarks></remarks>
-        public Session(Guid sessionId, SessionData sessionData, DateTime expirationDate)
+        public Session(SessionData sessionData)
         {
-            this.Id = sessionId;
             this.SessionData = sessionData;
-            this.ExpirationDate = expirationDate;
-
             Roles = new List<string>();
         }
-
-        /// <summary>
-        /// Gets the session id.
-        /// </summary>
-        /// <remarks></remarks>
-        public new Guid Id { get; private set; }
 
         /// <summary>
         /// Gets the session object.
         /// </summary>
         /// <remarks></remarks>
         public SessionData SessionData { get; set; }
-
-        /// <summary>
-        /// Gets or sets the expiration date.
-        /// </summary>
-        /// <remarks></remarks>
-        public DateTime ExpirationDate 
-        { 
-            get;
-            set;
-        }
 
         public override bool HasRole(string role)
         {

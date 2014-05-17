@@ -31,7 +31,7 @@ namespace Woozle.Test.Domain.Authority
             mandator = new Model.Mandator();
             user = new User();
             sessionObject = new SessionData(user, mandator);
-            session = new Session(Guid.NewGuid(), sessionObject, DateTime.Now.AddDays(1));
+            session = new Session(sessionObject);
 
             mandatorRoles = new List<MandatorRole>
                             {

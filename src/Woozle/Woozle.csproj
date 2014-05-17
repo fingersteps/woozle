@@ -97,6 +97,8 @@
     <Compile Include="Domain\UserManagement\UserValidator.cs" />
     <Compile Include="Domain\UserProfile\IMyProfileLogic.cs" />
     <Compile Include="Domain\UserProfile\MyProfileLogic.cs" />
+    <Compile Include="Services\Location\DefaultUserLanguageService.cs" />
+    <Compile Include="Services\Location\SelectUserLanguage.cs" />
     <Compile Include="Services\Authentication\WoozleRegistrationFeature.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemAttribute.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemFacade\ExternalSystemFacade.cs" />

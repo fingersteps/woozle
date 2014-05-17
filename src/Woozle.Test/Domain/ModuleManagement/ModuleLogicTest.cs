@@ -23,7 +23,7 @@ namespace Woozle.Test.Domain.ModuleManagement
         {
             var mandator = new Model.Mandator() {Id = 1, Name = "MyMandator"};
             var sessionData = new SessionData(null, mandator);
-            var session = new Session(Guid.Empty, sessionData, DateTime.Now);
+            var session = new Session(sessionData);
 
             var function1 = new Function() {Id = 1, LogicalId = "Function1"};
             var function2 = new Function() {Id = 2, LogicalId = "Function2"};

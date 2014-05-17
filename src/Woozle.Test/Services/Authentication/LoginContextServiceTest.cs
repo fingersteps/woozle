@@ -1,4 +1,6 @@
 ﻿using System;
+using Moq;
+using Woozle.Domain.Location;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
@@ -12,6 +14,7 @@ namespace Woozle.Test.Services.Authentication
         private readonly LoginContextService loginContextService;
         private readonly User user;
         private readonly Model.Mandator mandator;
+        private Session session;
 
         public LoginContextServiceTest()
         {
@@ -20,7 +23,7 @@ namespace Woozle.Test.Services.Authentication
             user = new User();
             mandator = new Model.Mandator();
             var sessionData = new SessionData(user, mandator);
-            var session = new Session(Guid.NewGuid(), sessionData, DateTime.Now);
+            session = new Session(sessionData);
 
             var requestContextMock = this.GetFakeRequestContext(session);
 
@@ -43,5 +46,7 @@ namespace Woozle.Test.Services.Authentication
             Assert.NotNull(result.Mandator);
             Assert.Equal(mandator.Name, result.Mandator.Name);
         }
+
+        
     }
 }

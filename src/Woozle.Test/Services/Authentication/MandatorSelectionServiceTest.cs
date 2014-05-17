@@ -31,7 +31,7 @@ namespace Woozle.Test.Services.Authentication
             user = new User() { Username = Username};
             mandator = new Woozle.Model.Mandator();
             var sessionObject = new SessionData(user, mandator);
-            var session = new Session(Guid.NewGuid(), sessionObject, DateTime.Now);
+            var session = new Session(sessionObject);
 
             this.mockedAuthenticationLogic = new Mock<IAuthenticationLogic>();
 
