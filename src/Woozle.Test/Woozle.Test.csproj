@@ -93,7 +93,7 @@
     <Compile Include="Domain\Settings\SettingsLogicTest.cs" />
     <Compile Include="Domain\UserManagement\UserLogicTest.cs" />
     <Compile Include="Domain\UserManagement\UserValidatorTest.cs" />
-    <Compile Include="Domain\UserProfile\MyProfileLogicTest.cs" />
+    <Compile Include="Domain\PasswordChange\PasswordChangeLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication\LoginContextServiceTest.cs" />
     <Compile Include="Services\Authentication\MandatorAuthenticationTest.cs" />
@@ -135,12 +135,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll">
-      <Link>AutoMapper.Net4.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

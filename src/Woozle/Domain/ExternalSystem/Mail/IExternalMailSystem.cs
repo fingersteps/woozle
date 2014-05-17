@@ -1,16 +1,14 @@
-﻿using Woozle.Domain.ExternalSystem;
-
-namespace Woozle.ExternalSystem
+﻿namespace Woozle.Domain.ExternalSystem.Mail
 {
     /// <summary>
     /// Definition for an external system which is able to perform EMail related stuff.
     /// </summary>
-    public interface IExternalEMailSystem : IExternalSystem
+    public interface IExternalMailSystem : IExternalSystem
     {
         /// <summary>
         /// Credentials for the specific email system.
         /// </summary>
-        ExternalEmailSystemCredentials Credentials { get; }
+        ExternalMailSystemCredentials Credentials { get; set; }
 
         /// <summary>
         /// Sends an EMail to a desired destination address

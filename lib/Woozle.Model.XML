@@ -60,14 +60,14 @@
             To use the translated value directly it needs to be filled explicit
             </summary>
         </member>
-        <member name="P:Woozle.Model.Function.TranslatedValue">
-            <summary>
-            To use the translated value directly it needs to be filled explicit
-            </summary>
-        </member>
         <member name="T:Woozle.Model.IManagedConcurrency">
             <summary>
             Marker interface to identify entities for which concurrt modifications should be tracked.
+            </summary>
+        </member>
+        <member name="P:Woozle.Model.Function.TranslatedValue">
+            <summary>
+            To use the translated value directly it needs to be filled explicit
             </summary>
         </member>
         <member name="P:Woozle.Model.Module.TranslatedValue">

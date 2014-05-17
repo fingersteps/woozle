@@ -1,4 +1,5 @@
-﻿using Woozle.Domain.UserProfile;
+﻿using Woozle.Domain.PasswordChange;
+using Woozle.Domain.UserProfile;
 using Woozle.Services.Authentication;
 
 namespace Woozle.Services.UserProfile
@@ -7,10 +8,14 @@ namespace Woozle.Services.UserProfile
     public class MyProfileService : AbstractService
     {
         private readonly IMyProfileLogic logic;
+        private readonly IPasswordChangeLogic passwordChangeLogic;
 
-        public MyProfileService(IMyProfileLogic logic)
+        public MyProfileService(
+            IMyProfileLogic logic,
+            IPasswordChangeLogic passwordChangeLogic)
         {
             this.logic = logic;
+            this.passwordChangeLogic = passwordChangeLogic;
         }
 
         /// <summary>
@@ -32,7 +37,7 @@ namespace Woozle.Services.UserProfile
         [ExceptionCatcher]
         public void Put(ChangeMyPasswordData changedProfileData)
         {
-            logic.ChangePassword(changedProfileData.OldPassword, changedProfileData.NewPassword, Session.SessionData);
+            this.passwordChangeLogic.ChangePassword(changedProfileData.OldPassword, changedProfileData.NewPassword, Session.SessionData);
         }
     }
 }

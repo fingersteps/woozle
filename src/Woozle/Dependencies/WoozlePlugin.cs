@@ -4,10 +4,13 @@ using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
+using Woozle.Domain.Fields;
 using Woozle.Domain.Location;
 using Woozle.Domain.MandatorManagement;
 using Woozle.Domain.ModuleManagement;
 using Woozle.Domain.Numerator;
+using Woozle.Domain.PasswordChange;
+using Woozle.Domain.PasswordRequest;
 using Woozle.Domain.PermissionManagement;
 using Woozle.Domain.PersonManagement;
 using Woozle.Domain.Settings;
@@ -49,9 +52,13 @@ namespace Woozle.Dependencies
             container.RegisterAs<MandatorLogic, IMandatorLogic>();
             container.RegisterAs<SettingsLogic, ISettingsLogic>();
             container.RegisterAs<WoozleSettings, IWoozleSettings>()
-                .ReusedWithin(ReuseScope.Container);
+                     .ReusedWithin(ReuseScope.Container);
             container.RegisterAs<StatusFieldLogic, IStatusFieldLogic>();
             container.RegisterAs<NumberProvider, INumberProvider>();
+            container.RegisterAs<PasswordRequestLogic, IPasswordRequestLogic>();
+            container.RegisterAs<PasswordChangeLogic, IPasswordChangeLogic>();
+            container.RegisterAs<TextFieldLogic, ITextFieldLogic>();
+            container.RegisterAs<PlaceHolderLogic, IPlaceholderLogic>();
 
             ConfigureDefaultMandator(container);
         }
