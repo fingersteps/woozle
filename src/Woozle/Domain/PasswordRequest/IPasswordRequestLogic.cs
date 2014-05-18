@@ -1,11 +1,14 @@
-﻿using Woozle.Domain.ExternalSystem.Mail;
+﻿using System;
+using Woozle.Domain.ExternalSystem;
 using Woozle.Model.SessionHandling;
 
 namespace Woozle.Domain.PasswordRequest
 {
     public interface IPasswordRequestLogic
     {
-        ExternalMailSystemCredentials Credentials { get; set; }
-        bool RequestNewPassword(string username, string title, string text, SessionData sessionData);
+        ExternalSystemCredentials Credentials { get; set; }
+
+        bool RequestNewPassword(string username, string text, string title, SessionData sessionData,
+            Func<string, string, SessionData, string> getEmailText);
     }
 }

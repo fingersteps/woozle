@@ -1,6 +1,6 @@
-﻿namespace Woozle.Domain.ExternalSystem.Mail
+﻿namespace Woozle.Domain.ExternalSystem
 {
-    public class ExternalMailSystemCredentials
+    public class ExternalSystemCredentials
     {
         public string Username { get; set; }
         public string Password { get; set; }

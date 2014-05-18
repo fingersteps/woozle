@@ -87,6 +87,8 @@
   <ItemGroup>
     <Compile Include="Domain\Authentication\IRegistrationSettings.cs" />
     <Compile Include="Domain\Authentication\RegistrationSettings.cs" />
+    <Compile Include="Domain\Communication\EmailCommunicationProvider.cs" />
+    <Compile Include="Domain\Communication\ICommunicationProvider.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystems.cs" />
     <Compile Include="Domain\Fields\AbstractPlaceHolderResolver.cs" />
     <Compile Include="Domain\Fields\IPlaceholderLogic.cs" />
@@ -99,9 +101,11 @@
     <Compile Include="Domain\Numerator\NumberProvider.cs" />
     <Compile Include="Domain\PasswordChange\IPasswordChangeLogic.cs" />
     <Compile Include="Domain\PasswordChange\PasswordChangeLogic.cs" />
+    <Compile Include="Domain\PasswordRequest\IPasswordGenerator.cs" />
     <Compile Include="Domain\PasswordRequest\IPasswordRequestLogic.cs" />
+    <Compile Include="Domain\PasswordRequest\PasswordGenerator.cs" />
     <Compile Include="Domain\PasswordRequest\PasswordRequestLogic.cs" />
-    <Compile Include="Domain\ExternalSystem\Mail\ExternalMailSystemCredentials.cs" />
+    <Compile Include="Domain\ExternalSystem\ExternalSystemCredentials.cs" />
     <Compile Include="Domain\ExternalSystem\Mail\IExternalMailSystem.cs" />
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />
     <Compile Include="Domain\UserManagement\UserValidator.cs" />

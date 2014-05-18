@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using Woozle.Domain.ExternalSystem.ExternalSystemFacade;
-using Woozle.Domain.ExternalSystem.Mail;
+using Woozle.Domain.Communication;
+using Woozle.Domain.ExternalSystem;
 using Woozle.Domain.PasswordChange;
 using Woozle.Domain.UserManagement;
 using Woozle.Model.SessionHandling;
@@ -12,22 +11,30 @@ namespace Woozle.Domain.PasswordRequest
     public class PasswordRequestLogic : IPasswordRequestLogic
     {
         private readonly IUserLogic userLogic;
-        private readonly IExternalSystemFacadeFactory externalSystemFacadeFactory;
         private readonly IPasswordChangeLogic passwordChangeLogic;
+        private readonly ICommunicationProvider communicationProvider;
+        private readonly IPasswordGenerator passwordGenerator;
 
         public PasswordRequestLogic(
             IUserLogic userLogic, 
-            IExternalSystemFacadeFactory externalSystemFacadeFactory,
-            IPasswordChangeLogic passwordChangeLogic)
+            IPasswordChangeLogic passwordChangeLogic,
+            ICommunicationProvider communicationProvider,
+            IPasswordGenerator passwordGenerator)
         {
             this.userLogic = userLogic;
-            this.externalSystemFacadeFactory = externalSystemFacadeFactory;
             this.passwordChangeLogic = passwordChangeLogic;
+            this.communicationProvider = communicationProvider;
+            this.passwordGenerator = passwordGenerator;
         }
 
-        public ExternalMailSystemCredentials Credentials { get; set; }
+        public ExternalSystemCredentials Credentials
+        {
+            get { return this.communicationProvider.Credentials; }
+            set { this.communicationProvider.Credentials = value; }
+        }
 
-        public bool RequestNewPassword(string username, string title, string text, SessionData sessionData)
+        public bool RequestNewPassword(string username, string text, string title, SessionData sessionData,  
+            Func<string, string, SessionData, string> getEmailText)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -36,51 +43,15 @@ namespace Woozle.Domain.PasswordRequest
                 throw new ArgumentNullException(message, "username");
             }
 
-            if (string.IsNullOrEmpty(text))
-            {
-                const string message = "The specified text is null or empty.";
-                Trace.TraceError(message);
-                throw new ArgumentNullException(message, "text");
-            }
-
-
             var loadedUser = this.userLogic.GetUserByUsername(username, sessionData);
 
-            this.passwordChangeLogic.ChangePassword(loadedUser, this.GetRandomPassword(), sessionData);
+            var newPassword = this.passwordGenerator.GetRandomPassword();
 
-            var mailSystem = this.GetMailSystem(sessionData);
+            this.passwordChangeLogic.ChangePassword(loadedUser, newPassword, sessionData);
 
-            if (mailSystem == null)
-            {
-                const string message = "E-Mail System couldn't found.";
-                Trace.TraceError(message);
-                throw new SystemException(message);
-            }
+            var resolvedText = getEmailText(text, newPassword, sessionData);
 
-            mailSystem.Credentials = this.Credentials;
-
-            return this.SendMail(mailSystem, loadedUser.Email, title, text, sessionData);
-        }
-
-        private string GetRandomPassword()
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(
-                Enumerable.Repeat(chars, 8)
-                    .Select(s => s[random.Next(s.Length)])
-                    .ToArray());
-        }
-
-        private bool SendMail(IExternalMailSystem mailSystem, string userEmail, string title, string text, SessionData sessionData)
-        {
-            return mailSystem.SendEMail(sessionData.Mandator.Name, sessionData.Mandator.Email, userEmail, title, text);
-        }
-
-        private IExternalMailSystem GetMailSystem(SessionData sessionData)
-        {
-            var facade =  this.externalSystemFacadeFactory.GetExternalSystemFacade<IExternalMailSystem>();
-            return facade.GetExternalSystem(sessionData);
+            return this.communicationProvider.Send(loadedUser.Email, title, resolvedText, sessionData);
         }
     }
 }

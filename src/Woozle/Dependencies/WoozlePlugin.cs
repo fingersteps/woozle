@@ -4,6 +4,7 @@ using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
+using Woozle.Domain.Communication;
 using Woozle.Domain.Fields;
 using Woozle.Domain.Location;
 using Woozle.Domain.MandatorManagement;
@@ -59,6 +60,8 @@ namespace Woozle.Dependencies
             container.RegisterAs<PasswordChangeLogic, IPasswordChangeLogic>();
             container.RegisterAs<TextFieldLogic, ITextFieldLogic>();
             container.RegisterAs<PlaceHolderLogic, IPlaceholderLogic>();
+            container.RegisterAs<PasswordGenerator, IPasswordGenerator>();
+            container.RegisterAs<EmailCommunicationProvider, ICommunicationProvider>();
 
             ConfigureDefaultMandator(container);
         }

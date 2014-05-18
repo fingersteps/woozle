@@ -8,7 +8,7 @@
         /// <summary>
         /// Credentials for the specific email system.
         /// </summary>
-        ExternalMailSystemCredentials Credentials { get; set; }
+        ExternalSystemCredentials Credentials { get; set; }
 
         /// <summary>
         /// Sends an EMail to a desired destination address

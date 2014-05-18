@@ -47,8 +47,7 @@ namespace Woozle.Domain.Fields
             if (!type.IsEnum) throw new InvalidOperationException();
             foreach (var field in type.GetFields())
             {
-                var attribute = Attribute.GetCustomAttribute(field,
-                                                             typeof(DescriptionAttribute)) as DescriptionAttribute;
+                var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
                 if (attribute != null)
                 {
                     if (attribute.Description == description)
