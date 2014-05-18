@@ -1,12 +1,11 @@
 ﻿using System;
 using Moq;
-using Woozle.Domain.ExternalSystem;
+using Woozle.Domain.Communication;
 using Woozle.Domain.ExternalSystem.ExternalSystemFacade;
 using Woozle.Domain.ExternalSystem.Mail;
 using Woozle.Domain.PasswordChange;
 using Woozle.Domain.PasswordRequest;
 using Woozle.Domain.UserManagement;
-using Woozle.Domain.UserProfile;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Xunit;
@@ -21,6 +20,8 @@ namespace Woozle.Test.Domain.PasswordRequest
         private readonly Mock<IExternalSystemFacade<IExternalMailSystem>> externalEmailSystemFacadeMock;
         private readonly Mock<IExternalMailSystem> externalEmailSystem;
         private readonly Mock<IPasswordChangeLogic> passwordChangeLogicMock;
+        private readonly Mock<ICommunicationProvider> communicationProviderMock;
+        private readonly Mock<IPasswordGenerator> passwordGeneratorMock;
 
         public PasswordRequestLogicTest()
         {
@@ -30,10 +31,14 @@ namespace Woozle.Test.Domain.PasswordRequest
             this.externalSystemFacadeFactoryMock = new Mock<IExternalSystemFacadeFactory>();
             this.passwordChangeLogicMock = new Mock<IPasswordChangeLogic>();
             this.externalEmailSystem = new Mock<IExternalMailSystem>();
-            //this.logic = new PasswordRequestLogic(
-            //    this.userLogicMock.Object,
-            //    this.externalSystemFacadeFactoryMock.Object,
-            //    this.passwordChangeLogicMock.Object);
+            this.communicationProviderMock = new Mock<ICommunicationProvider>();
+            this.passwordGeneratorMock = new Mock<IPasswordGenerator>();
+
+            this.logic = new PasswordRequestLogic(
+                this.userLogicMock.Object,
+                this.passwordChangeLogicMock.Object,
+                this.communicationProviderMock.Object,
+                this.passwordGeneratorMock.Object);
         }
 
         [Fact]
@@ -41,7 +46,7 @@ namespace Woozle.Test.Domain.PasswordRequest
         {
             var sessionData = new SessionData(new User(), new Model.Mandator());
 
-          //  Assert.Throws<ArgumentNullException>(() => this.logic.RequestNewPassword(String.Empty, String.Empty, String.Empty, sessionData));
+            Assert.Throws<ArgumentNullException>(() => this.logic.RequestNewPassword(String.Empty, String.Empty, String.Empty, sessionData, (s, s1, arg3) => string.Empty));
         }
 
         [Fact]
@@ -67,7 +72,7 @@ namespace Woozle.Test.Domain.PasswordRequest
             this.userLogicMock.Setup(n => n.GetUserByUsername(username, sessionData))
                               .Returns(user);
 
-           // this.logic.RequestNewPassword(username, string.Empty, "my text", sessionData);
+            this.logic.RequestNewPassword(username, string.Empty, "my text", sessionData, (s, s1, arg3) => string.Empty);
 
             this.userLogicMock.Verify(n => n.GetUserByUsername(username, sessionData), Times.Once);
         }
@@ -78,25 +83,7 @@ namespace Woozle.Test.Domain.PasswordRequest
             const string username = "myUsername";
             var sessionData = new SessionData(new User(), new Model.Mandator());
 
-        //    Assert.Throws<ArgumentNullException>((() => (this.logic.RequestNewPassword(username, string.Empty, string.Empty, sessionData))));
-        }
-
-        [Fact]
-        public void ShouldThrowASystemExceptionIfTheExternalSystemWasnotFound()
-        {
-            const string userName = "myUsername";
-            var sessionData = new SessionData(new User(), new Model.Mandator());
-
-            this.externalSystemFacadeFactoryMock.Setup(n => n.GetExternalSystemFacade<IExternalMailSystem>())
-                                                .Returns(externalEmailSystemFacadeMock.Object);
-
-            this.userLogicMock.Setup(n => n.GetUserByUsername(userName, sessionData))
-                                .Returns(new User
-                                         {
-                                             Email = "myEmailAdress"
-                                         });
-
-      //      Assert.Throws<SystemException>(() => (this.logic.RequestNewPassword(userName, string.Empty, "my text", sessionData)));
+            Assert.Throws<ArgumentException>((() => (this.logic.RequestNewPassword(username, string.Empty, string.Empty, sessionData, (s, s1, arg3) => string.Empty))));
         }
     }
 }

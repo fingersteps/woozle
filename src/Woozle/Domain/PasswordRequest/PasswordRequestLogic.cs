@@ -45,6 +45,13 @@ namespace Woozle.Domain.PasswordRequest
 
             var loadedUser = this.userLogic.GetUserByUsername(username, sessionData);
 
+            if (loadedUser == null)
+            {
+                var message = string.Format("The user with the username {0} was not found.", username);
+                Trace.TraceError(message);
+                throw new ArgumentException(message, "username");
+            }
+
             var newPassword = this.passwordGenerator.GetRandomPassword();
 
             this.passwordChangeLogic.ChangePassword(loadedUser, newPassword, sessionData);
