@@ -5,9 +5,9 @@ using Woozle.Model.SessionHandling;
 namespace Woozle.Services
 {
     /// <summary>
-    /// Base Service
+    /// Abstract service implementation
     /// </summary>
-    public abstract class AbstractService : ServiceStack.ServiceInterface.Service
+    public abstract class AbstractService : Service
     {
         /// <summary>
         /// <see cref="Session">Session </see> for authorisation

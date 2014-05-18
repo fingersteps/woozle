@@ -1,4 +1,9 @@
 ﻿using AutoMapper;
+using PostSharp.Aspects;
+using ServiceStack.ServiceInterface;
+using Woozle.Domain.Location;
+using Woozle.Model.SessionHandling;
+using Woozle.Services.Mandator;
 using Woozle.Services.UserManagement;
 
 namespace Woozle.Services.Authentication
@@ -19,5 +24,6 @@ namespace Woozle.Services.Authentication
             var result = new LoginContextResult {User = serviceUser, Mandator = serviceMandator};
             return result;
         }
+       
     }
 }

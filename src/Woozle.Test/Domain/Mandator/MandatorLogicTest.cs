@@ -53,7 +53,7 @@ namespace Woozle.Test.Domain.Mandator
                                    Id = 2
                                };
 
-            var session = new Session(Guid.NewGuid(), new SessionData(new User(), mandator), DateTime.Now);
+            var session = new Session(new SessionData(new User(), mandator));
 
             var result = this.mandatorLogic.LoadMandator(session.SessionData);
             Assert.Equal(expectedMandator, result);

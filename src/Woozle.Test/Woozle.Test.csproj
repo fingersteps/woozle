@@ -98,6 +98,7 @@
     <Compile Include="Services\Authentication\LoginContextServiceTest.cs" />
     <Compile Include="Services\Authentication\MandatorAuthenticationTest.cs" />
     <Compile Include="Services\Authentication\MandatorSelectionServiceTest.cs" />
+    <Compile Include="Services\Authentication\DefaultUserLanguageServiceTest.cs" />
     <Compile Include="Services\Authentication\WoozleAuthRepositoryTest.cs" />
     <Compile Include="Services\Authentication\WoozleCredentialsAuthProviderTest.cs" />
     <Compile Include="Services\Authority\MandatorRoleServiceTest.cs" />

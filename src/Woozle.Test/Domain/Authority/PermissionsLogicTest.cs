@@ -26,7 +26,7 @@ namespace Woozle.Test.Domain.Authority
         public PermissionsLogicTest()
         {
             Role = new Role();
-            Session = new Session(Guid.Empty, new SessionData(null, new Model.Mandator() {Id = 1}), DateTime.Now);
+            Session = new Session(new SessionData(null, new Model.Mandator() {Id = 1}));
             MandatorRoleRepositoryMock = new Mock<IRepository<MandatorRole>>();
             FunctionPermissionRepositoryMock = new Mock<IRepository<FunctionPermission>>();
             this.UserRepositoryMock = new Mock<IRepository<User>>();
@@ -262,7 +262,7 @@ namespace Woozle.Test.Domain.Authority
 
             var sessionData = new SessionData(sessionUser, new Model.Mandator() {Id = 2});
 
-            this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
+            this.Session = new Session(sessionData);
 
             this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);
@@ -283,7 +283,7 @@ namespace Woozle.Test.Domain.Authority
 
             var sessionData = new SessionData(sessionUser, new Model.Mandator() { Id = 5 });
 
-            this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
+            this.Session = new Session( sessionData);
 
             this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);
@@ -303,7 +303,7 @@ namespace Woozle.Test.Domain.Authority
 
             var sessionData = new SessionData(sessionUser, new Model.Mandator() { Id = 2 });
 
-            this.Session = new Session(Guid.NewGuid(), sessionData, DateTime.Now.AddDays(1));
+            this.Session = new Session(sessionData);
 
             this.UserRepositoryMock.Setup(n => n.CreateQueryable(It.IsAny<SessionData>()))
                 .Returns(userList);

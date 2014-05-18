@@ -22,7 +22,7 @@ namespace Woozle.Test.Domain.PersonManagement
         {
             personRepositoryMock = new Mock<IRepository<Person>>(MockBehavior.Strict);
 
-            session = new Session(Guid.NewGuid(), null, DateTime.Now);
+            session = new Session(null);
             person = new Person();
             logic = new PersonLogic(personRepositoryMock.Object);
 

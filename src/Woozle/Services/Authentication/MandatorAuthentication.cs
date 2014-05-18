@@ -29,17 +29,22 @@ namespace Woozle.Services.Authentication
                 //Get current session
                 var session = req.GetSession() as Session;
 
-                if (session != null)
+                if (session != null && session.SessionData != null)
                 {
+                    if (session.SessionData.User == null || session.SessionData.Mandator == null)
+                    {
+                        throw new ArgumentException("SessionData, User and Mandator can not be null.");
+                    }
+
                     //Check the session object if the mandator is set.
-                    if (session.SessionData != null && session.SessionData.Mandator == null && session.SessionData.User != null)
+                    if (session.SessionData.Mandator.Id == 0 && session.SessionData.User.Id != 0)
                     {
                         //If not throw a specific HttpError
                         throw new HttpError(601, "Please select a mandator.");
                     }
 
-                    if (session.SessionData != null && session.SessionData.User == null &&
-                             session.SessionData.Mandator == null)
+                    if (session.SessionData.User.Id == 0 &&
+                             session.SessionData.Mandator.Id == 0)
                     {
                         if (!session.IsAuthenticated)
                         {

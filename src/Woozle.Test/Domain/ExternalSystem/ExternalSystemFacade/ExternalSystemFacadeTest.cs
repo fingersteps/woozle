@@ -19,10 +19,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session( new SessionData(new User(), new Model.Mandator
                                                                                        {
                                                                                            MandatorId = 2
-                                                                                       }), DateTime.Now.AddHours(2));
+                                                                                       }));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
             externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session.SessionData))
@@ -57,10 +57,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemEmptyTypeIdTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session(new SessionData(new User(), new Model.Mandator
             {
                 MandatorId = 2
-            }), DateTime.Now.AddHours(2));
+            }));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
             var externalServiceFacade =
@@ -75,10 +75,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemTypeIdAsNullTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session(new SessionData(new User(), new Model.Mandator
             {
                 MandatorId = 2
-            }), DateTime.Now.AddHours(2));
+            }));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
             var externalServiceFacade =
@@ -93,10 +93,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemSessionIsNullTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session( new SessionData(new User(), new Model.Mandator
             {
                 MandatorId = 2
-            }), DateTime.Now.AddHours(2));
+            }));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
             var externalServiceFacade =
@@ -111,10 +111,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemWithANullableComposableCatalogTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session(new SessionData(new User(), new Model.Mandator
             {
                 MandatorId = 2
-            }), DateTime.Now.AddHours(2));
+            }));
 
             var externalServiceRepositoryMock = new Mock<IExternalSystemRepository>();
             externalServiceRepositoryMock.Setup(n => n.FindServiceByMandantAndType(TypeId, session.SessionData))
@@ -149,10 +149,10 @@ namespace Woozle.Test.Domain.ExternalSystem.ExternalSystemFacade
         [Fact]
         public void GetExternalSystemWithANullableExternalServiceRepositoryTest()
         {
-            this.session = new Session(Guid.NewGuid(), new SessionData(new User(), new Model.Mandator
+            this.session = new Session( new SessionData(new User(), new Model.Mandator
             {
                 MandatorId = 2
-            }), DateTime.Now.AddHours(2));
+            }));
 
             Assert.Throws<ArgumentNullException>(() =>
             {

@@ -22,7 +22,7 @@ namespace Woozle.Test.Domain.Settings
             settingsRepositoryMock = new Mock<IRepository<Setting>>(MockBehavior.Strict);
             settingsLogic = new SettingsLogic(settingsRepositoryMock.Object);
 
-            session = new Session(Guid.NewGuid(), null, DateTime.Now);
+            session = new Session( null);
 
             settings = new List<Setting>
                            {

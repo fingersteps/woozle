@@ -77,8 +77,7 @@ namespace Woozle.Test.Domain.UserManagement
         [Fact]
         public void GetUsersForMandatorTest()
         {
-            var session = new Session(Guid.NewGuid(), new SessionData(null, new Model.Mandator() {Id = 1}),
-                                      DateTime.Now.AddHours(10));
+            var session = new Session(new SessionData(null, new Model.Mandator() {Id = 1}));
 
             IQueryable<User> users = new List<User>()
                 {

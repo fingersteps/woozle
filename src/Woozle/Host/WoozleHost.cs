@@ -5,6 +5,7 @@ using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Dependencies;
 using Woozle.Domain.MandatorManagement;
+using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence.Ef.Dependencies;
 using Woozle.Services;
@@ -18,18 +19,18 @@ namespace Woozle.Host
     /// </summary>
     public class WoozleHost : AppHostHttpListenerBase
     {
-        private readonly string defaultMandatorName;
+        private readonly WoozleDefaults defaults;
 
         /// <summary>
         /// Initializes a new <see cref="WoozleHost"/>
         /// </summary>
-        /// <param name="defaultMandatorName">The default mandator name used in Woozle when no mandator is necessary (for example in public web services or in user registration)</param>
+        /// <param name="defaults">Default values for this host</param>
         /// <param name="serviceName">The name of the service</param>
         /// <param name="assemblies">The assemblies which contain services</param>
-        protected WoozleHost(string defaultMandatorName, string serviceName, params Assembly[] assemblies)
+        protected WoozleHost(WoozleDefaults defaults, string serviceName, params Assembly[] assemblies)
             : base(serviceName, assemblies)
         {
-            this.defaultMandatorName = defaultMandatorName;
+            this.defaults = defaults;
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Woozle.Host
             Plugins.Add(new SessionFeature());
             Plugins.Add(CreateAuthFeature(container));
             Plugins.Add(new WoozleEntityFrameworkPlugin());
-            Plugins.Add(new WoozlePlugin(defaultMandatorName));
+            Plugins.Add(new WoozlePlugin(defaults));
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Woozle.Host
 
         protected virtual AuthFeature CreateAuthFeature(Container container)
         {
-            var authFeature = new AuthFeature(() => new Session(), new IAuthProvider[]
+            var authFeature = new AuthFeature(() => new Session(CreateDefaultSessionData(container)), new IAuthProvider[]
             {
                 new WoozleCredentialsAuthProvider(container)
             })
@@ -79,6 +80,17 @@ namespace Woozle.Host
                 HtmlRedirect = string.Empty
             };
             return authFeature;
+        }
+
+        private SessionData CreateDefaultSessionData(Container container)
+        {
+            var settings = container.Resolve<IWoozleSettings>();
+            var user = new User()
+            {
+                LanguageId = settings.DefaultLanguage.Id,
+                Language = settings.DefaultLanguage
+            };
+            return new SessionData(user, settings.DefaultMandator);
         }
     }
 }
