@@ -52,6 +52,37 @@
             <param name="sessionData">The current <see cref="T:Woozle.Model.SessionHandling.SessionData">Session</see></param>
             <returns>true, if the password was successfully changed.</returns>
         </member>
+        <member name="M:Woozle.Domain.PasswordRequest.IPasswordGenerator.GetRandomPassword">
+            <summary>
+            Generates a random password.
+            </summary>
+            <returns>A random password.</returns>
+        </member>
+        <member name="M:Woozle.Domain.PasswordRequest.IPasswordRequestLogic.RequestNewPassword(System.String,System.String,System.String,System.String,Woozle.Model.SessionHandling.SessionData,System.Func{System.String,System.String,Woozle.Model.SessionHandling.SessionData,System.String})">
+            <summary>
+            Requests the new password.
+            </summary>
+            <param name="ipAdress">The ip of the callee.</param>
+            <param name="username">The requested username</param>
+            <param name="text">The text for sending the new password.</param>
+            <param name="title">The title of the message for the new password.</param>
+            <param name="sessionData"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <param name="getEmailText">Callback for resolving parameters of the email text with the new password.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Woozle.Domain.PasswordRequest.IPasswordRequestLogic.Credentials">
+            <summary>
+            Credentials for the external communication system (e.g. an email system)
+            </summary>
+        </member>
+        <member name="M:Woozle.Domain.PasswordRequest.IPasswordRequestValidator.CanRequestPassword(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Checks wheter the callee can request the new password.
+            </summary>
+            <param name="ip">The ip of the callee.</param>
+            <param name="sessionData">The <see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <returns>True, if the calle can request for a new password.</returns>
+        </member>
         <member name="T:Woozle.Domain.ExternalSystem.Mail.IExternalMailSystem">
             <summary>
             Definition for an external system which is able to perform EMail related stuff.
@@ -97,6 +128,26 @@
             <param name="email"></param>
             <param name="languageId"></param>
             <param name="sessionData"></param>
+        </member>
+        <member name="P:Woozle.Host.WoozleDefaults.DefaultMandatorName">
+            <summary>
+            The default mandator name used in Woozle when no mandator is necessary (for example in public web services or in user registration)
+            </summary>
+        </member>
+        <member name="P:Woozle.Host.WoozleDefaults.DefaultLanguageCode">
+            <summary>
+            The default language code which is used when no language is set (e.g. "de" or "en)
+            </summary>
+        </member>
+        <member name="T:Woozle.Services.AbstractService">
+            <summary>
+            Abstract service implementation
+            </summary>
+        </member>
+        <member name="P:Woozle.Services.AbstractService.Session">
+            <summary>
+            <see cref="P:Woozle.Services.AbstractService.Session">Session </see> for authorisation
+            </summary>
         </member>
         <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
             <summary>
@@ -222,7 +273,7 @@
         </member>
         <member name="M:Woozle.Dependencies.WoozlePlugin.ConfigureDefaultMandator(Funq.Container)">
             <summary>
-            The configured default mandator will be used as default for all public services (where no authentification is needed) and for user registration if it's set.
+            The configured default mandator and languagewill be used as default for all public services (where no authentification is needed).
             </summary>
         </member>
         <member name="T:Woozle.Domain.Authentication.AuthenticationLogic">
@@ -614,11 +665,11 @@
             HTTP Serverhost based on <see cref="T:ServiceStack.WebHost.Endpoints.AppHostHttpListenerBase"/>
             </summary>
         </member>
-        <member name="M:Woozle.Host.WoozleHost.#ctor(System.String,System.String,System.Reflection.Assembly[])">
+        <member name="M:Woozle.Host.WoozleHost.#ctor(Woozle.Host.WoozleDefaults,System.String,System.Reflection.Assembly[])">
             <summary>
             Initializes a new <see cref="T:Woozle.Host.WoozleHost"/>
             </summary>
-            <param name="defaultMandatorName">The default mandator name used in Woozle when no mandator is necessary (for example in public web services or in user registration)</param>
+            <param name="defaults">Default values for this host</param>
             <param name="serviceName">The name of the service</param>
             <param name="assemblies">The assemblies which contain services</param>
         </member>
@@ -645,16 +696,6 @@
             Sets the default reuse scope for the IoC container, which takes effect for all default dependency injection bindings.
             </summary>
             <param name="container"></param>
-        </member>
-        <member name="T:Woozle.Services.AbstractService">
-            <summary>
-            Base Service
-            </summary>
-        </member>
-        <member name="P:Woozle.Services.AbstractService.Session">
-            <summary>
-            <see cref="P:Woozle.Services.AbstractService.Session">Session </see> for authorisation
-            </summary>
         </member>
         <member name="M:Woozle.Services.Authentication.LoginContextService.Get(Woozle.Services.Authentication.LoginContext)">
             <summary>

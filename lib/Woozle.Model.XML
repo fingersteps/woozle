@@ -81,35 +81,16 @@
             </summary>
             <remarks></remarks>
         </member>
-        <member name="M:Woozle.Model.SessionHandling.Session.#ctor">
-            <summary>
-            Initializes a new <see cref="T:Woozle.Model.SessionHandling.Session"/>
-            </summary>
-        </member>
-        <member name="M:Woozle.Model.SessionHandling.Session.#ctor(System.Guid,Woozle.Model.SessionHandling.SessionData,System.DateTime)">
+        <member name="M:Woozle.Model.SessionHandling.Session.#ctor(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             Initializes a new instance of the <see cref="T:Woozle.Model.SessionHandling.Session"/> class.
             </summary>
-            <param name="sessionId">The session id.</param>
             <param name="sessionData">The session object.</param>
-            <param name="expirationDate">The expiration date.</param>
-            <remarks></remarks>
-        </member>
-        <member name="P:Woozle.Model.SessionHandling.Session.Id">
-            <summary>
-            Gets the session id.
-            </summary>
             <remarks></remarks>
         </member>
         <member name="P:Woozle.Model.SessionHandling.Session.SessionData">
             <summary>
             Gets the session object.
-            </summary>
-            <remarks></remarks>
-        </member>
-        <member name="P:Woozle.Model.SessionHandling.Session.ExpirationDate">
-            <summary>
-            Gets or sets the expiration date.
             </summary>
             <remarks></remarks>
         </member>

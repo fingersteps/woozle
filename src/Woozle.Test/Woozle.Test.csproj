@@ -88,6 +88,7 @@
     <Compile Include="Domain\ModuleManagement\ModuleLogicTest.cs" />
     <Compile Include="Domain\Numerator\NumberProviderTest.cs" />
     <Compile Include="Domain\PasswordRequest\PasswordRequestLogicTest.cs" />
+    <Compile Include="Domain\PasswordRequest\PasswordRequestValidatorTest.cs" />
     <Compile Include="Domain\PermissionManagement\PermissionManagerTest.cs" />
     <Compile Include="Domain\PersonManagement\PersonLogicTest.cs" />
     <Compile Include="Domain\Settings\SettingsLogicTest.cs" />
