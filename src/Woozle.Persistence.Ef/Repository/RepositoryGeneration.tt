@@ -337,6 +337,7 @@ string WriteSynchronizeMethod(EntityType entity, CodeGenerationTools code)
 				subTypes += Environment.NewLine + "					Context.SynchronizeObject(n." + x.Name + ", sessionData);";
 			}
 
+
 			navProperties += Environment.NewLine +
 				"			//Navigation Property '" + t + "'" + Environment.NewLine + 
 				"			stopwatch.Start();" + Environment.NewLine +

@@ -8,7 +8,7 @@ namespace Woozle.Domain.PasswordRequest
     {
         ExternalSystemCredentials Credentials { get; set; }
 
-        bool RequestNewPassword(string username, string text, string title, SessionData sessionData,
+        bool RequestNewPassword(string ipAdress, string username, string text, string title, SessionData sessionData,
             Func<string, string, SessionData, string> getEmailText);
     }
 }

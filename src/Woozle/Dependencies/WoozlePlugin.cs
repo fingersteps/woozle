@@ -64,6 +64,7 @@ namespace Woozle.Dependencies
             container.RegisterAs<PlaceHolderLogic, IPlaceholderLogic>();
             container.RegisterAs<PasswordGenerator, IPasswordGenerator>();
             container.RegisterAs<EmailCommunicationProvider, ICommunicationProvider>();
+            container.RegisterAs<PasswordRequestValidator, IPasswordRequestValidator>();
 
             ConfigureDefaultMandator(container);
         }

@@ -103,10 +103,12 @@
     <Compile Include="Domain\PasswordChange\PasswordChangeLogic.cs" />
     <Compile Include="Domain\PasswordRequest\IPasswordGenerator.cs" />
     <Compile Include="Domain\PasswordRequest\IPasswordRequestLogic.cs" />
+    <Compile Include="Domain\PasswordRequest\IPasswordRequestValidator.cs" />
     <Compile Include="Domain\PasswordRequest\PasswordGenerator.cs" />
     <Compile Include="Domain\PasswordRequest\PasswordRequestLogic.cs" />
     <Compile Include="Domain\ExternalSystem\ExternalSystemCredentials.cs" />
     <Compile Include="Domain\ExternalSystem\Mail\IExternalMailSystem.cs" />
+    <Compile Include="Domain\PasswordRequest\PasswordRequestValidator.cs" />
     <Compile Include="Domain\UserManagement\IUserValidator.cs" />
     <Compile Include="Domain\UserManagement\UserValidator.cs" />
     <Compile Include="Domain\UserProfile\IMyProfileLogic.cs" />

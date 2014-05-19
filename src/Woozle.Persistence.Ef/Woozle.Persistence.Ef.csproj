@@ -141,6 +141,9 @@
     <Compile Include="Repository\NumberRangeRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\PasswordRequestRepository.cs">
+      <DependentUpon>RepositoryGeneration.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\PermissionRepository.cs">
       <DependentUpon>RepositoryGeneration.tt</DependentUpon>
     </Compile>

@@ -122,6 +122,9 @@
     <Compile Include="NumberRange.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PasswordRequest.cs">
+      <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permission.cs">
       <DependentUpon>Woozle.CoreModel.tt</DependentUpon>
     </Compile>

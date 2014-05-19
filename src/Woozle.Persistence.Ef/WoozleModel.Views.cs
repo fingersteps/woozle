@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(Woozle.Persistence.Ef.EfWoozleEntity),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsf1e079aaf8063cf06d46196dad633a76a703af5302742dacce0db03483bff495))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySetsf1e079aaf8063cf06d46196dad633a76a703af5302742dacce0db03483bff495 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "419990cdd2ca4d6a2d27eaf3432f32b4e66a03ee0cd4d93901d75b4cd43a1976"; }
+            get { return "f1e079aaf8063cf06d46196dad633a76a703af5302742dacce0db03483bff495"; }
         }
 
         /// <summary>
@@ -335,6 +335,16 @@ namespace Edm_EntityMappingGeneratedViews
             if (extentName == "EfWoozleEntity.MandatorRoleFunctionPermission")
             {
                 return GetView57();
+            }
+
+            if (extentName == "WoozleModelStoreContainer.PasswordRequests")
+            {
+                return GetView58();
+            }
+
+            if (extentName == "EfWoozleEntity.PasswordRequests")
+            {
+                return GetView59();
             }
 
             return null;
@@ -1566,6 +1576,46 @@ namespace Edm_EntityMappingGeneratedViews
             ) AS T1
         ) AS T2
     ) AS T3");
+        }
+
+        /// <summary>
+        /// Gets the view for WoozleModelStoreContainer.PasswordRequests.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView58()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing PasswordRequests
+        [WoozleModel.Store.PasswordRequests](T1.PasswordRequests_Id, T1.PasswordRequests_Username, T1.PasswordRequests_TimeStamp, T1.PasswordRequests_IP)
+    FROM (
+        SELECT 
+            T.Id AS PasswordRequests_Id, 
+            T.Username AS PasswordRequests_Username, 
+            T.TimeStamp AS PasswordRequests_TimeStamp, 
+            T.IP AS PasswordRequests_IP, 
+            True AS _from0
+        FROM EfWoozleEntity.PasswordRequests AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for EfWoozleEntity.PasswordRequests.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView59()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing PasswordRequests
+        [WoozleModel.PasswordRequest](T1.PasswordRequest_Id, T1.PasswordRequest_Username, T1.PasswordRequest_TimeStamp, T1.PasswordRequest_IP)
+    FROM (
+        SELECT 
+            T.Id AS PasswordRequest_Id, 
+            T.Username AS PasswordRequest_Username, 
+            T.TimeStamp AS PasswordRequest_TimeStamp, 
+            T.IP AS PasswordRequest_IP, 
+            True AS _from0
+        FROM WoozleModelStoreContainer.PasswordRequests AS T
+    ) AS T1");
         }
     }
 }

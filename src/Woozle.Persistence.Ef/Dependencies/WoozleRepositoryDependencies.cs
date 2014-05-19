@@ -36,6 +36,7 @@ namespace Woozle.Persistence.Ef.Dependencies
             container.RegisterAs<NumberRangeRepository, IRepository<NumberRange>>();
             container.RegisterAs<TextFieldPlaceHolderRepository, IRepository<TextFieldPlaceHolder>>();
             container.RegisterAs<TextFieldRepository, IRepository<TextField>>();
+            container.RegisterAs<PasswordRequestRepository, IRepository<PasswordRequest>>();
         }
     }
 }

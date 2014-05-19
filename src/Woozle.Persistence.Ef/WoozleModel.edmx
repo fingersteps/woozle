@@ -166,6 +166,15 @@
           <Property Name="ChangeCounter" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="PasswordRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="Id" />
@@ -778,6 +787,7 @@
           <EntitySet Name="Module" EntityType="Self.Module" Schema="woo" store:Type="Tables" />
           <EntitySet Name="ModuleGroup" EntityType="Self.ModuleGroup" Schema="woo" store:Type="Tables" />
           <EntitySet Name="NumberRange" EntityType="Self.NumberRange" Schema="woo" store:Type="Tables" />
+          <EntitySet Name="PasswordRequests" EntityType="Self.PasswordRequests" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="woo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="woo" store:Type="Tables" />
@@ -1127,6 +1137,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserMandatorRole" EntitySet="UserMandatorRoles" />
           </AssociationSet>
+          <EntitySet Name="PasswordRequests" EntityType="WoozleModel.PasswordRequest" />
           </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -1899,6 +1910,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PasswordRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2219,6 +2239,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PasswordRequests">
+            <EntityTypeMapping TypeName="WoozleModel.PasswordRequest">
+              <MappingFragment StoreEntitySet="PasswordRequests">
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2307,6 +2337,7 @@
         <AssociationConnector Association="WoozleModel.FK_User_Language" />
         <AssociationConnector Association="WoozleModel.FK_User_Status" />
         <AssociationConnector Association="WoozleModel.FK_UserMandatorRole_User" />
+        <EntityTypeShape EntityType="WoozleModel.PasswordRequest" Width="1.5" PointX="0.75" PointY="0.75" />
         </Diagram>
     </Diagrams>
   </Designer>
