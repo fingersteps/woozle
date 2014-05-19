@@ -12,10 +12,9 @@ namespace Woozle.Test.Domain.PasswordRequest
 {
     public class PasswordRequestValidatorTest
     {
-        private PasswordRequestValidator passwordRequestValidator;
-        private Mock<IRepository<Model.PasswordRequest>> passwordRequestRepositoryMock;
-        private SessionData sessionData;
-
+        private readonly PasswordRequestValidator passwordRequestValidator;
+        private readonly Mock<IRepository<Model.PasswordRequest>> passwordRequestRepositoryMock;
+        private readonly SessionData sessionData;
 
         public PasswordRequestValidatorTest()
         {
