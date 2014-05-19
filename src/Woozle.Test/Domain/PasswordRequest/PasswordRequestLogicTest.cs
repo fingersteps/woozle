@@ -1,7 +1,7 @@
 ﻿using System;
 using Moq;
-using ServiceStack.ServiceHost;
 using Woozle.Domain.Communication;
+using Woozle.Domain.ExternalSystem;
 using Woozle.Domain.ExternalSystem.ExternalSystemFacade;
 using Woozle.Domain.ExternalSystem.Mail;
 using Woozle.Domain.PasswordChange;
@@ -25,8 +25,8 @@ namespace Woozle.Test.Domain.PasswordRequest
         private readonly Mock<ICommunicationProvider> communicationProviderMock;
         private readonly Mock<IPasswordGenerator> passwordGeneratorMock;
         private readonly Mock<IRepository<Model.PasswordRequest>> repositoryMock;
+        private readonly Mock<IUnitOfWork> unitOfWorkMock;
         private readonly Mock<IPasswordRequestValidator> passwordRequestValidatorMock;
-        private readonly Mock<IRequestContext> requestContextMock;
 
         public PasswordRequestLogicTest()
         {
@@ -40,7 +40,10 @@ namespace Woozle.Test.Domain.PasswordRequest
             this.passwordGeneratorMock = new Mock<IPasswordGenerator>();
             this.repositoryMock = new Mock<IRepository<Model.PasswordRequest>>();
             this.passwordRequestValidatorMock = new Mock<IPasswordRequestValidator>();
-            this.requestContextMock = new Mock<IRequestContext>();
+            this.unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            this.repositoryMock.Setup(n => n.UnitOfWork)
+                                .Returns(this.unitOfWorkMock.Object);
 
             this.logic = new PasswordRequestLogic(
                 this.userLogicMock.Object,
@@ -49,15 +52,65 @@ namespace Woozle.Test.Domain.PasswordRequest
                 this.passwordGeneratorMock.Object,
                 repositoryMock.Object,
                 passwordRequestValidatorMock.Object);
-            //this.requestContextMock.Object);
+        }
+
+        private SessionData GetSessionData()
+        {
+            return new SessionData(new User(), new Model.Mandator());
+        }
+
+        [Fact]
+        public void CredentialsShouldReturnTheUsernameOfTheCommunicationProviderCredential()
+        {
+            const string username = "myUsername";
+
+            this.communicationProviderMock.Setup(n => n.Credentials)
+                                            .Returns(new ExternalSystemCredentials
+                                                     {
+                                                         Username = username
+                                                     });
+
+
+
+            Assert.Equal(username, this.logic.Credentials.Username);
+        }
+
+
+        [Fact]
+        public void CredentialsShouldReturnThePasswordOfTheCommunicationProviderCredential()
+        {
+            const string password = "myPassword";
+
+            this.communicationProviderMock.Setup(n => n.Credentials)
+                                            .Returns(new ExternalSystemCredentials
+                                            {
+                                                Password = password
+                                            });
+
+
+
+            Assert.Equal(password, this.logic.Credentials.Password);
         }
 
         [Fact]
         public void EmptyUsernameShouldThrowAnArgumentExceptionAcceptedOnANewPasswordRequest()
         {
-            var sessionData = new SessionData(new User(), new Model.Mandator());
+            var sessionData = this.GetSessionData();
 
             Assert.Throws<ArgumentNullException>(() => this.logic.RequestNewPassword(string.Empty, String.Empty, String.Empty, String.Empty, sessionData, (s, s1, arg3) => string.Empty));
+        }
+
+        [Fact]
+        public void RequestNewPasswordShouldCheckIfTheCalleeCanRequestForANewPassword()
+        {
+            const string ip = "myIp";
+            var sessionData = this.GetSessionData();
+
+            this.passwordRequestValidatorMock.Setup(n => n.CanRequestPassword(ip, sessionData))
+                                             .Returns(false);
+
+            Assert.False(this.logic.RequestNewPassword(ip, "myUsername", "myText", "myTitle", sessionData,
+                (s, s1, arg3) => string.Empty));
         }
 
         [Fact]
@@ -65,7 +118,12 @@ namespace Woozle.Test.Domain.PasswordRequest
         {
             const string username = "myUsername";
             const string expectedEmailAdress = "my@email.com";
-            var sessionData = new SessionData(new User(), new Model.Mandator());
+            var sessionData = this.GetSessionData();
+
+
+
+            this.passwordRequestValidatorMock.Setup(n => n.CanRequestPassword(string.Empty, sessionData))
+                                             .Returns(true);
 
             this.externalSystemFacadeFactoryMock.Setup(n => n.GetExternalSystemFacade<IExternalMailSystem>())
                                                 .Returns(this.externalEmailSystemFacadeMock.Object);
@@ -93,6 +151,9 @@ namespace Woozle.Test.Domain.PasswordRequest
         {
             const string username = "myUsername";
             var sessionData = new SessionData(new User(), new Model.Mandator());
+
+            this.passwordRequestValidatorMock.Setup(n => n.CanRequestPassword(string.Empty, sessionData))
+                                           .Returns(true);
 
             Assert.Throws<ArgumentException>((() => (this.logic.RequestNewPassword(string.Empty, username, string.Empty, string.Empty, sessionData, (s, s1, arg3) => string.Empty))));
         }
