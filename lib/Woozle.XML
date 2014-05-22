@@ -12,6 +12,21 @@
             <param name="session"></param>
             <returns></returns>
         </member>
+        <member name="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets all text fields of the specific mandator.
+            </summary>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <returns>A list of <see cref="T:Woozle.Domain.Fields.TextFieldSearchResult"/></returns>
+        </member>
+        <member name="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextField(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets a specific text field.
+            </summary>
+            <param name="name">The name of the text field.</param>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <returns>The <see cref="T:Woozle.Domain.Fields.TextFieldSearchResult"/></returns>
+        </member>
         <member name="M:Woozle.Domain.Fields.TextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             <see cref="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)"/>
@@ -108,6 +123,13 @@
             Credentials for the specific email system.
             </summary>
         </member>
+        <member name="M:Woozle.Domain.Registration.IRegistrationLogic.RegisterUser(Woozle.Model.User,System.String)">
+            <summary>
+            Registers a new user
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+        </member>
         <member name="M:Woozle.Domain.UserManagement.IUserValidator.ValidateNewUser(System.String,System.String)">
             <summary>
             Validates a new User
@@ -149,7 +171,12 @@
             <see cref="P:Woozle.Services.AbstractService.Session">Session </see> for authorisation
             </summary>
         </member>
-        <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
+        <member name="M:Woozle.Services.Registration.RegistrationService.Post(Woozle.Services.Registration.Registration)">
+            <summary>
+            Create new Registration
+            </summary>
+        </member>
+        <member name="T:Woozle.Services.Registration.WoozleRegistrationFeature">
             <summary>
             This Feature is a Woozle specific extension of ServiceStacks built in Registration feature.
             </summary>
