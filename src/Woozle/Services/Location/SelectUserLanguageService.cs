@@ -4,11 +4,11 @@ using Woozle.Model.SessionHandling;
 
 namespace Woozle.Services.Location
 {
-    public class DefaultUserLanguageService : AbstractService
+    public class SelectUserLanguageService : AbstractService
     {
         private readonly ILocationLogic languageLogic;
 
-        public DefaultUserLanguageService(ILocationLogic languageLogic)
+        public SelectUserLanguageService(ILocationLogic languageLogic)
         {
             this.languageLogic = languageLogic;
         }

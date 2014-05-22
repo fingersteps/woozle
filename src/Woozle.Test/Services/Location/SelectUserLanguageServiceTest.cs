@@ -7,16 +7,16 @@ using Woozle.Services.Location;
 using Xunit;
 using Language = Woozle.Model.Language;
 
-namespace Woozle.Test.Services.Authentication
+namespace Woozle.Test.Services.Location
 {
-    public class DefaultUserLanguageServiceTest : SessionTestBase
+    public class SelectUserLanguageServiceTest : SessionTestBase
     {
-        private readonly DefaultUserLanguageService setUserDefaultsService;
+        private readonly SelectUserLanguageService setUserDefaultsService;
         private readonly User user;
         private readonly Model.Mandator mandator;
         private readonly Mock<ILocationLogic> locationLogicMock;
 
-        public DefaultUserLanguageServiceTest()
+        public SelectUserLanguageServiceTest()
         {
             MappingConfiguration.Configure();
 
@@ -29,7 +29,7 @@ namespace Woozle.Test.Services.Authentication
 
             locationLogicMock = new Mock<ILocationLogic>();
 
-            setUserDefaultsService = new DefaultUserLanguageService(locationLogicMock.Object)
+            setUserDefaultsService = new SelectUserLanguageService(locationLogicMock.Object)
                 {
                     RequestContext = requestContextMock
                 };

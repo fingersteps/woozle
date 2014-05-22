@@ -3,28 +3,30 @@ using Moq;
 using ServiceStack.ServiceInterface.Auth;
 using Woozle.Domain.Authentication;
 using Woozle.Domain.Authority;
+using Woozle.Domain.Location;
+using Woozle.Domain.Registration;
 using Woozle.Domain.UserManagement;
 using Woozle.Model;
 using Woozle.Model.SessionHandling;
 using Woozle.Services;
-using Woozle.Services.Authentication;
 using Woozle.Services.Authority;
 using Woozle.Settings;
 using Xunit;
 
-namespace Woozle.Test.Services.Authentication
+namespace Woozle.Test.Domain.Registration
 {
-    public class WoozleAuthRepositoryTest
+    public class RegistrationLogicTest
     {
         private Mock<IUserLogic> userLogicMock;
         private Mock<IWoozleSettings> woozleSettingsMock;
         private Mock<IRegistrationSettings> registrationSettingsMock;
         private Mock<IGetRolesLogic> getRolesLogicMock;
         private Mock<IHashProvider> passwordHasherMock;
-        private WoozleAuthRepository authRepository;
+        private RegistrationLogic registrationLogic;
         private Mock<IUserValidator> userValidatorMock;
+        private Mock<ILocationLogic> locationLogicMock;
 
-        public WoozleAuthRepositoryTest()
+        public RegistrationLogicTest()
         {
             userLogicMock = new Mock<IUserLogic>();
             woozleSettingsMock = new Mock<IWoozleSettings>();
@@ -32,9 +34,10 @@ namespace Woozle.Test.Services.Authentication
             getRolesLogicMock = new Mock<IGetRolesLogic>();
             passwordHasherMock = new Mock<IHashProvider>();
             userValidatorMock = new Mock<IUserValidator>();
+            locationLogicMock = new Mock<ILocationLogic>();
 
-            authRepository = new WoozleAuthRepository(userLogicMock.Object, woozleSettingsMock.Object,
-                registrationSettingsMock.Object, getRolesLogicMock.Object, passwordHasherMock.Object, userValidatorMock.Object);
+            registrationLogic = new RegistrationLogic(userLogicMock.Object, woozleSettingsMock.Object,
+                registrationSettingsMock.Object, getRolesLogicMock.Object, passwordHasherMock.Object, userValidatorMock.Object, locationLogicMock.Object);
 
             MappingConfiguration.Configure();
         }
@@ -43,30 +46,36 @@ namespace Woozle.Test.Services.Authentication
         public void CreateUserAuth_MappedFields()
         {
             MockCreateUserDependencies();
+            locationLogicMock.Setup(n => n.LoadLanguage("de")).Returns(new Language() {Id = 2});
 
-            var user = new UserAuth()
+            var user = new User()
             {
-                UserName = "user",
+                Username = "user",
                 FirstName = "firstname",
                 LastName = "lastname",
+                Language = new Language() {Code = "de"}
             };
-            var registeredUser = authRepository.CreateUserAuth(user, "password");
-            
-            Assert.Equal(user.UserName, registeredUser.UserName);
+
+            var registeredUser = registrationLogic.RegisterUser(user, "password");
+
+            Assert.Equal(user.Username, registeredUser.Username);
             Assert.Equal(user.FirstName, registeredUser.FirstName);
             Assert.Equal(user.LastName, registeredUser.LastName);
+            Assert.Equal(2, registeredUser.LanguageId);
         }
 
         [Fact]
         public void CreateUserAuth_SetPassword()
         {
             MockCreateUserDependencies();
+            woozleSettingsMock.Setup(n => n.DefaultLanguage).Returns(new Language() {Id = 4});
 
-            var user = new UserAuth()
+            var user = new User()
             {
-                UserName = "user",
+                Username = "user",
                 FirstName = "firstname",
                 LastName = "lastname",
+                Language = new Language()
             };
 
             string password = "MyPassword";
@@ -74,27 +83,30 @@ namespace Woozle.Test.Services.Authentication
             string salt = "Salt";
             passwordHasherMock.Setup(n => n.GetHashAndSaltString(password, out hash, out salt));
 
-            var registeredUser = authRepository.CreateUserAuth(user, password);
+            var registeredUser = registrationLogic.RegisterUser(user, password);
             
             Assert.Equal(hash, registeredUser.PasswordHash);
-            Assert.Equal(salt, registeredUser.Salt);
+            Assert.Equal(salt, registeredUser.PasswordSalt);
+            Assert.Equal(4, registeredUser.LanguageId);
         }
 
         [Fact]
         public void CreateUserAuth_ShouldValidateUser()
         {
             MockCreateUserDependencies();
+            woozleSettingsMock.Setup(n => n.DefaultLanguage).Returns(new Language() { Id = 4 });
 
-            var user = new UserAuth()
+            var user = new User()
             {
                 FirstName = "firstname",
                 LastName = "lastname",
+                Language = new Language()
             };
 
-            userValidatorMock.Setup(n => n.ValidateNewUser(user.UserName, user.Email));
+            userValidatorMock.Setup(n => n.ValidateNewUser(user.Username, user.Email));
             userValidatorMock.Setup(n => n.ValidateUserPassword("password"));
 
-            authRepository.CreateUserAuth(user, "password");
+            registrationLogic.RegisterUser(user, "password");
             userLogicMock.Verify();
         }
 
@@ -104,21 +116,20 @@ namespace Woozle.Test.Services.Authentication
             MockCreateUserDependencies();
             userLogicMock.Setup(n => n.GetUserByUsername("user", It.IsAny<SessionData>())).Returns(new User());
 
-            var user = new UserAuth()
+            var user = new User()
             {
                 FirstName = "firstname",
                 LastName = "lastname",
-                UserName = "user"
+                Username = "user"
             };
 
-            Assert.Throws<ArgumentException>(() => authRepository.CreateUserAuth(user, "password"));
+            Assert.Throws<ArgumentException>(() => registrationLogic.RegisterUser(user, "password"));
         }
 
         private void MockCreateUserDependencies()
         {
-            userLogicMock.Setup(n => n.Save(It.IsAny<User>(), It.IsAny<SessionData>())).Returns(new User());
+            userLogicMock.Setup(n => n.Save(It.IsAny<User>(), It.IsAny<SessionData>())).Returns((User u, SessionData s) => u);
             woozleSettingsMock.Setup(n => n.DefaultMandator).Returns(new Model.Mandator() { Id = 1 });
-            registrationSettingsMock.Setup(n => n.DefaultLanguage).Returns(new Language() { Id = 2 });
             registrationSettingsMock.Setup(n => n.DefaultFlagActiveStatus).Returns(new Status() { Id = 3 });
             getRolesLogicMock.Setup(n => n.GetMandatorRoleByName(Roles.User, It.IsAny<SessionData>()))
                 .Returns(new Model.MandatorRole() { Id = 4 });

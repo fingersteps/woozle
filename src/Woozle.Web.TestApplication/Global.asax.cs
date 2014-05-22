@@ -7,6 +7,7 @@ using System.Web.SessionState;
 using ServiceStack.WebHost.Endpoints;
 using Woozle.Host;
 using Woozle.Services.Authentication;
+using Woozle.Services.Registration;
 
 namespace Woozle.Web.TestApplication
 {
