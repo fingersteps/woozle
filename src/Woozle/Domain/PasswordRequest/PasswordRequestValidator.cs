@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using PostSharp.Extensibility;
 using Woozle.Model.SessionHandling;
 using Woozle.Persistence;
 
@@ -27,10 +26,10 @@ namespace Woozle.Domain.PasswordRequest
 
             var attemptsQuery = this.passwordRequestRepository.CreateQueryable(sessionData);
 
-            var dateTime = DateTime.Now.AddMinutes(15);
+            var dateTime = DateTime.Now.AddMinutes(-15);
 
             var attempts = from attempt in attemptsQuery
-                            where attempt.IP == ip && attempt.TimeStamp <= dateTime
+                            where attempt.IP == ip && attempt.TimeStamp >= dateTime && attempt.TimeStamp <= DateTime.Now
                             select attempt;
 
             var numberOfAttempts = attempts.Count();

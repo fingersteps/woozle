@@ -12,6 +12,21 @@
             <param name="session"></param>
             <returns></returns>
         </member>
+        <member name="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets all text fields of the specific mandator.
+            </summary>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <returns>A list of <see cref="T:Woozle.Domain.Fields.TextFieldSearchResult"/></returns>
+        </member>
+        <member name="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextField(System.String,Woozle.Model.SessionHandling.SessionData)">
+            <summary>
+            Gets a specific text field.
+            </summary>
+            <param name="name">The name of the text field.</param>
+            <param name="session"><see cref="T:Woozle.Model.SessionHandling.SessionData"/></param>
+            <returns>The <see cref="T:Woozle.Domain.Fields.TextFieldSearchResult"/></returns>
+        </member>
         <member name="M:Woozle.Domain.Fields.TextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)">
             <summary>
             <see cref="M:Woozle.Domain.Fields.ITextFieldLogic.GetTextFields(Woozle.Model.SessionHandling.SessionData)"/>
