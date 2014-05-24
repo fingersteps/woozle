@@ -96,11 +96,11 @@
     <Compile Include="Domain\UserManagement\UserValidatorTest.cs" />
     <Compile Include="Domain\PasswordChange\PasswordChangeLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Location\SelectUserLanguageServiceTest.cs" />
     <Compile Include="Services\Authentication\LoginContextServiceTest.cs" />
     <Compile Include="Services\Authentication\MandatorAuthenticationTest.cs" />
     <Compile Include="Services\Authentication\MandatorSelectionServiceTest.cs" />
-    <Compile Include="Services\Authentication\DefaultUserLanguageServiceTest.cs" />
-    <Compile Include="Services\Authentication\WoozleAuthRepositoryTest.cs" />
+    <Compile Include="Domain\Registration\RegistrationLogicTest.cs" />
     <Compile Include="Services\Authentication\WoozleCredentialsAuthProviderTest.cs" />
     <Compile Include="Services\Authority\MandatorRoleServiceTest.cs" />
     <Compile Include="Services\Authority\PermissionServiceTest.cs" />

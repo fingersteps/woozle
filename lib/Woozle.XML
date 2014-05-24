@@ -123,6 +123,13 @@
             Credentials for the specific email system.
             </summary>
         </member>
+        <member name="M:Woozle.Domain.Registration.IRegistrationLogic.RegisterUser(Woozle.Model.User,System.String)">
+            <summary>
+            Registers a new user
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+        </member>
         <member name="M:Woozle.Domain.UserManagement.IUserValidator.ValidateNewUser(System.String,System.String)">
             <summary>
             Validates a new User
@@ -164,7 +171,12 @@
             <see cref="P:Woozle.Services.AbstractService.Session">Session </see> for authorisation
             </summary>
         </member>
-        <member name="T:Woozle.Services.Authentication.WoozleRegistrationFeature">
+        <member name="M:Woozle.Services.Registration.RegistrationService.Post(Woozle.Services.Registration.Registration)">
+            <summary>
+            Create new Registration
+            </summary>
+        </member>
+        <member name="T:Woozle.Services.Registration.WoozleRegistrationFeature">
             <summary>
             This Feature is a Woozle specific extension of ServiceStacks built in Registration feature.
             </summary>

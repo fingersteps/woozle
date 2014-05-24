@@ -257,7 +257,8 @@ namespace Woozle.Services
                     PasswordSalt = source.Salt,
                     FirstName = source.FirstName,
                     LastName = source.LastName,
-                    Email = source.Email
+                    Email = source.Email,
+                    Language = new Model.Language() {Code = source.Language}
                 };
             }
         }
