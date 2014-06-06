@@ -64,8 +64,6 @@ Replace the default configuration in your `Web.config` by the following configur
     <add key="WoozleDatabaseConnectionString" value="metadata=res://*/WoozleModel.csdl|res://*/WoozleModel.ssdl|res://*/WoozleModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;Integrated Security=SSPI;initial catalog=Woozle;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
   </appSettings>
 
-
-
   <system.web>
     <customErrors mode="Off" />
     <compilation debug="true" targetFramework="4.5" />
