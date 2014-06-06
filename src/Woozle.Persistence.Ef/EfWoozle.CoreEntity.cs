@@ -1,12 +1,13 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using Microsoft.WindowsAzure;
 
 namespace Woozle.Persistence.Ef
 {
     public partial class EfWoozleEntity : EfUnitOfWork
     {
-        public EfWoozleEntity() : base("name=EfWoozleEntity")
+        public EfWoozleEntity() : base(CloudConfigurationManager.GetSetting("WoozleDatabaseConnectionString"))
         {
             Trace.TraceInformation("Creating EfWoozleEntity Model.");
             this.Configuration.ProxyCreationEnabled = false;
