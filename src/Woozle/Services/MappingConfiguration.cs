@@ -155,7 +155,8 @@ namespace Woozle.Services
             Mapper.CreateMap<User, Model.User>()
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
                 .ForMember(dest => dest.PasswordSalt, opt => opt.Ignore());
-            Mapper.CreateMap<Model.User, User>();
+            Mapper.CreateMap<Model.User, User>()
+                  .ForMember(n => n.Status, opt => opt.Ignore());
 
             Mapper.CreateMap<UserMandatorRole, Model.UserMandatorRole>();
             Mapper.CreateMap<Model.UserMandatorRole, UserMandatorRole>()

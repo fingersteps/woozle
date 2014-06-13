@@ -79,8 +79,13 @@ namespace Woozle.Domain.UserManagement
                 selectedUser.LanguageId = user.LanguageId;
                 selectedUser.LastName = user.LastName;
                 selectedUser.Email = user.Email;
-                selectedUser.PasswordHash = user.PasswordHash;
-                selectedUser.PasswordSalt = user.PasswordSalt;
+
+                if (!string.IsNullOrEmpty(user.PasswordHash))
+                {
+                    selectedUser.PasswordHash = user.PasswordHash;
+                    selectedUser.PasswordSalt = user.PasswordSalt; 
+                }
+
                 selectedUser.PersistanceState = PState.Modified;
                 user = selectedUser;
             }
