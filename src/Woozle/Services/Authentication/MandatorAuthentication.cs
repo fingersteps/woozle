@@ -52,6 +52,10 @@ namespace Woozle.Services.Authentication
                         }
                     }
                 }
+                
+                // Renew the timespan of the session.
+                // http://teadriven.me.uk/2013/02/14/sliding-sessions-in-service-stack/
+                req.SaveSession(session, new TimeSpan(0,0,30,0));
 
                 base.Execute(req, res, requestDto);
         }
