@@ -149,7 +149,15 @@ public class Global : System.Web.HttpApplication
     {
         new AppHost().Init();
     }
-}
+    
+    private static WoozleDefaults CreateWoozleDefaults()
+    {
+        return new WoozleDefaults()
+        {
+            DefaultMandatorName = "<<your default mandator>>",
+            DefaultLanguageCode = "<<your default language>>"
+        };
+    }
 ```
 
 ###Step 6: Start your Application
