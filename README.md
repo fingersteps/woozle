@@ -125,7 +125,7 @@ public class Global : System.Web.HttpApplication
 {
     public class AppHost : WoozleHost
     {
-        public AppHost() : base("Your Application", typeof (WoozleHost).Assembly) { }
+        public AppHost() : base(CreateWoozleDefaults(), "<<Your Application>>", typeof (WoozleHost).Assembly) { }
 
         public override void Configure(Funq.Container container)
         {
