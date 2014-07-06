@@ -125,7 +125,7 @@ public class Global : System.Web.HttpApplication
 {
     public class AppHost : WoozleHost
     {
-        public AppHost() : base("Your Application", typeof (WoozleHost).Assembly) { }
+        public AppHost() : base(CreateWoozleDefaults(), "<<Your Application>>", typeof (WoozleHost).Assembly) { }
 
         public override void Configure(Funq.Container container)
         {
@@ -149,7 +149,15 @@ public class Global : System.Web.HttpApplication
     {
         new AppHost().Init();
     }
-}
+    
+    private static WoozleDefaults CreateWoozleDefaults()
+    {
+        return new WoozleDefaults()
+        {
+            DefaultMandatorName = "<<your default mandator>>",
+            DefaultLanguageCode = "<<your default language>>"
+        };
+    }
 ```
 
 ###Step 6: Start your Application
